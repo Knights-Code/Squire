@@ -1,6 +1,7 @@
 Squire
 ======
-An in-development open source application for D&D DMs and players to assist with character management.
+An in-development open source application to assist with character management for D&D players.
 
 Samantha Schaffer
+
 Tom Chataway

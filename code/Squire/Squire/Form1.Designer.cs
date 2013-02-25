@@ -54,7 +54,6 @@
             this.upDownWill = new System.Windows.Forms.NumericUpDown();
             this.labelAbilityScore = new System.Windows.Forms.Label();
             this.comboBoxAbilityScore = new System.Windows.Forms.ComboBox();
-            this.labelHP = new System.Windows.Forms.Label();
             this.upDownHP = new System.Windows.Forms.NumericUpDown();
             this.skillsBox = new System.Windows.Forms.GroupBox();
             this.tableLayoutPanel3 = new System.Windows.Forms.TableLayoutPanel();
@@ -74,6 +73,8 @@
             this.label6 = new System.Windows.Forms.Label();
             this.label7 = new System.Windows.Forms.Label();
             this.label8 = new System.Windows.Forms.Label();
+            this.hitPointsPanel = new System.Windows.Forms.TableLayoutPanel();
+            this.labelHP = new System.Windows.Forms.Label();
             this.tableLayoutPanel5 = new System.Windows.Forms.TableLayoutPanel();
             this.tableLayoutPanel9 = new System.Windows.Forms.TableLayoutPanel();
             this.addClassFeatureButton = new System.Windows.Forms.Button();
@@ -91,6 +92,7 @@
             this.classFeaturesBox = new System.Windows.Forms.ListBox();
             this.openCharacterXML = new System.Windows.Forms.OpenFileDialog();
             this.createCharacterXML = new System.Windows.Forms.SaveFileDialog();
+            this.addHPButton = new System.Windows.Forms.Button();
             this.tableLayoutPanel1.SuspendLayout();
             this.flowLayoutPanel1.SuspendLayout();
             this.tableLayoutPanel2.SuspendLayout();
@@ -118,6 +120,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown6)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown7)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown8)).BeginInit();
+            this.hitPointsPanel.SuspendLayout();
             this.tableLayoutPanel5.SuspendLayout();
             this.tableLayoutPanel9.SuspendLayout();
             this.tableLayoutPanel6.SuspendLayout();
@@ -182,9 +185,9 @@
             // tableLayoutPanel2
             // 
             this.tableLayoutPanel2.ColumnCount = 3;
-            this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 56.95932F));
-            this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 43.04068F));
-            this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 116F));
+            this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 61.26126F));
+            this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 38.73874F));
+            this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 121F));
             this.tableLayoutPanel2.Controls.Add(this.characterFile, 0, 1);
             this.tableLayoutPanel2.Controls.Add(this.labelExplanation, 0, 0);
             this.tableLayoutPanel2.Controls.Add(this.flowLayoutPanel2, 1, 1);
@@ -202,9 +205,9 @@
             // characterFile
             // 
             this.characterFile.Anchor = System.Windows.Forms.AnchorStyles.Right;
-            this.characterFile.Location = new System.Drawing.Point(3, 28);
+            this.characterFile.Location = new System.Drawing.Point(18, 28);
             this.characterFile.Name = "characterFile";
-            this.characterFile.Size = new System.Drawing.Size(247, 20);
+            this.characterFile.Size = new System.Drawing.Size(248, 20);
             this.characterFile.TabIndex = 2;
             this.characterFile.TextChanged += new System.EventHandler(this.characterFile_TextChanged);
             // 
@@ -212,9 +215,9 @@
             // 
             this.labelExplanation.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.labelExplanation.AutoSize = true;
-            this.labelExplanation.Location = new System.Drawing.Point(3, 0);
+            this.labelExplanation.Location = new System.Drawing.Point(3, 8);
             this.labelExplanation.Name = "labelExplanation";
-            this.labelExplanation.Size = new System.Drawing.Size(211, 21);
+            this.labelExplanation.Size = new System.Drawing.Size(248, 13);
             this.labelExplanation.TabIndex = 4;
             this.labelExplanation.Text = "Select a character file to level up and click \"Load\".";
             this.labelExplanation.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -224,9 +227,9 @@
             this.flowLayoutPanel2.Anchor = System.Windows.Forms.AnchorStyles.Left;
             this.flowLayoutPanel2.Controls.Add(this.browseButton);
             this.flowLayoutPanel2.Controls.Add(this.loadButton);
-            this.flowLayoutPanel2.Location = new System.Drawing.Point(256, 24);
+            this.flowLayoutPanel2.Location = new System.Drawing.Point(272, 24);
             this.flowLayoutPanel2.Name = "flowLayoutPanel2";
-            this.flowLayoutPanel2.Size = new System.Drawing.Size(165, 29);
+            this.flowLayoutPanel2.Size = new System.Drawing.Size(164, 29);
             this.flowLayoutPanel2.TabIndex = 5;
             // 
             // browseButton
@@ -254,7 +257,7 @@
             // 
             this.labelLevel.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
             this.labelLevel.AutoSize = true;
-            this.labelLevel.Location = new System.Drawing.Point(475, 8);
+            this.labelLevel.Location = new System.Drawing.Point(473, 8);
             this.labelLevel.Name = "labelLevel";
             this.labelLevel.Size = new System.Drawing.Size(54, 13);
             this.labelLevel.TabIndex = 6;
@@ -265,7 +268,7 @@
             this.characterLevel.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.characterLevel.Enabled = false;
             this.characterLevel.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.characterLevel.Location = new System.Drawing.Point(477, 24);
+            this.characterLevel.Location = new System.Drawing.Point(475, 24);
             this.characterLevel.Name = "characterLevel";
             this.characterLevel.Size = new System.Drawing.Size(50, 29);
             this.characterLevel.TabIndex = 7;
@@ -299,9 +302,9 @@
             this.tableNumericStats.Controls.Add(this.savesBox, 0, 1);
             this.tableNumericStats.Controls.Add(this.labelAbilityScore, 0, 2);
             this.tableNumericStats.Controls.Add(this.comboBoxAbilityScore, 1, 2);
-            this.tableNumericStats.Controls.Add(this.labelHP, 0, 3);
             this.tableNumericStats.Controls.Add(this.upDownHP, 1, 3);
             this.tableNumericStats.Controls.Add(this.skillsBox, 0, 4);
+            this.tableNumericStats.Controls.Add(this.hitPointsPanel, 0, 3);
             this.tableNumericStats.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tableNumericStats.Location = new System.Drawing.Point(0, 0);
             this.tableNumericStats.Name = "tableNumericStats";
@@ -309,8 +312,8 @@
             this.tableNumericStats.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 7.655899F));
             this.tableNumericStats.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 25.83333F));
             this.tableNumericStats.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 7.777778F));
-            this.tableNumericStats.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 7.222222F));
-            this.tableNumericStats.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 52.22222F));
+            this.tableNumericStats.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 8.888889F));
+            this.tableNumericStats.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50.55556F));
             this.tableNumericStats.Size = new System.Drawing.Size(187, 360);
             this.tableNumericStats.TabIndex = 0;
             // 
@@ -455,22 +458,11 @@
             this.comboBoxAbilityScore.Size = new System.Drawing.Size(64, 21);
             this.comboBoxAbilityScore.TabIndex = 4;
             // 
-            // labelHP
-            // 
-            this.labelHP.Anchor = System.Windows.Forms.AnchorStyles.Left;
-            this.labelHP.AutoSize = true;
-            this.labelHP.Location = new System.Drawing.Point(3, 152);
-            this.labelHP.Name = "labelHP";
-            this.labelHP.Size = new System.Drawing.Size(52, 13);
-            this.labelHP.TabIndex = 5;
-            this.labelHP.Text = "Hit Points";
-            this.labelHP.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            // 
             // upDownHP
             // 
             this.upDownHP.Anchor = System.Windows.Forms.AnchorStyles.Left;
             this.upDownHP.Enabled = false;
-            this.upDownHP.Location = new System.Drawing.Point(120, 149);
+            this.upDownHP.Location = new System.Drawing.Point(120, 151);
             this.upDownHP.Maximum = new decimal(new int[] {
             2000,
             0,
@@ -486,7 +478,7 @@
             this.tableNumericStats.SetColumnSpan(this.skillsBox, 2);
             this.skillsBox.Controls.Add(this.tableLayoutPanel3);
             this.skillsBox.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.skillsBox.Location = new System.Drawing.Point(3, 174);
+            this.skillsBox.Location = new System.Drawing.Point(3, 180);
             this.skillsBox.MinimumSize = new System.Drawing.Size(181, 183);
             this.skillsBox.Name = "skillsBox";
             this.skillsBox.Size = new System.Drawing.Size(181, 183);
@@ -686,6 +678,32 @@
             this.label8.TabIndex = 23;
             this.label8.Text = "label8";
             this.label8.Visible = false;
+            // 
+            // hitPointsPanel
+            // 
+            this.hitPointsPanel.ColumnCount = 3;
+            this.hitPointsPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 70.2381F));
+            this.hitPointsPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 29.76191F));
+            this.hitPointsPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 26F));
+            this.hitPointsPanel.Controls.Add(this.labelHP, 0, 0);
+            this.hitPointsPanel.Controls.Add(this.addHPButton, 2, 0);
+            this.hitPointsPanel.Location = new System.Drawing.Point(3, 149);
+            this.hitPointsPanel.Name = "hitPointsPanel";
+            this.hitPointsPanel.RowCount = 1;
+            this.hitPointsPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.hitPointsPanel.Size = new System.Drawing.Size(111, 25);
+            this.hitPointsPanel.TabIndex = 5;
+            // 
+            // labelHP
+            // 
+            this.labelHP.Anchor = System.Windows.Forms.AnchorStyles.Left;
+            this.labelHP.AutoSize = true;
+            this.labelHP.Location = new System.Drawing.Point(3, 6);
+            this.labelHP.Name = "labelHP";
+            this.labelHP.Size = new System.Drawing.Size(52, 13);
+            this.labelHP.TabIndex = 6;
+            this.labelHP.Text = "Hit Points";
+            this.labelHP.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
             // tableLayoutPanel5
             // 
@@ -888,6 +906,19 @@
             this.createCharacterXML.DefaultExt = "xml";
             this.createCharacterXML.Filter = "XML files|*.xml|All files|*.*";
             // 
+            // addHPButton
+            // 
+            this.addHPButton.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.addHPButton.Enabled = false;
+            this.addHPButton.Image = global::Squire.Properties.Resources.HPADDICON2;
+            this.addHPButton.Location = new System.Drawing.Point(87, 3);
+            this.addHPButton.Name = "addHPButton";
+            this.addHPButton.Size = new System.Drawing.Size(21, 19);
+            this.addHPButton.TabIndex = 6;
+            this.addHPButton.TextAlign = System.Drawing.ContentAlignment.TopCenter;
+            this.addHPButton.UseVisualStyleBackColor = true;
+            this.addHPButton.Click += new System.EventHandler(this.addHPButton_Click);
+            // 
             // Squire
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -896,7 +927,7 @@
             this.ClientSize = new System.Drawing.Size(567, 462);
             this.Controls.Add(this.tableLayoutPanel1);
             this.Name = "Squire";
-            this.Text = "Squire";
+            this.Text = "Squire - Level Up";
             this.tableLayoutPanel1.ResumeLayout(false);
             this.flowLayoutPanel1.ResumeLayout(false);
             this.tableLayoutPanel2.ResumeLayout(false);
@@ -929,6 +960,8 @@
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown6)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown7)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown8)).EndInit();
+            this.hitPointsPanel.ResumeLayout(false);
+            this.hitPointsPanel.PerformLayout();
             this.tableLayoutPanel5.ResumeLayout(false);
             this.tableLayoutPanel9.ResumeLayout(false);
             this.tableLayoutPanel6.ResumeLayout(false);
@@ -962,7 +995,6 @@
         private System.Windows.Forms.NumericUpDown upDownWill;
         private System.Windows.Forms.Label labelAbilityScore;
         private System.Windows.Forms.ComboBox comboBoxAbilityScore;
-        private System.Windows.Forms.Label labelHP;
         private System.Windows.Forms.NumericUpDown upDownHP;
         private System.Windows.Forms.GroupBox skillsBox;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel3;
@@ -1005,6 +1037,9 @@
         private System.Windows.Forms.ListBox featBox;
         private System.Windows.Forms.SaveFileDialog createCharacterXML;
         private System.Windows.Forms.Button generateButton;
+        private System.Windows.Forms.TableLayoutPanel hitPointsPanel;
+        private System.Windows.Forms.Label labelHP;
+        private System.Windows.Forms.Button addHPButton;
     }
 }
 

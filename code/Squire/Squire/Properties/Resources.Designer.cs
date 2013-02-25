@@ -59,5 +59,12 @@ namespace Squire.Properties {
                 resourceCulture = value;
             }
         }
+        
+        internal static System.Drawing.Bitmap HPADDICON2 {
+            get {
+                object obj = ResourceManager.GetObject("HPADDICON2", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
     }
 }

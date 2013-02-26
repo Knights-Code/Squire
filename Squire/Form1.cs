@@ -170,6 +170,7 @@ namespace Squire
                         if (!reader.IsEmptyElement)
                         {
                             upDownBAB.Value = reader.ReadElementContentAsDecimal();
+                            characterLevel.Value = (upDownBAB.Value+1); // Only works for straight-level full BAB characters!
                             upDownBAB.Enabled = true;
                         }
 
@@ -237,8 +238,16 @@ namespace Squire
                         reader.ReadToNextSibling("Feats");
                         for (int i = 0; i < 12; i++)
                         {
-                            if (!reader.IsEmptyElement) featBox.Items.Add(reader.ReadElementContentAsString());
-                            else reader.ReadString(); // If slot is empty, skip to next node
+                            if (!reader.IsEmptyElement)
+                            {
+                                String item = reader.ReadElementContentAsString();
+                                if (item != String.Empty)
+                                    featBox.Items.Add(item);
+                            }
+                            else
+                            {
+                                reader.ReadString(); // If slot is empty, skip to next node
+                            }
                         }
                         featEntry.Enabled = true;
 
@@ -441,10 +450,23 @@ namespace Squire
                     }
 
                 // Update feats (a little different because the "Feats" element tags are identical for every feat)
-                    //for (XmlNode i = root.SelectSingleNode("descendant::Feats"); i != featBox.Items.Count; i++)
-                    //{
+                int count = 0; // used to reference featBox
 
-//                    }
+                    for (XmlNode i = root.SelectSingleNode("descendant::Feats"); i.NextSibling.Name == "Feats"; i = i.NextSibling)
+                    {
+                        // Check to make sure we still have feats to add from the feat box
+                        if (count < featBox.Items.Count)
+                        {
+                            editor = i.CreateNavigator();
+                            editor.SetValue(featBox.Items[count].ToString());
+                            count++;
+                        }
+                        else // If we've run out of feats, clear the remaining feat slots
+                        {
+                            editor = i.CreateNavigator();
+                            editor.SetValue(String.Empty);
+                        }
+                    }
 
                     /*
                     // Process feats -- iterate through the 12 feat slots on the sheet.

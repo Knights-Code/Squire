@@ -71,13 +71,13 @@ namespace Squire
 
         void featBox_SelectedIndexChanged(object sender, EventArgs e)
         {
-            // Only enable the Add button if there's something to add in the text box
+            // Only enable the Remove button if there's something selected in the feat list
             removeFeatButton.Enabled = (featBox.SelectedItems.Count > 0);
         }
 
         private void classFeaturesBox_SelectedValueChanged(object sender, EventArgs e)
         {
-            // Only enable the Add button if there's something to add in the text box
+            // Only enable the Remove button if there's something selected in the class features list
             removeClassFeatureButton.Enabled = (classFeaturesBox.SelectedItems.Count > 0);
         }
 
@@ -107,14 +107,14 @@ namespace Squire
 
         private void addClassFeatureButton_Click(object sender, EventArgs e)
         {
-            if (classFeaturesBox.Items.Count < 23)
+            if (classFeaturesBox.Items.Count < numberClassFeatureSlots)
             {
                 classFeaturesBox.Items.Add(" " + classFeatureEntry.Text);
                 classFeatureEntry.Clear();
             }
             else
             {
-                MessageBox.Show("The sheet type only has room for 23 class features. You will need a character sheet with more class feature slots to add more feats.", "Error: no space for new class feature", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("The sheet type only has room for "+numberClassFeatureSlots+" class features. You will need a character sheet with more class feature slots to add more class features.", "Error: no space for new class feature", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 
@@ -145,8 +145,12 @@ namespace Squire
                         int skillIndex = 0;
                         reader.MoveToContent();
 
+                    // Determine sheet type
+                        reader.ReadToDescendant("ClassAndLevel");
+                        determineSheetType(reader.ReadElementContentAsString());
+
                         // Record ability scores
-                        reader.ReadToDescendant("STR");
+                        reader.ReadToNextSibling("STR");
                         STR = reader.ReadElementContentAsDecimal();
                         reader.ReadToNextSibling("DEX");
                         DEX = reader.ReadElementContentAsDecimal();
@@ -245,9 +249,9 @@ namespace Squire
                             skillIndex++;
                         }
 
-                        // Process feats -- iterate through the 12 feat slots on the sheet.
+                        // Process feats -- iterate through all feat slots on the sheet.
                         reader.ReadToNextSibling("Feats");
-                        for (int i = 0; i < 12; i++)
+                        for (int i = 0; i < numberFeatSlots; i++)
                         {
                             if (!reader.IsEmptyElement)
                             {
@@ -284,7 +288,7 @@ namespace Squire
 
                         // Process class features -- iterate through the 23 class feature slots on the sheet.
                         reader.ReadToNextSibling("SpecialAbilities");
-                        for (int i = 0; i < 23; i++)
+                        for (int i = 0; i < numberClassFeatureSlots; i++)
                         {
                             if (!reader.IsEmptyElement) classFeaturesBox.Items.Add(reader.ReadElementContentAsString());
                             else reader.ReadString(); // Skip to next node
@@ -306,6 +310,29 @@ namespace Squire
                       //  MessageBox.Show("Squire encountered an error while reading the character file. Please check the file (or designate a new one) and try again.", "Bad File", MessageBoxButtons.OK,MessageBoxIcon.Error);
                     //}
                 }
+            }
+        }
+
+        /**
+         * Uses data in the class and level field to determine what kind of character sheet the user is using.
+         * @param classAndLevel The class and level of the sheet e.g. "Knight 16"
+         */
+        private void determineSheetType(string classAndLevel)
+        {
+            if (classAndLevel.Contains("Knight"))
+            {
+                numberFeatSlots = 12;
+                numberClassFeatureSlots = 23;
+            }
+            else if (classAndLevel.Contains("Fighter"))
+            {
+                numberFeatSlots = 35;
+                numberClassFeatureSlots = 0;
+            }
+            else
+            {
+                numberClassFeatureSlots = 12;
+                numberClassFeatureSlots = 23;
             }
         }
 
@@ -332,14 +359,14 @@ namespace Squire
         private void addFeatButton_Click(object sender, EventArgs e)
         {
             // Make sure we don't have more feats than can be saved back to the character sheet.
-            if (featBox.Items.Count < 12)
+            if (featBox.Items.Count < numberFeatSlots)
             {
                 featBox.Items.Add(" " + featEntry.Text); // add the feat to the feat list
                 featEntry.Clear(); // clear the entry field for new input
             }
             else
             {
-                MessageBox.Show("The sheet type only has room for 12 feats. You will need a character sheet with more feat slots to add more feats.", "Error: no space for new feat", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("The sheet type only has room for "+numberFeatSlots+" feats. You will need a character sheet with more feat slots to add more feats.", "Error: no space for new feat", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 
@@ -488,7 +515,7 @@ namespace Squire
                     }
 
                     /*
-                    // Process feats -- iterate through the 12 feat slots on the sheet.
+                    // Process feats -- iterate through all feat slots on the sheet.
                     reader.ReadToNextSibling("Feats");
                     for (int i = 0; i < 12; i++)
                     {

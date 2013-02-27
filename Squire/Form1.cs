@@ -19,11 +19,13 @@ namespace Squire
         //-----( Custom Controls )-----//
         private Label[] skillNames;
         private NumericUpDown[] skillRanks;
-        private Boolean bDataLoaded;
-        private Boolean bLoadOK;
         private NumericTextBox newHP;
 
         //-----( Normal Variables )-----//
+        private Boolean bDataLoaded;
+        private Boolean bLoadOK;
+        private decimal numberFeatSlots;
+        private decimal numberClassFeatureSlots;
         private decimal STR;
         private decimal DEX;
         private decimal CON;
@@ -41,6 +43,8 @@ namespace Squire
             skillRanks = new NumericUpDown[8] { numericUpDown1, numericUpDown2, numericUpDown3, numericUpDown4, numericUpDown5, numericUpDown6, numericUpDown7, numericUpDown8 };
             bDataLoaded = false;
             bLoadOK = true;
+            numberFeatSlots = 12;
+            numberClassFeatureSlots = 23;
 
             //-----( Custom Components )-----//
             newHP = new NumericTextBox();
@@ -103,8 +107,15 @@ namespace Squire
 
         private void addClassFeatureButton_Click(object sender, EventArgs e)
         {
-            classFeaturesBox.Items.Add(" " + classFeatureEntry.Text);
-            classFeatureEntry.Clear();
+            if (classFeaturesBox.Items.Count < 23)
+            {
+                classFeaturesBox.Items.Add(" " + classFeatureEntry.Text);
+                classFeatureEntry.Clear();
+            }
+            else
+            {
+                MessageBox.Show("The sheet type only has room for 23 class features. You will need a character sheet with more class feature slots to add more feats.", "Error: no space for new class feature", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }
 
         private void browseButton_Click(object sender, EventArgs e)
@@ -241,7 +252,7 @@ namespace Squire
                             if (!reader.IsEmptyElement)
                             {
                                 String item = reader.ReadElementContentAsString();
-                                if (item != String.Empty)
+                                if (item != String.Empty) // don't add blank entries to the feat list. That would be silly.
                                     featBox.Items.Add(item);
                             }
                             else
@@ -271,7 +282,7 @@ namespace Squire
                             skillIndex++;
                         }
 
-                        // Process class features -- iterate through the 23 feat slots on the sheet.
+                        // Process class features -- iterate through the 23 class feature slots on the sheet.
                         reader.ReadToNextSibling("SpecialAbilities");
                         for (int i = 0; i < 23; i++)
                         {
@@ -320,8 +331,16 @@ namespace Squire
 
         private void addFeatButton_Click(object sender, EventArgs e)
         {
-            featBox.Items.Add(" " + featEntry.Text); // add the feat to the feat list
-            featEntry.Clear(); // clear the entry field for new input
+            // Make sure we don't have more feats than can be saved back to the character sheet.
+            if (featBox.Items.Count < 12)
+            {
+                featBox.Items.Add(" " + featEntry.Text); // add the feat to the feat list
+                featEntry.Clear(); // clear the entry field for new input
+            }
+            else
+            {
+                MessageBox.Show("The sheet type only has room for 12 feats. You will need a character sheet with more feat slots to add more feats.", "Error: no space for new feat", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }
 
         private void removeFeatButton_Click(object sender, EventArgs e)
@@ -336,7 +355,7 @@ namespace Squire
 
         private void characterLevel_ValueChanged(object sender, EventArgs e)
         {
-            // If the character's new level is a multiple of 4, enable ability score increase
+            // If the character's new level is a multiple of 4, enable ability score increase.
             if (characterLevel.Value % 4 == 0) comboBoxAbilityScore.Enabled = true;
             else comboBoxAbilityScore.Enabled = false;
         }

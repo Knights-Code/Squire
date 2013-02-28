@@ -8,3 +8,6 @@ feats than can fit on the character sheet. I know that the unadulterated Fighter
 to support more than one type of character sheet (sheets with varying numbers of slots for feats and class features). The sheets themselves will need some way of identifying themselves as certain types. An easy way of doing this is
 to query the string stored in the "Class and Level" node. It wouldn't work for multiclass characters, however. In the short-term, it would be good practice to avoid using constants wherever list sizes are concerned (instead
 initialising them when a sheet is loaded).
+
+# 2013-02-28
+* Not really an idea, more like something I need to do later. Add check to make sure the user isn't trying to overwrite the current level XML file with the next level XML.

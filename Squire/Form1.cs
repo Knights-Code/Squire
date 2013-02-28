@@ -185,7 +185,7 @@ namespace Squire
                         if (!reader.IsEmptyElement)
                         {
                             upDownBAB.Value = reader.ReadElementContentAsDecimal();
-                            characterLevel.Value = (upDownBAB.Value+1); // Only works for straight-level full BAB characters!
+                            //characterLevel.Value = (upDownBAB.Value+1); // Only works for straight-level full BAB characters!
                             upDownBAB.Enabled = true;
                         }
 
@@ -314,25 +314,40 @@ namespace Squire
         }
 
         /**
-         * Uses data in the class and level field to determine what kind of character sheet the user is using.
+         * Uses data in the class and level field to determine what kind of character sheet the user is using and what level they're
+         * levelling to.
          * @param classAndLevel The class and level of the sheet e.g. "Knight 16"
          */
         private void determineSheetType(string classAndLevel)
         {
+            String sheetType;
+            // Determine sheet type
             if (classAndLevel.Contains("Knight"))
             {
+                sheetType = "Knight";
                 numberFeatSlots = 12;
                 numberClassFeatureSlots = 23;
             }
             else if (classAndLevel.Contains("Fighter"))
             {
+                sheetType = "Fighter";
                 numberFeatSlots = 35;
                 numberClassFeatureSlots = 0;
             }
             else
             {
+                sheetType = "None";
                 numberClassFeatureSlots = 12;
                 numberClassFeatureSlots = 23;
+            }
+
+            // Determine level (only works for straight classes)
+            if (sheetType != "None")
+            {
+                classAndLevel = classAndLevel.Replace(sheetType, null);
+                decimal level = Convert.ToDecimal(classAndLevel.Trim());
+                level++;
+                characterLevel.Value = level;
             }
         }
 

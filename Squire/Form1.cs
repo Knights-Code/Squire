@@ -26,6 +26,7 @@ namespace Squire
         private Boolean bLoadOK;
         private decimal numberFeatSlots;
         private decimal numberClassFeatureSlots;
+        private decimal level;
         private decimal STR;
         private decimal DEX;
         private decimal CON;
@@ -33,6 +34,7 @@ namespace Squire
         private decimal WIS;
         private decimal CHA;
         private String sourceFile;
+        private String sheetType;
 
         public Squire()
         {
@@ -185,7 +187,12 @@ namespace Squire
                         if (!reader.IsEmptyElement)
                         {
                             upDownBAB.Value = reader.ReadElementContentAsDecimal();
-                            //characterLevel.Value = (upDownBAB.Value+1); // Only works for straight-level full BAB characters!
+                            
+                            // If we couldn't determine the sheet type earlier, we'll use the BAB to generate the level.
+                            if (level == 0)
+                            {
+                                characterLevel.Value = (upDownBAB.Value + 1);
+                            }
                             upDownBAB.Enabled = true;
                         }
 
@@ -320,7 +327,7 @@ namespace Squire
          */
         private void determineSheetType(string classAndLevel)
         {
-            String sheetType;
+            
             // Determine sheet type
             if (classAndLevel.Contains("Knight"))
             {
@@ -344,11 +351,17 @@ namespace Squire
             // Determine level (only works for straight classes)
             if (sheetType != "None")
             {
-                classAndLevel = classAndLevel.Replace(sheetType, null);
-                decimal level = Convert.ToDecimal(classAndLevel.Trim());
-                level++;
-                characterLevel.Value = level;
+                classAndLevel = classAndLevel.Replace(sheetType, null); // remove the "class" part of "class and level"
+                level = Convert.ToDecimal(classAndLevel.Trim()); // convert what's left of the string (whitespace trimmed off) to decimal
+                level++; // increment the number (we're levelling up)
             }
+            else
+            {
+                // If there's no listing for the sheet type, temporarily set level to 0. We'll just use the BAB +1 (which we'll read later)
+                level = 0;
+            }
+
+            characterLevel.Value = level; // set the character level component to read the new level
         }
 
         private void classFeatureEntry_KeyPress(object sender, KeyPressEventArgs e)
@@ -419,7 +432,19 @@ namespace Squire
                     XmlNode cursor = root.SelectSingleNode("descendant::Skin"); // used to step through file to locate nodes
                     XPathNavigator editor = cursor.CreateNavigator(); // used to edit the node that the cursor has located
 
-                    // If an ability score has increased, handle that first
+                // Handle class and level
+                    cursor = root.SelectSingleNode("descendant::ClassAndLevel");
+                    editor = cursor.CreateNavigator();
+                    if (sheetType != "None")
+                    {
+                        editor.SetValue(sheetType + " " + level);
+                    }
+                    else
+                    {
+                        editor.SetValue(""+level);
+                    }
+
+                    // Handle ability score increase
                     if (comboBoxAbilityScore.Text != String.Empty)
                     {
                         // Position cursor on the relative node.

@@ -188,7 +188,7 @@
             this.tableLayoutPanel2.ColumnCount = 3;
             this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 61.26126F));
             this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 38.73874F));
-            this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 124F));
+            this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 125F));
             this.tableLayoutPanel2.Controls.Add(this.characterFile, 0, 1);
             this.tableLayoutPanel2.Controls.Add(this.labelExplanation, 0, 0);
             this.tableLayoutPanel2.Controls.Add(this.flowLayoutPanel2, 1, 1);
@@ -206,7 +206,7 @@
             // characterFile
             // 
             this.characterFile.Anchor = System.Windows.Forms.AnchorStyles.Right;
-            this.characterFile.Location = new System.Drawing.Point(35, 28);
+            this.characterFile.Location = new System.Drawing.Point(34, 28);
             this.characterFile.Name = "characterFile";
             this.characterFile.Size = new System.Drawing.Size(248, 20);
             this.characterFile.TabIndex = 2;
@@ -228,7 +228,7 @@
             this.flowLayoutPanel2.Anchor = System.Windows.Forms.AnchorStyles.Left;
             this.flowLayoutPanel2.Controls.Add(this.browseButton);
             this.flowLayoutPanel2.Controls.Add(this.loadButton);
-            this.flowLayoutPanel2.Location = new System.Drawing.Point(289, 24);
+            this.flowLayoutPanel2.Location = new System.Drawing.Point(288, 24);
             this.flowLayoutPanel2.Name = "flowLayoutPanel2";
             this.flowLayoutPanel2.Size = new System.Drawing.Size(163, 29);
             this.flowLayoutPanel2.TabIndex = 5;
@@ -530,7 +530,7 @@
             // 
             // numericUpDown1
             // 
-            this.numericUpDown1.Location = new System.Drawing.Point(121, 3);
+            this.numericUpDown1.Location = new System.Drawing.Point(127, 3);
             this.numericUpDown1.Name = "numericUpDown1";
             this.numericUpDown1.Size = new System.Drawing.Size(45, 20);
             this.numericUpDown1.TabIndex = 1;
@@ -538,7 +538,7 @@
             // 
             // numericUpDown2
             // 
-            this.numericUpDown2.Location = new System.Drawing.Point(121, 29);
+            this.numericUpDown2.Location = new System.Drawing.Point(127, 29);
             this.numericUpDown2.Name = "numericUpDown2";
             this.numericUpDown2.Size = new System.Drawing.Size(45, 20);
             this.numericUpDown2.TabIndex = 3;
@@ -546,7 +546,7 @@
             // 
             // numericUpDown3
             // 
-            this.numericUpDown3.Location = new System.Drawing.Point(121, 55);
+            this.numericUpDown3.Location = new System.Drawing.Point(127, 55);
             this.numericUpDown3.Name = "numericUpDown3";
             this.numericUpDown3.Size = new System.Drawing.Size(45, 20);
             this.numericUpDown3.TabIndex = 5;
@@ -554,7 +554,7 @@
             // 
             // numericUpDown4
             // 
-            this.numericUpDown4.Location = new System.Drawing.Point(121, 81);
+            this.numericUpDown4.Location = new System.Drawing.Point(127, 81);
             this.numericUpDown4.Name = "numericUpDown4";
             this.numericUpDown4.Size = new System.Drawing.Size(45, 20);
             this.numericUpDown4.TabIndex = 7;
@@ -562,7 +562,7 @@
             // 
             // numericUpDown5
             // 
-            this.numericUpDown5.Location = new System.Drawing.Point(121, 107);
+            this.numericUpDown5.Location = new System.Drawing.Point(127, 107);
             this.numericUpDown5.Name = "numericUpDown5";
             this.numericUpDown5.Size = new System.Drawing.Size(45, 20);
             this.numericUpDown5.TabIndex = 9;
@@ -570,7 +570,7 @@
             // 
             // numericUpDown6
             // 
-            this.numericUpDown6.Location = new System.Drawing.Point(121, 133);
+            this.numericUpDown6.Location = new System.Drawing.Point(127, 133);
             this.numericUpDown6.Name = "numericUpDown6";
             this.numericUpDown6.Size = new System.Drawing.Size(45, 20);
             this.numericUpDown6.TabIndex = 11;
@@ -578,7 +578,7 @@
             // 
             // numericUpDown7
             // 
-            this.numericUpDown7.Location = new System.Drawing.Point(121, 159);
+            this.numericUpDown7.Location = new System.Drawing.Point(127, 159);
             this.numericUpDown7.Name = "numericUpDown7";
             this.numericUpDown7.Size = new System.Drawing.Size(45, 20);
             this.numericUpDown7.TabIndex = 13;
@@ -586,7 +586,7 @@
             // 
             // numericUpDown8
             // 
-            this.numericUpDown8.Location = new System.Drawing.Point(121, 185);
+            this.numericUpDown8.Location = new System.Drawing.Point(127, 185);
             this.numericUpDown8.Name = "numericUpDown8";
             this.numericUpDown8.Size = new System.Drawing.Size(45, 20);
             this.numericUpDown8.TabIndex = 15;
@@ -685,7 +685,7 @@
             this.hitPointsPanel.ColumnCount = 3;
             this.hitPointsPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 70.2381F));
             this.hitPointsPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 29.76191F));
-            this.hitPointsPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 29F));
+            this.hitPointsPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 30F));
             this.hitPointsPanel.Controls.Add(this.labelHP, 0, 0);
             this.hitPointsPanel.Controls.Add(this.addHPButton, 2, 0);
             this.hitPointsPanel.Dock = System.Windows.Forms.DockStyle.Fill;
@@ -702,7 +702,7 @@
             this.labelHP.Dock = System.Windows.Forms.DockStyle.Fill;
             this.labelHP.Location = new System.Drawing.Point(3, 0);
             this.labelHP.Name = "labelHP";
-            this.labelHP.Size = new System.Drawing.Size(56, 27);
+            this.labelHP.Size = new System.Drawing.Size(55, 27);
             this.labelHP.TabIndex = 6;
             this.labelHP.Text = "Hit Points";
             this.labelHP.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -712,9 +712,9 @@
             this.addHPButton.Dock = System.Windows.Forms.DockStyle.Fill;
             this.addHPButton.Enabled = false;
             this.addHPButton.Image = global::Squire.Properties.Resources.HPADDICON2;
-            this.addHPButton.Location = new System.Drawing.Point(91, 3);
+            this.addHPButton.Location = new System.Drawing.Point(90, 3);
             this.addHPButton.Name = "addHPButton";
-            this.addHPButton.Size = new System.Drawing.Size(24, 21);
+            this.addHPButton.Size = new System.Drawing.Size(25, 21);
             this.addHPButton.TabIndex = 6;
             this.addHPButton.TextAlign = System.Drawing.ContentAlignment.TopCenter;
             this.addHPButton.UseVisualStyleBackColor = true;

@@ -429,17 +429,20 @@ namespace Squire
             // If the character's new level is a multiple of 4, enable ability score increase.
             if (characterLevel.Value % 4 == 0) comboBoxAbilityScore.Enabled = true;
             else comboBoxAbilityScore.Enabled = false;
+
+            level = characterLevel.Value; // update level
         }
 
         private void generateButton_Click(object sender, EventArgs e)
         {
             // Determine default file name
             Regex suffix = new Regex("_lv(.+).xml"); // define a regular expression to check file name format and 
-            if (suffix.Match(sourceFile).Value != null) // if the source file is already properly formatted ...
-            {
-                if (Convert.// check that the filename doesn't end with something stupid like "_lvONEHUNDREDYO.xml"
-            }
-            createCharacterXML.FileName = sourceFile.Replace(".xml", "_lv" + level + ".xml");
+
+            Console.WriteLine("Level value is: ["+suffix.Match(sourceFile).Value+"]");
+            
+            // if the source file is already properly formatted ...
+            if (suffix.Match(sourceFile).Value != String.Empty) createCharacterXML.FileName = sourceFile.Replace(suffix.Match(sourceFile).Value, (level<10?"_lv0":"_lv") + level.ToString()+".xml"); // replace existing "level" with new one
+            else createCharacterXML.FileName = sourceFile.Replace(".xml", (level<10?"_lv0":"_lv") + level + ".xml"); // replace existing "level" with new one
 
             if (createCharacterXML.ShowDialog() == DialogResult.OK)
             {

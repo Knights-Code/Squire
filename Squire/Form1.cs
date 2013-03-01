@@ -24,6 +24,7 @@ namespace Squire
         //-----( Normal Variables )-----//
         private Boolean bDataLoaded;
         private Boolean bLoadOK;
+        FileStream stream;
         private decimal numberFeatSlots;
         private decimal numberClassFeatureSlots;
         private decimal level;
@@ -85,6 +86,7 @@ namespace Squire
 
         private void cancelButton_Click(object sender, EventArgs e)
         {
+            if (bDataLoaded) stream.Close(); // unlock character file if one is open
             this.Close();
         }
 
@@ -137,6 +139,9 @@ namespace Squire
 
             if (bLoadOK)
             {
+                // Lock file for editing
+                stream = File.Open(characterFile.Text, FileMode.Open, FileAccess.Read, FileShare.ReadWrite);
+
                 // Load file
                 using (XmlReader reader = XmlReader.Create(characterFile.Text))
                 {
@@ -426,7 +431,7 @@ namespace Squire
 
                     // Create an environment for manipulating the data in the destination file
                     XmlDocument destFile = new XmlDocument(); // this object is required to manipulate XML data
-                    destFile.PreserveWhitespace = true;
+                    destFile.PreserveWhitespace = true; // stops any formatting changes (they would make the file unreadable by Squire)
                     destFile.Load(createCharacterXML.FileName); // load in the data from our destination data file
                     XmlNode root = destFile.DocumentElement; // locate the start of the data
                     XmlNode cursor = root.SelectSingleNode("descendant::Skin"); // used to step through file to locate nodes
@@ -441,7 +446,7 @@ namespace Squire
                     }
                     else
                     {
-                        editor.SetValue(""+level);
+                        editor.SetValue(level.ToString());
                     }
 
                     // Handle ability score increase

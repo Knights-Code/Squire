@@ -11,6 +11,7 @@ using System.Xml;
 using System.IO;
 using System.Xml.XPath;
 using Squire;
+using System.Text.RegularExpressions;
 
 namespace Squire
 {
@@ -64,6 +65,16 @@ namespace Squire
             featEntry.KeyPress +=new KeyPressEventHandler(featEntry_KeyPress);
             featBox.SelectedIndexChanged += new EventHandler(featBox_SelectedIndexChanged);
             newHP.KeyPress += new KeyPressEventHandler(newHP_KeyPress);
+            createCharacterXML.FileOk += new CancelEventHandler(createCharacterXML_FileOk);
+        }
+
+        void createCharacterXML_FileOk(object sender, CancelEventArgs e)
+        {
+            if (createCharacterXML.FileName == sourceFile)
+            {
+                e.Cancel = true;
+                MessageBox.Show("Level up data must be stored in its own file.", "Error: please select different destination", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }
 
         void newHP_KeyPress(object sender, KeyPressEventArgs e)
@@ -422,6 +433,14 @@ namespace Squire
 
         private void generateButton_Click(object sender, EventArgs e)
         {
+            // Determine default file name
+            Regex suffix = new Regex("_lv(.+).xml"); // define a regular expression to check file name format and 
+            if (suffix.Match(sourceFile).Value != null) // if the source file is already properly formatted ...
+            {
+                if (Convert.// check that the filename doesn't end with something stupid like "_lvONEHUNDREDYO.xml"
+            }
+            createCharacterXML.FileName = sourceFile.Replace(".xml", "_lv" + level + ".xml");
+
             if (createCharacterXML.ShowDialog() == DialogResult.OK)
             {
                 //try

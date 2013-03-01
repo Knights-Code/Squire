@@ -920,6 +920,7 @@
             // 
             this.createCharacterXML.DefaultExt = "xml";
             this.createCharacterXML.Filter = "XML Files|*.xml|All Files|*.*";
+            this.createCharacterXML.Title = "Generate XML";
             // 
             // Squire
             // 

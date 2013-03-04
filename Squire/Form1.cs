@@ -15,7 +15,7 @@ using System.Text.RegularExpressions;
 
 namespace Squire
 {
-    public partial class Squire : Form
+    public partial class LevelUp : Form
     {
         //-----( Custom Controls )-----//
         private Label[] skillNames;
@@ -38,7 +38,7 @@ namespace Squire
         private String sourceFile;
         private String sheetType;
 
-        public Squire()
+        public LevelUp()
         {
             InitializeComponent();
 

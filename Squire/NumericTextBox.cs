@@ -16,6 +16,11 @@ namespace Squire
     {
         bool allowSpace = false;
 
+        public NumericTextBox()
+        {
+            this.DecimalValue = 0;
+        }
+
         // Restricts the entry of characters to digits (including hex), the negative sign,
         // the decimal point, and editing keystrokes (backspace).
         protected override void OnKeyPress(KeyPressEventArgs e)

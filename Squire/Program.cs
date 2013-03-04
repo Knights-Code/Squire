@@ -15,7 +15,7 @@ namespace Squire
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new Squire());
+            Application.Run(new SquireMain());
         }
     }
 }

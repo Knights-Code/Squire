@@ -49,6 +49,13 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AddCombatant.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="AddCombatant.Designer.cs">
+      <DependentUpon>AddCombatant.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Combatant.cs" />
     <Compile Include="Form1.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -72,6 +79,9 @@
     <Compile Include="SquireMain.Designer.cs">
       <DependentUpon>SquireMain.cs</DependentUpon>
     </Compile>
+    <EmbeddedResource Include="AddCombatant.resx">
+      <DependentUpon>AddCombatant.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Form1.resx">
       <DependentUpon>Form1.cs</DependentUpon>
     </EmbeddedResource>

@@ -69,6 +69,11 @@ namespace Squire
             {
                 return Int32.Parse(this.Text);
             }
+
+            set
+            {
+                this.Text = value.ToString();
+            }
         }
 
         public decimal DecimalValue

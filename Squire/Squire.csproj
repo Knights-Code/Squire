@@ -56,11 +56,11 @@
       <DependentUpon>AddCombatant.cs</DependentUpon>
     </Compile>
     <Compile Include="Combatant.cs" />
-    <Compile Include="Form1.cs">
+    <Compile Include="LevelUp.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Form1.Designer.cs">
-      <DependentUpon>Form1.cs</DependentUpon>
+    <Compile Include="LevelUp.Designer.cs">
+      <DependentUpon>LevelUp.cs</DependentUpon>
     </Compile>
     <Compile Include="General.cs">
       <SubType>Form</SubType>
@@ -82,8 +82,8 @@
     <EmbeddedResource Include="AddCombatant.resx">
       <DependentUpon>AddCombatant.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Form1.resx">
-      <DependentUpon>Form1.cs</DependentUpon>
+    <EmbeddedResource Include="LevelUp.resx">
+      <DependentUpon>LevelUp.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="General.resx">
       <DependentUpon>General.cs</DependentUpon>

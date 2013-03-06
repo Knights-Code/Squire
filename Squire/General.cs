@@ -35,8 +35,10 @@ namespace Squire
 
         private void combatantList_SelectedIndexChanged(object sender, EventArgs e)
         {
+            // Local combatant variable to store the currently selected combatant
             Combatant selectedCombatant = (Combatant)combatantList.SelectedItem;
             
+            // Load in all the combatant's data and unlock the controls.
             combatantHPBar.Maximum = selectedCombatant.getMaxHP();
             combatantHPBar.Minimum = 0;
             combatantHPBar.Value = selectedCombatant.getCurrentHP();
@@ -88,7 +90,16 @@ namespace Squire
             HPChange.IntValue = 0;
 
             combatantHPBar.Value = selectedCombatant.getCurrentHP(); // update the HP bar
+
+            adjustHPColour(selectedCombatant);
+
             remainingHP.Text = selectedCombatant.getCurrentHP() + " / " + selectedCombatant.getMaxHP(); // update HP label
+        }
+
+        private void adjustHPColour(Combatant selectedCombatant)
+        {
+            // Update the HP bar's colour depending on the combatant's current HP
+            if (combatantHPBar.Value > (selectedCombatant.getMaxHP() / 2)) combatantHPBar.ForeColor = Color.Indigo;
         }
 
         private void damageButton_Click(object sender, EventArgs e)

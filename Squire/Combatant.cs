@@ -18,15 +18,15 @@ namespace Squire
             this.name = name;
             this.maxHP = HP;
             this.currentHP = HP;
-            this.attackBonus = new int[3];
-            this.damage = new string[3];
+            this.attackBonus = new int[3] {0,0,0};
+            this.damage = new string[3] {"+0","+0","+0"};
         }
 
         public Combatant(string name)
         {
             this.name = name;
-            this.attackBonus = new int[3];
-            this.damage = new string[3];
+            this.attackBonus = new int[3] {0,0,0};
+            this.damage = new string[3] {"+0","+0","+0"};
         }
 
         public string getName()

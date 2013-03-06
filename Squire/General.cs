@@ -36,12 +36,45 @@ namespace Squire
         private void combatantList_SelectedIndexChanged(object sender, EventArgs e)
         {
             Combatant selectedCombatant = (Combatant)combatantList.SelectedItem;
+            
             combatantHPBar.Maximum = selectedCombatant.getMaxHP();
             combatantHPBar.Minimum = 0;
             combatantHPBar.Value = selectedCombatant.getCurrentHP();
 
             remainingHP.Text = selectedCombatant.getCurrentHP() + " / " + selectedCombatant.getMaxHP();
+
+            HPChange.Enabled = true;
+            healButton.Enabled = true;
+            damageButton.Enabled = true;
+
             labelCombatantName.Text = selectedCombatant.getName();
+
+            attackBonus1.IntValue = selectedCombatant.getAttack(1);
+            damage1.Text = selectedCombatant.getDamage(1);
+            attackBonus1.Enabled = true;
+            damage1.Enabled = true;
+            incrementAttack1.Enabled = true;
+            decrementAttack1.Enabled = true;
+            incrementDamage1.Enabled = true;
+            decrementDamage1.Enabled = true;
+
+            attackBonus2.IntValue = selectedCombatant.getAttack(2);
+            damage2.Text = selectedCombatant.getDamage(2);
+            attackBonus2.Enabled = true;
+            damage2.Enabled = true;
+            incrementAttack2.Enabled = true;
+            decrementAttack2.Enabled = true;
+            incrementDamage2.Enabled = true;
+            decrementDamage2.Enabled = true;
+
+            attackBonus3.IntValue = selectedCombatant.getAttack(3);
+            damage3.Text = selectedCombatant.getDamage(3);
+            attackBonus3.Enabled = true;
+            damage3.Enabled = true;
+            incrementAttack3.Enabled = true;
+            decrementAttack3.Enabled = true;
+            incrementDamage3.Enabled = true;
+            decrementDamage3.Enabled = true;
         }
 
         private void healButton_Click(object sender, EventArgs e)
@@ -120,6 +153,94 @@ namespace Squire
         private void decrementDamage1_Click(object sender, EventArgs e)
         {
             updateDamage(damage1, false);
+        }
+
+        private void damage1_TextChanged(object sender, EventArgs e)
+        {
+            // Local combatant variable to store the currently selected combatant
+            Combatant selectedCombatant = (Combatant)combatantList.SelectedItem;
+
+            selectedCombatant.setDamage(1, damage1.Text); // update combatant's first attack's damage string
+        }
+
+        private void attackBonus1_TextChanged(object sender, EventArgs e)
+        {
+            // Local combatant variable to store the currently selected combatant
+            Combatant selectedCombatant = (Combatant)combatantList.SelectedItem;
+
+            selectedCombatant.setAttack(1, attackBonus1.IntValue);
+        }
+
+        private void damage2_TextChanged(object sender, EventArgs e)
+        {
+            // Local combatant variable to store the currently selected combatant
+            Combatant selectedCombatant = (Combatant)combatantList.SelectedItem;
+
+            selectedCombatant.setDamage(2, damage2.Text); // update combatant's first attack's damage string
+        }
+
+        private void incrementDamage2_Click(object sender, EventArgs e)
+        {
+            updateDamage(damage2, true);
+        }
+
+        private void decrementDamage2_Click(object sender, EventArgs e)
+        {
+            updateDamage(damage2, false);
+        }
+
+        private void attackBonus2_TextChanged(object sender, EventArgs e)
+        {
+            // Local combatant variable to store the currently selected combatant
+            Combatant selectedCombatant = (Combatant)combatantList.SelectedItem;
+
+            selectedCombatant.setAttack(2, attackBonus2.IntValue);
+        }
+
+        private void incrementAttack2_Click(object sender, EventArgs e)
+        {
+            attackBonus2.IntValue++;
+        }
+
+        private void decrementAttack2_Click(object sender, EventArgs e)
+        {
+            attackBonus2.IntValue--;
+        }
+
+        private void incrementAttack3_Click(object sender, EventArgs e)
+        {
+            attackBonus3.IntValue++;
+        }
+
+        private void decrementAttack3_Click(object sender, EventArgs e)
+        {
+            attackBonus3.IntValue--;
+        }
+
+        private void attackBonus3_TextChanged(object sender, EventArgs e)
+        {
+            // Local combatant variable to store the currently selected combatant
+            Combatant selectedCombatant = (Combatant)combatantList.SelectedItem;
+
+            selectedCombatant.setAttack(3, attackBonus3.IntValue);
+        }
+
+        private void damage3_TextChanged(object sender, EventArgs e)
+        {
+            // Local combatant variable to store the currently selected combatant
+            Combatant selectedCombatant = (Combatant)combatantList.SelectedItem;
+
+            selectedCombatant.setDamage(3, damage3.Text); // update combatant's first attack's damage string
+        }
+
+        private void incrementDamage3_Click(object sender, EventArgs e)
+        {
+            updateDamage(damage3, true);
+        }
+
+        private void decrementDamage3_Click(object sender, EventArgs e)
+        {
+            updateDamage(damage3, false);
         }
     }
 }

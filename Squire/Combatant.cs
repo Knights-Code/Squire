@@ -56,22 +56,22 @@ namespace Squire
 
         public int getAttack(int index)
         {
-            return attackBonus[(index+1)];
+            return attackBonus[(index-1)];
         }
 
         public void setAttack(int index, int newBonus)
         {
-            this.attackBonus[(index + 1)] = newBonus;
+            this.attackBonus[(index - 1)] = newBonus;
         }
 
         public string getDamage(int index)
         {
-            return damage[(index+1)];
+            return damage[(index-1)];
         }
 
         public void setDamage(int index, string newDamage)
         {
-            this.damage[(index+1)] = newDamage;
+            this.damage[(index-1)] = newDamage;
         }
 
         public override string ToString()

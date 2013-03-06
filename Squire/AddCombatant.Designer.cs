@@ -189,10 +189,10 @@
             0,
             0,
             0});
-            this.combatantHP.Location = new System.Drawing.Point(249, 38);
-            this.combatantHP.Margin = new System.Windows.Forms.Padding(0);
+            this.combatantHP.Location = new System.Drawing.Point(252, 38);
+            this.combatantHP.Margin = new System.Windows.Forms.Padding(3, 0, 0, 0);
             this.combatantHP.Name = "combatantHP";
-            this.combatantHP.Size = new System.Drawing.Size(102, 20);
+            this.combatantHP.Size = new System.Drawing.Size(118, 20);
             this.combatantHP.TabIndex = 3;
             this.combatantHP.Text = "0";
             // 

@@ -34,7 +34,7 @@ namespace Squire
             if (this.combatantName.Text != String.Empty)
             {
                 Combatant newCombatant;
-                if (this.combatantHP.IntValue != 0) newCombatant = new Combatant(combatantName.Text, combatantHP.IntValue);
+                if (combatantHP.Enabled && combatantHP.IntValue != 0) newCombatant = new Combatant(combatantName.Text, combatantHP.IntValue);
                 else newCombatant = new Combatant(combatantName.Text);
 
                 parentForm.combatantList.Items.Add(newCombatant);

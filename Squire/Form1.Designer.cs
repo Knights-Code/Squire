@@ -76,6 +76,7 @@
             this.label8 = new System.Windows.Forms.Label();
             this.hitPointsPanel = new System.Windows.Forms.TableLayoutPanel();
             this.labelHP = new System.Windows.Forms.Label();
+            this.addHPButton = new System.Windows.Forms.Button();
             this.tableLayoutPanel5 = new System.Windows.Forms.TableLayoutPanel();
             this.tableLayoutPanel9 = new System.Windows.Forms.TableLayoutPanel();
             this.addClassFeatureButton = new System.Windows.Forms.Button();
@@ -93,7 +94,6 @@
             this.classFeaturesBox = new System.Windows.Forms.ListBox();
             this.openCharacterXML = new System.Windows.Forms.OpenFileDialog();
             this.createCharacterXML = new System.Windows.Forms.SaveFileDialog();
-            this.addHPButton = new System.Windows.Forms.Button();
             this.tableLayoutPanel1.SuspendLayout();
             this.flowLayoutPanel1.SuspendLayout();
             this.tableLayoutPanel2.SuspendLayout();
@@ -188,7 +188,7 @@
             this.tableLayoutPanel2.ColumnCount = 3;
             this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 61.26126F));
             this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 38.73874F));
-            this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 130F));
+            this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 131F));
             this.tableLayoutPanel2.Controls.Add(this.characterFile, 0, 1);
             this.tableLayoutPanel2.Controls.Add(this.labelExplanation, 0, 0);
             this.tableLayoutPanel2.Controls.Add(this.flowLayoutPanel2, 1, 1);
@@ -206,7 +206,7 @@
             // characterFile
             // 
             this.characterFile.Anchor = System.Windows.Forms.AnchorStyles.Right;
-            this.characterFile.Location = new System.Drawing.Point(31, 28);
+            this.characterFile.Location = new System.Drawing.Point(30, 28);
             this.characterFile.Name = "characterFile";
             this.characterFile.Size = new System.Drawing.Size(248, 20);
             this.characterFile.TabIndex = 2;
@@ -228,7 +228,7 @@
             this.flowLayoutPanel2.Anchor = System.Windows.Forms.AnchorStyles.Left;
             this.flowLayoutPanel2.Controls.Add(this.browseButton);
             this.flowLayoutPanel2.Controls.Add(this.loadButton);
-            this.flowLayoutPanel2.Location = new System.Drawing.Point(285, 24);
+            this.flowLayoutPanel2.Location = new System.Drawing.Point(284, 24);
             this.flowLayoutPanel2.Name = "flowLayoutPanel2";
             this.flowLayoutPanel2.Size = new System.Drawing.Size(163, 29);
             this.flowLayoutPanel2.TabIndex = 5;
@@ -685,7 +685,7 @@
             this.hitPointsPanel.ColumnCount = 3;
             this.hitPointsPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 70.2381F));
             this.hitPointsPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 29.76191F));
-            this.hitPointsPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 35F));
+            this.hitPointsPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 36F));
             this.hitPointsPanel.Controls.Add(this.labelHP, 0, 0);
             this.hitPointsPanel.Controls.Add(this.addHPButton, 2, 0);
             this.hitPointsPanel.Dock = System.Windows.Forms.DockStyle.Fill;
@@ -702,10 +702,23 @@
             this.labelHP.Dock = System.Windows.Forms.DockStyle.Fill;
             this.labelHP.Location = new System.Drawing.Point(3, 0);
             this.labelHP.Name = "labelHP";
-            this.labelHP.Size = new System.Drawing.Size(52, 27);
+            this.labelHP.Size = new System.Drawing.Size(51, 27);
             this.labelHP.TabIndex = 6;
             this.labelHP.Text = "Hit Points";
             this.labelHP.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            // 
+            // addHPButton
+            // 
+            this.addHPButton.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.addHPButton.Enabled = false;
+            this.addHPButton.Image = global::Squire.Properties.Resources.HPADDICON2;
+            this.addHPButton.Location = new System.Drawing.Point(84, 3);
+            this.addHPButton.Name = "addHPButton";
+            this.addHPButton.Size = new System.Drawing.Size(31, 21);
+            this.addHPButton.TabIndex = 6;
+            this.addHPButton.TextAlign = System.Drawing.ContentAlignment.TopCenter;
+            this.addHPButton.UseVisualStyleBackColor = true;
+            this.addHPButton.Click += new System.EventHandler(this.addHPButton_Click);
             // 
             // tableLayoutPanel5
             // 
@@ -908,19 +921,6 @@
             this.createCharacterXML.DefaultExt = "xml";
             this.createCharacterXML.Filter = "XML Files|*.xml|All Files|*.*";
             this.createCharacterXML.Title = "Generate XML";
-            // 
-            // addHPButton
-            // 
-            this.addHPButton.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.addHPButton.Enabled = false;
-            this.addHPButton.Image = global::Squire.Properties.Resources.HPADDICON2;
-            this.addHPButton.Location = new System.Drawing.Point(85, 3);
-            this.addHPButton.Name = "addHPButton";
-            this.addHPButton.Size = new System.Drawing.Size(30, 21);
-            this.addHPButton.TabIndex = 6;
-            this.addHPButton.TextAlign = System.Drawing.ContentAlignment.TopCenter;
-            this.addHPButton.UseVisualStyleBackColor = true;
-            this.addHPButton.Click += new System.EventHandler(this.addHPButton_Click);
             // 
             // LevelUp
             // 

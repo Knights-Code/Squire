@@ -147,17 +147,24 @@ namespace Squire
 
             if (match.Success)
             {
-                for (int i = 1; i < 4; i++)
+                try
                 {
-                    Console.WriteLine("Match reads: " + match.Groups[i].Value);
+                    for (int i = 1; i < 4; i++)
+                    {
+                        Console.WriteLine("Match reads: " + match.Groups[i].Value);
+                    }
+                    dieCount = Convert.ToInt32(match.Groups[1].Value);
+                    dieType = Convert.ToInt32(match.Groups[2].Value);
+                    bonus = Convert.ToInt32(match.Groups[3].Value);
+
+                    bonus += (bUp ? 1 : -1); // update the bonus
+
+                    damage.Text = (dieCount + "d" + dieType + "+" + bonus); // update the damage string
                 }
-                dieCount = Convert.ToInt32(match.Groups[1].Value);
-                dieType = Convert.ToInt32(match.Groups[2].Value);
-                bonus = Convert.ToInt32(match.Groups[3].Value);
-
-                bonus+=(bUp?1:-1); // increase the bonus
-
-                damage.Text = (dieCount + "d" + dieType + "+" + bonus); // update the damage string
+                catch (Exception e)
+                {
+                    MessageBox.Show("Damage format must be [number of dice]d[die type]+[bonus], for example \"1d8+4\".", "Incorrect Damage Format", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
             }
         }
 

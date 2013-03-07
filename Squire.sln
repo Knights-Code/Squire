@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 11.00
 # Visual Studio 2010
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Squire", "WindowsFormsApplication1\Squire.csproj", "{5CE47865-8ED6-4434-85C9-A15E1EC704B8}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Squire", "Squire.csproj", "{5CE47865-8ED6-4434-85C9-A15E1EC704B8}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

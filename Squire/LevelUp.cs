@@ -457,9 +457,9 @@ namespace Squire
                 {
                     // Position cursor on the relative node.
                     cursor = root.SelectSingleNode("descendant::" + comboBoxAbilityScore.Text);
-                            editor = cursor.CreateNavigator();
-                            decimal str = decimal.Parse(editor.Value) + 1;
-                            editor.SetTypedValue(str); // overwrite old score with new value
+                    editor = cursor.CreateNavigator();
+                    decimal str = decimal.Parse(editor.Value) + 1;
+                    editor.SetTypedValue(str); // overwrite old score with new value
                 }
 
                 // Update HP
@@ -576,11 +576,15 @@ namespace Squire
                 //{
                 //    MessageBox.Show("The file could not be created. Please check that you have write access to the destination folder and try again.", "File Creation Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 //}
-            }
 
-            /*            if (openCharacterSheet.ShowDialog() != DialogResult.OK) return;
-                        if (createCharacterSheet.ShowDialog() != DialogResult.OK) return;
+                if (generatePDF.Checked)
+                {
+                    createCharacterSheet.FileName = createCharacterXML.FileName.Replace(".xml", ".pdf");
+                    if (createCharacterSheet.ShowDialog() != DialogResult.OK) return;
+                    if (openCharacterSheet.ShowDialog() != DialogResult.OK) return;
 
+                    try
+                    {
                         using (FileStream originalCharacterSheet = new FileStream(openCharacterSheet.FileName, FileMode.Open))
                         using (FileStream newCharacterSheet = new FileStream(createCharacterSheet.FileName, FileMode.Create))
                         {
@@ -592,12 +596,21 @@ namespace Squire
 
                             XmlDocument xmlDoc = new XmlDocument();
                             xmlDoc.Load(createCharacterXML.FileName);
-                            stamper.AcroFields.MergeXfaData(xmlDoc);
+                            stamper.AcroFields.MergeXfaData(root);
                             stamper.Close();
                             pdfReader.Close();
                             originalCharacterSheet.Close();
-                            newCharacterSheet.Close(); 
-                        }*/
+                            newCharacterSheet.Close();
+                        }
+                    }
+                    catch (IOException)
+                    {
+                        MessageBox.Show("Error loading data", "Existing Data",
+     MessageBoxButtons.OK, MessageBoxIcon.Warning);
+
+                    }
+                }
+            }
         }
 
         private void addHPButton_Click(object sender, EventArgs e)

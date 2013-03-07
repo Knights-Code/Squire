@@ -46,9 +46,17 @@
             this.HPBar = new System.Windows.Forms.ProgressBar();
             this.tableLayoutPanel6 = new System.Windows.Forms.TableLayoutPanel();
             this.subtractHPButton = new System.Windows.Forms.Button();
+            this.numericTextBox1 = new Squire.NumericTextBox();
             this.addHPButton = new System.Windows.Forms.Button();
             this.tabDM = new System.Windows.Forms.TabPage();
             this.tableLayoutPanel8 = new System.Windows.Forms.TableLayoutPanel();
+            this.tableLayoutPanel9 = new System.Windows.Forms.TableLayoutPanel();
+            this.label1 = new System.Windows.Forms.Label();
+            this.combatantList = new System.Windows.Forms.ListBox();
+            this.tableLayoutPanel10 = new System.Windows.Forms.TableLayoutPanel();
+            this.moveCombatantUp = new System.Windows.Forms.Button();
+            this.addCombatantButton = new System.Windows.Forms.Button();
+            this.button3 = new System.Windows.Forms.Button();
             this.tableLayoutPanel11 = new System.Windows.Forms.TableLayoutPanel();
             this.tableLayoutPanel14 = new System.Windows.Forms.TableLayoutPanel();
             this.flowLayoutPanel1 = new System.Windows.Forms.FlowLayoutPanel();
@@ -62,6 +70,7 @@
             this.HPLabel = new System.Windows.Forms.Label();
             this.tableLayoutPanel13 = new System.Windows.Forms.TableLayoutPanel();
             this.damageButton = new System.Windows.Forms.Button();
+            this.HPChange = new Squire.NumericTextBox();
             this.healButton = new System.Windows.Forms.Button();
             this.remainingHP = new System.Windows.Forms.Label();
             this.delayGroup = new System.Windows.Forms.GroupBox();
@@ -78,10 +87,12 @@
             this.damage1 = new System.Windows.Forms.TextBox();
             this.tableLayoutPanel18 = new System.Windows.Forms.TableLayoutPanel();
             this.decrementAttack1 = new System.Windows.Forms.Button();
+            this.attackBonus1 = new Squire.NumericTextBox();
             this.incrementAttack1 = new System.Windows.Forms.Button();
             this.attackLabel2 = new System.Windows.Forms.Label();
             this.tableLayoutPanel20 = new System.Windows.Forms.TableLayoutPanel();
             this.decrementAttack2 = new System.Windows.Forms.Button();
+            this.attackBonus2 = new Squire.NumericTextBox();
             this.incrementAttack2 = new System.Windows.Forms.Button();
             this.attackLabel1 = new System.Windows.Forms.Label();
             this.tableLayoutPanel21 = new System.Windows.Forms.TableLayoutPanel();
@@ -95,25 +106,14 @@
             this.attackLabel3 = new System.Windows.Forms.Label();
             this.tableLayoutPanel22 = new System.Windows.Forms.TableLayoutPanel();
             this.decrementAttack3 = new System.Windows.Forms.Button();
+            this.attackBonus3 = new Squire.NumericTextBox();
             this.incrementAttack3 = new System.Windows.Forms.Button();
-            this.tableLayoutPanel9 = new System.Windows.Forms.TableLayoutPanel();
-            this.label1 = new System.Windows.Forms.Label();
-            this.combatantList = new System.Windows.Forms.ListBox();
-            this.tableLayoutPanel10 = new System.Windows.Forms.TableLayoutPanel();
-            this.button1 = new System.Windows.Forms.Button();
-            this.addCombatantButton = new System.Windows.Forms.Button();
-            this.button3 = new System.Windows.Forms.Button();
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.fileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.saveToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.openToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.tableLayoutPanel7 = new System.Windows.Forms.TableLayoutPanel();
             this.closeButton = new System.Windows.Forms.Button();
-            this.numericTextBox1 = new Squire.NumericTextBox();
-            this.HPChange = new Squire.NumericTextBox();
-            this.attackBonus1 = new Squire.NumericTextBox();
-            this.attackBonus2 = new Squire.NumericTextBox();
-            this.attackBonus3 = new Squire.NumericTextBox();
             this.tabPlayer.SuspendLayout();
             this.tabPage1.SuspendLayout();
             this.tableLayoutPanel1.SuspendLayout();
@@ -125,6 +125,8 @@
             this.tableLayoutPanel6.SuspendLayout();
             this.tabDM.SuspendLayout();
             this.tableLayoutPanel8.SuspendLayout();
+            this.tableLayoutPanel9.SuspendLayout();
+            this.tableLayoutPanel10.SuspendLayout();
             this.tableLayoutPanel11.SuspendLayout();
             this.tableLayoutPanel14.SuspendLayout();
             this.flowLayoutPanel1.SuspendLayout();
@@ -144,8 +146,6 @@
             this.tableLayoutPanel21.SuspendLayout();
             this.tableLayoutPanel23.SuspendLayout();
             this.tableLayoutPanel22.SuspendLayout();
-            this.tableLayoutPanel9.SuspendLayout();
-            this.tableLayoutPanel10.SuspendLayout();
             this.menuStrip1.SuspendLayout();
             this.tableLayoutPanel7.SuspendLayout();
             this.SuspendLayout();
@@ -369,6 +369,23 @@
             this.subtractHPButton.Text = "–";
             this.subtractHPButton.UseVisualStyleBackColor = true;
             // 
+            // numericTextBox1
+            // 
+            this.numericTextBox1.AllowSpace = false;
+            this.numericTextBox1.DecimalValue = new decimal(new int[] {
+            0,
+            0,
+            0,
+            0});
+            this.numericTextBox1.IntValue = 0;
+            this.numericTextBox1.Location = new System.Drawing.Point(159, 0);
+            this.numericTextBox1.Margin = new System.Windows.Forms.Padding(0);
+            this.numericTextBox1.Name = "numericTextBox1";
+            this.numericTextBox1.Size = new System.Drawing.Size(48, 20);
+            this.numericTextBox1.TabIndex = 1;
+            this.numericTextBox1.Text = "0";
+            this.numericTextBox1.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            // 
             // addHPButton
             // 
             this.addHPButton.Location = new System.Drawing.Point(207, 0);
@@ -395,8 +412,8 @@
             this.tableLayoutPanel8.ColumnCount = 2;
             this.tableLayoutPanel8.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 31.88011F));
             this.tableLayoutPanel8.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 68.11989F));
-            this.tableLayoutPanel8.Controls.Add(this.tableLayoutPanel11, 0, 0);
             this.tableLayoutPanel8.Controls.Add(this.tableLayoutPanel9, 0, 0);
+            this.tableLayoutPanel8.Controls.Add(this.tableLayoutPanel11, 1, 0);
             this.tableLayoutPanel8.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tableLayoutPanel8.Location = new System.Drawing.Point(3, 3);
             this.tableLayoutPanel8.Name = "tableLayoutPanel8";
@@ -404,6 +421,96 @@
             this.tableLayoutPanel8.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
             this.tableLayoutPanel8.Size = new System.Drawing.Size(734, 412);
             this.tableLayoutPanel8.TabIndex = 0;
+            // 
+            // tableLayoutPanel9
+            // 
+            this.tableLayoutPanel9.ColumnCount = 1;
+            this.tableLayoutPanel9.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
+            this.tableLayoutPanel9.Controls.Add(this.label1, 0, 0);
+            this.tableLayoutPanel9.Controls.Add(this.combatantList, 0, 1);
+            this.tableLayoutPanel9.Controls.Add(this.tableLayoutPanel10, 0, 2);
+            this.tableLayoutPanel9.Location = new System.Drawing.Point(0, 0);
+            this.tableLayoutPanel9.Margin = new System.Windows.Forms.Padding(0);
+            this.tableLayoutPanel9.Name = "tableLayoutPanel9";
+            this.tableLayoutPanel9.RowCount = 3;
+            this.tableLayoutPanel9.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
+            this.tableLayoutPanel9.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
+            this.tableLayoutPanel9.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 25F));
+            this.tableLayoutPanel9.Size = new System.Drawing.Size(234, 412);
+            this.tableLayoutPanel9.TabIndex = 1;
+            // 
+            // label1
+            // 
+            this.label1.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(85, 3);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(63, 13);
+            this.label1.TabIndex = 0;
+            this.label1.Text = "Combatants";
+            // 
+            // combatantList
+            // 
+            this.combatantList.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.combatantList.FormattingEnabled = true;
+            this.combatantList.Location = new System.Drawing.Point(3, 23);
+            this.combatantList.Name = "combatantList";
+            this.combatantList.Size = new System.Drawing.Size(228, 361);
+            this.combatantList.TabIndex = 1;
+            this.combatantList.SelectedIndexChanged += new System.EventHandler(this.combatantList_SelectedIndexChanged);
+            // 
+            // tableLayoutPanel10
+            // 
+            this.tableLayoutPanel10.ColumnCount = 3;
+            this.tableLayoutPanel10.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 33.33333F));
+            this.tableLayoutPanel10.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 33.33333F));
+            this.tableLayoutPanel10.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 33.33333F));
+            this.tableLayoutPanel10.Controls.Add(this.moveCombatantUp, 0, 0);
+            this.tableLayoutPanel10.Controls.Add(this.addCombatantButton, 1, 0);
+            this.tableLayoutPanel10.Controls.Add(this.button3, 2, 0);
+            this.tableLayoutPanel10.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.tableLayoutPanel10.Location = new System.Drawing.Point(0, 387);
+            this.tableLayoutPanel10.Margin = new System.Windows.Forms.Padding(0);
+            this.tableLayoutPanel10.Name = "tableLayoutPanel10";
+            this.tableLayoutPanel10.RowCount = 1;
+            this.tableLayoutPanel10.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
+            this.tableLayoutPanel10.Size = new System.Drawing.Size(234, 25);
+            this.tableLayoutPanel10.TabIndex = 2;
+            // 
+            // moveCombatantUp
+            // 
+            this.moveCombatantUp.Anchor = System.Windows.Forms.AnchorStyles.Right;
+            this.moveCombatantUp.Location = new System.Drawing.Point(3, 1);
+            this.moveCombatantUp.Margin = new System.Windows.Forms.Padding(0);
+            this.moveCombatantUp.Name = "moveCombatantUp";
+            this.moveCombatantUp.Size = new System.Drawing.Size(75, 23);
+            this.moveCombatantUp.TabIndex = 0;
+            this.moveCombatantUp.Text = "Move Up";
+            this.moveCombatantUp.UseVisualStyleBackColor = true;
+            this.moveCombatantUp.Click += new System.EventHandler(this.moveCombatantUp_Click);
+            // 
+            // addCombatantButton
+            // 
+            this.addCombatantButton.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.addCombatantButton.Location = new System.Drawing.Point(79, 1);
+            this.addCombatantButton.Margin = new System.Windows.Forms.Padding(0);
+            this.addCombatantButton.Name = "addCombatantButton";
+            this.addCombatantButton.Size = new System.Drawing.Size(75, 23);
+            this.addCombatantButton.TabIndex = 1;
+            this.addCombatantButton.Text = "Add";
+            this.addCombatantButton.UseVisualStyleBackColor = true;
+            this.addCombatantButton.Click += new System.EventHandler(this.addCombatantButton_Click);
+            // 
+            // button3
+            // 
+            this.button3.Anchor = System.Windows.Forms.AnchorStyles.Left;
+            this.button3.Location = new System.Drawing.Point(156, 1);
+            this.button3.Margin = new System.Windows.Forms.Padding(0);
+            this.button3.Name = "button3";
+            this.button3.Size = new System.Drawing.Size(75, 23);
+            this.button3.TabIndex = 2;
+            this.button3.Text = "Move Down";
+            this.button3.UseVisualStyleBackColor = true;
             // 
             // tableLayoutPanel11
             // 
@@ -415,7 +522,6 @@
             this.tableLayoutPanel11.Controls.Add(this.groupBox1, 1, 1);
             this.tableLayoutPanel11.Controls.Add(this.delayGroup, 0, 0);
             this.tableLayoutPanel11.Controls.Add(this.attackGroup, 1, 2);
-            this.tableLayoutPanel11.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tableLayoutPanel11.Location = new System.Drawing.Point(237, 3);
             this.tableLayoutPanel11.Name = "tableLayoutPanel11";
             this.tableLayoutPanel11.RowCount = 3;
@@ -578,6 +684,24 @@
             this.damageButton.Text = "–";
             this.damageButton.UseVisualStyleBackColor = true;
             this.damageButton.Click += new System.EventHandler(this.damageButton_Click);
+            // 
+            // HPChange
+            // 
+            this.HPChange.AllowSpace = false;
+            this.HPChange.DecimalValue = new decimal(new int[] {
+            0,
+            0,
+            0,
+            0});
+            this.HPChange.Enabled = false;
+            this.HPChange.IntValue = 0;
+            this.HPChange.Location = new System.Drawing.Point(97, 0);
+            this.HPChange.Margin = new System.Windows.Forms.Padding(0);
+            this.HPChange.Name = "HPChange";
+            this.HPChange.Size = new System.Drawing.Size(29, 20);
+            this.HPChange.TabIndex = 1;
+            this.HPChange.Text = "0";
+            this.HPChange.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
             // healButton
             // 
@@ -792,6 +916,26 @@
             this.decrementAttack1.UseVisualStyleBackColor = true;
             this.decrementAttack1.Click += new System.EventHandler(this.decrementAttack1_Click);
             // 
+            // attackBonus1
+            // 
+            this.attackBonus1.AllowSpace = false;
+            this.attackBonus1.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.attackBonus1.DecimalValue = new decimal(new int[] {
+            0,
+            0,
+            0,
+            0});
+            this.attackBonus1.Enabled = false;
+            this.attackBonus1.IntValue = 0;
+            this.attackBonus1.Location = new System.Drawing.Point(33, 38);
+            this.attackBonus1.Margin = new System.Windows.Forms.Padding(0);
+            this.attackBonus1.Name = "attackBonus1";
+            this.attackBonus1.Size = new System.Drawing.Size(29, 20);
+            this.attackBonus1.TabIndex = 3;
+            this.attackBonus1.Text = "0";
+            this.attackBonus1.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.attackBonus1.TextChanged += new System.EventHandler(this.attackBonus1_TextChanged);
+            // 
             // incrementAttack1
             // 
             this.incrementAttack1.Anchor = System.Windows.Forms.AnchorStyles.Left;
@@ -844,6 +988,26 @@
             this.decrementAttack2.Text = "–";
             this.decrementAttack2.UseVisualStyleBackColor = true;
             this.decrementAttack2.Click += new System.EventHandler(this.decrementAttack2_Click);
+            // 
+            // attackBonus2
+            // 
+            this.attackBonus2.AllowSpace = false;
+            this.attackBonus2.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.attackBonus2.DecimalValue = new decimal(new int[] {
+            0,
+            0,
+            0,
+            0});
+            this.attackBonus2.Enabled = false;
+            this.attackBonus2.IntValue = 0;
+            this.attackBonus2.Location = new System.Drawing.Point(33, 38);
+            this.attackBonus2.Margin = new System.Windows.Forms.Padding(0);
+            this.attackBonus2.Name = "attackBonus2";
+            this.attackBonus2.Size = new System.Drawing.Size(29, 20);
+            this.attackBonus2.TabIndex = 3;
+            this.attackBonus2.Text = "0";
+            this.attackBonus2.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.attackBonus2.TextChanged += new System.EventHandler(this.attackBonus2_TextChanged);
             // 
             // incrementAttack2
             // 
@@ -1016,6 +1180,26 @@
             this.decrementAttack3.UseVisualStyleBackColor = true;
             this.decrementAttack3.Click += new System.EventHandler(this.decrementAttack3_Click);
             // 
+            // attackBonus3
+            // 
+            this.attackBonus3.AllowSpace = false;
+            this.attackBonus3.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.attackBonus3.DecimalValue = new decimal(new int[] {
+            0,
+            0,
+            0,
+            0});
+            this.attackBonus3.Enabled = false;
+            this.attackBonus3.IntValue = 0;
+            this.attackBonus3.Location = new System.Drawing.Point(33, 38);
+            this.attackBonus3.Margin = new System.Windows.Forms.Padding(0);
+            this.attackBonus3.Name = "attackBonus3";
+            this.attackBonus3.Size = new System.Drawing.Size(29, 20);
+            this.attackBonus3.TabIndex = 3;
+            this.attackBonus3.Text = "0";
+            this.attackBonus3.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.attackBonus3.TextChanged += new System.EventHandler(this.attackBonus3_TextChanged);
+            // 
             // incrementAttack3
             // 
             this.incrementAttack3.Anchor = System.Windows.Forms.AnchorStyles.Left;
@@ -1028,96 +1212,6 @@
             this.incrementAttack3.Text = "+";
             this.incrementAttack3.UseVisualStyleBackColor = true;
             this.incrementAttack3.Click += new System.EventHandler(this.incrementAttack3_Click);
-            // 
-            // tableLayoutPanel9
-            // 
-            this.tableLayoutPanel9.ColumnCount = 1;
-            this.tableLayoutPanel9.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableLayoutPanel9.Controls.Add(this.label1, 0, 0);
-            this.tableLayoutPanel9.Controls.Add(this.combatantList, 0, 1);
-            this.tableLayoutPanel9.Controls.Add(this.tableLayoutPanel10, 0, 2);
-            this.tableLayoutPanel9.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tableLayoutPanel9.Location = new System.Drawing.Point(0, 0);
-            this.tableLayoutPanel9.Margin = new System.Windows.Forms.Padding(0);
-            this.tableLayoutPanel9.Name = "tableLayoutPanel9";
-            this.tableLayoutPanel9.RowCount = 3;
-            this.tableLayoutPanel9.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
-            this.tableLayoutPanel9.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableLayoutPanel9.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 25F));
-            this.tableLayoutPanel9.Size = new System.Drawing.Size(234, 412);
-            this.tableLayoutPanel9.TabIndex = 1;
-            // 
-            // label1
-            // 
-            this.label1.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(85, 3);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(63, 13);
-            this.label1.TabIndex = 0;
-            this.label1.Text = "Combatants";
-            // 
-            // combatantList
-            // 
-            this.combatantList.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.combatantList.FormattingEnabled = true;
-            this.combatantList.Location = new System.Drawing.Point(3, 23);
-            this.combatantList.Name = "combatantList";
-            this.combatantList.Size = new System.Drawing.Size(228, 361);
-            this.combatantList.TabIndex = 1;
-            this.combatantList.SelectedIndexChanged += new System.EventHandler(this.combatantList_SelectedIndexChanged);
-            // 
-            // tableLayoutPanel10
-            // 
-            this.tableLayoutPanel10.ColumnCount = 3;
-            this.tableLayoutPanel10.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 33.33333F));
-            this.tableLayoutPanel10.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 33.33333F));
-            this.tableLayoutPanel10.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 33.33333F));
-            this.tableLayoutPanel10.Controls.Add(this.button1, 0, 0);
-            this.tableLayoutPanel10.Controls.Add(this.addCombatantButton, 1, 0);
-            this.tableLayoutPanel10.Controls.Add(this.button3, 2, 0);
-            this.tableLayoutPanel10.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tableLayoutPanel10.Location = new System.Drawing.Point(0, 387);
-            this.tableLayoutPanel10.Margin = new System.Windows.Forms.Padding(0);
-            this.tableLayoutPanel10.Name = "tableLayoutPanel10";
-            this.tableLayoutPanel10.RowCount = 1;
-            this.tableLayoutPanel10.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableLayoutPanel10.Size = new System.Drawing.Size(234, 25);
-            this.tableLayoutPanel10.TabIndex = 2;
-            // 
-            // button1
-            // 
-            this.button1.Anchor = System.Windows.Forms.AnchorStyles.Right;
-            this.button1.Location = new System.Drawing.Point(3, 1);
-            this.button1.Margin = new System.Windows.Forms.Padding(0);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(75, 23);
-            this.button1.TabIndex = 0;
-            this.button1.Text = "Move Up";
-            this.button1.UseVisualStyleBackColor = true;
-            // 
-            // addCombatantButton
-            // 
-            this.addCombatantButton.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.addCombatantButton.Location = new System.Drawing.Point(79, 1);
-            this.addCombatantButton.Margin = new System.Windows.Forms.Padding(0);
-            this.addCombatantButton.Name = "addCombatantButton";
-            this.addCombatantButton.Size = new System.Drawing.Size(75, 23);
-            this.addCombatantButton.TabIndex = 1;
-            this.addCombatantButton.Text = "Add";
-            this.addCombatantButton.UseVisualStyleBackColor = true;
-            this.addCombatantButton.Click += new System.EventHandler(this.addCombatantButton_Click);
-            // 
-            // button3
-            // 
-            this.button3.Anchor = System.Windows.Forms.AnchorStyles.Left;
-            this.button3.Location = new System.Drawing.Point(156, 1);
-            this.button3.Margin = new System.Windows.Forms.Padding(0);
-            this.button3.Name = "button3";
-            this.button3.Size = new System.Drawing.Size(75, 23);
-            this.button3.TabIndex = 2;
-            this.button3.Text = "Move Down";
-            this.button3.UseVisualStyleBackColor = true;
             // 
             // menuStrip1
             // 
@@ -1179,101 +1273,6 @@
             this.closeButton.UseVisualStyleBackColor = true;
             this.closeButton.Click += new System.EventHandler(this.closeButton_Click);
             // 
-            // numericTextBox1
-            // 
-            this.numericTextBox1.AllowSpace = false;
-            this.numericTextBox1.DecimalValue = new decimal(new int[] {
-            0,
-            0,
-            0,
-            0});
-            this.numericTextBox1.IntValue = 0;
-            this.numericTextBox1.Location = new System.Drawing.Point(159, 0);
-            this.numericTextBox1.Margin = new System.Windows.Forms.Padding(0);
-            this.numericTextBox1.Name = "numericTextBox1";
-            this.numericTextBox1.Size = new System.Drawing.Size(48, 20);
-            this.numericTextBox1.TabIndex = 1;
-            this.numericTextBox1.Text = "0";
-            this.numericTextBox1.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            // 
-            // HPChange
-            // 
-            this.HPChange.AllowSpace = false;
-            this.HPChange.DecimalValue = new decimal(new int[] {
-            0,
-            0,
-            0,
-            0});
-            this.HPChange.Enabled = false;
-            this.HPChange.IntValue = 0;
-            this.HPChange.Location = new System.Drawing.Point(97, 0);
-            this.HPChange.Margin = new System.Windows.Forms.Padding(0);
-            this.HPChange.Name = "HPChange";
-            this.HPChange.Size = new System.Drawing.Size(29, 20);
-            this.HPChange.TabIndex = 1;
-            this.HPChange.Text = "0";
-            this.HPChange.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            // 
-            // attackBonus1
-            // 
-            this.attackBonus1.AllowSpace = false;
-            this.attackBonus1.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.attackBonus1.DecimalValue = new decimal(new int[] {
-            0,
-            0,
-            0,
-            0});
-            this.attackBonus1.Enabled = false;
-            this.attackBonus1.IntValue = 0;
-            this.attackBonus1.Location = new System.Drawing.Point(33, 38);
-            this.attackBonus1.Margin = new System.Windows.Forms.Padding(0);
-            this.attackBonus1.Name = "attackBonus1";
-            this.attackBonus1.Size = new System.Drawing.Size(29, 20);
-            this.attackBonus1.TabIndex = 3;
-            this.attackBonus1.Text = "0";
-            this.attackBonus1.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            this.attackBonus1.TextChanged += new System.EventHandler(this.attackBonus1_TextChanged);
-            // 
-            // attackBonus2
-            // 
-            this.attackBonus2.AllowSpace = false;
-            this.attackBonus2.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.attackBonus2.DecimalValue = new decimal(new int[] {
-            0,
-            0,
-            0,
-            0});
-            this.attackBonus2.Enabled = false;
-            this.attackBonus2.IntValue = 0;
-            this.attackBonus2.Location = new System.Drawing.Point(33, 38);
-            this.attackBonus2.Margin = new System.Windows.Forms.Padding(0);
-            this.attackBonus2.Name = "attackBonus2";
-            this.attackBonus2.Size = new System.Drawing.Size(29, 20);
-            this.attackBonus2.TabIndex = 3;
-            this.attackBonus2.Text = "0";
-            this.attackBonus2.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            this.attackBonus2.TextChanged += new System.EventHandler(this.attackBonus2_TextChanged);
-            // 
-            // attackBonus3
-            // 
-            this.attackBonus3.AllowSpace = false;
-            this.attackBonus3.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.attackBonus3.DecimalValue = new decimal(new int[] {
-            0,
-            0,
-            0,
-            0});
-            this.attackBonus3.Enabled = false;
-            this.attackBonus3.IntValue = 0;
-            this.attackBonus3.Location = new System.Drawing.Point(33, 38);
-            this.attackBonus3.Margin = new System.Windows.Forms.Padding(0);
-            this.attackBonus3.Name = "attackBonus3";
-            this.attackBonus3.Size = new System.Drawing.Size(29, 20);
-            this.attackBonus3.TabIndex = 3;
-            this.attackBonus3.Text = "0";
-            this.attackBonus3.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            this.attackBonus3.TextChanged += new System.EventHandler(this.attackBonus3_TextChanged);
-            // 
             // General
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -1300,6 +1299,9 @@
             this.tableLayoutPanel6.PerformLayout();
             this.tabDM.ResumeLayout(false);
             this.tableLayoutPanel8.ResumeLayout(false);
+            this.tableLayoutPanel9.ResumeLayout(false);
+            this.tableLayoutPanel9.PerformLayout();
+            this.tableLayoutPanel10.ResumeLayout(false);
             this.tableLayoutPanel11.ResumeLayout(false);
             this.tableLayoutPanel14.ResumeLayout(false);
             this.flowLayoutPanel1.ResumeLayout(false);
@@ -1330,9 +1332,6 @@
             this.tableLayoutPanel23.PerformLayout();
             this.tableLayoutPanel22.ResumeLayout(false);
             this.tableLayoutPanel22.PerformLayout();
-            this.tableLayoutPanel9.ResumeLayout(false);
-            this.tableLayoutPanel9.PerformLayout();
-            this.tableLayoutPanel10.ResumeLayout(false);
             this.menuStrip1.ResumeLayout(false);
             this.menuStrip1.PerformLayout();
             this.tableLayoutPanel7.ResumeLayout(false);
@@ -1384,7 +1383,7 @@
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel9;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel10;
-        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Button moveCombatantUp;
         private System.Windows.Forms.Button addCombatantButton;
         private System.Windows.Forms.Button button3;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel14;

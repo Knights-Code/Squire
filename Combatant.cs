@@ -12,6 +12,7 @@ namespace Squire
         int currentHP;
         int[] attackBonus;
         string[] damage;
+        Boolean bPlayer;
 
         public Combatant(string name, int HP)
         {
@@ -20,6 +21,7 @@ namespace Squire
             this.currentHP = HP;
             this.attackBonus = new int[3] {0,0,0};
             this.damage = new string[3] {"+0","+0","+0"};
+            this.bPlayer = false;
         }
 
         public Combatant(string name)
@@ -27,6 +29,7 @@ namespace Squire
             this.name = name;
             this.attackBonus = new int[3] {0,0,0};
             this.damage = new string[3] {"+0","+0","+0"};
+            this.bPlayer = true;
         }
 
         public string getName()
@@ -77,6 +80,11 @@ namespace Squire
         public override string ToString()
         {
             return name;
+        }
+
+        public Boolean isPlayer()
+        {
+            return bPlayer;
         }
     }
 }

@@ -44,15 +44,32 @@ namespace Squire
             Combatant selectedCombatant = (Combatant)combatantList.SelectedItem;
             
             // Load in all the combatant's data and unlock the controls.
-            combatantHPBar.Maximum = selectedCombatant.getMaxHP();
-            combatantHPBar.Minimum = 0;
-            combatantHPBar.Value = selectedCombatant.getCurrentHP();
 
-            remainingHP.Text = selectedCombatant.getCurrentHP() + " / " + selectedCombatant.getMaxHP();
+            // Players don't have HP shown
+            if (!selectedCombatant.isPlayer())
+            {
+                combatantHPBar.Visible = true;
+                combatantHPBar.Maximum = selectedCombatant.getMaxHP();
+                combatantHPBar.Minimum = 0;
+                combatantHPBar.Value = selectedCombatant.getCurrentHP();
 
-            HPChange.Enabled = true;
-            healButton.Enabled = true;
-            damageButton.Enabled = true;
+                remainingHP.Visible = true;
+                remainingHP.Text = selectedCombatant.getCurrentHP() + " / " + selectedCombatant.getMaxHP();
+
+                HPChange.Visible = true;
+                HPChange.Enabled = true;
+                healButton.Visible = true;
+                healButton.Enabled = true;
+                damageButton.Visible = true;
+                damageButton.Enabled = true;
+            }
+            else
+            {
+                combatantHPBar.Visible = false;
+                HPChange.Visible = true;
+                healButton.Visible = true;
+                damageButton.Visible = true;
+            }
 
             labelCombatantName.Text = selectedCombatant.getName();
 
@@ -256,6 +273,23 @@ namespace Squire
         private void decrementDamage3_Click(object sender, EventArgs e)
         {
             updateDamage(damage3, false);
+        }
+
+        private void moveCombatantUp_Click(object sender, EventArgs e)
+        {
+            // Used to store the selected combatant for quick reference
+            Combatant selectedCombatant = (Combatant)combatantList.SelectedItem;
+            int currentIndex = combatantList.Items.IndexOf(combatantList.SelectedItem);
+            
+            // Check that the selected combatant isn't at the top of the list already
+            if (currentIndex!=0)
+            {
+                Combatant previousCombatant = (Combatant)combatantList.Items[currentIndex - 1]; // get data from combatant above current one
+                
+                // Swap combatants in the list
+                combatantList.Items[currentIndex] = previousCombatant;
+                combatantList.Items[currentIndex - 1] = selectedCombatant;
+            }
         }
     }
 }

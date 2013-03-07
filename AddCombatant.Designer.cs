@@ -28,18 +28,19 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(AddCombatant));
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
             this.tableLayoutPanel2 = new System.Windows.Forms.TableLayoutPanel();
             this.labelAddCombatant = new System.Windows.Forms.Label();
             this.checkboxIsPlayer = new System.Windows.Forms.CheckBox();
             this.tableLayoutPanel3 = new System.Windows.Forms.TableLayoutPanel();
+            this.combatantHP = new Squire.NumericTextBox();
             this.labelCombatantName = new System.Windows.Forms.Label();
             this.combatantName = new System.Windows.Forms.TextBox();
             this.labelCombatantHP = new System.Windows.Forms.Label();
             this.flowLayoutPanel1 = new System.Windows.Forms.FlowLayoutPanel();
             this.addCancel = new System.Windows.Forms.Button();
             this.addOK = new System.Windows.Forms.Button();
-            this.combatantHP = new Squire.NumericTextBox();
             this.tableLayoutPanel1.SuspendLayout();
             this.tableLayoutPanel2.SuspendLayout();
             this.tableLayoutPanel3.SuspendLayout();
@@ -87,7 +88,7 @@
             this.labelAddCombatant.Size = new System.Drawing.Size(410, 13);
             this.labelAddCombatant.TabIndex = 0;
             this.labelAddCombatant.Text = "Enter the name (and hit points in the case of a monster) of the new combatant, be" +
-                "low.\r\n";
+    "low.\r\n";
             // 
             // checkboxIsPlayer
             // 
@@ -106,9 +107,9 @@
             this.tableLayoutPanel3.ColumnCount = 2;
             this.tableLayoutPanel3.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 47.88462F));
             this.tableLayoutPanel3.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 52.11538F));
-            this.tableLayoutPanel3.Controls.Add(this.combatantHP, 0, 1);
             this.tableLayoutPanel3.Controls.Add(this.labelCombatantName, 0, 0);
             this.tableLayoutPanel3.Controls.Add(this.combatantName, 1, 0);
+            this.tableLayoutPanel3.Controls.Add(this.combatantHP, 1, 1);
             this.tableLayoutPanel3.Controls.Add(this.labelCombatantHP, 0, 1);
             this.tableLayoutPanel3.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tableLayoutPanel3.Location = new System.Drawing.Point(3, 33);
@@ -118,6 +119,23 @@
             this.tableLayoutPanel3.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
             this.tableLayoutPanel3.Size = new System.Drawing.Size(520, 64);
             this.tableLayoutPanel3.TabIndex = 1;
+            // 
+            // combatantHP
+            // 
+            this.combatantHP.AllowSpace = false;
+            this.combatantHP.Anchor = System.Windows.Forms.AnchorStyles.Left;
+            this.combatantHP.DecimalValue = new decimal(new int[] {
+            0,
+            0,
+            0,
+            0});
+            this.combatantHP.IntValue = 0;
+            this.combatantHP.Location = new System.Drawing.Point(252, 38);
+            this.combatantHP.Margin = new System.Windows.Forms.Padding(3, 0, 0, 0);
+            this.combatantHP.Name = "combatantHP";
+            this.combatantHP.Size = new System.Drawing.Size(118, 20);
+            this.combatantHP.TabIndex = 3;
+            this.combatantHP.Text = "0";
             // 
             // labelCombatantName
             // 
@@ -180,22 +198,6 @@
             this.addOK.UseVisualStyleBackColor = true;
             this.addOK.Click += new System.EventHandler(this.addOK_Click);
             // 
-            // combatantHP
-            // 
-            this.combatantHP.AllowSpace = false;
-            this.combatantHP.Anchor = System.Windows.Forms.AnchorStyles.Left;
-            this.combatantHP.DecimalValue = new decimal(new int[] {
-            0,
-            0,
-            0,
-            0});
-            this.combatantHP.Location = new System.Drawing.Point(252, 38);
-            this.combatantHP.Margin = new System.Windows.Forms.Padding(3, 0, 0, 0);
-            this.combatantHP.Name = "combatantHP";
-            this.combatantHP.Size = new System.Drawing.Size(118, 20);
-            this.combatantHP.TabIndex = 3;
-            this.combatantHP.Text = "0";
-            // 
             // AddCombatant
             // 
             this.AcceptButton = this.addOK;
@@ -204,6 +206,7 @@
             this.CancelButton = this.addCancel;
             this.ClientSize = new System.Drawing.Size(526, 130);
             this.Controls.Add(this.tableLayoutPanel1);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "AddCombatant";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Add a Combatant";

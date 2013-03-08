@@ -40,65 +40,111 @@ namespace Squire
 
         private void combatantList_SelectedIndexChanged(object sender, EventArgs e)
         {
-            // Local combatant variable to store the currently selected combatant
-            Combatant selectedCombatant = (Combatant)combatantList.SelectedItem;
-            
-            // Load in all the combatant's data and unlock the controls.
-
-            // Players don't have HP shown
-            if (!selectedCombatant.isPlayer())
+            // Make sure a combatant is selected
+            if (combatantList.SelectedIndex != -1)
             {
-                combatantHPBar.Visible = true;
-                combatantHPBar.Maximum = selectedCombatant.getMaxHP();
-                combatantHPBar.Minimum = 0;
-                combatantHPBar.Value = selectedCombatant.getCurrentHP();
+                // Local combatant variable to store the currently selected combatant
+                Combatant selectedCombatant = (Combatant)combatantList.SelectedItem;
 
-                remainingHP.Visible = true;
-                remainingHP.Text = selectedCombatant.getCurrentHP() + " / " + selectedCombatant.getMaxHP();
+                // Load in all the combatant's data and unlock the controls.
 
-                HPChange.Visible = true;
-                HPChange.Enabled = true;
-                healButton.Visible = true;
-                healButton.Enabled = true;
-                damageButton.Visible = true;
-                damageButton.Enabled = true;
+                // Players don't have HP shown
+                if (!selectedCombatant.isPlayer())
+                {
+                    combatantHPBar.Visible = true;
+                    combatantHPBar.Maximum = selectedCombatant.getMaxHP();
+                    combatantHPBar.Minimum = 0;
+                    combatantHPBar.Value = selectedCombatant.getCurrentHP();
+
+                    remainingHP.Visible = true;
+                    remainingHP.Text = selectedCombatant.getCurrentHP() + " / " + selectedCombatant.getMaxHP();
+
+                    HPChange.Visible = true;
+                    HPChange.Enabled = true;
+                    healButton.Visible = true;
+                    healButton.Enabled = true;
+                    damageButton.Visible = true;
+                    damageButton.Enabled = true;
+                    HPLabel.Visible = true;
+                }
+                else
+                {
+                    combatantHPBar.Visible = false;
+                    HPChange.Visible = false;
+                    healButton.Visible = false;
+                    damageButton.Visible = false;
+                    remainingHP.Visible = false;
+                    HPLabel.Visible = false;
+                }
+
+                labelCombatantName.Text = selectedCombatant.getName();
+
+                attackBonus1.IntValue = selectedCombatant.getAttack(1);
+                damage1.Text = selectedCombatant.getDamage(1);
+                attackBonus1.Enabled = true;
+                damage1.Enabled = true;
+                incrementAttack1.Enabled = true;
+                decrementAttack1.Enabled = true;
+                incrementDamage1.Enabled = true;
+                decrementDamage1.Enabled = true;
+
+                attackBonus2.IntValue = selectedCombatant.getAttack(2);
+                damage2.Text = selectedCombatant.getDamage(2);
+                attackBonus2.Enabled = true;
+                damage2.Enabled = true;
+                incrementAttack2.Enabled = true;
+                decrementAttack2.Enabled = true;
+                incrementDamage2.Enabled = true;
+                decrementDamage2.Enabled = true;
+
+                attackBonus3.IntValue = selectedCombatant.getAttack(3);
+                damage3.Text = selectedCombatant.getDamage(3);
+                attackBonus3.Enabled = true;
+                damage3.Enabled = true;
+                incrementAttack3.Enabled = true;
+                decrementAttack3.Enabled = true;
+                incrementDamage3.Enabled = true;
+                decrementDamage3.Enabled = true;
             }
             else
             {
+                // Otherwise deactivate controls
                 combatantHPBar.Visible = false;
-                HPChange.Visible = true;
-                healButton.Visible = true;
-                damageButton.Visible = true;
+                HPChange.Visible = false;
+                healButton.Visible = false;
+                damageButton.Visible = false;
+                remainingHP.Visible = false;
+                HPLabel.Visible = false;
+
+                labelCombatantName.Text = String.Empty;
+
+                attackBonus1.IntValue = 0;
+                damage1.Text = String.Empty;
+                attackBonus1.Enabled = false;
+                damage1.Enabled = false;
+                incrementAttack1.Enabled = false;
+                decrementAttack1.Enabled = false;
+                incrementDamage1.Enabled = false;
+                decrementDamage1.Enabled = false;
+
+                attackBonus2.IntValue = 0;
+                damage2.Text = String.Empty;
+                attackBonus2.Enabled = false;
+                damage2.Enabled = false;
+                incrementAttack2.Enabled = false;
+                decrementAttack2.Enabled = false;
+                incrementDamage2.Enabled = false;
+                decrementDamage2.Enabled = false;
+
+                attackBonus3.IntValue = 0;
+                damage3.Text = String.Empty;
+                attackBonus3.Enabled = false;
+                damage3.Enabled = false;
+                incrementAttack3.Enabled = false;
+                decrementAttack3.Enabled = false;
+                incrementDamage3.Enabled = false;
+                decrementDamage3.Enabled = false;
             }
-
-            labelCombatantName.Text = selectedCombatant.getName();
-
-            attackBonus1.IntValue = selectedCombatant.getAttack(1);
-            damage1.Text = selectedCombatant.getDamage(1);
-            attackBonus1.Enabled = true;
-            damage1.Enabled = true;
-            incrementAttack1.Enabled = true;
-            decrementAttack1.Enabled = true;
-            incrementDamage1.Enabled = true;
-            decrementDamage1.Enabled = true;
-
-            attackBonus2.IntValue = selectedCombatant.getAttack(2);
-            damage2.Text = selectedCombatant.getDamage(2);
-            attackBonus2.Enabled = true;
-            damage2.Enabled = true;
-            incrementAttack2.Enabled = true;
-            decrementAttack2.Enabled = true;
-            incrementDamage2.Enabled = true;
-            decrementDamage2.Enabled = true;
-
-            attackBonus3.IntValue = selectedCombatant.getAttack(3);
-            damage3.Text = selectedCombatant.getDamage(3);
-            attackBonus3.Enabled = true;
-            damage3.Enabled = true;
-            incrementAttack3.Enabled = true;
-            decrementAttack3.Enabled = true;
-            incrementDamage3.Enabled = true;
-            decrementDamage3.Enabled = true;
         }
 
         private void healButton_Click(object sender, EventArgs e)
@@ -189,26 +235,38 @@ namespace Squire
 
         private void damage1_TextChanged(object sender, EventArgs e)
         {
-            // Local combatant variable to store the currently selected combatant
-            Combatant selectedCombatant = (Combatant)combatantList.SelectedItem;
+            // If a combatant is selected...
+            if (combatantList.SelectedIndex != -1)
+            {
+                // Local combatant variable to store the currently selected combatant
+                Combatant selectedCombatant = (Combatant)combatantList.SelectedItem;
 
-            selectedCombatant.setDamage(1, damage1.Text); // update combatant's first attack's damage string
+                selectedCombatant.setDamage(1, damage1.Text); // update combatant's first attack's damage string
+            }
         }
 
         private void attackBonus1_TextChanged(object sender, EventArgs e)
         {
-            // Local combatant variable to store the currently selected combatant
-            Combatant selectedCombatant = (Combatant)combatantList.SelectedItem;
+            // If a combatant is selected...
+            if (combatantList.SelectedIndex != -1)
+            {
+                // Local combatant variable to store the currently selected combatant
+                Combatant selectedCombatant = (Combatant)combatantList.SelectedItem;
 
-            selectedCombatant.setAttack(1, attackBonus1.IntValue);
+                selectedCombatant.setAttack(1, attackBonus1.IntValue);
+            }
         }
 
         private void damage2_TextChanged(object sender, EventArgs e)
         {
-            // Local combatant variable to store the currently selected combatant
-            Combatant selectedCombatant = (Combatant)combatantList.SelectedItem;
+            // If a combatant is selected...
+            if (combatantList.SelectedIndex != -1)
+            {
+                // Local combatant variable to store the currently selected combatant
+                Combatant selectedCombatant = (Combatant)combatantList.SelectedItem;
 
-            selectedCombatant.setDamage(2, damage2.Text); // update combatant's first attack's damage string
+                selectedCombatant.setDamage(2, damage2.Text); // update combatant's first attack's damage string
+            }
         }
 
         private void incrementDamage2_Click(object sender, EventArgs e)
@@ -223,10 +281,14 @@ namespace Squire
 
         private void attackBonus2_TextChanged(object sender, EventArgs e)
         {
-            // Local combatant variable to store the currently selected combatant
-            Combatant selectedCombatant = (Combatant)combatantList.SelectedItem;
+            // If a combatant is selected...
+            if (combatantList.SelectedIndex != -1)
+            {
+                // Local combatant variable to store the currently selected combatant
+                Combatant selectedCombatant = (Combatant)combatantList.SelectedItem;
 
-            selectedCombatant.setAttack(2, attackBonus2.IntValue);
+                selectedCombatant.setAttack(2, attackBonus2.IntValue);
+            }
         }
 
         private void incrementAttack2_Click(object sender, EventArgs e)
@@ -251,18 +313,26 @@ namespace Squire
 
         private void attackBonus3_TextChanged(object sender, EventArgs e)
         {
-            // Local combatant variable to store the currently selected combatant
-            Combatant selectedCombatant = (Combatant)combatantList.SelectedItem;
+            // If a combatant is selected...
+            if (combatantList.SelectedIndex != -1)
+            {
+                // Local combatant variable to store the currently selected combatant
+                Combatant selectedCombatant = (Combatant)combatantList.SelectedItem;
 
-            selectedCombatant.setAttack(3, attackBonus3.IntValue);
+                selectedCombatant.setAttack(3, attackBonus3.IntValue);
+            }
         }
 
         private void damage3_TextChanged(object sender, EventArgs e)
         {
-            // Local combatant variable to store the currently selected combatant
-            Combatant selectedCombatant = (Combatant)combatantList.SelectedItem;
+            // If a combatant is selected...
+            if (combatantList.SelectedIndex != -1)
+            {
+                // Local combatant variable to store the currently selected combatant
+                Combatant selectedCombatant = (Combatant)combatantList.SelectedItem;
 
-            selectedCombatant.setDamage(3, damage3.Text); // update combatant's first attack's damage string
+                selectedCombatant.setDamage(3, damage3.Text); // update combatant's first attack's damage string
+            }
         }
 
         private void incrementDamage3_Click(object sender, EventArgs e)
@@ -284,11 +354,10 @@ namespace Squire
             // Check that the selected combatant isn't at the top of the list already
             if (currentIndex!=0)
             {
-                Combatant previousCombatant = (Combatant)combatantList.Items[currentIndex - 1]; // get data from combatant above current one
-                
                 // Swap combatants in the list
-                combatantList.Items[currentIndex] = previousCombatant;
-                combatantList.Items[currentIndex - 1] = selectedCombatant;
+                combatantList.Items.RemoveAt(currentIndex);
+                combatantList.Items.Insert((currentIndex-1),selectedCombatant);
+                combatantList.SelectedIndex = (currentIndex - 1); // re-select the moved combatant
             }
         }
     }

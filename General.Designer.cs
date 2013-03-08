@@ -504,9 +504,9 @@
             this.tableLayoutPanel11.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 307F));
             this.tableLayoutPanel11.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 20F));
             this.tableLayoutPanel11.Controls.Add(this.tableLayoutPanel14, 1, 0);
+            this.tableLayoutPanel11.Controls.Add(this.delayGroup, 0, 1);
             this.tableLayoutPanel11.Controls.Add(this.groupBox1, 1, 1);
             this.tableLayoutPanel11.Controls.Add(this.tableLayoutPanel24, 1, 2);
-            this.tableLayoutPanel11.Controls.Add(this.delayGroup, 0, 2);
             this.tableLayoutPanel11.Location = new System.Drawing.Point(237, 3);
             this.tableLayoutPanel11.Name = "tableLayoutPanel11";
             this.tableLayoutPanel11.RowCount = 3;
@@ -699,8 +699,9 @@
             // 
             this.delayGroup.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.delayGroup.Controls.Add(this.tableLayoutPanel15);
-            this.delayGroup.Location = new System.Drawing.Point(3, 149);
+            this.delayGroup.Location = new System.Drawing.Point(3, 114);
             this.delayGroup.Name = "delayGroup";
+            this.tableLayoutPanel11.SetRowSpan(this.delayGroup, 2);
             this.delayGroup.Size = new System.Drawing.Size(181, 197);
             this.delayGroup.TabIndex = 3;
             this.delayGroup.TabStop = false;
@@ -771,7 +772,7 @@
             this.attackGroup.Dock = System.Windows.Forms.DockStyle.Fill;
             this.attackGroup.Location = new System.Drawing.Point(3, 3);
             this.attackGroup.Name = "attackGroup";
-            this.attackGroup.Size = new System.Drawing.Size(295, 129);
+            this.attackGroup.Size = new System.Drawing.Size(295, 149);
             this.attackGroup.TabIndex = 4;
             this.attackGroup.TabStop = false;
             this.attackGroup.Text = "Attacks";
@@ -798,7 +799,7 @@
             this.tableLayoutPanel17.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 33.33333F));
             this.tableLayoutPanel17.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 33.33333F));
             this.tableLayoutPanel17.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 33.33333F));
-            this.tableLayoutPanel17.Size = new System.Drawing.Size(289, 110);
+            this.tableLayoutPanel17.Size = new System.Drawing.Size(289, 130);
             this.tableLayoutPanel17.TabIndex = 0;
             // 
             // tableLayoutPanel19
@@ -815,14 +816,14 @@
             this.tableLayoutPanel19.Name = "tableLayoutPanel19";
             this.tableLayoutPanel19.RowCount = 1;
             this.tableLayoutPanel19.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableLayoutPanel19.Size = new System.Drawing.Size(98, 36);
+            this.tableLayoutPanel19.Size = new System.Drawing.Size(98, 43);
             this.tableLayoutPanel19.TabIndex = 2;
             // 
             // decrementDamage1
             // 
             this.decrementDamage1.Anchor = System.Windows.Forms.AnchorStyles.Right;
             this.decrementDamage1.Enabled = false;
-            this.decrementDamage1.Location = new System.Drawing.Point(3, 8);
+            this.decrementDamage1.Location = new System.Drawing.Point(3, 11);
             this.decrementDamage1.Margin = new System.Windows.Forms.Padding(0);
             this.decrementDamage1.Name = "decrementDamage1";
             this.decrementDamage1.Size = new System.Drawing.Size(20, 20);
@@ -835,7 +836,7 @@
             // 
             this.incrementDamage1.Anchor = System.Windows.Forms.AnchorStyles.Left;
             this.incrementDamage1.Enabled = false;
-            this.incrementDamage1.Location = new System.Drawing.Point(73, 8);
+            this.incrementDamage1.Location = new System.Drawing.Point(73, 11);
             this.incrementDamage1.Margin = new System.Windows.Forms.Padding(0);
             this.incrementDamage1.Name = "incrementDamage1";
             this.incrementDamage1.Size = new System.Drawing.Size(20, 20);
@@ -848,7 +849,7 @@
             // 
             this.damage1.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.damage1.Enabled = false;
-            this.damage1.Location = new System.Drawing.Point(26, 8);
+            this.damage1.Location = new System.Drawing.Point(26, 11);
             this.damage1.Name = "damage1";
             this.damage1.Size = new System.Drawing.Size(43, 20);
             this.damage1.TabIndex = 6;
@@ -869,14 +870,14 @@
             this.tableLayoutPanel18.Name = "tableLayoutPanel18";
             this.tableLayoutPanel18.RowCount = 1;
             this.tableLayoutPanel18.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableLayoutPanel18.Size = new System.Drawing.Size(95, 36);
+            this.tableLayoutPanel18.Size = new System.Drawing.Size(95, 43);
             this.tableLayoutPanel18.TabIndex = 1;
             // 
             // decrementAttack1
             // 
             this.decrementAttack1.Anchor = System.Windows.Forms.AnchorStyles.Right;
             this.decrementAttack1.Enabled = false;
-            this.decrementAttack1.Location = new System.Drawing.Point(11, 8);
+            this.decrementAttack1.Location = new System.Drawing.Point(11, 11);
             this.decrementAttack1.Margin = new System.Windows.Forms.Padding(0);
             this.decrementAttack1.Name = "decrementAttack1";
             this.decrementAttack1.Size = new System.Drawing.Size(20, 20);
@@ -889,7 +890,7 @@
             // 
             this.incrementAttack1.Anchor = System.Windows.Forms.AnchorStyles.Left;
             this.incrementAttack1.Enabled = false;
-            this.incrementAttack1.Location = new System.Drawing.Point(62, 8);
+            this.incrementAttack1.Location = new System.Drawing.Point(62, 11);
             this.incrementAttack1.Margin = new System.Windows.Forms.Padding(0);
             this.incrementAttack1.Name = "incrementAttack1";
             this.incrementAttack1.Size = new System.Drawing.Size(20, 20);
@@ -902,7 +903,7 @@
             // 
             this.attackLabel2.Anchor = System.Windows.Forms.AnchorStyles.Right;
             this.attackLabel2.AutoSize = true;
-            this.attackLabel2.Location = new System.Drawing.Point(4, 47);
+            this.attackLabel2.Location = new System.Drawing.Point(4, 58);
             this.attackLabel2.Name = "attackLabel2";
             this.attackLabel2.Size = new System.Drawing.Size(34, 13);
             this.attackLabel2.TabIndex = 3;
@@ -917,19 +918,19 @@
             this.tableLayoutPanel20.Controls.Add(this.decrementAttack2, 0, 0);
             this.tableLayoutPanel20.Controls.Add(this.attackBonus2, 1, 0);
             this.tableLayoutPanel20.Controls.Add(this.incrementAttack2, 2, 0);
-            this.tableLayoutPanel20.Location = new System.Drawing.Point(41, 36);
+            this.tableLayoutPanel20.Location = new System.Drawing.Point(41, 43);
             this.tableLayoutPanel20.Margin = new System.Windows.Forms.Padding(0);
             this.tableLayoutPanel20.Name = "tableLayoutPanel20";
             this.tableLayoutPanel20.RowCount = 1;
             this.tableLayoutPanel20.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableLayoutPanel20.Size = new System.Drawing.Size(95, 36);
+            this.tableLayoutPanel20.Size = new System.Drawing.Size(95, 43);
             this.tableLayoutPanel20.TabIndex = 4;
             // 
             // decrementAttack2
             // 
             this.decrementAttack2.Anchor = System.Windows.Forms.AnchorStyles.Right;
             this.decrementAttack2.Enabled = false;
-            this.decrementAttack2.Location = new System.Drawing.Point(11, 8);
+            this.decrementAttack2.Location = new System.Drawing.Point(11, 11);
             this.decrementAttack2.Margin = new System.Windows.Forms.Padding(0);
             this.decrementAttack2.Name = "decrementAttack2";
             this.decrementAttack2.Size = new System.Drawing.Size(20, 20);
@@ -942,7 +943,7 @@
             // 
             this.incrementAttack2.Anchor = System.Windows.Forms.AnchorStyles.Left;
             this.incrementAttack2.Enabled = false;
-            this.incrementAttack2.Location = new System.Drawing.Point(62, 8);
+            this.incrementAttack2.Location = new System.Drawing.Point(62, 11);
             this.incrementAttack2.Margin = new System.Windows.Forms.Padding(0);
             this.incrementAttack2.Name = "incrementAttack2";
             this.incrementAttack2.Size = new System.Drawing.Size(20, 20);
@@ -955,7 +956,7 @@
             // 
             this.attackLabel1.Anchor = System.Windows.Forms.AnchorStyles.Right;
             this.attackLabel1.AutoSize = true;
-            this.attackLabel1.Location = new System.Drawing.Point(4, 11);
+            this.attackLabel1.Location = new System.Drawing.Point(4, 15);
             this.attackLabel1.Name = "attackLabel1";
             this.attackLabel1.Size = new System.Drawing.Size(34, 13);
             this.attackLabel1.TabIndex = 0;
@@ -970,19 +971,19 @@
             this.tableLayoutPanel21.Controls.Add(this.decrementDamage2, 0, 0);
             this.tableLayoutPanel21.Controls.Add(this.incrementDamage2, 2, 0);
             this.tableLayoutPanel21.Controls.Add(this.damage2, 1, 0);
-            this.tableLayoutPanel21.Location = new System.Drawing.Point(136, 36);
+            this.tableLayoutPanel21.Location = new System.Drawing.Point(136, 43);
             this.tableLayoutPanel21.Margin = new System.Windows.Forms.Padding(0);
             this.tableLayoutPanel21.Name = "tableLayoutPanel21";
             this.tableLayoutPanel21.RowCount = 1;
             this.tableLayoutPanel21.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableLayoutPanel21.Size = new System.Drawing.Size(98, 36);
+            this.tableLayoutPanel21.Size = new System.Drawing.Size(98, 43);
             this.tableLayoutPanel21.TabIndex = 5;
             // 
             // decrementDamage2
             // 
             this.decrementDamage2.Anchor = System.Windows.Forms.AnchorStyles.Right;
             this.decrementDamage2.Enabled = false;
-            this.decrementDamage2.Location = new System.Drawing.Point(3, 8);
+            this.decrementDamage2.Location = new System.Drawing.Point(3, 11);
             this.decrementDamage2.Margin = new System.Windows.Forms.Padding(0);
             this.decrementDamage2.Name = "decrementDamage2";
             this.decrementDamage2.Size = new System.Drawing.Size(20, 20);
@@ -995,7 +996,7 @@
             // 
             this.incrementDamage2.Anchor = System.Windows.Forms.AnchorStyles.Left;
             this.incrementDamage2.Enabled = false;
-            this.incrementDamage2.Location = new System.Drawing.Point(73, 8);
+            this.incrementDamage2.Location = new System.Drawing.Point(73, 11);
             this.incrementDamage2.Margin = new System.Windows.Forms.Padding(0);
             this.incrementDamage2.Name = "incrementDamage2";
             this.incrementDamage2.Size = new System.Drawing.Size(20, 20);
@@ -1008,7 +1009,7 @@
             // 
             this.damage2.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.damage2.Enabled = false;
-            this.damage2.Location = new System.Drawing.Point(26, 8);
+            this.damage2.Location = new System.Drawing.Point(26, 11);
             this.damage2.Name = "damage2";
             this.damage2.Size = new System.Drawing.Size(43, 20);
             this.damage2.TabIndex = 6;
@@ -1024,19 +1025,19 @@
             this.tableLayoutPanel23.Controls.Add(this.decrementDamage3, 0, 0);
             this.tableLayoutPanel23.Controls.Add(this.incrementDamage3, 2, 0);
             this.tableLayoutPanel23.Controls.Add(this.damage3, 1, 0);
-            this.tableLayoutPanel23.Location = new System.Drawing.Point(136, 72);
+            this.tableLayoutPanel23.Location = new System.Drawing.Point(136, 86);
             this.tableLayoutPanel23.Margin = new System.Windows.Forms.Padding(0);
             this.tableLayoutPanel23.Name = "tableLayoutPanel23";
             this.tableLayoutPanel23.RowCount = 1;
             this.tableLayoutPanel23.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableLayoutPanel23.Size = new System.Drawing.Size(98, 38);
+            this.tableLayoutPanel23.Size = new System.Drawing.Size(98, 44);
             this.tableLayoutPanel23.TabIndex = 8;
             // 
             // decrementDamage3
             // 
             this.decrementDamage3.Anchor = System.Windows.Forms.AnchorStyles.Right;
             this.decrementDamage3.Enabled = false;
-            this.decrementDamage3.Location = new System.Drawing.Point(3, 9);
+            this.decrementDamage3.Location = new System.Drawing.Point(3, 12);
             this.decrementDamage3.Margin = new System.Windows.Forms.Padding(0);
             this.decrementDamage3.Name = "decrementDamage3";
             this.decrementDamage3.Size = new System.Drawing.Size(20, 20);
@@ -1049,7 +1050,7 @@
             // 
             this.incrementDamage3.Anchor = System.Windows.Forms.AnchorStyles.Left;
             this.incrementDamage3.Enabled = false;
-            this.incrementDamage3.Location = new System.Drawing.Point(73, 9);
+            this.incrementDamage3.Location = new System.Drawing.Point(73, 12);
             this.incrementDamage3.Margin = new System.Windows.Forms.Padding(0);
             this.incrementDamage3.Name = "incrementDamage3";
             this.incrementDamage3.Size = new System.Drawing.Size(20, 20);
@@ -1062,7 +1063,7 @@
             // 
             this.damage3.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.damage3.Enabled = false;
-            this.damage3.Location = new System.Drawing.Point(26, 9);
+            this.damage3.Location = new System.Drawing.Point(26, 12);
             this.damage3.Name = "damage3";
             this.damage3.Size = new System.Drawing.Size(43, 20);
             this.damage3.TabIndex = 6;
@@ -1073,7 +1074,7 @@
             // 
             this.attackLabel3.Anchor = System.Windows.Forms.AnchorStyles.Right;
             this.attackLabel3.AutoSize = true;
-            this.attackLabel3.Location = new System.Drawing.Point(4, 84);
+            this.attackLabel3.Location = new System.Drawing.Point(4, 101);
             this.attackLabel3.Name = "attackLabel3";
             this.attackLabel3.Size = new System.Drawing.Size(34, 13);
             this.attackLabel3.TabIndex = 6;
@@ -1088,19 +1089,19 @@
             this.tableLayoutPanel22.Controls.Add(this.decrementAttack3, 0, 0);
             this.tableLayoutPanel22.Controls.Add(this.attackBonus3, 1, 0);
             this.tableLayoutPanel22.Controls.Add(this.incrementAttack3, 2, 0);
-            this.tableLayoutPanel22.Location = new System.Drawing.Point(41, 72);
+            this.tableLayoutPanel22.Location = new System.Drawing.Point(41, 86);
             this.tableLayoutPanel22.Margin = new System.Windows.Forms.Padding(0);
             this.tableLayoutPanel22.Name = "tableLayoutPanel22";
             this.tableLayoutPanel22.RowCount = 1;
             this.tableLayoutPanel22.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableLayoutPanel22.Size = new System.Drawing.Size(95, 38);
+            this.tableLayoutPanel22.Size = new System.Drawing.Size(95, 44);
             this.tableLayoutPanel22.TabIndex = 7;
             // 
             // decrementAttack3
             // 
             this.decrementAttack3.Anchor = System.Windows.Forms.AnchorStyles.Right;
             this.decrementAttack3.Enabled = false;
-            this.decrementAttack3.Location = new System.Drawing.Point(11, 9);
+            this.decrementAttack3.Location = new System.Drawing.Point(11, 12);
             this.decrementAttack3.Margin = new System.Windows.Forms.Padding(0);
             this.decrementAttack3.Name = "decrementAttack3";
             this.decrementAttack3.Size = new System.Drawing.Size(20, 20);
@@ -1113,7 +1114,7 @@
             // 
             this.incrementAttack3.Anchor = System.Windows.Forms.AnchorStyles.Left;
             this.incrementAttack3.Enabled = false;
-            this.incrementAttack3.Location = new System.Drawing.Point(62, 9);
+            this.incrementAttack3.Location = new System.Drawing.Point(62, 12);
             this.incrementAttack3.Margin = new System.Windows.Forms.Padding(0);
             this.incrementAttack3.Name = "incrementAttack3";
             this.incrementAttack3.Size = new System.Drawing.Size(20, 20);
@@ -1185,16 +1186,14 @@
             // tableLayoutPanel24
             // 
             this.tableLayoutPanel24.ColumnCount = 1;
-            this.tableLayoutPanel24.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.tableLayoutPanel24.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
             this.tableLayoutPanel24.Controls.Add(this.attackGroup, 0, 0);
             this.tableLayoutPanel24.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tableLayoutPanel24.Location = new System.Drawing.Point(190, 92);
             this.tableLayoutPanel24.Name = "tableLayoutPanel24";
-            this.tableLayoutPanel24.RowCount = 4;
+            this.tableLayoutPanel24.RowCount = 2;
             this.tableLayoutPanel24.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
             this.tableLayoutPanel24.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tableLayoutPanel24.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
-            this.tableLayoutPanel24.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
             this.tableLayoutPanel24.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
             this.tableLayoutPanel24.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
             this.tableLayoutPanel24.Size = new System.Drawing.Size(301, 311);
@@ -1246,7 +1245,7 @@
             0});
             this.attackBonus1.Enabled = false;
             this.attackBonus1.IntValue = 0;
-            this.attackBonus1.Location = new System.Drawing.Point(32, 8);
+            this.attackBonus1.Location = new System.Drawing.Point(32, 11);
             this.attackBonus1.Margin = new System.Windows.Forms.Padding(0);
             this.attackBonus1.Name = "attackBonus1";
             this.attackBonus1.Size = new System.Drawing.Size(29, 20);
@@ -1266,7 +1265,7 @@
             0});
             this.attackBonus2.Enabled = false;
             this.attackBonus2.IntValue = 0;
-            this.attackBonus2.Location = new System.Drawing.Point(32, 8);
+            this.attackBonus2.Location = new System.Drawing.Point(32, 11);
             this.attackBonus2.Margin = new System.Windows.Forms.Padding(0);
             this.attackBonus2.Name = "attackBonus2";
             this.attackBonus2.Size = new System.Drawing.Size(29, 20);
@@ -1286,7 +1285,7 @@
             0});
             this.attackBonus3.Enabled = false;
             this.attackBonus3.IntValue = 0;
-            this.attackBonus3.Location = new System.Drawing.Point(32, 9);
+            this.attackBonus3.Location = new System.Drawing.Point(32, 12);
             this.attackBonus3.Margin = new System.Windows.Forms.Padding(0);
             this.attackBonus3.Name = "attackBonus3";
             this.attackBonus3.Size = new System.Drawing.Size(29, 20);

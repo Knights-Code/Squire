@@ -34,9 +34,9 @@
             this.labelAddCombatant = new System.Windows.Forms.Label();
             this.checkboxIsPlayer = new System.Windows.Forms.CheckBox();
             this.tableLayoutPanel3 = new System.Windows.Forms.TableLayoutPanel();
-            this.combatantHP = new Squire.NumericTextBox();
             this.labelCombatantName = new System.Windows.Forms.Label();
             this.combatantName = new System.Windows.Forms.TextBox();
+            this.combatantHP = new Squire.NumericTextBox();
             this.labelCombatantHP = new System.Windows.Forms.Label();
             this.flowLayoutPanel1 = new System.Windows.Forms.FlowLayoutPanel();
             this.addCancel = new System.Windows.Forms.Button();
@@ -77,7 +77,7 @@
             this.tableLayoutPanel2.RowCount = 1;
             this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
             this.tableLayoutPanel2.Size = new System.Drawing.Size(520, 24);
-            this.tableLayoutPanel2.TabIndex = 0;
+            this.tableLayoutPanel2.TabIndex = 1;
             // 
             // labelAddCombatant
             // 
@@ -88,7 +88,7 @@
             this.labelAddCombatant.Size = new System.Drawing.Size(410, 13);
             this.labelAddCombatant.TabIndex = 0;
             this.labelAddCombatant.Text = "Enter the name (and hit points in the case of a monster) of the new combatant, be" +
-    "low.\r\n";
+                "low.\r\n";
             // 
             // checkboxIsPlayer
             // 
@@ -118,24 +118,7 @@
             this.tableLayoutPanel3.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
             this.tableLayoutPanel3.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
             this.tableLayoutPanel3.Size = new System.Drawing.Size(520, 64);
-            this.tableLayoutPanel3.TabIndex = 1;
-            // 
-            // combatantHP
-            // 
-            this.combatantHP.AllowSpace = false;
-            this.combatantHP.Anchor = System.Windows.Forms.AnchorStyles.Left;
-            this.combatantHP.DecimalValue = new decimal(new int[] {
-            0,
-            0,
-            0,
-            0});
-            this.combatantHP.IntValue = 0;
-            this.combatantHP.Location = new System.Drawing.Point(252, 38);
-            this.combatantHP.Margin = new System.Windows.Forms.Padding(3, 0, 0, 0);
-            this.combatantHP.Name = "combatantHP";
-            this.combatantHP.Size = new System.Drawing.Size(118, 20);
-            this.combatantHP.TabIndex = 3;
-            this.combatantHP.Text = "0";
+            this.tableLayoutPanel3.TabIndex = 0;
             // 
             // labelCombatantName
             // 
@@ -153,7 +136,24 @@
             this.combatantName.Location = new System.Drawing.Point(252, 6);
             this.combatantName.Name = "combatantName";
             this.combatantName.Size = new System.Drawing.Size(118, 20);
-            this.combatantName.TabIndex = 1;
+            this.combatantName.TabIndex = 0;
+            // 
+            // combatantHP
+            // 
+            this.combatantHP.AllowSpace = false;
+            this.combatantHP.Anchor = System.Windows.Forms.AnchorStyles.Left;
+            this.combatantHP.DecimalValue = new decimal(new int[] {
+            0,
+            0,
+            0,
+            0});
+            this.combatantHP.IntValue = 0;
+            this.combatantHP.Location = new System.Drawing.Point(252, 38);
+            this.combatantHP.Margin = new System.Windows.Forms.Padding(3, 0, 0, 0);
+            this.combatantHP.Name = "combatantHP";
+            this.combatantHP.Size = new System.Drawing.Size(118, 20);
+            this.combatantHP.TabIndex = 3;
+            this.combatantHP.Text = "0";
             // 
             // labelCombatantHP
             // 

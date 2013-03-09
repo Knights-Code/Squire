@@ -56,7 +56,7 @@
             this.tableLayoutPanel10 = new System.Windows.Forms.TableLayoutPanel();
             this.moveCombatantUp = new System.Windows.Forms.Button();
             this.addCombatantButton = new System.Windows.Forms.Button();
-            this.button3 = new System.Windows.Forms.Button();
+            this.moveCombatantDown = new System.Windows.Forms.Button();
             this.tableLayoutPanel11 = new System.Windows.Forms.TableLayoutPanel();
             this.tableLayoutPanel14 = new System.Windows.Forms.TableLayoutPanel();
             this.flowLayoutPanel1 = new System.Windows.Forms.FlowLayoutPanel();
@@ -469,7 +469,7 @@
             this.tableLayoutPanel10.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 33.33333F));
             this.tableLayoutPanel10.Controls.Add(this.moveCombatantUp, 0, 0);
             this.tableLayoutPanel10.Controls.Add(this.addCombatantButton, 1, 0);
-            this.tableLayoutPanel10.Controls.Add(this.button3, 2, 0);
+            this.tableLayoutPanel10.Controls.Add(this.moveCombatantDown, 2, 0);
             this.tableLayoutPanel10.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tableLayoutPanel10.Location = new System.Drawing.Point(0, 387);
             this.tableLayoutPanel10.Margin = new System.Windows.Forms.Padding(0);
@@ -503,16 +503,17 @@
             this.addCombatantButton.UseVisualStyleBackColor = true;
             this.addCombatantButton.Click += new System.EventHandler(this.addCombatantButton_Click);
             // 
-            // button3
+            // moveCombatantDown
             // 
-            this.button3.Anchor = System.Windows.Forms.AnchorStyles.Left;
-            this.button3.Location = new System.Drawing.Point(156, 1);
-            this.button3.Margin = new System.Windows.Forms.Padding(0);
-            this.button3.Name = "button3";
-            this.button3.Size = new System.Drawing.Size(75, 23);
-            this.button3.TabIndex = 2;
-            this.button3.Text = "Move &Down";
-            this.button3.UseVisualStyleBackColor = true;
+            this.moveCombatantDown.Anchor = System.Windows.Forms.AnchorStyles.Left;
+            this.moveCombatantDown.Location = new System.Drawing.Point(156, 1);
+            this.moveCombatantDown.Margin = new System.Windows.Forms.Padding(0);
+            this.moveCombatantDown.Name = "moveCombatantDown";
+            this.moveCombatantDown.Size = new System.Drawing.Size(75, 23);
+            this.moveCombatantDown.TabIndex = 2;
+            this.moveCombatantDown.Text = "Move &Down";
+            this.moveCombatantDown.UseVisualStyleBackColor = true;
+            this.moveCombatantDown.Click += new System.EventHandler(this.moveCombatantDown_Click);
             // 
             // tableLayoutPanel11
             // 
@@ -1407,7 +1408,7 @@
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel10;
         private System.Windows.Forms.Button moveCombatantUp;
         private System.Windows.Forms.Button addCombatantButton;
-        private System.Windows.Forms.Button button3;
+        private System.Windows.Forms.Button moveCombatantDown;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel14;
         private System.Windows.Forms.FlowLayoutPanel flowLayoutPanel2;
         private System.Windows.Forms.Label nameLabel;

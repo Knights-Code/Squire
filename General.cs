@@ -22,14 +22,19 @@ namespace Squire
             combatantHPBar.Dock = DockStyle.Fill;
         }
 
+        /*
+         * Listens to keyboard for shortcuts and then acts accordingly.
+         * @param msg No idea. VS created this one automatically.
+         * @param keyData Contains the binary data of the key combination pressed.
+         * @return Returns true when a key combination is recognised and successfully processed.
+         */
         protected override bool ProcessCmdKey(ref Message msg, Keys keyData)
         {
+            //
             if (keyData == (Keys.Control | Keys.L))
             {
-                //Console.WriteLine("Selected tab is equal to: " + tabPlayer.SelectedTab);
-                /*if (tabPlayer.SelectedTab == tabPC)*/
-                combatantList.Focus();
-                //else combatantList.Focus();
+                if (tabPlayer.SelectedTab == tabPC) listCombatants.Focus();
+                else combatantList.Focus();
                 return true;
             }
             return base.ProcessCmdKey(ref msg, keyData);
@@ -371,6 +376,22 @@ namespace Squire
                 combatantList.Items.RemoveAt(currentIndex);
                 combatantList.Items.Insert((currentIndex-1),selectedCombatant);
                 combatantList.SelectedIndex = (currentIndex - 1); // re-select the moved combatant
+            }
+        }
+
+        private void moveCombatantDown_Click(object sender, EventArgs e)
+        {
+            // Used to store the selected combatant for quick reference
+            Combatant selectedCombatant = (Combatant)combatantList.SelectedItem;
+            int currentIndex = combatantList.Items.IndexOf(combatantList.SelectedItem);
+
+            // Check that the selected combatant isn't at the top of the list already
+            if (currentIndex != (combatantList.Items.Count-1))
+            {
+                // Swap combatants in the list
+                combatantList.Items.RemoveAt(currentIndex);
+                combatantList.Items.Insert((currentIndex + 1), selectedCombatant);
+                combatantList.SelectedIndex = (currentIndex + 1); // re-select the moved combatant
             }
         }
     }

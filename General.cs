@@ -22,6 +22,19 @@ namespace Squire
             combatantHPBar.Dock = DockStyle.Fill;
         }
 
+        protected override bool ProcessCmdKey(ref Message msg, Keys keyData)
+        {
+            if (keyData == (Keys.Control | Keys.L))
+            {
+                //Console.WriteLine("Selected tab is equal to: " + tabPlayer.SelectedTab);
+                /*if (tabPlayer.SelectedTab == tabPC)*/
+                combatantList.Focus();
+                //else combatantList.Focus();
+                return true;
+            }
+            return base.ProcessCmdKey(ref msg, keyData);
+        }
+
         private void saveToolStripMenuItem_Click(object sender, EventArgs e)
         {
 

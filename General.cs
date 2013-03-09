@@ -30,11 +30,15 @@ namespace Squire
          */
         protected override bool ProcessCmdKey(ref Message msg, Keys keyData)
         {
-            //
             if (keyData == (Keys.Control | Keys.L))
             {
                 if (tabPlayer.SelectedTab == tabPC) listCombatants.Focus();
                 else combatantList.Focus();
+                return true;
+            }
+            else if (keyData == (Keys.Control | Keys.D))
+            {
+                if (tabPlayer.SelectedTab == tabDM) delayList.Focus();
                 return true;
             }
             return base.ProcessCmdKey(ref msg, keyData);
@@ -365,33 +369,82 @@ namespace Squire
 
         private void moveCombatantUp_Click(object sender, EventArgs e)
         {
-            // Used to store the selected combatant for quick reference
-            Combatant selectedCombatant = (Combatant)combatantList.SelectedItem;
-            int currentIndex = combatantList.Items.IndexOf(combatantList.SelectedItem);
-            
-            // Check that the selected combatant isn't at the top of the list already
-            if (currentIndex!=0)
+            // Make sure a combatant is selected
+            if (combatantList.SelectedIndex != -1)
             {
-                // Swap combatants in the list
-                combatantList.Items.RemoveAt(currentIndex);
-                combatantList.Items.Insert((currentIndex-1),selectedCombatant);
-                combatantList.SelectedIndex = (currentIndex - 1); // re-select the moved combatant
+                // Used to store the selected combatant for quick reference
+                Combatant selectedCombatant = (Combatant)combatantList.SelectedItem;
+                int currentIndex = combatantList.Items.IndexOf(combatantList.SelectedItem);
+
+                // Check that the selected combatant isn't at the top of the list already
+                if (currentIndex != 0)
+                {
+                    // Swap combatants in the list
+                    combatantList.Items.RemoveAt(currentIndex);
+                    combatantList.Items.Insert((currentIndex - 1), selectedCombatant);
+                    combatantList.SelectedIndex = (currentIndex - 1); // re-select the moved combatant
+                }
             }
         }
 
         private void moveCombatantDown_Click(object sender, EventArgs e)
         {
-            // Used to store the selected combatant for quick reference
-            Combatant selectedCombatant = (Combatant)combatantList.SelectedItem;
-            int currentIndex = combatantList.Items.IndexOf(combatantList.SelectedItem);
-
-            // Check that the selected combatant isn't at the top of the list already
-            if (currentIndex != (combatantList.Items.Count-1))
+            // Make sure a combatant is selected
+            if (combatantList.SelectedIndex != -1)
             {
-                // Swap combatants in the list
+                // Used to store the selected combatant for quick reference
+                Combatant selectedCombatant = (Combatant)combatantList.SelectedItem;
+                int currentIndex = combatantList.Items.IndexOf(combatantList.SelectedItem);
+
+                // Check that the selected combatant isn't at the bottom of the list already
+                if (currentIndex != (combatantList.Items.Count - 1))
+                {
+                    // Swap combatants in the list
+                    combatantList.Items.RemoveAt(currentIndex);
+                    combatantList.Items.Insert((currentIndex + 1), selectedCombatant);
+                    combatantList.SelectedIndex = (currentIndex + 1); // re-select the moved combatant
+                }
+            }
+        }
+
+        private void delayButton_Click(object sender, EventArgs e)
+        {
+            // Make sure a combatant is selected
+            if (combatantList.SelectedIndex != -1)
+            {
+                // Used to store the selected combatant for quick reference
+                Combatant selectedCombatant = (Combatant)combatantList.SelectedItem;
+                int currentIndex = combatantList.Items.IndexOf(combatantList.SelectedItem);
+
+                // Pull selected combatant from combatant list into delay list
                 combatantList.Items.RemoveAt(currentIndex);
-                combatantList.Items.Insert((currentIndex + 1), selectedCombatant);
-                combatantList.SelectedIndex = (currentIndex + 1); // re-select the moved combatant
+                delayList.Items.Add(selectedCombatant);
+                
+                // If there's no combatant selected in the delay list, select the most recently added one
+                if (delayList.SelectedIndex == -1) delayList.SelectedIndex = (delayList.Items.Count - 1);
+                
+                // If there's a combatant directly after the delaying one, select it. Select the last combatant in the list otherwise.
+                if (currentIndex <= (combatantList.Items.Count - 1)) combatantList.SelectedIndex = currentIndex;
+                else combatantList.SelectedIndex = (combatantList.Items.Count - 1);
+            }
+        }
+
+        private void undelayButton_Click(object sender, EventArgs e)
+        {
+            // Make sure a combatant is selected
+            if (delayList.SelectedIndex != -1)
+            {
+                // Used to store the selected combatant for quick reference
+                Combatant selectedCombatant = (Combatant)delayList.SelectedItem;
+                int currentIndex;
+                if (combatantList.SelectedIndex != -1) currentIndex = combatantList.Items.IndexOf(combatantList.SelectedItem);
+                else currentIndex = 0;
+                int delayIndex = delayList.Items.IndexOf(delayList.SelectedItem);
+
+                // Push selected from delay list into combatant list
+                combatantList.Items.Insert(currentIndex, selectedCombatant);
+                delayList.Items.RemoveAt(delayIndex);
+                combatantList.SelectedIndex = (currentIndex); // select the combatant that just un-delayed
             }
         }
     }

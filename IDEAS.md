@@ -11,3 +11,6 @@ initialising them when a sheet is loaded).
 
 # 2013-02-28
 * Not really an idea, more like something I need to do later. Add check to make sure the user isn't trying to overwrite the current level XML file with the next level XML.
+
+# 2013-03-10
+* Maybe General should have the ability to create "battle logs"; text files which record what happens and what round it happens in.

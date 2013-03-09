@@ -38,6 +38,9 @@ namespace Squire
                 else newCombatant = new Combatant(combatantName.Text);
 
                 parentForm.combatantList.Items.Add(newCombatant);
+                
+                // If there's no selected combatant in the list, select the recently added one.
+                if (parentForm.combatantList.SelectedIndex == -1) parentForm.combatantList.SelectedIndex = (parentForm.combatantList.Items.Count - 1);
                 this.Close();
             }
         }

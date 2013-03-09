@@ -12,6 +12,7 @@ using System.IO;
 using System.Xml.XPath;
 using Squire;
 using System.Text.RegularExpressions;
+using iTextSharp.text.pdf;
 
 namespace Squire
 {
@@ -29,12 +30,6 @@ namespace Squire
         private decimal numberFeatSlots;
         private decimal numberClassFeatureSlots;
         private decimal level;
-        private decimal STR;
-        private decimal DEX;
-        private decimal CON;
-        private decimal INT;
-        private decimal WIS;
-        private decimal CHA;
         private String sourceFile;
         private String sheetType;
 
@@ -43,7 +38,7 @@ namespace Squire
             InitializeComponent();
 
             //-----( Initialise Variables )-----//
-            skillNames = new Label[8] {label1,label2,label3,label4,label5,label6,label7,label8};
+            skillNames = new Label[8] { label1, label2, label3, label4, label5, label6, label7, label8 };
             skillRanks = new NumericUpDown[8] { numericUpDown1, numericUpDown2, numericUpDown3, numericUpDown4, numericUpDown5, numericUpDown6, numericUpDown7, numericUpDown8 };
             bDataLoaded = false;
             bLoadOK = true;
@@ -62,7 +57,7 @@ namespace Squire
             //-----( Event Handlers )-----//
             classFeatureEntry.KeyPress += new KeyPressEventHandler(classFeatureEntry_KeyPress);
             classFeaturesBox.SelectedValueChanged += new EventHandler(classFeaturesBox_SelectedValueChanged);
-            featEntry.KeyPress +=new KeyPressEventHandler(featEntry_KeyPress);
+            featEntry.KeyPress += new KeyPressEventHandler(featEntry_KeyPress);
             featBox.SelectedIndexChanged += new EventHandler(featBox_SelectedIndexChanged);
             newHP.KeyPress += new KeyPressEventHandler(newHP_KeyPress);
             createCharacterXML.FileOk += new CancelEventHandler(createCharacterXML_FileOk);
@@ -129,7 +124,7 @@ namespace Squire
             }
             else
             {
-                MessageBox.Show("The sheet type only has room for "+numberClassFeatureSlots+" class features. You will need a character sheet with more class feature slots to add more class features.", "Error: no space for new class feature", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("The sheet type only has room for " + numberClassFeatureSlots + " class features. You will need a character sheet with more class feature slots to add more class features.", "Error: no space for new class feature", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 
@@ -160,177 +155,163 @@ namespace Squire
                     // This means data must be accessed in the order it appears in the data file.
                     //try
                     //{
-                        int skillIndex = 0;
-                        reader.MoveToContent();
+                    int skillIndex = 0;
+                    reader.MoveToContent();
 
                     // Determine sheet type
-                        reader.ReadToDescendant("ClassAndLevel");
-                        determineSheetType(reader.ReadElementContentAsString());
+                    reader.ReadToDescendant("ClassAndLevel");
+                    determineSheetType(reader.ReadElementContentAsString());
 
-                        // Record ability scores
-                        reader.ReadToNextSibling("STR");
-                        STR = reader.ReadElementContentAsDecimal();
-                        reader.ReadToNextSibling("DEX");
-                        DEX = reader.ReadElementContentAsDecimal();
-                        reader.ReadToNextSibling("CON");
-                        CON = reader.ReadElementContentAsDecimal();
-                        reader.ReadToNextSibling("INT");
-                        INT = reader.ReadElementContentAsDecimal();
-                        reader.ReadToNextSibling("WIS");
-                        WIS = reader.ReadElementContentAsDecimal();
-                        reader.ReadToNextSibling("CHA");
-                        CHA = reader.ReadElementContentAsDecimal();
+                    reader.ReadToNextSibling("HP");
+                    upDownHP.Value = reader.ReadElementContentAsDecimal();
+                    upDownHP.Enabled = true;
+                    newHP.Enabled = true;
+                    addHPButton.Enabled = true;
 
-                        reader.ReadToNextSibling("HP");
-                        upDownHP.Value = reader.ReadElementContentAsDecimal();
-                        upDownHP.Enabled = true;
-                        newHP.Enabled = true;
-                        addHPButton.Enabled = true;
+                    reader.ReadToNextSibling("FortBase");
+                    upDownFort.Value = reader.ReadElementContentAsDecimal();
+                    upDownFort.Enabled = true;
 
-                        reader.ReadToNextSibling("FortBase");
-                        upDownFort.Value = reader.ReadElementContentAsDecimal();
-                        upDownFort.Enabled = true;
+                    reader.ReadToNextSibling("RefBase");
+                    upDownRef.Value = reader.ReadElementContentAsDecimal();
+                    upDownRef.Enabled = true;
 
-                        reader.ReadToNextSibling("RefBase");
-                        upDownRef.Value = reader.ReadElementContentAsDecimal();
-                        upDownRef.Enabled = true;
+                    reader.ReadToNextSibling("WillBase");
+                    upDownWill.Value = reader.ReadElementContentAsDecimal();
+                    upDownWill.Enabled = true;
 
-                        reader.ReadToNextSibling("WillBase");
-                        upDownWill.Value = reader.ReadElementContentAsDecimal();
-                        upDownWill.Enabled = true;
+                    reader.ReadToNextSibling("BAB");
+                    if (!reader.IsEmptyElement)
+                    {
+                        upDownBAB.Value = reader.ReadElementContentAsDecimal();
 
-                        reader.ReadToNextSibling("BAB");
+                        // If we couldn't determine the sheet type earlier, we'll use the BAB to generate the level.
+                        if (level == 0)
+                        {
+                            characterLevel.Value = (upDownBAB.Value + 1);
+                        }
+                        upDownBAB.Enabled = true;
+                    }
+
+                    reader.ReadToNextSibling("ClimbRanks");
+                    if (!reader.IsEmptyElement)
+                    {
+                        skillNames[skillIndex].Text = "Climb";
+                        skillNames[skillIndex].Visible = true;
+                        skillRanks[skillIndex].Value = reader.ReadElementContentAsDecimal();
+                        skillRanks[skillIndex].Visible = true;
+                        skillIndex++;
+                    }
+
+                    reader.ReadToNextSibling("IntimidateRanks");
+                    if (!reader.IsEmptyElement)
+                    {
+                        skillNames[skillIndex].Text = "Intimidate";
+                        skillNames[skillIndex].Visible = true;
+                        skillRanks[skillIndex].Value = reader.ReadElementContentAsDecimal();
+                        skillRanks[skillIndex].Visible = true;
+                        skillIndex++;
+                    }
+
+                    reader.ReadToNextSibling("JumpRanks");
+                    if (!reader.IsEmptyElement)
+                    {
+                        skillNames[skillIndex].Text = "Jump";
+                        skillNames[skillIndex].Visible = true;
+                        skillRanks[skillIndex].Value = reader.ReadElementContentAsDecimal();
+                        skillRanks[skillIndex].Visible = true;
+                        skillIndex++;
+                    }
+
+                    reader.ReadToNextSibling("RideRanks");
+                    if (!reader.IsEmptyElement)
+                    {
+                        skillNames[skillIndex].Text = "Ride";
+                        skillNames[skillIndex].Visible = true;
+                        skillRanks[skillIndex].Value = reader.ReadElementContentAsDecimal();
+                        skillRanks[skillIndex].Visible = true;
+                        skillIndex++;
+                    }
+
+                    reader.ReadToNextSibling("SwimRanks");
+                    if (!reader.IsEmptyElement)
+                    {
+                        skillNames[skillIndex].Text = "Swim";
+                        skillNames[skillIndex].Visible = true;
+                        skillRanks[skillIndex].Value = reader.ReadElementContentAsDecimal();
+                        skillRanks[skillIndex].Visible = true;
+                        skillIndex++;
+                    }
+
+                    reader.ReadToNextSibling("Knowledge1Ranks");
+                    if (!reader.IsEmptyElement)
+                    {
+                        skillNames[skillIndex].Text = "Knowledge (Nobility and Royalty)";
+                        skillNames[skillIndex].Visible = true;
+                        skillRanks[skillIndex].Value = reader.ReadElementContentAsDecimal();
+                        skillRanks[skillIndex].Visible = true;
+                        skillIndex++;
+                    }
+
+                    // Process feats -- iterate through all feat slots on the sheet.
+                    reader.ReadToNextSibling("Feats");
+                    for (int i = 0; i < numberFeatSlots; i++)
+                    {
                         if (!reader.IsEmptyElement)
                         {
-                            upDownBAB.Value = reader.ReadElementContentAsDecimal();
-                            
-                            // If we couldn't determine the sheet type earlier, we'll use the BAB to generate the level.
-                            if (level == 0)
-                            {
-                                characterLevel.Value = (upDownBAB.Value + 1);
-                            }
-                            upDownBAB.Enabled = true;
+                            String item = reader.ReadElementContentAsString();
+                            if (item != String.Empty) // don't add blank entries to the feat list. That would be silly.
+                                featBox.Items.Add(item);
                         }
-
-                        reader.ReadToNextSibling("ClimbRanks");
-                        if (!reader.IsEmptyElement)
+                        else
                         {
-                            skillNames[skillIndex].Text = "Climb";
-                            skillNames[skillIndex].Visible = true;
-                            skillRanks[skillIndex].Value = reader.ReadElementContentAsDecimal();
-                            skillRanks[skillIndex].Visible = true;
-                            skillIndex++;
+                            reader.ReadString(); // If slot is empty, skip to next node
                         }
+                    }
+                    featEntry.Enabled = true;
 
-                        reader.ReadToNextSibling("IntimidateRanks");
-                        if (!reader.IsEmptyElement)
-                        {
-                            skillNames[skillIndex].Text = "Intimidate";
-                            skillNames[skillIndex].Visible = true;
-                            skillRanks[skillIndex].Value = reader.ReadElementContentAsDecimal();
-                            skillRanks[skillIndex].Visible = true;
-                            skillIndex++;
-                        }
+                    reader.ReadToNextSibling("HandleAnimalRanks");
+                    if (!reader.IsEmptyElement)
+                    {
+                        skillNames[skillIndex].Text = "Handle Animal";
+                        skillNames[skillIndex].Visible = true;
+                        skillRanks[skillIndex].Value = reader.ReadElementContentAsDecimal();
+                        skillRanks[skillIndex].Visible = true;
+                        skillIndex++;
+                    }
 
-                        reader.ReadToNextSibling("JumpRanks");
-                        if (!reader.IsEmptyElement)
-                        {
-                            skillNames[skillIndex].Text = "Jump";
-                            skillNames[skillIndex].Visible = true;
-                            skillRanks[skillIndex].Value = reader.ReadElementContentAsDecimal();
-                            skillRanks[skillIndex].Visible = true;
-                            skillIndex++;
-                        }
+                    reader.ReadToNextSibling("DiplomacyRanks");
+                    if (!reader.IsEmptyElement)
+                    {
+                        skillNames[skillIndex].Text = "Diplomacy";
+                        skillNames[skillIndex].Visible = true;
+                        skillRanks[skillIndex].Value = reader.ReadElementContentAsDecimal();
+                        skillRanks[skillIndex].Visible = true;
+                        skillIndex++;
+                    }
 
-                        reader.ReadToNextSibling("RideRanks");
-                        if (!reader.IsEmptyElement)
-                        {
-                            skillNames[skillIndex].Text = "Ride";
-                            skillNames[skillIndex].Visible = true;
-                            skillRanks[skillIndex].Value = reader.ReadElementContentAsDecimal();
-                            skillRanks[skillIndex].Visible = true;
-                            skillIndex++;
-                        }
+                    // Process class features -- iterate through the 23 class feature slots on the sheet.
+                    reader.ReadToNextSibling("SpecialAbilities");
+                    for (int i = 0; i < numberClassFeatureSlots; i++)
+                    {
+                        if (!reader.IsEmptyElement) classFeaturesBox.Items.Add(reader.ReadElementContentAsString());
+                        else reader.ReadString(); // Skip to next node
+                    }
+                    classFeatureEntry.Enabled = true;
 
-                        reader.ReadToNextSibling("SwimRanks");
-                        if (!reader.IsEmptyElement)
-                        {
-                            skillNames[skillIndex].Text = "Swim";
-                            skillNames[skillIndex].Visible = true;
-                            skillRanks[skillIndex].Value = reader.ReadElementContentAsDecimal();
-                            skillRanks[skillIndex].Visible = true;
-                            skillIndex++;
-                        }
+                    // Unlock controls
+                    bDataLoaded = true;
+                    bLoadOK = false;
+                    characterLevel.Enabled = true;
+                    generateButton.Enabled = true;
+                    sourceFile = characterFile.Text;
 
-                        reader.ReadToNextSibling("Knowledge1Ranks");
-                        if (!reader.IsEmptyElement)
-                        {
-                            skillNames[skillIndex].Text = "Knowledge (Nobility and Royalty)";
-                            skillNames[skillIndex].Visible = true;
-                            skillRanks[skillIndex].Value = reader.ReadElementContentAsDecimal();
-                            skillRanks[skillIndex].Visible = true;
-                            skillIndex++;
-                        }
-
-                        // Process feats -- iterate through all feat slots on the sheet.
-                        reader.ReadToNextSibling("Feats");
-                        for (int i = 0; i < numberFeatSlots; i++)
-                        {
-                            if (!reader.IsEmptyElement)
-                            {
-                                String item = reader.ReadElementContentAsString();
-                                if (item != String.Empty) // don't add blank entries to the feat list. That would be silly.
-                                    featBox.Items.Add(item);
-                            }
-                            else
-                            {
-                                reader.ReadString(); // If slot is empty, skip to next node
-                            }
-                        }
-                        featEntry.Enabled = true;
-
-                        reader.ReadToNextSibling("HandleAnimalRanks");
-                        if (!reader.IsEmptyElement)
-                        {
-                            skillNames[skillIndex].Text = "Handle Animal";
-                            skillNames[skillIndex].Visible = true;
-                            skillRanks[skillIndex].Value = reader.ReadElementContentAsDecimal();
-                            skillRanks[skillIndex].Visible = true;
-                            skillIndex++;
-                        }
-
-                        reader.ReadToNextSibling("DiplomacyRanks");
-                        if (!reader.IsEmptyElement)
-                        {
-                            skillNames[skillIndex].Text = "Diplomacy";
-                            skillNames[skillIndex].Visible = true;
-                            skillRanks[skillIndex].Value = reader.ReadElementContentAsDecimal();
-                            skillRanks[skillIndex].Visible = true;
-                            skillIndex++;
-                        }
-
-                        // Process class features -- iterate through the 23 class feature slots on the sheet.
-                        reader.ReadToNextSibling("SpecialAbilities");
-                        for (int i = 0; i < numberClassFeatureSlots; i++)
-                        {
-                            if (!reader.IsEmptyElement) classFeaturesBox.Items.Add(reader.ReadElementContentAsString());
-                            else reader.ReadString(); // Skip to next node
-                        }
-                        classFeatureEntry.Enabled = true;
-
-                        // Unlock controls
-                        bDataLoaded = true;
-                        bLoadOK = false;
-                        characterLevel.Enabled = true;
-                        generateButton.Enabled = true;
-                        sourceFile = characterFile.Text;
-
-                        // Change title bar to indicate the file we're working on
-                        this.Text = ( this.Text + " [" + openCharacterXML.FileName + "]" );
+                    // Change title bar to indicate the file we're working on
+                    this.Text = (this.Text + " [" + openCharacterXML.FileName + "]");
                     //}
                     //catch (Exception ex)
                     //{
-                      //  MessageBox.Show("Squire encountered an error while reading the character file. Please check the file (or designate a new one) and try again.", "Bad File", MessageBoxButtons.OK,MessageBoxIcon.Error);
+                    //  MessageBox.Show("Squire encountered an error while reading the character file. Please check the file (or designate a new one) and try again.", "Bad File", MessageBoxButtons.OK,MessageBoxIcon.Error);
                     //}
                 }
             }
@@ -343,7 +324,7 @@ namespace Squire
          */
         private void determineSheetType(string classAndLevel)
         {
-            
+
             // Determine sheet type
             if (classAndLevel.Contains("Knight"))
             {
@@ -410,7 +391,7 @@ namespace Squire
             }
             else
             {
-                MessageBox.Show("The sheet type only has room for "+numberFeatSlots+" feats. You will need a character sheet with more feat slots to add more feats.", "Error: no space for new feat", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("The sheet type only has room for " + numberFeatSlots + " feats. You will need a character sheet with more feat slots to add more feats.", "Error: no space for new feat", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 
@@ -438,192 +419,197 @@ namespace Squire
             // Determine default file name
             Regex suffix = new Regex("_lv(.+).xml"); // define a regular expression to check file name format and 
 
-            Console.WriteLine("Level value is: ["+suffix.Match(sourceFile).Value+"]");
-            
+            Console.WriteLine("Level value is: [" + suffix.Match(sourceFile).Value + "]");
+
             // if the source file is already properly formatted ...
-            if (suffix.Match(sourceFile).Value != String.Empty) createCharacterXML.FileName = sourceFile.Replace(suffix.Match(sourceFile).Value, (level<10?"_lv0":"_lv") + level.ToString()+".xml"); // replace existing "level" with new one
-            else createCharacterXML.FileName = sourceFile.Replace(".xml", (level<10?"_lv0":"_lv") + level + ".xml"); // replace existing "level" with new one
+            if (suffix.Match(sourceFile).Value != String.Empty) createCharacterXML.FileName = sourceFile.Replace(suffix.Match(sourceFile).Value, (level < 10 ? "_lv0" : "_lv") + level.ToString() + ".xml"); // replace existing "level" with new one
+            else createCharacterXML.FileName = sourceFile.Replace(".xml", (level < 10 ? "_lv0" : "_lv") + level + ".xml"); // replace existing "level" with new one
 
             if (createCharacterXML.ShowDialog() == DialogResult.OK)
             {
                 //try
                 //{
-                    // Generate file from source
-                    File.Copy(sourceFile, createCharacterXML.FileName, true);
+                // Generate file from source
+                File.Copy(sourceFile, createCharacterXML.FileName, true);
 
-                    // Create an environment for manipulating the data in the destination file
-                    XmlDocument destFile = new XmlDocument(); // this object is required to manipulate XML data
-                    destFile.PreserveWhitespace = true; // stops any formatting changes (they would make the file unreadable by Squire)
-                    destFile.Load(createCharacterXML.FileName); // load in the data from our destination data file
-                    XmlNode root = destFile.DocumentElement; // locate the start of the data
-                    XmlNode cursor = root.SelectSingleNode("descendant::Skin"); // used to step through file to locate nodes
-                    XPathNavigator editor = cursor.CreateNavigator(); // used to edit the node that the cursor has located
+                // Create an environment for manipulating the data in the destination file
+                XmlDocument destFile = new XmlDocument(); // this object is required to manipulate XML data
+                destFile.PreserveWhitespace = true; // stops any formatting changes (they would make the file unreadable by Squire)
+                destFile.Load(createCharacterXML.FileName); // load in the data from our destination data file
+                XmlNode root = destFile.DocumentElement; // locate the start of the data
+                XmlNode cursor = root.SelectSingleNode("descendant::Skin"); // used to step through file to locate nodes
+                XPathNavigator editor = cursor.CreateNavigator(); // used to edit the node that the cursor has located
 
                 // Handle class and level
-                    cursor = root.SelectSingleNode("descendant::ClassAndLevel");
+                cursor = root.SelectSingleNode("descendant::ClassAndLevel");
+                editor = cursor.CreateNavigator();
+                if (sheetType != "None")
+                {
+                    editor.SetValue(sheetType + " " + level);
+                }
+                else
+                {
+                    editor.SetValue(level.ToString());
+                }
+
+                // Handle ability score increase
+                if (comboBoxAbilityScore.Text != String.Empty)
+                {
+                    // Position cursor on the relative node.
+                    cursor = root.SelectSingleNode("descendant::" + comboBoxAbilityScore.Text);
                     editor = cursor.CreateNavigator();
-                    if (sheetType != "None")
+                    decimal str = decimal.Parse(editor.Value) + 1;
+                    editor.SetTypedValue(str); // overwrite old score with new value
+                }
+
+                // Update HP
+                cursor = root.SelectSingleNode("descendant::HP");
+                editor = cursor.CreateNavigator();
+                editor.SetTypedValue(upDownHP.Value);
+
+                // Update saving throws
+                cursor = root.SelectSingleNode("descendant::FortBase");
+                editor = cursor.CreateNavigator();
+                editor.SetTypedValue(upDownFort.Value);
+
+                cursor = root.SelectSingleNode("descendant::RefBase");
+                editor = cursor.CreateNavigator();
+                editor.SetTypedValue(upDownRef.Value);
+
+                cursor = root.SelectSingleNode("descendant::WillBase");
+                editor = cursor.CreateNavigator();
+                editor.SetTypedValue(upDownWill.Value);
+
+                // Update BAB
+                cursor = root.SelectSingleNode("descendant::BAB");
+                editor = cursor.CreateNavigator();
+                editor.SetTypedValue(upDownBAB.Value);
+
+                // Update skill ranks
+                int knowledgeCount = 1; // used for the pesky knowledge skill
+
+                for (int i = 0; i < skillNames.Length; i++)
+                {
+                    Console.WriteLine("Processing the " + skillNames[i].Text + " skill.");
+                    // Most skills have an element name of "[skillname]Ranks", but knowledges don't. Instead the first knowledge is
+                    // "Knowledge1Ranks", the second is "Knowledge2Ranks" and so on.
+                    if (skillNames[i].Text.Contains("Knowledge"))
                     {
-                        editor.SetValue(sheetType + " " + level);
+                        cursor = root.SelectSingleNode("descendant::" + "Knowledge" + knowledgeCount + "Ranks");
+                    }
+                    else if (skillNames[i].Text == "Handle Animal") // Also bloody Handle Animal. That's got a space in it. <_<
+                    {
+                        cursor = root.SelectSingleNode("descendant::HandleAnimalRanks");
+                    }
+                    else if (skillNames[i].Text.Contains("label")) // We also have -invisible- skills to check for. >:|
+                    {
+                        break; // just skip out of this iteration. There won't be any elements called "labelxRanks" and if there are God help us.
                     }
                     else
                     {
-                        editor.SetValue(level.ToString());
+                        cursor = root.SelectSingleNode("descendant::" + skillNames[i].Text + "Ranks");
                     }
 
-                    // Handle ability score increase
-                    if (comboBoxAbilityScore.Text != String.Empty)
-                    {
-                        // Position cursor on the relative node.
-                        cursor = root.SelectSingleNode("descendant::" + comboBoxAbilityScore.Text);
-
-                        // Match the selected node to the correct ability score and overwrite the old score with the new one
-                        switch (comboBoxAbilityScore.Text)
-                        {
-                            case "STR":
-                                decimal newSTR = (STR + 1); // why not use STR++? If the user generates multiple times the score will keep incrementing.
-                                editor = cursor.CreateNavigator();
-                                editor.SetTypedValue(newSTR); // overwrite old score with new value
-                                break;
-                            case "DEX":
-                                decimal newDEX = (DEX + 1);
-                                editor = cursor.CreateNavigator();
-                                editor.SetTypedValue(newDEX);
-                                break;
-                            case "CON":
-                                decimal newCON = (CON + 1);
-                                editor = cursor.CreateNavigator();
-                                editor.SetTypedValue(newCON);
-                                break;
-                            case "INT":
-                                decimal newINT = (INT + 1);
-                                editor = cursor.CreateNavigator();
-                                editor.SetTypedValue(newINT);
-                                break;
-                            case "WIS":
-                                decimal newWIS = (WIS + 1);
-                                editor = cursor.CreateNavigator();
-                                editor.SetTypedValue(newWIS);
-                                break;
-                            case "CHA":
-                                decimal newCHA = (CHA + 1);
-                                editor = cursor.CreateNavigator();
-                                editor.SetTypedValue(newCHA);
-                                break;
-                        }
-                    }
-
-                    // Update HP
-                    cursor = root.SelectSingleNode("descendant::HP");
                     editor = cursor.CreateNavigator();
-                    editor.SetTypedValue(upDownHP.Value);
-
-                    // Update saving throws
-                    cursor = root.SelectSingleNode("descendant::FortBase");
-                    editor = cursor.CreateNavigator();
-                    editor.SetTypedValue(upDownFort.Value);
-
-                    cursor = root.SelectSingleNode("descendant::RefBase");
-                    editor = cursor.CreateNavigator();
-                    editor.SetTypedValue(upDownRef.Value);
-
-                    cursor = root.SelectSingleNode("descendant::WillBase");
-                    editor = cursor.CreateNavigator();
-                    editor.SetTypedValue(upDownWill.Value);
-
-                    // Update BAB
-                    cursor = root.SelectSingleNode("descendant::BAB");
-                    editor = cursor.CreateNavigator();
-                    editor.SetTypedValue(upDownBAB.Value);
-
-                    // Update skill ranks
-                    int knowledgeCount = 1; // used for the pesky knowledge skill
-
-                    for (int i = 0; i < skillNames.Length; i++)
-                    {
-                        Console.WriteLine("Processing the " + skillNames[i].Text + " skill.");
-                        // Most skills have an element name of "[skillname]Ranks", but knowledges don't. Instead the first knowledge is
-                        // "Knowledge1Ranks", the second is "Knowledge2Ranks" and so on.
-                        if (skillNames[i].Text.Contains("Knowledge"))
-                        {
-                            cursor = root.SelectSingleNode("descendant::" + "Knowledge" + knowledgeCount + "Ranks");
-                        } else if (skillNames[i].Text == "Handle Animal") // Also bloody Handle Animal. That's got a space in it. <_<
-                        {
-                            cursor = root.SelectSingleNode("descendant::HandleAnimalRanks");
-                        } else if (skillNames[i].Text.Contains("label")) // We also have -invisible- skills to check for. >:|
-                        {
-                            break; // just skip out of this iteration. There won't be any elements called "labelxRanks" and if there are God help us.
-                        } else 
-                        {
-                            cursor = root.SelectSingleNode("descendant::" + skillNames[i].Text + "Ranks");
-                        }
-
-                        editor = cursor.CreateNavigator();
-                        editor.SetTypedValue(skillRanks[i].Value);
-                    }
+                    editor.SetTypedValue(skillRanks[i].Value);
+                }
 
                 // Update feats (a little different because the "Feats" element tags are identical for every feat)
                 int count = 0; // used to reference featBox
 
-                    for (XmlNode i = root.SelectSingleNode("descendant::Feats"); i.NextSibling.Name == "Feats"; i = i.NextSibling)
+                for (XmlNode i = root.SelectSingleNode("descendant::Feats"); i.NextSibling.Name == "Feats"; i = i.NextSibling)
+                {
+                    // Check to make sure we still have feats to add from the feat box
+                    if (count < featBox.Items.Count)
                     {
-                        // Check to make sure we still have feats to add from the feat box
-                        if (count < featBox.Items.Count)
-                        {
-                            editor = i.CreateNavigator();
-                            editor.SetValue(featBox.Items[count].ToString());
-                            count++;
-                        }
-                        else // If we've run out of feats, clear the remaining feat slots
-                        {
-                            editor = i.CreateNavigator();
-                            editor.SetValue(String.Empty);
-                        }
+                        editor = i.CreateNavigator();
+                        editor.SetValue(featBox.Items[count].ToString());
+                        count++;
                     }
-
-                    /*
-                    // Process feats -- iterate through all feat slots on the sheet.
-                    reader.ReadToNextSibling("Feats");
-                    for (int i = 0; i < 12; i++)
+                    else // If we've run out of feats, clear the remaining feat slots
                     {
-                        if (!reader.IsEmptyElement) featBox.Items.Add(reader.ReadElementContentAsString());
-                        else reader.ReadString(); // If slot is empty, skip to next node
+                        editor = i.CreateNavigator();
+                        editor.SetValue(String.Empty);
                     }
-                    featEntry.Enabled = true;
+                }
 
-                    reader.ReadToNextSibling("HandleAnimalRanks");
-                    if (!reader.IsEmptyElement)
-                    {
-                        skillNames[skillIndex].Text = "Handle Animal";
-                        skillNames[skillIndex].Visible = true;
-                        skillRanks[skillIndex].Value = reader.ReadElementContentAsDecimal();
-                        skillRanks[skillIndex].Visible = true;
-                        skillIndex++;
-                    }
+                /*
+                // Process feats -- iterate through all feat slots on the sheet.
+                reader.ReadToNextSibling("Feats");
+                for (int i = 0; i < 12; i++)
+                {
+                    if (!reader.IsEmptyElement) featBox.Items.Add(reader.ReadElementContentAsString());
+                    else reader.ReadString(); // If slot is empty, skip to next node
+                }
+                featEntry.Enabled = true;
 
-                    reader.ReadToNextSibling("DiplomacyRanks");
-                    if (!reader.IsEmptyElement)
-                    {
-                        skillNames[skillIndex].Text = "Diplomacy";
-                        skillNames[skillIndex].Visible = true;
-                        skillRanks[skillIndex].Value = reader.ReadElementContentAsDecimal();
-                        skillRanks[skillIndex].Visible = true;
-                        skillIndex++;
-                    }
+                reader.ReadToNextSibling("HandleAnimalRanks");
+                if (!reader.IsEmptyElement)
+                {
+                    skillNames[skillIndex].Text = "Handle Animal";
+                    skillNames[skillIndex].Visible = true;
+                    skillRanks[skillIndex].Value = reader.ReadElementContentAsDecimal();
+                    skillRanks[skillIndex].Visible = true;
+                    skillIndex++;
+                }
 
-                    // Process class features -- iterate through the 23 feat slots on the sheet.
-                    reader.ReadToNextSibling("SpecialAbilities");
-                    for (int i = 0; i < 23; i++)
-                    {
-                        if (!reader.IsEmptyElement) classFeaturesBox.Items.Add(reader.ReadElementContentAsString());
-                        else reader.ReadString(); // Skip to next node
-                    }*/
-                    destFile.Save(createCharacterXML.FileName);
+                reader.ReadToNextSibling("DiplomacyRanks");
+                if (!reader.IsEmptyElement)
+                {
+                    skillNames[skillIndex].Text = "Diplomacy";
+                    skillNames[skillIndex].Visible = true;
+                    skillRanks[skillIndex].Value = reader.ReadElementContentAsDecimal();
+                    skillRanks[skillIndex].Visible = true;
+                    skillIndex++;
+                }
+
+                // Process class features -- iterate through the 23 feat slots on the sheet.
+                reader.ReadToNextSibling("SpecialAbilities");
+                for (int i = 0; i < 23; i++)
+                {
+                    if (!reader.IsEmptyElement) classFeaturesBox.Items.Add(reader.ReadElementContentAsString());
+                    else reader.ReadString(); // Skip to next node
+                }*/
+                destFile.Save(createCharacterXML.FileName);
                 //}
                 //catch (Exception ex)
                 //{
                 //    MessageBox.Show("The file could not be created. Please check that you have write access to the destination folder and try again.", "File Creation Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 //}
+
+                if (generatePDF.Checked)
+                {
+                    createCharacterSheet.FileName = createCharacterXML.FileName.Replace(".xml", ".pdf");
+                    if (createCharacterSheet.ShowDialog() != DialogResult.OK) return;
+                    if (openCharacterSheet.ShowDialog() != DialogResult.OK) return;
+
+                    try
+                    {
+                        using (FileStream originalCharacterSheet = new FileStream(openCharacterSheet.FileName, FileMode.Open))
+                        using (FileStream newCharacterSheet = new FileStream(createCharacterSheet.FileName, FileMode.Create))
+                        {
+                            // Open existing PDF  
+                            PdfReader pdfReader = new PdfReader(originalCharacterSheet);
+
+                            // PdfStamper, which will create  
+                            PdfStamper stamper = new PdfStamper(pdfReader, newCharacterSheet);
+
+                            XmlDocument xmlDoc = new XmlDocument();
+                            xmlDoc.Load(createCharacterXML.FileName);
+                            stamper.AcroFields.MergeXfaData(root);
+                            stamper.Close();
+                            pdfReader.Close();
+                            originalCharacterSheet.Close();
+                            newCharacterSheet.Close();
+                        }
+                    }
+                    catch (IOException)
+                    {
+                        MessageBox.Show("Error loading data", "Existing Data",
+     MessageBoxButtons.OK, MessageBoxIcon.Warning);
+
+                    }
+                }
             }
         }
 

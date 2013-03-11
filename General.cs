@@ -41,6 +41,41 @@ namespace Squire
                 if (tabPlayer.SelectedTab == tabDM) delayList.Focus();
                 return true;
             }
+            else if (keyData == (Keys.Control | Keys.Right))
+            {
+                if (tabPlayer.SelectedTab == tabDM) delayButton.PerformClick();
+                return true;
+            }
+            else if (keyData == (Keys.Control | Keys.Left))
+            {
+                if (tabPlayer.SelectedTab == tabDM) undelayButton.PerformClick();
+                return true;
+            }
+            else if (keyData == (Keys.Control | Keys.Up))
+            {
+                if (tabPlayer.SelectedTab == tabDM) moveCombatantUp.PerformClick();
+                return true;
+            }
+            else if (keyData == (Keys.Control | Keys.Down))
+            {
+                if (tabPlayer.SelectedTab == tabDM) moveCombatantDown.PerformClick();
+                return true;
+            }
+            else if (keyData == (Keys.Control | Keys.U))
+            {
+                if (tabPlayer.SelectedTab == tabDM) dyingList.Focus();
+                return true;
+            }
+            else if (keyData == (Keys.Control | Keys.K))
+            {
+                if (tabPlayer.SelectedTab == tabDM) killButton.PerformClick();
+                return true;
+            }
+            else if (keyData == (Keys.Control | Keys.R))
+            {
+                if (tabPlayer.SelectedTab == tabDM) liveButton.PerformClick();
+                return true;
+            }
             return base.ProcessCmdKey(ref msg, keyData);
         }
 
@@ -76,7 +111,8 @@ namespace Squire
                     combatantHPBar.Visible = true;
                     combatantHPBar.Maximum = selectedCombatant.getMaxHP();
                     combatantHPBar.Minimum = 0;
-                    combatantHPBar.Value = selectedCombatant.getCurrentHP();
+                    if (selectedCombatant.getCurrentHP() < 0) combatantHPBar.Value = 0;
+                    else combatantHPBar.Value = selectedCombatant.getCurrentHP();
 
                     remainingHP.Visible = true;
                     remainingHP.Text = selectedCombatant.getCurrentHP() + " / " + selectedCombatant.getMaxHP();
@@ -193,7 +229,8 @@ namespace Squire
 
             HPChange.IntValue = 0;
 
-            combatantHPBar.Value = selectedCombatant.getCurrentHP(); // update the HP bar
+            if (selectedCombatant.getCurrentHP() < 0) combatantHPBar.Value = 0;
+            else combatantHPBar.Value = selectedCombatant.getCurrentHP(); // update the HP bar
             remainingHP.Text = selectedCombatant.getCurrentHP() + " / " + selectedCombatant.getMaxHP(); // update HP label
         }
 
@@ -420,7 +457,7 @@ namespace Squire
                 combatantList.Items.RemoveAt(currentIndex);
                 delayList.Items.Add(selectedCombatant);
                 
-                // If there's no combatant selected in the delay list, select the most recently added one
+                // If there's no combatant selected in the delay list, select the most recently added one.
                 if (delayList.SelectedIndex == -1) delayList.SelectedIndex = (delayList.Items.Count - 1);
                 
                 // If there's a combatant directly after the delaying one, select it. Select the last combatant in the list otherwise.
@@ -445,6 +482,55 @@ namespace Squire
                 combatantList.Items.Insert(currentIndex, selectedCombatant);
                 delayList.Items.RemoveAt(delayIndex);
                 combatantList.SelectedIndex = (currentIndex); // select the combatant that just un-delayed
+                
+                // If there's a combatant below the one we just removed in the delay list, select it. Select that last combatant in the delay list otherwise.
+                if (delayIndex < delayList.Items.Count) delayList.SelectedIndex = delayIndex;
+                else delayList.SelectedIndex = (delayList.Items.Count - 1);
+            }
+        }
+
+        private void killButton_Click(object sender, EventArgs e)
+        {
+            // Make sure a combatant is selected
+            if (combatantList.SelectedIndex != -1)
+            {
+                // Used to store the selected combatant for quick reference
+                Combatant selectedCombatant = (Combatant)combatantList.SelectedItem;
+                int currentIndex = combatantList.Items.IndexOf(combatantList.SelectedItem);
+
+                // Pull selected combatant from combatant list into dying list
+                combatantList.Items.RemoveAt(currentIndex);
+                dyingList.Items.Add(selectedCombatant);
+
+                // If there's no combatant selected in the dying list, select the most recently added one.
+                if (dyingList.SelectedIndex == -1) dyingList.SelectedIndex = (dyingList.Items.Count - 1);
+
+                // If there's a combatant directly after the dying one, select it. Select the last combatant in the list otherwise.
+                if (currentIndex <= (combatantList.Items.Count - 1)) combatantList.SelectedIndex = currentIndex;
+                else combatantList.SelectedIndex = (combatantList.Items.Count - 1);
+            }
+        }
+
+        private void liveButton_Click(object sender, EventArgs e)
+        {
+            // Make sure a combatant is selected
+            if (dyingList.SelectedIndex != -1)
+            {
+                // Used to store the selected combatant for quick reference
+                Combatant selectedCombatant = (Combatant)dyingList.SelectedItem;
+                int currentIndex;
+                if (combatantList.SelectedIndex != -1) currentIndex = combatantList.Items.IndexOf(combatantList.SelectedItem);
+                else currentIndex = 0;
+                int dyingIndex = dyingList.Items.IndexOf(dyingList.SelectedItem);
+
+                // Push selected from dying list into combatant list
+                combatantList.Items.Insert(currentIndex, selectedCombatant);
+                dyingList.Items.RemoveAt(dyingIndex);
+                combatantList.SelectedIndex = (currentIndex); // select the combatant that just regained consciousness
+
+                // If there's a combatant below the one we just removed in the dying list, select it. Select that last combatant in the dying list otherwise.
+                if (dyingIndex < dyingList.Items.Count) dyingList.SelectedIndex = dyingIndex;
+                else dyingList.SelectedIndex = (dyingList.Items.Count - 1);
             }
         }
     }

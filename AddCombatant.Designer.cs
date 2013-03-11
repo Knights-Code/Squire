@@ -58,10 +58,10 @@
             this.tableLayoutPanel1.Location = new System.Drawing.Point(0, 0);
             this.tableLayoutPanel1.Name = "tableLayoutPanel1";
             this.tableLayoutPanel1.RowCount = 3;
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 30F));
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 39F));
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 30F));
-            this.tableLayoutPanel1.Size = new System.Drawing.Size(526, 130);
+            this.tableLayoutPanel1.Size = new System.Drawing.Size(526, 133);
             this.tableLayoutPanel1.TabIndex = 0;
             // 
             // tableLayoutPanel2
@@ -76,25 +76,25 @@
             this.tableLayoutPanel2.Name = "tableLayoutPanel2";
             this.tableLayoutPanel2.RowCount = 1;
             this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tableLayoutPanel2.Size = new System.Drawing.Size(520, 24);
+            this.tableLayoutPanel2.Size = new System.Drawing.Size(520, 33);
             this.tableLayoutPanel2.TabIndex = 1;
             // 
             // labelAddCombatant
             // 
             this.labelAddCombatant.Anchor = System.Windows.Forms.AnchorStyles.Left;
             this.labelAddCombatant.AutoSize = true;
-            this.labelAddCombatant.Location = new System.Drawing.Point(3, 5);
+            this.labelAddCombatant.Location = new System.Drawing.Point(3, 3);
             this.labelAddCombatant.Name = "labelAddCombatant";
-            this.labelAddCombatant.Size = new System.Drawing.Size(410, 13);
+            this.labelAddCombatant.Size = new System.Drawing.Size(416, 26);
             this.labelAddCombatant.TabIndex = 0;
-            this.labelAddCombatant.Text = "Enter the name (and hit points in the case of a monster) of the new combatant, be" +
-                "low.\r\n";
+            this.labelAddCombatant.Text = "Enter the name (and hit points in the case of a monster or NPC) of the new combat" +
+    "ant, below.\r\n";
             // 
             // checkboxIsPlayer
             // 
             this.checkboxIsPlayer.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.checkboxIsPlayer.AutoSize = true;
-            this.checkboxIsPlayer.Location = new System.Drawing.Point(444, 3);
+            this.checkboxIsPlayer.Location = new System.Drawing.Point(444, 8);
             this.checkboxIsPlayer.Name = "checkboxIsPlayer";
             this.checkboxIsPlayer.Size = new System.Drawing.Size(61, 17);
             this.checkboxIsPlayer.TabIndex = 1;
@@ -112,19 +112,19 @@
             this.tableLayoutPanel3.Controls.Add(this.combatantHP, 1, 1);
             this.tableLayoutPanel3.Controls.Add(this.labelCombatantHP, 0, 1);
             this.tableLayoutPanel3.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tableLayoutPanel3.Location = new System.Drawing.Point(3, 33);
+            this.tableLayoutPanel3.Location = new System.Drawing.Point(3, 42);
             this.tableLayoutPanel3.Name = "tableLayoutPanel3";
             this.tableLayoutPanel3.RowCount = 2;
             this.tableLayoutPanel3.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
             this.tableLayoutPanel3.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tableLayoutPanel3.Size = new System.Drawing.Size(520, 64);
+            this.tableLayoutPanel3.Size = new System.Drawing.Size(520, 58);
             this.tableLayoutPanel3.TabIndex = 0;
             // 
             // labelCombatantName
             // 
             this.labelCombatantName.Anchor = System.Windows.Forms.AnchorStyles.Right;
             this.labelCombatantName.AutoSize = true;
-            this.labelCombatantName.Location = new System.Drawing.Point(211, 9);
+            this.labelCombatantName.Location = new System.Drawing.Point(211, 8);
             this.labelCombatantName.Name = "labelCombatantName";
             this.labelCombatantName.Size = new System.Drawing.Size(35, 13);
             this.labelCombatantName.TabIndex = 0;
@@ -133,7 +133,7 @@
             // combatantName
             // 
             this.combatantName.Anchor = System.Windows.Forms.AnchorStyles.Left;
-            this.combatantName.Location = new System.Drawing.Point(252, 6);
+            this.combatantName.Location = new System.Drawing.Point(252, 4);
             this.combatantName.Name = "combatantName";
             this.combatantName.Size = new System.Drawing.Size(118, 20);
             this.combatantName.TabIndex = 0;
@@ -148,7 +148,7 @@
             0,
             0});
             this.combatantHP.IntValue = 0;
-            this.combatantHP.Location = new System.Drawing.Point(252, 38);
+            this.combatantHP.Location = new System.Drawing.Point(252, 33);
             this.combatantHP.Margin = new System.Windows.Forms.Padding(3, 0, 0, 0);
             this.combatantHP.Name = "combatantHP";
             this.combatantHP.Size = new System.Drawing.Size(118, 20);
@@ -159,7 +159,7 @@
             // 
             this.labelCombatantHP.Anchor = System.Windows.Forms.AnchorStyles.Right;
             this.labelCombatantHP.AutoSize = true;
-            this.labelCombatantHP.Location = new System.Drawing.Point(194, 41);
+            this.labelCombatantHP.Location = new System.Drawing.Point(194, 37);
             this.labelCombatantHP.Name = "labelCombatantHP";
             this.labelCombatantHP.Size = new System.Drawing.Size(52, 13);
             this.labelCombatantHP.TabIndex = 2;
@@ -170,7 +170,7 @@
             this.flowLayoutPanel1.Controls.Add(this.addCancel);
             this.flowLayoutPanel1.Controls.Add(this.addOK);
             this.flowLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.flowLayoutPanel1.Location = new System.Drawing.Point(0, 100);
+            this.flowLayoutPanel1.Location = new System.Drawing.Point(0, 103);
             this.flowLayoutPanel1.Margin = new System.Windows.Forms.Padding(0);
             this.flowLayoutPanel1.Name = "flowLayoutPanel1";
             this.flowLayoutPanel1.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
@@ -204,7 +204,7 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.CancelButton = this.addCancel;
-            this.ClientSize = new System.Drawing.Size(526, 130);
+            this.ClientSize = new System.Drawing.Size(526, 133);
             this.Controls.Add(this.tableLayoutPanel1);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "AddCombatant";

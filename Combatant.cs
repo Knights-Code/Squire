@@ -86,5 +86,19 @@ namespace Squire
         {
             return bPlayer;
         }
+
+        public string status()
+        {
+            if (!bPlayer)
+            {
+                if (currentHP > (maxHP / 2)) return "healthy";
+                else if (currentHP > (maxHP / 4)) return "injured";
+                else return "critical";
+            }
+            else
+            {
+                return "player";
+            }
+        }
     }
 }

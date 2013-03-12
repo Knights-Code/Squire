@@ -19,6 +19,7 @@ namespace Squire
         public NumericTextBox()
         {
             this.DecimalValue = 0;
+            this.IntValue = 0;
         }
 
         // Restricts the entry of characters to digits (including hex), the negative sign,

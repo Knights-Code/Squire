@@ -82,6 +82,12 @@
     <Compile Include="SquireMain.Designer.cs">
       <DependentUpon>SquireMain.cs</DependentUpon>
     </Compile>
+    <Compile Include="WoundCombatant.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="WoundCombatant.Designer.cs">
+      <DependentUpon>WoundCombatant.cs</DependentUpon>
+    </Compile>
     <EmbeddedResource Include="AddCombatant.resx">
       <DependentUpon>AddCombatant.cs</DependentUpon>
     </EmbeddedResource>
@@ -103,6 +109,9 @@
     </Compile>
     <EmbeddedResource Include="SquireMain.resx">
       <DependentUpon>SquireMain.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="WoundCombatant.resx">
+      <DependentUpon>WoundCombatant.cs</DependentUpon>
     </EmbeddedResource>
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>

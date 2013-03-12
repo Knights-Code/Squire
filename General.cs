@@ -20,6 +20,64 @@ namespace Squire
             combatantHPBar = new HPBar();
             combatantHPBar.Parent = tableLayoutPanel12;
             combatantHPBar.Dock = DockStyle.Fill;
+
+            //combatantList.DrawItem += combatantList_DrawItem;
+        }
+
+        /**
+         * Custom draw code for the combatant list that draws injured combatants differently.
+         * THIS CODE IS INCOMPLETE. IT SHOULDN'T BE USED AS IT IS.
+         * @param sender The origin of the event (usually the listbox).
+         * @param e The details of the event.
+         */
+        void combatantList_DrawItem(object sender, DrawItemEventArgs e)
+        {
+            
+
+            e.DrawBackground();
+            Graphics g = e.Graphics;
+            Font f = e.Font;
+            PointF p = new PointF(e.Bounds.X, e.Bounds.Y);
+            ListBox list = (ListBox)sender;
+            Boolean bSelected = (e.Index == list.SelectedIndex);
+            Combatant currentCombatant = (Combatant)list.Items[e.Index];
+            SolidBrush brush = new SolidBrush(e.ForeColor);
+
+            // Decide on default font style and colour
+            switch (currentCombatant.status())
+            {
+                case "healthy":
+                    f = e.Font;
+                    brush = new SolidBrush(e.ForeColor);
+                    break;
+                case "injured":
+                    f = new Font(e.Font, FontStyle.Bold);
+                    brush = new SolidBrush(Color.Yellow);
+                    break;
+                case "critical":
+                    f = new Font(e.Font, FontStyle.Bold);
+                    brush = new SolidBrush(Color.Red);
+                    break;
+                case "player":
+                    f = e.Font;
+                    brush = new SolidBrush(e.ForeColor);
+                    break;
+            }
+
+            // if combatant is selected override colour with white and add selection bar
+            if (bSelected)
+            {
+                brush = new SolidBrush(Color.White);
+                g.FillRectangle(new SolidBrush(Color.Navy), e.Bounds);
+            }
+            else
+            {
+                g.FillRectangle(new SolidBrush(Color.White), e.Bounds);
+            }
+
+            g.DrawString(list.Items[e.Index].ToString(), f, brush, p);
+
+            e.DrawFocusRectangle();
         }
 
         /*
@@ -76,12 +134,33 @@ namespace Squire
                 if (tabPlayer.SelectedTab == tabDM) liveButton.PerformClick();
                 return true;
             }
+            // Ctrl + W (Wound). Opens the Wound Combatant dialog.
+            else if (keyData == (Keys.Control | Keys.W))
+            {
+                if (tabPlayer.SelectedTab == tabDM)
+                {
+                    WoundCombatant woundDialog = new WoundCombatant(this);
+                    woundDialog.Show();
+                }
+            }
+            // Ctrl + N (New round). Increments the round number and selects the topmost combatant.
+            else if (keyData == (Keys.Control | Keys.N))
+            {
+                if (tabPlayer.SelectedTab == tabDM)
+                {
+                    roundNumber.Value++; // increment the round number
+                    combatantList.SelectedIndex = 0; // select the first combatant in the initiative order
+                }
+            }
             return base.ProcessCmdKey(ref msg, keyData);
         }
 
         private void saveToolStripMenuItem_Click(object sender, EventArgs e)
         {
-
+            // TODO: battle file export. Probably a basically File stream that prints to a
+            // file in basic unicode with custom delimiters. The file will need to store all data
+            // for all combatants, their condition (fighting, delaying, or dying), their order in
+            // these lists, and of course the round number.
         }
 
         private void closeButton_Click(object sender, EventArgs e)
@@ -163,6 +242,8 @@ namespace Squire
                 decrementAttack3.Enabled = true;
                 incrementDamage3.Enabled = true;
                 decrementDamage3.Enabled = true;
+
+                //combatantList_DrawItem(combatantList, null); // redraw listBox
             }
             else
             {

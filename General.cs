@@ -21,7 +21,7 @@ namespace Squire
             combatantHPBar.Parent = tableLayoutPanel12;
             combatantHPBar.Dock = DockStyle.Fill;
 
-            //combatantList.DrawItem += combatantList_DrawItem;
+            combatantList.DrawItem += combatantList_DrawItem;
         }
 
         /**
@@ -32,8 +32,6 @@ namespace Squire
          */
         void combatantList_DrawItem(object sender, DrawItemEventArgs e)
         {
-            
-
             e.DrawBackground();
             Graphics g = e.Graphics;
             Font f = e.Font;
@@ -52,7 +50,7 @@ namespace Squire
                     break;
                 case "injured":
                     f = new Font(e.Font, FontStyle.Bold);
-                    brush = new SolidBrush(Color.Yellow);
+                    brush = new SolidBrush(Color.Orange);
                     break;
                 case "critical":
                     f = new Font(e.Font, FontStyle.Bold);
@@ -243,7 +241,7 @@ namespace Squire
                 incrementDamage3.Enabled = true;
                 decrementDamage3.Enabled = true;
 
-                //combatantList_DrawItem(combatantList, null); // redraw listBox
+                combatantList.Refresh();
             }
             else
             {

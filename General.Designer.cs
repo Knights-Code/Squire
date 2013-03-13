@@ -122,6 +122,7 @@
             this.attackBonus1 = new Squire.NumericTextBox();
             this.attackBonus2 = new Squire.NumericTextBox();
             this.attackBonus3 = new Squire.NumericTextBox();
+            this.effectsGroup = new System.Windows.Forms.GroupBox();
             this.tabPlayer.SuspendLayout();
             this.tabPC.SuspendLayout();
             this.tableLayoutPanel1.SuspendLayout();
@@ -448,6 +449,7 @@
             // combatantList
             // 
             this.combatantList.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.combatantList.DrawMode = System.Windows.Forms.DrawMode.OwnerDrawFixed;
             this.combatantList.FormattingEnabled = true;
             this.combatantList.Location = new System.Drawing.Point(3, 23);
             this.combatantList.Name = "combatantList";
@@ -712,6 +714,7 @@
             this.tableLayoutPanel24.ColumnCount = 1;
             this.tableLayoutPanel24.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
             this.tableLayoutPanel24.Controls.Add(this.attackGroup, 0, 0);
+            this.tableLayoutPanel24.Controls.Add(this.effectsGroup, 0, 1);
             this.tableLayoutPanel24.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tableLayoutPanel24.Location = new System.Drawing.Point(190, 92);
             this.tableLayoutPanel24.Name = "tableLayoutPanel24";
@@ -1397,6 +1400,16 @@
             this.attackBonus3.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             this.attackBonus3.TextChanged += new System.EventHandler(this.attackBonus3_TextChanged);
             // 
+            // effectsGroup
+            // 
+            this.effectsGroup.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.effectsGroup.Location = new System.Drawing.Point(3, 158);
+            this.effectsGroup.Name = "effectsGroup";
+            this.effectsGroup.Size = new System.Drawing.Size(295, 150);
+            this.effectsGroup.TabIndex = 5;
+            this.effectsGroup.TabStop = false;
+            this.effectsGroup.Text = "Effects";
+            // 
             // General
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -1565,5 +1578,6 @@
         private System.Windows.Forms.Button killButton;
         private System.Windows.Forms.Button liveButton;
         private System.Windows.Forms.ListBox dyingList;
+        private System.Windows.Forms.GroupBox effectsGroup;
     }
 }

@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(General));
             this.tabPlayer = new System.Windows.Forms.TabControl();
             this.tabPC = new System.Windows.Forms.TabPage();
@@ -46,6 +47,7 @@
             this.HPBar = new System.Windows.Forms.ProgressBar();
             this.tableLayoutPanel6 = new System.Windows.Forms.TableLayoutPanel();
             this.subtractHPButton = new System.Windows.Forms.Button();
+            this.numericTextBox1 = new Squire.NumericTextBox();
             this.addHPButton = new System.Windows.Forms.Button();
             this.tabDM = new System.Windows.Forms.TabPage();
             this.tableLayoutPanel8 = new System.Windows.Forms.TableLayoutPanel();
@@ -69,6 +71,7 @@
             this.HPLabel = new System.Windows.Forms.Label();
             this.tableLayoutPanel13 = new System.Windows.Forms.TableLayoutPanel();
             this.damageButton = new System.Windows.Forms.Button();
+            this.HPChange = new Squire.NumericTextBox();
             this.healButton = new System.Windows.Forms.Button();
             this.remainingHP = new System.Windows.Forms.Label();
             this.tableLayoutPanel24 = new System.Windows.Forms.TableLayoutPanel();
@@ -80,10 +83,12 @@
             this.damage1 = new System.Windows.Forms.TextBox();
             this.tableLayoutPanel18 = new System.Windows.Forms.TableLayoutPanel();
             this.decrementAttack1 = new System.Windows.Forms.Button();
+            this.attackBonus1 = new Squire.NumericTextBox();
             this.incrementAttack1 = new System.Windows.Forms.Button();
             this.attackLabel2 = new System.Windows.Forms.Label();
             this.tableLayoutPanel20 = new System.Windows.Forms.TableLayoutPanel();
             this.decrementAttack2 = new System.Windows.Forms.Button();
+            this.attackBonus2 = new Squire.NumericTextBox();
             this.incrementAttack2 = new System.Windows.Forms.Button();
             this.attackLabel1 = new System.Windows.Forms.Label();
             this.tableLayoutPanel21 = new System.Windows.Forms.TableLayoutPanel();
@@ -97,7 +102,9 @@
             this.attackLabel3 = new System.Windows.Forms.Label();
             this.tableLayoutPanel22 = new System.Windows.Forms.TableLayoutPanel();
             this.decrementAttack3 = new System.Windows.Forms.Button();
+            this.attackBonus3 = new Squire.NumericTextBox();
             this.incrementAttack3 = new System.Windows.Forms.Button();
+            this.effectsGroup = new System.Windows.Forms.GroupBox();
             this.tableLayoutPanel25 = new System.Windows.Forms.TableLayoutPanel();
             this.dyingGroup = new System.Windows.Forms.GroupBox();
             this.tableLayoutPanel26 = new System.Windows.Forms.TableLayoutPanel();
@@ -111,18 +118,13 @@
             this.delayButton = new System.Windows.Forms.Button();
             this.undelayButton = new System.Windows.Forms.Button();
             this.delayList = new System.Windows.Forms.ListBox();
-            this.menuStrip1 = new System.Windows.Forms.MenuStrip();
+            this.generalMenu = new System.Windows.Forms.MenuStrip();
             this.fileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.saveToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.openToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.tableLayoutPanel7 = new System.Windows.Forms.TableLayoutPanel();
             this.closeButton = new System.Windows.Forms.Button();
-            this.effectsGroup = new System.Windows.Forms.GroupBox();
-            this.numericTextBox1 = new Squire.NumericTextBox();
-            this.HPChange = new Squire.NumericTextBox();
-            this.attackBonus1 = new Squire.NumericTextBox();
-            this.attackBonus2 = new Squire.NumericTextBox();
-            this.attackBonus3 = new Squire.NumericTextBox();
+            this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.tabPlayer.SuspendLayout();
             this.tabPC.SuspendLayout();
             this.tableLayoutPanel1.SuspendLayout();
@@ -160,7 +162,7 @@
             this.delayGroup.SuspendLayout();
             this.tableLayoutPanel15.SuspendLayout();
             this.tableLayoutPanel16.SuspendLayout();
-            this.menuStrip1.SuspendLayout();
+            this.generalMenu.SuspendLayout();
             this.tableLayoutPanel7.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -383,6 +385,23 @@
             this.subtractHPButton.Text = "–";
             this.subtractHPButton.UseVisualStyleBackColor = true;
             // 
+            // numericTextBox1
+            // 
+            this.numericTextBox1.AllowSpace = false;
+            this.numericTextBox1.DecimalValue = new decimal(new int[] {
+            0,
+            0,
+            0,
+            0});
+            this.numericTextBox1.IntValue = 0;
+            this.numericTextBox1.Location = new System.Drawing.Point(159, 0);
+            this.numericTextBox1.Margin = new System.Windows.Forms.Padding(0);
+            this.numericTextBox1.Name = "numericTextBox1";
+            this.numericTextBox1.Size = new System.Drawing.Size(48, 20);
+            this.numericTextBox1.TabIndex = 1;
+            this.numericTextBox1.Text = "0";
+            this.numericTextBox1.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            // 
             // addHPButton
             // 
             this.addHPButton.Location = new System.Drawing.Point(207, 0);
@@ -574,6 +593,7 @@
             0,
             0,
             0});
+            this.roundNumber.ValueChanged += new System.EventHandler(this.roundNumber_ValueChanged);
             // 
             // labelRound
             // 
@@ -686,6 +706,24 @@
             this.damageButton.Text = "–";
             this.damageButton.UseVisualStyleBackColor = true;
             this.damageButton.Click += new System.EventHandler(this.damageButton_Click);
+            // 
+            // HPChange
+            // 
+            this.HPChange.AllowSpace = false;
+            this.HPChange.DecimalValue = new decimal(new int[] {
+            0,
+            0,
+            0,
+            0});
+            this.HPChange.Enabled = false;
+            this.HPChange.IntValue = 0;
+            this.HPChange.Location = new System.Drawing.Point(97, 0);
+            this.HPChange.Margin = new System.Windows.Forms.Padding(0);
+            this.HPChange.Name = "HPChange";
+            this.HPChange.Size = new System.Drawing.Size(29, 20);
+            this.HPChange.TabIndex = 1;
+            this.HPChange.Text = "0";
+            this.HPChange.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
             // healButton
             // 
@@ -846,6 +884,26 @@
             this.decrementAttack1.UseVisualStyleBackColor = true;
             this.decrementAttack1.Click += new System.EventHandler(this.decrementAttack1_Click);
             // 
+            // attackBonus1
+            // 
+            this.attackBonus1.AllowSpace = false;
+            this.attackBonus1.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.attackBonus1.DecimalValue = new decimal(new int[] {
+            0,
+            0,
+            0,
+            0});
+            this.attackBonus1.Enabled = false;
+            this.attackBonus1.IntValue = 0;
+            this.attackBonus1.Location = new System.Drawing.Point(32, 11);
+            this.attackBonus1.Margin = new System.Windows.Forms.Padding(0);
+            this.attackBonus1.Name = "attackBonus1";
+            this.attackBonus1.Size = new System.Drawing.Size(29, 20);
+            this.attackBonus1.TabIndex = 3;
+            this.attackBonus1.Text = "0";
+            this.attackBonus1.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.attackBonus1.TextChanged += new System.EventHandler(this.attackBonus1_TextChanged);
+            // 
             // incrementAttack1
             // 
             this.incrementAttack1.Anchor = System.Windows.Forms.AnchorStyles.Left;
@@ -899,6 +957,26 @@
             this.decrementAttack2.UseVisualStyleBackColor = true;
             this.decrementAttack2.Click += new System.EventHandler(this.decrementAttack2_Click);
             // 
+            // attackBonus2
+            // 
+            this.attackBonus2.AllowSpace = false;
+            this.attackBonus2.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.attackBonus2.DecimalValue = new decimal(new int[] {
+            0,
+            0,
+            0,
+            0});
+            this.attackBonus2.Enabled = false;
+            this.attackBonus2.IntValue = 0;
+            this.attackBonus2.Location = new System.Drawing.Point(32, 11);
+            this.attackBonus2.Margin = new System.Windows.Forms.Padding(0);
+            this.attackBonus2.Name = "attackBonus2";
+            this.attackBonus2.Size = new System.Drawing.Size(29, 20);
+            this.attackBonus2.TabIndex = 3;
+            this.attackBonus2.Text = "0";
+            this.attackBonus2.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.attackBonus2.TextChanged += new System.EventHandler(this.attackBonus2_TextChanged);
+            // 
             // incrementAttack2
             // 
             this.incrementAttack2.Anchor = System.Windows.Forms.AnchorStyles.Left;
@@ -936,14 +1014,14 @@
             this.tableLayoutPanel21.Name = "tableLayoutPanel21";
             this.tableLayoutPanel21.RowCount = 1;
             this.tableLayoutPanel21.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableLayoutPanel21.Size = new System.Drawing.Size(98, 43);
+            this.tableLayoutPanel21.Size = new System.Drawing.Size(98, 40);
             this.tableLayoutPanel21.TabIndex = 5;
             // 
             // decrementDamage2
             // 
             this.decrementDamage2.Anchor = System.Windows.Forms.AnchorStyles.Right;
             this.decrementDamage2.Enabled = false;
-            this.decrementDamage2.Location = new System.Drawing.Point(3, 11);
+            this.decrementDamage2.Location = new System.Drawing.Point(3, 10);
             this.decrementDamage2.Margin = new System.Windows.Forms.Padding(0);
             this.decrementDamage2.Name = "decrementDamage2";
             this.decrementDamage2.Size = new System.Drawing.Size(20, 20);
@@ -956,7 +1034,7 @@
             // 
             this.incrementDamage2.Anchor = System.Windows.Forms.AnchorStyles.Left;
             this.incrementDamage2.Enabled = false;
-            this.incrementDamage2.Location = new System.Drawing.Point(73, 11);
+            this.incrementDamage2.Location = new System.Drawing.Point(73, 10);
             this.incrementDamage2.Margin = new System.Windows.Forms.Padding(0);
             this.incrementDamage2.Name = "incrementDamage2";
             this.incrementDamage2.Size = new System.Drawing.Size(20, 20);
@@ -969,7 +1047,7 @@
             // 
             this.damage2.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.damage2.Enabled = false;
-            this.damage2.Location = new System.Drawing.Point(26, 11);
+            this.damage2.Location = new System.Drawing.Point(26, 10);
             this.damage2.Name = "damage2";
             this.damage2.Size = new System.Drawing.Size(43, 20);
             this.damage2.TabIndex = 6;
@@ -990,14 +1068,14 @@
             this.tableLayoutPanel23.Name = "tableLayoutPanel23";
             this.tableLayoutPanel23.RowCount = 1;
             this.tableLayoutPanel23.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableLayoutPanel23.Size = new System.Drawing.Size(98, 44);
+            this.tableLayoutPanel23.Size = new System.Drawing.Size(98, 40);
             this.tableLayoutPanel23.TabIndex = 8;
             // 
             // decrementDamage3
             // 
             this.decrementDamage3.Anchor = System.Windows.Forms.AnchorStyles.Right;
             this.decrementDamage3.Enabled = false;
-            this.decrementDamage3.Location = new System.Drawing.Point(3, 12);
+            this.decrementDamage3.Location = new System.Drawing.Point(3, 10);
             this.decrementDamage3.Margin = new System.Windows.Forms.Padding(0);
             this.decrementDamage3.Name = "decrementDamage3";
             this.decrementDamage3.Size = new System.Drawing.Size(20, 20);
@@ -1010,7 +1088,7 @@
             // 
             this.incrementDamage3.Anchor = System.Windows.Forms.AnchorStyles.Left;
             this.incrementDamage3.Enabled = false;
-            this.incrementDamage3.Location = new System.Drawing.Point(73, 12);
+            this.incrementDamage3.Location = new System.Drawing.Point(73, 10);
             this.incrementDamage3.Margin = new System.Windows.Forms.Padding(0);
             this.incrementDamage3.Name = "incrementDamage3";
             this.incrementDamage3.Size = new System.Drawing.Size(20, 20);
@@ -1023,7 +1101,7 @@
             // 
             this.damage3.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.damage3.Enabled = false;
-            this.damage3.Location = new System.Drawing.Point(26, 12);
+            this.damage3.Location = new System.Drawing.Point(26, 10);
             this.damage3.Name = "damage3";
             this.damage3.Size = new System.Drawing.Size(43, 20);
             this.damage3.TabIndex = 6;
@@ -1054,14 +1132,14 @@
             this.tableLayoutPanel22.Name = "tableLayoutPanel22";
             this.tableLayoutPanel22.RowCount = 1;
             this.tableLayoutPanel22.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableLayoutPanel22.Size = new System.Drawing.Size(95, 44);
+            this.tableLayoutPanel22.Size = new System.Drawing.Size(95, 40);
             this.tableLayoutPanel22.TabIndex = 7;
             // 
             // decrementAttack3
             // 
             this.decrementAttack3.Anchor = System.Windows.Forms.AnchorStyles.Right;
             this.decrementAttack3.Enabled = false;
-            this.decrementAttack3.Location = new System.Drawing.Point(11, 12);
+            this.decrementAttack3.Location = new System.Drawing.Point(11, 10);
             this.decrementAttack3.Margin = new System.Windows.Forms.Padding(0);
             this.decrementAttack3.Name = "decrementAttack3";
             this.decrementAttack3.Size = new System.Drawing.Size(20, 20);
@@ -1070,11 +1148,31 @@
             this.decrementAttack3.UseVisualStyleBackColor = true;
             this.decrementAttack3.Click += new System.EventHandler(this.decrementAttack3_Click);
             // 
+            // attackBonus3
+            // 
+            this.attackBonus3.AllowSpace = false;
+            this.attackBonus3.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.attackBonus3.DecimalValue = new decimal(new int[] {
+            0,
+            0,
+            0,
+            0});
+            this.attackBonus3.Enabled = false;
+            this.attackBonus3.IntValue = 0;
+            this.attackBonus3.Location = new System.Drawing.Point(32, 10);
+            this.attackBonus3.Margin = new System.Windows.Forms.Padding(0);
+            this.attackBonus3.Name = "attackBonus3";
+            this.attackBonus3.Size = new System.Drawing.Size(29, 20);
+            this.attackBonus3.TabIndex = 3;
+            this.attackBonus3.Text = "0";
+            this.attackBonus3.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.attackBonus3.TextChanged += new System.EventHandler(this.attackBonus3_TextChanged);
+            // 
             // incrementAttack3
             // 
             this.incrementAttack3.Anchor = System.Windows.Forms.AnchorStyles.Left;
             this.incrementAttack3.Enabled = false;
-            this.incrementAttack3.Location = new System.Drawing.Point(62, 12);
+            this.incrementAttack3.Location = new System.Drawing.Point(62, 10);
             this.incrementAttack3.Margin = new System.Windows.Forms.Padding(0);
             this.incrementAttack3.Name = "incrementAttack3";
             this.incrementAttack3.Size = new System.Drawing.Size(20, 20);
@@ -1082,6 +1180,16 @@
             this.incrementAttack3.Text = "+";
             this.incrementAttack3.UseVisualStyleBackColor = true;
             this.incrementAttack3.Click += new System.EventHandler(this.incrementAttack3_Click);
+            // 
+            // effectsGroup
+            // 
+            this.effectsGroup.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.effectsGroup.Location = new System.Drawing.Point(3, 158);
+            this.effectsGroup.Name = "effectsGroup";
+            this.effectsGroup.Size = new System.Drawing.Size(295, 150);
+            this.effectsGroup.TabIndex = 5;
+            this.effectsGroup.TabStop = false;
+            this.effectsGroup.Text = "Effects";
             // 
             // tableLayoutPanel25
             // 
@@ -1244,16 +1352,16 @@
             this.delayList.Size = new System.Drawing.Size(169, 137);
             this.delayList.TabIndex = 1;
             // 
-            // menuStrip1
+            // generalMenu
             // 
-            this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.generalMenu.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.fileToolStripMenuItem});
-            this.menuStrip1.Location = new System.Drawing.Point(0, 0);
-            this.menuStrip1.Name = "menuStrip1";
-            this.menuStrip1.RenderMode = System.Windows.Forms.ToolStripRenderMode.System;
-            this.menuStrip1.Size = new System.Drawing.Size(748, 24);
-            this.menuStrip1.TabIndex = 1;
-            this.menuStrip1.Text = "menuStrip1";
+            this.generalMenu.Location = new System.Drawing.Point(0, 0);
+            this.generalMenu.Name = "generalMenu";
+            this.generalMenu.RenderMode = System.Windows.Forms.ToolStripRenderMode.System;
+            this.generalMenu.Size = new System.Drawing.Size(748, 24);
+            this.generalMenu.TabIndex = 1;
+            this.generalMenu.Text = "menuStrip1";
             // 
             // fileToolStripMenuItem
             // 
@@ -1305,110 +1413,10 @@
             this.closeButton.UseVisualStyleBackColor = true;
             this.closeButton.Click += new System.EventHandler(this.closeButton_Click);
             // 
-            // effectsGroup
+            // contextMenuStrip1
             // 
-            this.effectsGroup.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.effectsGroup.Location = new System.Drawing.Point(3, 158);
-            this.effectsGroup.Name = "effectsGroup";
-            this.effectsGroup.Size = new System.Drawing.Size(295, 150);
-            this.effectsGroup.TabIndex = 5;
-            this.effectsGroup.TabStop = false;
-            this.effectsGroup.Text = "Effects";
-            // 
-            // numericTextBox1
-            // 
-            this.numericTextBox1.AllowSpace = false;
-            this.numericTextBox1.DecimalValue = new decimal(new int[] {
-            0,
-            0,
-            0,
-            0});
-            this.numericTextBox1.IntValue = 0;
-            this.numericTextBox1.Location = new System.Drawing.Point(159, 0);
-            this.numericTextBox1.Margin = new System.Windows.Forms.Padding(0);
-            this.numericTextBox1.Name = "numericTextBox1";
-            this.numericTextBox1.Size = new System.Drawing.Size(48, 20);
-            this.numericTextBox1.TabIndex = 1;
-            this.numericTextBox1.Text = "0";
-            this.numericTextBox1.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            // 
-            // HPChange
-            // 
-            this.HPChange.AllowSpace = false;
-            this.HPChange.DecimalValue = new decimal(new int[] {
-            0,
-            0,
-            0,
-            0});
-            this.HPChange.Enabled = false;
-            this.HPChange.IntValue = 0;
-            this.HPChange.Location = new System.Drawing.Point(97, 0);
-            this.HPChange.Margin = new System.Windows.Forms.Padding(0);
-            this.HPChange.Name = "HPChange";
-            this.HPChange.Size = new System.Drawing.Size(29, 20);
-            this.HPChange.TabIndex = 1;
-            this.HPChange.Text = "0";
-            this.HPChange.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            // 
-            // attackBonus1
-            // 
-            this.attackBonus1.AllowSpace = false;
-            this.attackBonus1.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.attackBonus1.DecimalValue = new decimal(new int[] {
-            0,
-            0,
-            0,
-            0});
-            this.attackBonus1.Enabled = false;
-            this.attackBonus1.IntValue = 0;
-            this.attackBonus1.Location = new System.Drawing.Point(32, 11);
-            this.attackBonus1.Margin = new System.Windows.Forms.Padding(0);
-            this.attackBonus1.Name = "attackBonus1";
-            this.attackBonus1.Size = new System.Drawing.Size(29, 20);
-            this.attackBonus1.TabIndex = 3;
-            this.attackBonus1.Text = "0";
-            this.attackBonus1.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            this.attackBonus1.TextChanged += new System.EventHandler(this.attackBonus1_TextChanged);
-            // 
-            // attackBonus2
-            // 
-            this.attackBonus2.AllowSpace = false;
-            this.attackBonus2.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.attackBonus2.DecimalValue = new decimal(new int[] {
-            0,
-            0,
-            0,
-            0});
-            this.attackBonus2.Enabled = false;
-            this.attackBonus2.IntValue = 0;
-            this.attackBonus2.Location = new System.Drawing.Point(32, 11);
-            this.attackBonus2.Margin = new System.Windows.Forms.Padding(0);
-            this.attackBonus2.Name = "attackBonus2";
-            this.attackBonus2.Size = new System.Drawing.Size(29, 20);
-            this.attackBonus2.TabIndex = 3;
-            this.attackBonus2.Text = "0";
-            this.attackBonus2.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            this.attackBonus2.TextChanged += new System.EventHandler(this.attackBonus2_TextChanged);
-            // 
-            // attackBonus3
-            // 
-            this.attackBonus3.AllowSpace = false;
-            this.attackBonus3.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.attackBonus3.DecimalValue = new decimal(new int[] {
-            0,
-            0,
-            0,
-            0});
-            this.attackBonus3.Enabled = false;
-            this.attackBonus3.IntValue = 0;
-            this.attackBonus3.Location = new System.Drawing.Point(32, 12);
-            this.attackBonus3.Margin = new System.Windows.Forms.Padding(0);
-            this.attackBonus3.Name = "attackBonus3";
-            this.attackBonus3.Size = new System.Drawing.Size(29, 20);
-            this.attackBonus3.TabIndex = 3;
-            this.attackBonus3.Text = "0";
-            this.attackBonus3.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            this.attackBonus3.TextChanged += new System.EventHandler(this.attackBonus3_TextChanged);
+            this.contextMenuStrip1.Name = "contextMenuStrip1";
+            this.contextMenuStrip1.Size = new System.Drawing.Size(61, 4);
             // 
             // General
             // 
@@ -1417,9 +1425,9 @@
             this.CancelButton = this.closeButton;
             this.ClientSize = new System.Drawing.Size(748, 496);
             this.Controls.Add(this.tableLayoutPanel7);
-            this.Controls.Add(this.menuStrip1);
+            this.Controls.Add(this.generalMenu);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
-            this.MainMenuStrip = this.menuStrip1;
+            this.MainMenuStrip = this.generalMenu;
             this.Name = "General";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Squire - General";
@@ -1475,8 +1483,8 @@
             this.delayGroup.ResumeLayout(false);
             this.tableLayoutPanel15.ResumeLayout(false);
             this.tableLayoutPanel16.ResumeLayout(false);
-            this.menuStrip1.ResumeLayout(false);
-            this.menuStrip1.PerformLayout();
+            this.generalMenu.ResumeLayout(false);
+            this.generalMenu.PerformLayout();
             this.tableLayoutPanel7.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -1505,7 +1513,7 @@
         private System.Windows.Forms.Button subtractHPButton;
         private NumericTextBox numericTextBox1;
         private System.Windows.Forms.Button addHPButton;
-        private System.Windows.Forms.MenuStrip menuStrip1;
+        private System.Windows.Forms.MenuStrip generalMenu;
         private System.Windows.Forms.ToolStripMenuItem fileToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem saveToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem openToolStripMenuItem;
@@ -1579,5 +1587,6 @@
         private System.Windows.Forms.Button liveButton;
         private System.Windows.Forms.GroupBox effectsGroup;
         public System.Windows.Forms.ListBox dyingList;
+        private System.Windows.Forms.ContextMenuStrip contextMenuStrip1;
     }
 }

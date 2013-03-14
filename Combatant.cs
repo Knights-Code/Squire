@@ -13,6 +13,7 @@ namespace Squire
         int[] attackBonus;
         string[] damage;
         Boolean bPlayer;
+        Boolean bStable;
 
         public Combatant(string name, int HP)
         {
@@ -22,6 +23,7 @@ namespace Squire
             this.attackBonus = new int[3] {0,0,0};
             this.damage = new string[3] {"+0","+0","+0"};
             this.bPlayer = false;
+            this.bStable = true;
         }
 
         public Combatant(string name)
@@ -30,6 +32,18 @@ namespace Squire
             this.attackBonus = new int[3] {0,0,0};
             this.damage = new string[3] {"+0","+0","+0"};
             this.bPlayer = true;
+            this.bStable = true;
+        }
+
+
+        public Boolean isStable()
+        {
+            return bStable;
+        }
+
+        public void setStable(Boolean stable)
+        {
+            this.bStable = stable;
         }
 
         public string getName()
@@ -54,6 +68,7 @@ namespace Squire
 
         public void setCurrentHP(int newHP)
         {
+            if (currentHP >= 0 && newHP < 0) this.bStable = false; // If we've been dropped automatically become unstable
             this.currentHP = newHP;
         }
 

@@ -188,7 +188,7 @@
             this.tableLayoutPanel2.ColumnCount = 3;
             this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 61.26126F));
             this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 38.73874F));
-            this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 135F));
+            this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 136F));
             this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 131F));
             this.tableLayoutPanel2.Controls.Add(this.characterFile, 0, 1);
             this.tableLayoutPanel2.Controls.Add(this.labelExplanation, 0, 0);
@@ -207,7 +207,7 @@
             // characterFile
             // 
             this.characterFile.Anchor = System.Windows.Forms.AnchorStyles.Right;
-            this.characterFile.Location = new System.Drawing.Point(28, 28);
+            this.characterFile.Location = new System.Drawing.Point(27, 28);
             this.characterFile.Name = "characterFile";
             this.characterFile.Size = new System.Drawing.Size(248, 20);
             this.characterFile.TabIndex = 2;
@@ -229,7 +229,7 @@
             this.flowLayoutPanel2.Anchor = System.Windows.Forms.AnchorStyles.Left;
             this.flowLayoutPanel2.Controls.Add(this.browseButton);
             this.flowLayoutPanel2.Controls.Add(this.loadButton);
-            this.flowLayoutPanel2.Location = new System.Drawing.Point(282, 24);
+            this.flowLayoutPanel2.Location = new System.Drawing.Point(281, 24);
             this.flowLayoutPanel2.Name = "flowLayoutPanel2";
             this.flowLayoutPanel2.Size = new System.Drawing.Size(163, 29);
             this.flowLayoutPanel2.TabIndex = 5;
@@ -259,7 +259,7 @@
             // 
             this.labelLevel.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
             this.labelLevel.AutoSize = true;
-            this.labelLevel.Location = new System.Drawing.Point(496, 8);
+            this.labelLevel.Location = new System.Drawing.Point(495, 8);
             this.labelLevel.Name = "labelLevel";
             this.labelLevel.Size = new System.Drawing.Size(54, 13);
             this.labelLevel.TabIndex = 6;
@@ -270,7 +270,7 @@
             this.characterLevel.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.characterLevel.Enabled = false;
             this.characterLevel.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.characterLevel.Location = new System.Drawing.Point(498, 24);
+            this.characterLevel.Location = new System.Drawing.Point(497, 24);
             this.characterLevel.Name = "characterLevel";
             this.characterLevel.Size = new System.Drawing.Size(50, 29);
             this.characterLevel.TabIndex = 7;
@@ -686,7 +686,7 @@
             this.hitPointsPanel.ColumnCount = 3;
             this.hitPointsPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 70.2381F));
             this.hitPointsPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 29.76191F));
-            this.hitPointsPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 40F));
+            this.hitPointsPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 41F));
             this.hitPointsPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 36F));
             this.hitPointsPanel.Controls.Add(this.labelHP, 0, 0);
             this.hitPointsPanel.Controls.Add(this.addHPButton, 2, 0);
@@ -714,9 +714,9 @@
             this.addHPButton.Dock = System.Windows.Forms.DockStyle.Fill;
             this.addHPButton.Enabled = false;
             this.addHPButton.Image = global::Squire.Properties.Resources.HPADDICON2;
-            this.addHPButton.Location = new System.Drawing.Point(80, 3);
+            this.addHPButton.Location = new System.Drawing.Point(79, 3);
             this.addHPButton.Name = "addHPButton";
-            this.addHPButton.Size = new System.Drawing.Size(35, 21);
+            this.addHPButton.Size = new System.Drawing.Size(36, 21);
             this.addHPButton.TabIndex = 6;
             this.addHPButton.TextAlign = System.Drawing.ContentAlignment.TopCenter;
             this.addHPButton.UseVisualStyleBackColor = true;

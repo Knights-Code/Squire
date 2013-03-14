@@ -13,20 +13,57 @@ namespace Squire
     public partial class General : Form
     {
         HPBar combatantHPBar;
+        ContextMenuStrip dyingListContextMenu;
+        decimal currentRound;
 
         public General()
         {
             InitializeComponent();
+
+            //-----( Initialise Components )-----\\
             combatantHPBar = new HPBar();
             combatantHPBar.Parent = tableLayoutPanel12;
             combatantHPBar.Dock = DockStyle.Fill;
+            dyingListContextMenu = new ContextMenuStrip();
+            dyingListContextMenu.RenderMode = generalMenu.RenderMode;
+            dyingListContextMenu.Opening += new CancelEventHandler(dyingListContextMenu_Opening);
 
+            //-----( Initialise Variables )-----\\
+            currentRound = roundNumber.Value;
+
+            //-----( Event Handlers )-----\\
             combatantList.DrawItem += combatantList_DrawItem;
+            dyingList.MouseDown += new MouseEventHandler(dyingList_MouseDown);
+        }
+
+        void dyingListContextMenu_Opening(object sender, CancelEventArgs e)
+        {
+            Combatant casualty = (Combatant)dyingList.SelectedItem;
+            ToolStripMenuItem stabilise = new ToolStripMenuItem("Stabilise", null, new EventHandler(stabiliseCasualty));
+            stabilise.Enabled = casualty.isStable() ? false : true;
+
+            dyingListContextMenu.Items.Clear();
+            dyingListContextMenu.Items.Add(stabilise);
+        }
+
+        void stabiliseCasualty(object sender, EventArgs e)
+        {
+            Combatant casualty = (Combatant)dyingList.SelectedItem;
+            casualty.setStable(true);
+        }
+
+        void dyingList_MouseDown(object sender, MouseEventArgs e)
+        {
+            if (e.Button == MouseButtons.Right)
+            {
+                dyingList.SelectedIndex = dyingList.IndexFromPoint(e.Location);
+
+                if (dyingList.SelectedIndex != -1) dyingListContextMenu.Show(Cursor.Position);
+            }
         }
 
         /**
          * Custom draw code for the combatant list that draws injured combatants differently.
-         * THIS CODE IS INCOMPLETE. IT SHOULDN'T BE USED AS IT IS.
          * @param sender The origin of the event (usually the listbox).
          * @param e The details of the event.
          */
@@ -618,6 +655,31 @@ namespace Squire
                 if (dyingIndex < dyingList.Items.Count) dyingList.SelectedIndex = dyingIndex;
                 else dyingList.SelectedIndex = (dyingList.Items.Count - 1);
             }
+        }
+
+        private void roundNumber_ValueChanged(object sender, EventArgs e)
+        {
+            // Check that we've just proceeded to the next round.
+            if (roundNumber.Value == (currentRound + 1))
+            {
+                // Handle the dead and dying.
+                if (dyingList.Items.Count > 0)
+                {
+                    // Display a dialog for each dying (not dead) combatant asking if they stabilise.
+                    for (int i = 0; i < dyingList.Items.Count; i++)
+                    {
+                        Combatant casualty = (Combatant)dyingList.Items[i];
+
+                        if (!casualty.isPlayer() && casualty.status() != "dead" && !casualty.isStable())
+                        {
+                            if (MessageBox.Show(casualty + "'s HP is at " + casualty.getCurrentHP() + ". Do they stabilise?", "Stabilise " + casualty + "?", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes) casualty.setStable(true);
+                            else casualty.setCurrentHP(casualty.getCurrentHP() - 1);
+                        }
+                    }
+                }
+            }
+
+            this.currentRound = roundNumber.Value;
         }
     }
 }

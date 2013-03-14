@@ -50,11 +50,15 @@ namespace Squire
                     break;
                 case "injured":
                     f = new Font(e.Font, FontStyle.Bold);
-                    brush = new SolidBrush(Color.Orange);
+                    brush = new SolidBrush(Color.Gold);
                     break;
                 case "critical":
                     f = new Font(e.Font, FontStyle.Bold);
                     brush = new SolidBrush(Color.Red);
+                    break;
+                case "dead":
+                    f = new Font(e.Font, FontStyle.Bold);
+                    brush = new SolidBrush(Color.Gray);
                     break;
                 case "player":
                     f = e.Font;
@@ -66,7 +70,7 @@ namespace Squire
             if (bSelected)
             {
                 brush = new SolidBrush(Color.White);
-                g.FillRectangle(new SolidBrush(Color.Navy), e.Bounds);
+                g.FillRectangle(new SolidBrush(SystemColors.Highlight), e.Bounds);
             }
             else
             {
@@ -137,8 +141,11 @@ namespace Squire
             {
                 if (tabPlayer.SelectedTab == tabDM)
                 {
-                    WoundCombatant woundDialog = new WoundCombatant(this);
-                    woundDialog.Show();
+                    if (combatantList.SelectedIndex != -1)
+                    {
+                        WoundCombatant woundDialog = new WoundCombatant(this);
+                        woundDialog.Show();
+                    }
                 }
             }
             // Ctrl + N (New round). Increments the round number and selects the topmost combatant.

@@ -93,7 +93,8 @@ namespace Squire
             {
                 if (currentHP > (maxHP / 2)) return "healthy";
                 else if (currentHP > (maxHP / 4)) return "injured";
-                else return "critical";
+                else if (currentHP > -10) return "critical";
+                else return "dead";
             }
             else
             {

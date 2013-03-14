@@ -60,7 +60,18 @@ namespace Squire
                 selectedCombatant.setCurrentHP((selectedCombatant.getCurrentHP() - damage.IntValue)); // damage selected combatant
 
                 // TODO: log that selected combatant in the initiative list has damaged the selected combatant in the wound list
-                //parentForm.log((Combatant)parentForm.combatantList.selectedItem + " dealt "+damage.IntValue+" points of damage to " + selectedCombatant);
+                //parentForm.log((Combatant)parentForm.combatantList.SelectedItem + " dealt "+damage.IntValue+" points of damage to " + selectedCombatant);
+
+                // If this wound has dealt enough damage to drop the combatant, prompt user to move them to the dead and dying list.
+                if (selectedCombatant.getCurrentHP() < 0)
+                {
+                    if (MessageBox.Show((Combatant)parentForm.combatantList.SelectedItem + " has dealt enough damage to drop the combatant being injured. "+
+                        "Would you like to move the victim to the dead and dying list?", selectedCombatant + "'s Hit Points Below 0", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
+                    {
+                        parentForm.combatantList.Items.Remove(selectedCombatant);
+                        parentForm.dyingList.Items.Add(selectedCombatant);
+                    }
+                }
 
                 this.Close();
             }

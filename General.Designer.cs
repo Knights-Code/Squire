@@ -117,12 +117,12 @@
             this.openToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.tableLayoutPanel7 = new System.Windows.Forms.TableLayoutPanel();
             this.closeButton = new System.Windows.Forms.Button();
+            this.effectsGroup = new System.Windows.Forms.GroupBox();
             this.numericTextBox1 = new Squire.NumericTextBox();
             this.HPChange = new Squire.NumericTextBox();
             this.attackBonus1 = new Squire.NumericTextBox();
             this.attackBonus2 = new Squire.NumericTextBox();
             this.attackBonus3 = new Squire.NumericTextBox();
-            this.effectsGroup = new System.Windows.Forms.GroupBox();
             this.tabPlayer.SuspendLayout();
             this.tabPC.SuspendLayout();
             this.tableLayoutPanel1.SuspendLayout();
@@ -1305,6 +1305,16 @@
             this.closeButton.UseVisualStyleBackColor = true;
             this.closeButton.Click += new System.EventHandler(this.closeButton_Click);
             // 
+            // effectsGroup
+            // 
+            this.effectsGroup.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.effectsGroup.Location = new System.Drawing.Point(3, 158);
+            this.effectsGroup.Name = "effectsGroup";
+            this.effectsGroup.Size = new System.Drawing.Size(295, 150);
+            this.effectsGroup.TabIndex = 5;
+            this.effectsGroup.TabStop = false;
+            this.effectsGroup.Text = "Effects";
+            // 
             // numericTextBox1
             // 
             this.numericTextBox1.AllowSpace = false;
@@ -1399,16 +1409,6 @@
             this.attackBonus3.Text = "0";
             this.attackBonus3.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             this.attackBonus3.TextChanged += new System.EventHandler(this.attackBonus3_TextChanged);
-            // 
-            // effectsGroup
-            // 
-            this.effectsGroup.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.effectsGroup.Location = new System.Drawing.Point(3, 158);
-            this.effectsGroup.Name = "effectsGroup";
-            this.effectsGroup.Size = new System.Drawing.Size(295, 150);
-            this.effectsGroup.TabIndex = 5;
-            this.effectsGroup.TabStop = false;
-            this.effectsGroup.Text = "Effects";
             // 
             // General
             // 
@@ -1577,7 +1577,7 @@
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel27;
         private System.Windows.Forms.Button killButton;
         private System.Windows.Forms.Button liveButton;
-        private System.Windows.Forms.ListBox dyingList;
         private System.Windows.Forms.GroupBox effectsGroup;
+        public System.Windows.Forms.ListBox dyingList;
     }
 }

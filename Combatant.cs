@@ -116,5 +116,10 @@ namespace Squire
                 return "player";
             }
         }
+
+        internal void setMaxHP(int newMax)
+        {
+            this.maxHP = newMax;
+        }
     }
 }

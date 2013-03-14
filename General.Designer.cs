@@ -125,6 +125,8 @@
             this.tableLayoutPanel7 = new System.Windows.Forms.TableLayoutPanel();
             this.closeButton = new System.Windows.Forms.Button();
             this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.manualCurrentButton = new System.Windows.Forms.Button();
+            this.manualMaxButton = new System.Windows.Forms.Button();
             this.tabPlayer.SuspendLayout();
             this.tabPC.SuspendLayout();
             this.tableLayoutPanel1.SuspendLayout();
@@ -658,8 +660,9 @@
             this.tableLayoutPanel12.Controls.Add(this.remainingHP, 0, 1);
             this.tableLayoutPanel12.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tableLayoutPanel12.Location = new System.Drawing.Point(3, 16);
+            this.tableLayoutPanel12.Margin = new System.Windows.Forms.Padding(0);
             this.tableLayoutPanel12.Name = "tableLayoutPanel12";
-            this.tableLayoutPanel12.RowCount = 3;
+            this.tableLayoutPanel12.RowCount = 2;
             this.tableLayoutPanel12.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
             this.tableLayoutPanel12.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
             this.tableLayoutPanel12.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
@@ -678,27 +681,31 @@
             // 
             // tableLayoutPanel13
             // 
-            this.tableLayoutPanel13.ColumnCount = 3;
-            this.tableLayoutPanel13.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 43.47826F));
-            this.tableLayoutPanel13.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 13.04348F));
-            this.tableLayoutPanel13.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 43.47826F));
-            this.tableLayoutPanel13.Controls.Add(this.damageButton, 0, 0);
-            this.tableLayoutPanel13.Controls.Add(this.HPChange, 1, 0);
-            this.tableLayoutPanel13.Controls.Add(this.healButton, 2, 0);
+            this.tableLayoutPanel13.ColumnCount = 5;
+            this.tableLayoutPanel13.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 25.23036F));
+            this.tableLayoutPanel13.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 13.79991F));
+            this.tableLayoutPanel13.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 21.93944F));
+            this.tableLayoutPanel13.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 13.79991F));
+            this.tableLayoutPanel13.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 25.23036F));
+            this.tableLayoutPanel13.Controls.Add(this.damageButton, 1, 0);
+            this.tableLayoutPanel13.Controls.Add(this.HPChange, 2, 0);
+            this.tableLayoutPanel13.Controls.Add(this.healButton, 3, 0);
+            this.tableLayoutPanel13.Controls.Add(this.manualCurrentButton, 0, 0);
+            this.tableLayoutPanel13.Controls.Add(this.manualMaxButton, 4, 0);
             this.tableLayoutPanel13.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tableLayoutPanel13.Location = new System.Drawing.Point(70, 20);
             this.tableLayoutPanel13.Margin = new System.Windows.Forms.Padding(0);
             this.tableLayoutPanel13.Name = "tableLayoutPanel13";
             this.tableLayoutPanel13.RowCount = 1;
             this.tableLayoutPanel13.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableLayoutPanel13.Size = new System.Drawing.Size(225, 20);
+            this.tableLayoutPanel13.Size = new System.Drawing.Size(225, 24);
             this.tableLayoutPanel13.TabIndex = 2;
             // 
             // damageButton
             // 
             this.damageButton.Anchor = System.Windows.Forms.AnchorStyles.Right;
             this.damageButton.Enabled = false;
-            this.damageButton.Location = new System.Drawing.Point(77, 0);
+            this.damageButton.Location = new System.Drawing.Point(67, 2);
             this.damageButton.Margin = new System.Windows.Forms.Padding(0);
             this.damageButton.Name = "damageButton";
             this.damageButton.Size = new System.Drawing.Size(20, 20);
@@ -710,6 +717,7 @@
             // HPChange
             // 
             this.HPChange.AllowSpace = false;
+            this.HPChange.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.HPChange.DecimalValue = new decimal(new int[] {
             0,
             0,
@@ -717,18 +725,19 @@
             0});
             this.HPChange.Enabled = false;
             this.HPChange.IntValue = 0;
-            this.HPChange.Location = new System.Drawing.Point(97, 0);
+            this.HPChange.Location = new System.Drawing.Point(93, 2);
             this.HPChange.Margin = new System.Windows.Forms.Padding(0);
             this.HPChange.Name = "HPChange";
-            this.HPChange.Size = new System.Drawing.Size(29, 20);
+            this.HPChange.Size = new System.Drawing.Size(37, 20);
             this.HPChange.TabIndex = 1;
             this.HPChange.Text = "0";
             this.HPChange.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
             // healButton
             // 
+            this.healButton.Anchor = System.Windows.Forms.AnchorStyles.Left;
             this.healButton.Enabled = false;
-            this.healButton.Location = new System.Drawing.Point(126, 0);
+            this.healButton.Location = new System.Drawing.Point(136, 2);
             this.healButton.Margin = new System.Windows.Forms.Padding(0);
             this.healButton.Name = "healButton";
             this.healButton.Size = new System.Drawing.Size(20, 20);
@@ -741,7 +750,7 @@
             // 
             this.remainingHP.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.remainingHP.AutoSize = true;
-            this.remainingHP.Location = new System.Drawing.Point(20, 23);
+            this.remainingHP.Location = new System.Drawing.Point(20, 25);
             this.remainingHP.Name = "remainingHP";
             this.remainingHP.Size = new System.Drawing.Size(30, 13);
             this.remainingHP.TabIndex = 3;
@@ -1418,6 +1427,32 @@
             this.contextMenuStrip1.Name = "contextMenuStrip1";
             this.contextMenuStrip1.Size = new System.Drawing.Size(61, 4);
             // 
+            // manualCurrentButton
+            // 
+            this.manualCurrentButton.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.manualCurrentButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 7F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.manualCurrentButton.Location = new System.Drawing.Point(0, 0);
+            this.manualCurrentButton.Margin = new System.Windows.Forms.Padding(0);
+            this.manualCurrentButton.Name = "manualCurrentButton";
+            this.manualCurrentButton.Size = new System.Drawing.Size(56, 23);
+            this.manualCurrentButton.TabIndex = 3;
+            this.manualCurrentButton.Text = "Set Curr.";
+            this.manualCurrentButton.UseVisualStyleBackColor = true;
+            this.manualCurrentButton.Click += new System.EventHandler(this.manualCurrentButton_Click);
+            // 
+            // manualMaxButton
+            // 
+            this.manualMaxButton.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.manualMaxButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 7F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.manualMaxButton.Location = new System.Drawing.Point(167, 0);
+            this.manualMaxButton.Margin = new System.Windows.Forms.Padding(0);
+            this.manualMaxButton.Name = "manualMaxButton";
+            this.manualMaxButton.Size = new System.Drawing.Size(58, 23);
+            this.manualMaxButton.TabIndex = 4;
+            this.manualMaxButton.Text = "Set Max";
+            this.manualMaxButton.UseVisualStyleBackColor = true;
+            this.manualMaxButton.Click += new System.EventHandler(this.manualMaxButton_Click);
+            // 
             // General
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -1588,5 +1623,7 @@
         private System.Windows.Forms.GroupBox effectsGroup;
         public System.Windows.Forms.ListBox dyingList;
         private System.Windows.Forms.ContextMenuStrip contextMenuStrip1;
+        private System.Windows.Forms.Button manualCurrentButton;
+        private System.Windows.Forms.Button manualMaxButton;
     }
 }

@@ -71,7 +71,7 @@
             this.label1.Size = new System.Drawing.Size(274, 26);
             this.label1.TabIndex = 0;
             this.label1.Text = "Select the combatant to wound and enter the amount of damage to deal. Click OK to" +
-    " confirm.";
+                " confirm.";
             // 
             // woundList
             // 
@@ -111,10 +111,17 @@
             // 
             this.damage.AllowSpace = false;
             this.damage.Anchor = System.Windows.Forms.AnchorStyles.Left;
+            this.damage.DecimalValue = new decimal(new int[] {
+            0,
+            0,
+            0,
+            0});
+            this.damage.IntValue = 0;
             this.damage.Location = new System.Drawing.Point(146, 5);
             this.damage.Name = "damage";
-            this.damage.Size = new System.Drawing.Size(100, 20);
+            this.damage.Size = new System.Drawing.Size(31, 20);
             this.damage.TabIndex = 1;
+            this.damage.Text = "0";
             this.damage.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
             // flowLayoutPanel1
@@ -158,6 +165,7 @@
             this.MaximizeBox = false;
             this.MinimizeBox = false;
             this.Name = "WoundCombatant";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Wound Combatant";
             this.TopMost = true;
             this.tableLayoutPanel1.ResumeLayout(false);

@@ -681,5 +681,41 @@ namespace Squire
 
             this.currentRound = roundNumber.Value;
         }
+
+        private void manualCurrentButton_Click(object sender, EventArgs e)
+        {
+            // Make sure a combatant is selected
+            if (combatantList.SelectedIndex != -1)
+            {
+                Combatant selectedCombatant = (Combatant)combatantList.SelectedItem;
+                selectedCombatant.setCurrentHP(HPChange.IntValue);
+
+                HPChange.IntValue = 0;
+
+                combatantHPBar.Value = selectedCombatant.getCurrentHP(); // update the HP bar
+
+                remainingHP.Text = selectedCombatant.getCurrentHP() + " / " + selectedCombatant.getMaxHP(); // update HP label
+            }
+        }
+
+        private void manualMaxButton_Click(object sender, EventArgs e)
+        {
+            // Make sure a combatant is selected
+            if (combatantList.SelectedIndex != -1)
+            {
+                Combatant selectedCombatant = (Combatant)combatantList.SelectedItem;
+                selectedCombatant.setMaxHP(HPChange.IntValue);
+
+                // If new max is lower than current HP, change current HP to match
+                if (selectedCombatant.getCurrentHP() > selectedCombatant.getMaxHP()) selectedCombatant.setCurrentHP(selectedCombatant.getMaxHP());
+
+                HPChange.IntValue = 0;
+
+                combatantHPBar.Maximum = selectedCombatant.getMaxHP();
+                combatantHPBar.Value = selectedCombatant.getCurrentHP(); // update the HP bar
+
+                remainingHP.Text = selectedCombatant.getCurrentHP() + " / " + selectedCombatant.getMaxHP(); // update HP label
+            }
+        }
     }
 }

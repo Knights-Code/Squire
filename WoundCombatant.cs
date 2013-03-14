@@ -36,7 +36,8 @@ namespace Squire
                 Combatant currentCombatant = (Combatant)parentForm.combatantList.Items[i];
                 if (!currentCombatant.isPlayer()) woundList.Items.Add(currentCombatant);
             }
-            woundList.SelectedIndex = 0; // select topmost combatant
+            
+            if ( woundList.Items.Count > 0 ) woundList.SelectedIndex = 0; // select topmost combatant
         }
 
         void damage_KeyPress(object sender, KeyPressEventArgs e)

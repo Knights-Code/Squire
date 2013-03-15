@@ -34,6 +34,59 @@ namespace Squire
             //-----( Event Handlers )-----\\
             combatantList.DrawItem += combatantList_DrawItem;
             dyingList.MouseDown += new MouseEventHandler(dyingList_MouseDown);
+            dyingList.DrawItem += new DrawItemEventHandler(dyingList_DrawItem);
+        }
+
+        void dyingList_DrawItem(object sender, DrawItemEventArgs e)
+        {
+            e.DrawBackground();
+            Graphics g = e.Graphics;
+            Font f = e.Font;
+            PointF p = new PointF(e.Bounds.X, e.Bounds.Y);
+            ListBox list = (ListBox)sender;
+            Boolean bSelected = (e.Index == list.SelectedIndex);
+            Combatant currentCombatant = (Combatant)list.Items[e.Index];
+            SolidBrush brush = new SolidBrush(e.ForeColor);
+
+            // Decide on default font style and colour
+            switch (currentCombatant.status())
+            {
+                case "healthy":
+                    f = e.Font;
+                    brush = new SolidBrush(e.ForeColor);
+                    break;
+                case "injured":
+                    f = new Font(e.Font, FontStyle.Bold);
+                    brush = new SolidBrush(Color.Gold);
+                    break;
+                case "critical":
+                    f = new Font(e.Font, FontStyle.Bold);
+                    brush = new SolidBrush(Color.Red);
+                    break;
+                case "dead":
+                    f = new Font(e.Font, FontStyle.Bold);
+                    brush = new SolidBrush(Color.Gray);
+                    break;
+                case "player":
+                    f = e.Font;
+                    brush = new SolidBrush(e.ForeColor);
+                    break;
+            }
+
+            // if combatant is selected override colour with white and add selection bar
+            if (bSelected)
+            {
+                brush = new SolidBrush(Color.White);
+                g.FillRectangle(new SolidBrush(SystemColors.Highlight), e.Bounds);
+            }
+            else
+            {
+                g.FillRectangle(new SolidBrush(Color.White), e.Bounds);
+            }
+
+            g.DrawString(list.Items[e.Index].ToString(), f, brush, p);
+
+            e.DrawFocusRectangle();
         }
 
         void dyingListContextMenu_Opening(object sender, CancelEventArgs e)
@@ -127,47 +180,56 @@ namespace Squire
          */
         protected override bool ProcessCmdKey(ref Message msg, Keys keyData)
         {
+            // Ctrl + L (List). Puts focus on the initiative list.
             if (keyData == (Keys.Control | Keys.L))
             {
                 if (tabPlayer.SelectedTab == tabPC) listCombatants.Focus();
                 else combatantList.Focus();
                 return true;
             }
+            // Ctrl + D (Delay). Puts focus on the delay list.
             else if (keyData == (Keys.Control | Keys.D))
             {
                 if (tabPlayer.SelectedTab == tabDM) delayList.Focus();
                 return true;
             }
+            // Ctrl + -> (Right). Removes selected combatant from the initiative order and puts them in the delay list.
             else if (keyData == (Keys.Control | Keys.Right))
             {
                 if (tabPlayer.SelectedTab == tabDM) delayButton.PerformClick();
                 return true;
             }
+            // Ctrl + <- (Left). Removes selected combatant from the delay list and inserts them in the initiative list.
             else if (keyData == (Keys.Control | Keys.Left))
             {
                 if (tabPlayer.SelectedTab == tabDM) undelayButton.PerformClick();
                 return true;
             }
+            // Ctrl + ^ (Up). Moves combatant up in the initiative list.
             else if (keyData == (Keys.Control | Keys.Up))
             {
                 if (tabPlayer.SelectedTab == tabDM) moveCombatantUp.PerformClick();
                 return true;
             }
+            // Ctrl + v (Down). Moves combatant down in the initiative list.
             else if (keyData == (Keys.Control | Keys.Down))
             {
                 if (tabPlayer.SelectedTab == tabDM) moveCombatantDown.PerformClick();
                 return true;
             }
+            // Ctrl + U (Unconscious). Puts focus on the dying list.
             else if (keyData == (Keys.Control | Keys.U))
             {
                 if (tabPlayer.SelectedTab == tabDM) dyingList.Focus();
                 return true;
             }
+            // Ctrl + K (Kill). Moves selected combatant to the dying list.
             else if (keyData == (Keys.Control | Keys.K))
             {
                 if (tabPlayer.SelectedTab == tabDM) killButton.PerformClick();
                 return true;
             }
+            // Ctrl + R (Revive). Moves selected combatant from the dying list to the initiative list.
             else if (keyData == (Keys.Control | Keys.R))
             {
                 if (tabPlayer.SelectedTab == tabDM) liveButton.PerformClick();
@@ -199,7 +261,7 @@ namespace Squire
 
         private void saveToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            // TODO: battle file export. Probably a basically File stream that prints to a
+            // TODO: battle file export. Probably a basic File stream that prints to a
             // file in basic unicode with custom delimiters. The file will need to store all data
             // for all combatants, their condition (fighting, delaying, or dying), their order in
             // these lists, and of course the round number.
@@ -675,6 +737,8 @@ namespace Squire
                             if (MessageBox.Show(casualty + "'s HP is at " + casualty.getCurrentHP() + ". Do they stabilise?", "Stabilise " + casualty + "?", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes) casualty.setStable(true);
                             else casualty.setCurrentHP(casualty.getCurrentHP() - 1);
                         }
+
+                        dyingList.Refresh();
                     }
                 }
             }
@@ -716,6 +780,11 @@ namespace Squire
 
                 remainingHP.Text = selectedCombatant.getCurrentHP() + " / " + selectedCombatant.getMaxHP(); // update HP label
             }
+        }
+
+        private void dyingList_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            dyingList.Refresh();
         }
     }
 }

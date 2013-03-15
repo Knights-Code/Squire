@@ -1219,8 +1219,8 @@
             // 
             // dyingGroup
             // 
-            this.dyingGroup.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.dyingGroup.Controls.Add(this.tableLayoutPanel26);
+            this.dyingGroup.Dock = System.Windows.Forms.DockStyle.Fill;
             this.dyingGroup.Location = new System.Drawing.Point(3, 206);
             this.dyingGroup.Name = "dyingGroup";
             this.dyingGroup.Size = new System.Drawing.Size(181, 197);
@@ -1283,16 +1283,18 @@
             // dyingList
             // 
             this.dyingList.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.dyingList.DrawMode = System.Windows.Forms.DrawMode.OwnerDrawFixed;
             this.dyingList.FormattingEnabled = true;
             this.dyingList.Location = new System.Drawing.Point(3, 38);
             this.dyingList.Name = "dyingList";
             this.dyingList.Size = new System.Drawing.Size(169, 137);
             this.dyingList.TabIndex = 1;
+            this.dyingList.SelectedIndexChanged += new System.EventHandler(this.dyingList_SelectedIndexChanged);
             // 
             // delayGroup
             // 
-            this.delayGroup.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.delayGroup.Controls.Add(this.tableLayoutPanel15);
+            this.delayGroup.Dock = System.Windows.Forms.DockStyle.Fill;
             this.delayGroup.Location = new System.Drawing.Point(3, 3);
             this.delayGroup.Name = "delayGroup";
             this.delayGroup.Size = new System.Drawing.Size(181, 197);

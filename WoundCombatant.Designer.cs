@@ -76,11 +76,13 @@
             // woundList
             // 
             this.woundList.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.woundList.DrawMode = System.Windows.Forms.DrawMode.OwnerDrawFixed;
             this.woundList.FormattingEnabled = true;
             this.woundList.Location = new System.Drawing.Point(3, 43);
             this.woundList.Name = "woundList";
             this.woundList.Size = new System.Drawing.Size(286, 161);
             this.woundList.TabIndex = 1;
+            this.woundList.SelectedIndexChanged += new System.EventHandler(this.woundList_SelectedIndexChanged);
             // 
             // tableLayoutPanel2
             // 

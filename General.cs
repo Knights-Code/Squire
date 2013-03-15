@@ -15,6 +15,9 @@ namespace Squire
         HPBar combatantHPBar;
         ContextMenuStrip dyingListContextMenu;
         decimal currentRound;
+        ToolTip generalToolTip;
+        Combatant toolTipCombatant;
+        Point toolTipLocation;
 
         public General()
         {
@@ -27,66 +30,148 @@ namespace Squire
             dyingListContextMenu = new ContextMenuStrip();
             dyingListContextMenu.RenderMode = generalMenu.RenderMode;
             dyingListContextMenu.Opening += new CancelEventHandler(dyingListContextMenu_Opening);
+            generalToolTip = new ToolTip();
+            //generalToolTip.Draw += new DrawToolTipEventHandler(generalToolTip_Draw);
+            generalToolTip.Active = false;
+            dyingList.MouseMove += new MouseEventHandler(initiative_MouseMove);
+            delayList.MouseMove += new MouseEventHandler(initiative_MouseMove);
+            this.MouseMove += new MouseEventHandler(General_MouseMove);
+            //dyingList.MouseLeave += new EventHandler(initiative_MouseLeave);
 
             //-----( Initialise Variables )-----\\
             currentRound = roundNumber.Value;
 
             //-----( Event Handlers )-----\\
-            combatantList.DrawItem += combatantList_DrawItem;
             dyingList.MouseDown += new MouseEventHandler(dyingList_MouseDown);
-            dyingList.DrawItem += new DrawItemEventHandler(dyingList_DrawItem);
+            dyingList.DrawItem += new DrawItemEventHandler(initiative_DrawItem);
+            combatantList.DrawItem += initiative_DrawItem;
+            delayList.DrawItem += initiative_DrawItem;
         }
 
-        void dyingList_DrawItem(object sender, DrawItemEventArgs e)
+        void General_MouseMove(object sender, MouseEventArgs e)
         {
-            e.DrawBackground();
-            Graphics g = e.Graphics;
-            Font f = e.Font;
-            PointF p = new PointF(e.Bounds.X, e.Bounds.Y);
-            ListBox list = (ListBox)sender;
-            Boolean bSelected = (e.Index == list.SelectedIndex);
-            Combatant currentCombatant = (Combatant)list.Items[e.Index];
-            SolidBrush brush = new SolidBrush(e.ForeColor);
-
-            // Decide on default font style and colour
-            switch (currentCombatant.status())
+            if (!(((dyingList.Bounds.X < e.Location.X) && (e.Location.X < dyingList.Bounds.X + dyingList.Bounds.Width)) && ((dyingList.Bounds.Y < e.Location.Y) && (e.Location.Y < dyingList.Bounds.Y + dyingList.Bounds.Height))))
             {
-                case "healthy":
-                    f = e.Font;
-                    brush = new SolidBrush(e.ForeColor);
-                    break;
-                case "injured":
-                    f = new Font(e.Font, FontStyle.Bold);
-                    brush = new SolidBrush(Color.Gold);
-                    break;
-                case "critical":
-                    f = new Font(e.Font, FontStyle.Bold);
-                    brush = new SolidBrush(Color.Red);
-                    break;
-                case "dead":
-                    f = new Font(e.Font, FontStyle.Bold);
-                    brush = new SolidBrush(Color.Gray);
-                    break;
-                case "player":
-                    f = e.Font;
-                    brush = new SolidBrush(e.ForeColor);
-                    break;
+                generalToolTip.Active = false;
             }
+        }
 
-            // if combatant is selected override colour with white and add selection bar
-            if (bSelected)
+        void initiative_MouseLeave(object sender, EventArgs e)
+        {
+            ListBox focalList = (ListBox)sender;
+
+            // Has the mouse -really- left?
+            //if (toolTipCombatant == null)
+            //{
+                generalToolTip.Active = false;
+                toolTipCombatant = null;
+                Console.WriteLine("Mouse leaving " + sender.ToString());
+            //}
+        }
+
+        public void initiative_MouseMove(object sender, MouseEventArgs e)
+        {
+            ListBox focalList = (ListBox)sender;
+
+            // Make sure we're hovering over a combatant
+            if (focalList.IndexFromPoint(e.Location) >= 0 && focalList.IndexFromPoint(e.Location) < focalList.Items.Count )
             {
-                brush = new SolidBrush(Color.White);
-                g.FillRectangle(new SolidBrush(SystemColors.Highlight), e.Bounds);
+                generalToolTip.Active = true;
+
+                // stops reloading tooltip repeatedly causing flickering
+                if (toolTipCombatant == null || e.Location != toolTipLocation)
+                {
+                    Combatant focalCombatant = (Combatant)focalList.Items[focalList.IndexFromPoint(e.Location)];
+
+                    // Players don't have HP listed
+                    if (!focalCombatant.isPlayer())
+                    {
+                        generalToolTip.ToolTipTitle = (focalCombatant + " HP");
+                        generalToolTip.Show((focalCombatant.getCurrentHP() + " / " + focalCombatant.getMaxHP()), focalList, e.Location.X,(e.Location.Y+20));
+
+                        toolTipCombatant = focalCombatant;
+                        toolTipLocation = e.Location;
+                    }
+                }
             }
             else
             {
-                g.FillRectangle(new SolidBrush(Color.White), e.Bounds);
+                generalToolTip.Active = false;
+                toolTipCombatant = null;
             }
+        }
 
-            g.DrawString(list.Items[e.Index].ToString(), f, brush, p);
+        void generalToolTip_Draw(object sender, DrawToolTipEventArgs e)
+        {
+            e.DrawBackground();
+            e.DrawBorder();
 
-            e.DrawFocusRectangle();
+            // Determine the combatant we're hovering over
+            //ListBox list = (ListBox)sender;
+            //Console.WriteLine("Focal list is " + list);
+            dyingList.Focus();
+            Console.WriteLine("Focal index is: " + dyingList.IndexFromPoint(Cursor.Position));
+            Combatant focalCombatant = (Combatant)dyingList.Items[dyingList.IndexFromPoint(Cursor.Position)];
+            Console.WriteLine("Focal combatant is: " + focalCombatant);
+
+            generalToolTip.ToolTipTitle = (focalCombatant+" HP");
+            generalToolTip.SetToolTip(dyingList, (focalCombatant.getCurrentHP() + " / " + focalCombatant.getMaxHP()));
+            e.DrawText();
+        }
+
+        public void initiative_DrawItem(object sender, DrawItemEventArgs e)
+        {
+            ListBox list = (ListBox)sender;
+            if (list.Items.Count > 0)
+            {
+                e.DrawBackground();
+                Graphics g = e.Graphics;
+                Font f = e.Font;
+                PointF p = new PointF(e.Bounds.X, e.Bounds.Y);
+                Boolean bSelected = (e.Index == list.SelectedIndex);
+                Combatant currentCombatant = (Combatant)list.Items[e.Index];
+                SolidBrush brush = new SolidBrush(e.ForeColor);
+
+                // Decide on default font style and colour
+                switch (currentCombatant.status())
+                {
+                    case "healthy":
+                        f = e.Font;
+                        brush = new SolidBrush(e.ForeColor);
+                        break;
+                    case "injured":
+                        f = new Font(e.Font, FontStyle.Bold);
+                        brush = new SolidBrush(Color.Gold);
+                        break;
+                    case "critical":
+                        f = new Font(e.Font, FontStyle.Bold);
+                        brush = new SolidBrush(Color.Red);
+                        break;
+                    case "dead":
+                        f = new Font(e.Font, FontStyle.Bold);
+                        brush = new SolidBrush(Color.Gray);
+                        break;
+                    case "player":
+                        f = e.Font;
+                        brush = new SolidBrush(e.ForeColor);
+                        break;
+                }
+
+                // if combatant is selected override colour with white and add selection bar
+                if (bSelected)
+                {
+                    brush = new SolidBrush(Color.White);
+                    g.FillRectangle(new SolidBrush(SystemColors.Highlight), e.Bounds);
+                }
+                else
+                {
+                    g.FillRectangle(new SolidBrush(Color.White), e.Bounds);
+                }
+
+                g.DrawString(list.Items[e.Index].ToString(), f, brush, p);
+
+                e.DrawFocusRectangle();
+            }
         }
 
         void dyingListContextMenu_Opening(object sender, CancelEventArgs e)
@@ -115,63 +200,6 @@ namespace Squire
             }
         }
 
-        /**
-         * Custom draw code for the combatant list that draws injured combatants differently.
-         * @param sender The origin of the event (usually the listbox).
-         * @param e The details of the event.
-         */
-        void combatantList_DrawItem(object sender, DrawItemEventArgs e)
-        {
-            e.DrawBackground();
-            Graphics g = e.Graphics;
-            Font f = e.Font;
-            PointF p = new PointF(e.Bounds.X, e.Bounds.Y);
-            ListBox list = (ListBox)sender;
-            Boolean bSelected = (e.Index == list.SelectedIndex);
-            Combatant currentCombatant = (Combatant)list.Items[e.Index];
-            SolidBrush brush = new SolidBrush(e.ForeColor);
-
-            // Decide on default font style and colour
-            switch (currentCombatant.status())
-            {
-                case "healthy":
-                    f = e.Font;
-                    brush = new SolidBrush(e.ForeColor);
-                    break;
-                case "injured":
-                    f = new Font(e.Font, FontStyle.Bold);
-                    brush = new SolidBrush(Color.Gold);
-                    break;
-                case "critical":
-                    f = new Font(e.Font, FontStyle.Bold);
-                    brush = new SolidBrush(Color.Red);
-                    break;
-                case "dead":
-                    f = new Font(e.Font, FontStyle.Bold);
-                    brush = new SolidBrush(Color.Gray);
-                    break;
-                case "player":
-                    f = e.Font;
-                    brush = new SolidBrush(e.ForeColor);
-                    break;
-            }
-
-            // if combatant is selected override colour with white and add selection bar
-            if (bSelected)
-            {
-                brush = new SolidBrush(Color.White);
-                g.FillRectangle(new SolidBrush(SystemColors.Highlight), e.Bounds);
-            }
-            else
-            {
-                g.FillRectangle(new SolidBrush(Color.White), e.Bounds);
-            }
-
-            g.DrawString(list.Items[e.Index].ToString(), f, brush, p);
-
-            e.DrawFocusRectangle();
-        }
-
         /*
          * Listens to keyboard for shortcuts and then acts accordingly.
          * @param msg No idea. VS created this one automatically.
@@ -180,6 +208,8 @@ namespace Squire
          */
         protected override bool ProcessCmdKey(ref Message msg, Keys keyData)
         {
+            // Interpret the key data. Should really rewrite this as a switch/case.
+
             // Ctrl + L (List). Puts focus on the initiative list.
             if (keyData == (Keys.Control | Keys.L))
             {
@@ -307,6 +337,10 @@ namespace Squire
                     damageButton.Visible = true;
                     damageButton.Enabled = true;
                     HPLabel.Visible = true;
+                    manualCurrentButton.Visible = true;
+                    manualCurrentButton.Enabled = true;
+                    manualMaxButton.Visible = true;
+                    manualMaxButton.Enabled = true;
                 }
                 else
                 {
@@ -316,6 +350,10 @@ namespace Squire
                     damageButton.Visible = false;
                     remainingHP.Visible = false;
                     HPLabel.Visible = false;
+                    manualCurrentButton.Visible = false;
+                    manualCurrentButton.Enabled = false;
+                    manualMaxButton.Visible = false;
+                    manualMaxButton.Enabled = false;
                 }
 
                 labelCombatantName.Text = selectedCombatant.getName();
@@ -785,6 +823,11 @@ namespace Squire
         private void dyingList_SelectedIndexChanged(object sender, EventArgs e)
         {
             dyingList.Refresh();
+        }
+
+        private void delayList_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            delayList.Refresh();
         }
     }
 }

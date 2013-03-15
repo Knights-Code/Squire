@@ -1357,11 +1357,13 @@
             // delayList
             // 
             this.delayList.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.delayList.DrawMode = System.Windows.Forms.DrawMode.OwnerDrawFixed;
             this.delayList.FormattingEnabled = true;
             this.delayList.Location = new System.Drawing.Point(3, 38);
             this.delayList.Name = "delayList";
             this.delayList.Size = new System.Drawing.Size(169, 137);
             this.delayList.TabIndex = 1;
+            this.delayList.SelectedIndexChanged += new System.EventHandler(this.delayList_SelectedIndexChanged);
             // 
             // generalMenu
             // 
@@ -1432,6 +1434,7 @@
             // manualCurrentButton
             // 
             this.manualCurrentButton.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.manualCurrentButton.Enabled = false;
             this.manualCurrentButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 7F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.manualCurrentButton.Location = new System.Drawing.Point(0, 0);
             this.manualCurrentButton.Margin = new System.Windows.Forms.Padding(0);
@@ -1445,6 +1448,7 @@
             // manualMaxButton
             // 
             this.manualMaxButton.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.manualMaxButton.Enabled = false;
             this.manualMaxButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 7F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.manualMaxButton.Location = new System.Drawing.Point(167, 0);
             this.manualMaxButton.Margin = new System.Windows.Forms.Padding(0);
@@ -1584,7 +1588,6 @@
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel16;
         private System.Windows.Forms.Button delayButton;
         private System.Windows.Forms.Button undelayButton;
-        private System.Windows.Forms.ListBox delayList;
         private System.Windows.Forms.Label labelCombatantName;
         private System.Windows.Forms.GroupBox attackGroup;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel17;
@@ -1627,5 +1630,6 @@
         private System.Windows.Forms.ContextMenuStrip contextMenuStrip1;
         private System.Windows.Forms.Button manualCurrentButton;
         private System.Windows.Forms.Button manualMaxButton;
+        public System.Windows.Forms.ListBox delayList;
     }
 }

@@ -27,6 +27,8 @@ namespace Squire
             //-----( Event Handlers )-----//
             okButton.Click += okButton_Click; // for some reason VS refused to generate a click handler
             cancelButton.Click += cancelButton_Click;
+            woundList.DrawItem += parentForm.initiative_DrawItem;
+            woundList.MouseMove += parentForm.initiative_MouseMove;
 
             //-----( Components )-----//
             // Generate wound list from combatant list
@@ -69,8 +71,15 @@ namespace Squire
                     }
                 }
 
+                parentForm.combatantList.Refresh();
+                parentForm.delayList.Refresh();
                 this.Close();
             }
+        }
+
+        private void woundList_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            woundList.Refresh();
         }
     }
 }

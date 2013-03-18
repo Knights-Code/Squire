@@ -798,7 +798,10 @@ namespace Squire
             if (combatantList.SelectedIndex != -1)
             {
                 Combatant selectedCombatant = (Combatant)combatantList.SelectedItem;
-                selectedCombatant.setCurrentHP(HPChange.IntValue);
+
+                // If the user tries to set current hp to a value higher than max, stop 'em
+                if (HPChange.IntValue <= selectedCombatant.getMaxHP()) selectedCombatant.setCurrentHP(HPChange.IntValue);
+                else MessageBox.Show("Current HP can't be higher than max HP!", "Error: Value Exceeds Maximum", MessageBoxButtons.OK, MessageBoxIcon.Error);
 
                 HPChange.IntValue = 0;
 
@@ -814,10 +817,13 @@ namespace Squire
             if (combatantList.SelectedIndex != -1)
             {
                 Combatant selectedCombatant = (Combatant)combatantList.SelectedItem;
+                int difference = 0;
+                if (HPChange.IntValue >= selectedCombatant.getMaxHP()) difference = HPChange.IntValue - selectedCombatant.getMaxHP();
                 selectedCombatant.setMaxHP(HPChange.IntValue);
 
                 // If new max is lower than current HP, change current HP to match
                 if (selectedCombatant.getCurrentHP() > selectedCombatant.getMaxHP()) selectedCombatant.setCurrentHP(selectedCombatant.getMaxHP());
+                else selectedCombatant.setCurrentHP(selectedCombatant.getCurrentHP() + difference);
 
                 HPChange.IntValue = 0;
 

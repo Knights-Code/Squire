@@ -36,6 +36,7 @@ namespace Squire
             dyingList.MouseMove += new MouseEventHandler(initiative_MouseMove);
             delayList.MouseMove += new MouseEventHandler(initiative_MouseMove);
             this.MouseMove += new MouseEventHandler(General_MouseMove);
+            combatantList.KeyPress += new KeyPressEventHandler(initiative_KeyPress);
             //dyingList.MouseLeave += new EventHandler(initiative_MouseLeave);
 
             //-----( Initialise Variables )-----\\
@@ -46,6 +47,13 @@ namespace Squire
             dyingList.DrawItem += new DrawItemEventHandler(initiative_DrawItem);
             combatantList.DrawItem += initiative_DrawItem;
             delayList.DrawItem += initiative_DrawItem;
+        }
+
+        // If we don't want a list box to interpret the keyboard and select different items accordingly, overload the keypress event handler
+        // and handle the event ourselves (by just telling the system it's been dealt with).
+        void initiative_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            e.Handled = true;
         }
 
         void General_MouseMove(object sender, MouseEventArgs e)

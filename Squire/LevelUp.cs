@@ -579,7 +579,7 @@ namespace Squire
 
                 if (generatePDF.Checked)
                 {
-                    createCharacterSheet.FileName = createCharacterXML.FileName.Replace(".xml", ".pdf");
+                 //   createCharacterSheet.FileName = createCharacterXML.FileName.Replace(".xml", ".pdf");
                     if (createCharacterSheet.ShowDialog() != DialogResult.OK) return;
                     if (openCharacterSheet.ShowDialog() != DialogResult.OK) return;
 
@@ -588,7 +588,7 @@ namespace Squire
                         using (FileStream originalCharacterSheet = new FileStream(openCharacterSheet.FileName, FileMode.Open))
                         using (FileStream newCharacterSheet = new FileStream(createCharacterSheet.FileName, FileMode.Create))
                         {
-                            // Open existing PDF  
+                            // Open existing PDF 
                             PdfReader pdfReader = new PdfReader(originalCharacterSheet);
 
                             // PdfStamper, which will create  

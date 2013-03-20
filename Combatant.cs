@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Collections;
 
 namespace Squire
 {
@@ -12,6 +13,8 @@ namespace Squire
         int currentHP;
         int[] attackBonus;
         string[] damage;
+        ArrayList effect;
+        ArrayList roundsRemaining;
         Boolean bPlayer;
         Boolean bStable;
 
@@ -24,6 +27,9 @@ namespace Squire
             this.damage = new string[3] {"+0","+0","+0"};
             this.bPlayer = false;
             this.bStable = true;
+
+            effect = new ArrayList();
+            roundsRemaining = new ArrayList();
         }
 
         public Combatant(string name)
@@ -33,8 +39,44 @@ namespace Squire
             this.damage = new string[3] {"+0","+0","+0"};
             this.bPlayer = true;
             this.bStable = true;
+
+            effect = new ArrayList();
+            roundsRemaining = new ArrayList();
         }
 
+        public int EffectCount
+        {
+            get
+            {
+                return effect.Count;
+            }
+        }
+
+        public string getEffectName(int index)
+        {
+            return (string)effect[index];
+        }
+
+        public decimal getEffectDuration(int index)
+        {
+            return (decimal)roundsRemaining[index];
+        }
+
+        public void addEffect(string name, decimal duration)
+        {
+            effect.Add(name);
+            roundsRemaining.Add(duration);
+        }
+
+        public void setEffectName(string name, int index)
+        {
+            this.effect[index] = name;
+        }
+
+        public void setEffectDuration(decimal duration, int index)
+        {
+            this.roundsRemaining[index] = duration;
+        }
 
         public Boolean isStable()
         {

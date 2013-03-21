@@ -1273,6 +1273,7 @@
             // newEffectButton
             // 
             this.newEffectButton.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.newEffectButton.Enabled = false;
             this.newEffectButton.Location = new System.Drawing.Point(34, 3);
             this.newEffectButton.Name = "newEffectButton";
             this.newEffectButton.Size = new System.Drawing.Size(75, 23);
@@ -1291,6 +1292,7 @@
             this.deleteEffectButton.TabIndex = 1;
             this.deleteEffectButton.Text = "Delete";
             this.deleteEffectButton.UseVisualStyleBackColor = true;
+            this.deleteEffectButton.Click += new System.EventHandler(this.deleteEffectButton_Click);
             // 
             // tableLayoutPanel25
             // 

@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Windows.Forms;
 using System.Text.RegularExpressions;
+using System.Collections;
 
 namespace Squire
 {
@@ -397,7 +398,9 @@ namespace Squire
 
                 // Effects Group
                 // Destroy and rebuild table, adding the combatant's active effects afterward.
-                
+
+                newEffectButton.Enabled = true;
+
                 // Nuke table for rebuild.
                 while (effectsTable.RowCount > 2)
                 {
@@ -417,7 +420,10 @@ namespace Squire
 
                     currentEffectName.Text = selectedCombatant.getEffectName(i);
                     currentEffectDuration.Value = selectedCombatant.getEffectDuration(i);
+
+                    if (currentEffectName.Text.Length == 0) newEffectButton.Enabled = false;
                 }
+
                 combatantList.Refresh();
             }
             else
@@ -458,6 +464,8 @@ namespace Squire
                 decrementAttack3.Enabled = false;
                 incrementDamage3.Enabled = false;
                 decrementDamage3.Enabled = false;
+
+                newEffectButton.Enabled = false;
             }
         }
 
@@ -941,7 +949,16 @@ namespace Squire
 
         void bDelete_CheckedChanged(object sender, EventArgs e)
         {
-            throw new NotImplementedException();
+            deleteEffectButton.Enabled = false;
+
+            for (int i = 0; i < effectsTable.Controls.Count; i++)
+            {
+                if (effectsTable.Controls[i] is CheckBox)
+                {
+                    CheckBox focalBox = (CheckBox)effectsTable.Controls[i];
+                    if (focalBox.Checked) deleteEffectButton.Enabled = true;
+                }
+            }
         }
 
         void roundsRemaining_ValueChanged(object sender, EventArgs e)
@@ -956,6 +973,30 @@ namespace Squire
 
             // Modify the respective effect data in the combatant.
             selectedCombatant.setEffectDuration(focalDuration.Value, effectIndex);
+        }
+
+        private void deleteEffectButton_Click(object sender, EventArgs e)
+        {
+            ArrayList indexToDeleteFrom = new ArrayList();
+
+            // Record the indices of the first control in each row marked for deletion.
+            for (int i = 0; i < effectsTable.Controls.Count; i++)
+            {
+                if (effectsTable.Controls[i] is CheckBox)
+                {
+                    CheckBox focalBox = (CheckBox)effectsTable.Controls[i];
+                    if (focalBox.Checked) indexToDeleteFrom.Add(i);
+                }
+            }
+
+            // Delete any rows marked for deletion.
+            for (int i = 0; i < indexToDeleteFrom.Count; i++)
+            {
+                for (int j = 0; j < 3; j++)
+                    effectsTable.Controls.RemoveAt((int)indexToDeleteFrom[i]);
+            }
+
+            effectsTable.RowCount -= indexToDeleteFrom.Count;
         }
     }
 }

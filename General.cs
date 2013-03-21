@@ -396,49 +396,28 @@ namespace Squire
                 decrementDamage3.Enabled = true;
 
                 // Effects Group
-                // Go through each existing row of the effects table and either update the existing contents with the selected combatant's
-                // effect data or hide rows we don't need.
-                if (effectsTable.RowCount > 2)
+                // Destroy and rebuild table, adding the combatant's active effects afterward.
+                
+                // Nuke table for rebuild.
+                while (effectsTable.RowCount > 2)
                 {
-                    for (int i = 1; i < effectsTable.RowCount; i++)
-                    {
-                        // Load in controls from row.
-                        CheckBox focalCheckBox = (CheckBox)effectsTable.GetControlFromPosition(0, i);
-                        TextBox focalEffect = (TextBox)effectsTable.GetControlFromPosition(1, i);
-                        NumericUpDown focalDuration = (NumericUpDown)effectsTable.GetControlFromPosition(2, i);
-
-                        // Check if we need to start clearing rows instead of modifying them.
-                        if (i <= selectedCombatant.EffectCount)
-                        {
-                            // Display controls.
-                            focalCheckBox.Visible = true;
-                            focalEffect.Visible = true;
-                            focalDuration.Visible = true;
-
-                            // Update the controls with the correct data.
-                            focalCheckBox.Checked = false;
-                            focalEffect.Text = selectedCombatant.getEffectName(i);
-                            focalDuration.Value = selectedCombatant.getEffectDuration(i);
-
-                            if (focalEffect.Text.Length == 0) newEffectButton.Enabled = false;
-                        }
-                        else
-                        {
-                            if (focalCheckBox != null && focalEffect != null && focalDuration != null)
-                            {
-                                // Hide controls.
-                                focalCheckBox.Visible = false;
-                                focalEffect.Visible = false;
-                                focalDuration.Visible = false;
-                            }
-                        }
-                    }
-                }
-                else
-                {
-                    newEffectButton.Enabled = true;
+                    for ( int i=0; i < 3; i++ )
+                        effectsTable.Controls.RemoveAt(effectsTable.Controls.Count - 1); // Remove last control
+                    effectsTable.RowCount--;
                 }
 
+                // Now rebuild!
+                for (int i = 0; i < selectedCombatant.EffectCount; i++)
+                {
+                    newEffectButton.PerformClick();
+
+                    // Load effect data into the newly created controls.
+                    TextBox currentEffectName = (TextBox)effectsTable.GetControlFromPosition(1, effectsTable.RowCount - 2);
+                    NumericUpDown currentEffectDuration = (NumericUpDown)effectsTable.GetControlFromPosition(2, effectsTable.RowCount - 2);
+
+                    currentEffectName.Text = selectedCombatant.getEffectName(i);
+                    currentEffectDuration.Value = selectedCombatant.getEffectDuration(i);
+                }
                 combatantList.Refresh();
             }
             else

@@ -31,23 +31,53 @@ namespace Squire
 
         private void addOK_Click(object sender, EventArgs e)
         {
-            if (this.combatantName.Text != String.Empty)
+            // If we're adding a batch of combatants ...
+            if (useBatch.Checked)
             {
-                Combatant newCombatant;
-                if (combatantHP.Enabled && combatantHP.IntValue != 0) newCombatant = new Combatant(combatantName.Text, combatantHP.IntValue);
-                else newCombatant = new Combatant(combatantName.Text);
 
-                parentForm.combatantList.Items.Add(newCombatant);
-                
-                // If there's no selected combatant in the list, select the recently added one.
-                if (parentForm.combatantList.SelectedIndex == -1) parentForm.combatantList.SelectedIndex = (parentForm.combatantList.Items.Count - 1);
-                this.Close();
+            }
+            else
+            {
+                if (this.combatantName.Text != String.Empty)
+                {
+                    Combatant newCombatant;
+                    if (combatantHP.Enabled && combatantHP.IntValue != 0) newCombatant = new Combatant(combatantName.Text, combatantHP.IntValue);
+                    else newCombatant = new Combatant(combatantName.Text);
+
+                    parentForm.combatantList.Items.Add(newCombatant);
+
+                    // If there's no selected combatant in the list, select the recently added one.
+                    if (parentForm.combatantList.SelectedIndex == -1) parentForm.combatantList.SelectedIndex = (parentForm.combatantList.Items.Count - 1);
+                    this.Close();
+                }
             }
         }
 
         private void addCancel_Click(object sender, EventArgs e)
         {
             this.Close();
+        }
+
+        private void useBatch_CheckedChanged(object sender, EventArgs e)
+        {
+            if (useBatch.Checked)
+            {
+                combatantHP.Enabled = false;
+                combatantName.Enabled = false;
+
+                batchExpression.Enabled = true;
+                batchName.Enabled = true;
+                batchNumber.Enabled = true;
+            }
+            else
+            {
+                combatantHP.Enabled = true;
+                combatantName.Enabled = true;
+
+                batchExpression.Enabled = false;
+                batchName.Enabled = false;
+                batchNumber.Enabled = false;
+            }
         }
     }
 }

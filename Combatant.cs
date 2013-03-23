@@ -78,6 +78,12 @@ namespace Squire
             this.roundsRemaining[index] = duration;
         }
 
+        public void removeEffect(int index)
+        {
+            effect.RemoveAt(index);
+            roundsRemaining.RemoveAt(index);
+        }
+
         public Boolean isStable()
         {
             return bStable;

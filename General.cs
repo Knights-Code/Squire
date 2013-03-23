@@ -32,13 +32,12 @@ namespace Squire
             dyingListContextMenu.RenderMode = generalMenu.RenderMode;
             dyingListContextMenu.Opening += new CancelEventHandler(dyingListContextMenu_Opening);
             generalToolTip = new ToolTip();
-            //generalToolTip.Draw += new DrawToolTipEventHandler(generalToolTip_Draw);
             generalToolTip.Active = false;
             dyingList.MouseMove += new MouseEventHandler(initiative_MouseMove);
+            dyingList.LostFocus += dyingList_LostFocus;
             delayList.MouseMove += new MouseEventHandler(initiative_MouseMove);
             this.MouseMove += new MouseEventHandler(General_MouseMove);
             combatantList.KeyPress += new KeyPressEventHandler(initiative_KeyPress);
-            //dyingList.MouseLeave += new EventHandler(initiative_MouseLeave);
 
             //-----( Initialise Variables )-----\\
             currentRound = roundNumber.Value;
@@ -50,8 +49,13 @@ namespace Squire
             delayList.DrawItem += initiative_DrawItem;
         }
 
-        // If we don't want a list box to interpret the keyboard and select different items accordingly, overload the keypress event handler
-        // and handle the event ourselves (by just telling the system it's been dealt with).
+        void dyingList_LostFocus(object sender, EventArgs e)
+        {
+            dyingList.SelectedIndex = -1;
+        }
+
+        /// If we don't want a list box to interpret the keyboard and select different items accordingly, overload the keypress event handler
+        /// and handle the event ourselves (by just telling the system it's been dealt with).
         void initiative_KeyPress(object sender, KeyPressEventArgs e)
         {
             e.Handled = true;
@@ -170,7 +174,23 @@ namespace Squire
                 if (bSelected)
                 {
                     brush = new SolidBrush(Color.White);
-                    g.FillRectangle(new SolidBrush(SystemColors.Highlight), e.Bounds);
+                    if (currentCombatant.status() == "healthy")
+                        g.FillRectangle(new SolidBrush(SystemColors.Highlight), e.Bounds);
+                    else
+                    {
+                        switch (currentCombatant.status())
+                        {
+                            case "injured":
+                                g.FillRectangle(new SolidBrush(Color.Orange), e.Bounds);
+                                break;
+                            case "critical":
+                                g.FillRectangle(new SolidBrush(Color.Red), e.Bounds);
+                                break;
+                            case "dead":
+                                g.FillRectangle(new SolidBrush(Color.Gray), e.Bounds);
+                                break;
+                        }
+                    }
                 }
                 else
                 {
@@ -219,81 +239,73 @@ namespace Squire
         {
             // Interpret the key data. Should really rewrite this as a switch/case.
 
-            // Ctrl + L (List). Puts focus on the initiative list.
-            if (keyData == (Keys.Control | Keys.L))
+            switch (keyData)
             {
-                if (tabPlayer.SelectedTab == tabPC) listCombatants.Focus();
-                else combatantList.Focus();
-                return true;
-            }
-            // Ctrl + D (Delay). Puts focus on the delay list.
-            else if (keyData == (Keys.Control | Keys.D))
-            {
-                if (tabPlayer.SelectedTab == tabDM) delayList.Focus();
-                return true;
-            }
-            // Ctrl + -> (Right). Removes selected combatant from the initiative order and puts them in the delay list.
-            else if (keyData == (Keys.Control | Keys.Right))
-            {
-                if (tabPlayer.SelectedTab == tabDM) delayButton.PerformClick();
-                return true;
-            }
-            // Ctrl + <- (Left). Removes selected combatant from the delay list and inserts them in the initiative list.
-            else if (keyData == (Keys.Control | Keys.Left))
-            {
-                if (tabPlayer.SelectedTab == tabDM) undelayButton.PerformClick();
-                return true;
-            }
-            // Ctrl + ^ (Up). Moves combatant up in the initiative list.
-            else if (keyData == (Keys.Control | Keys.Up))
-            {
-                if (tabPlayer.SelectedTab == tabDM) moveCombatantUp.PerformClick();
-                return true;
-            }
-            // Ctrl + v (Down). Moves combatant down in the initiative list.
-            else if (keyData == (Keys.Control | Keys.Down))
-            {
-                if (tabPlayer.SelectedTab == tabDM) moveCombatantDown.PerformClick();
-                return true;
-            }
-            // Ctrl + U (Unconscious). Puts focus on the dying list.
-            else if (keyData == (Keys.Control | Keys.U))
-            {
-                if (tabPlayer.SelectedTab == tabDM) dyingList.Focus();
-                return true;
-            }
-            // Ctrl + K (Kill). Moves selected combatant to the dying list.
-            else if (keyData == (Keys.Control | Keys.K))
-            {
-                if (tabPlayer.SelectedTab == tabDM) killButton.PerformClick();
-                return true;
-            }
-            // Ctrl + R (Revive). Moves selected combatant from the dying list to the initiative list.
-            else if (keyData == (Keys.Control | Keys.R))
-            {
-                if (tabPlayer.SelectedTab == tabDM) liveButton.PerformClick();
-                return true;
-            }
-            // Ctrl + W (Wound). Opens the Wound Combatant dialog.
-            else if (keyData == (Keys.Control | Keys.W))
-            {
-                if (tabPlayer.SelectedTab == tabDM)
-                {
-                    if (combatantList.SelectedIndex != -1)
+                // Ctrl + L (List). Puts focus on the initiative list.
+                case (Keys.Control | Keys.L):
+                    if (tabPlayer.SelectedTab == tabPC) listCombatants.Focus();
+                    else combatantList.Focus();
+                    return true;
+                    break;
+                // Ctrl + D (Delay). Puts focus on the delay list.
+                case (Keys.Control | Keys.D):
+                    if (tabPlayer.SelectedTab == tabDM) delayList.Focus();
+                    return true;
+                    break;
+                // Ctrl + -> (Right). Removes selected combatant from the initiative order and puts them in the delay list.
+                case (Keys.Control | Keys.Right):
+                    if (tabPlayer.SelectedTab == tabDM) delayButton.PerformClick();
+                    return true;
+                    break;
+                // Ctrl + <- (Left). Removes selected combatant from the delay list and inserts them in the initiative list.
+                case (Keys.Control | Keys.Left):
+                    if (tabPlayer.SelectedTab == tabDM) undelayButton.PerformClick();
+                    return true;
+                    break;
+                // Ctrl + ^ (Up). Moves combatant up in the initiative list.
+                case (Keys.Control | Keys.Up):
+                    if (tabPlayer.SelectedTab == tabDM) moveCombatantUp.PerformClick();
+                    return true;
+                    break;
+                // Ctrl + v (Down). Moves combatant down in the initiative list.
+                case (Keys.Control | Keys.Down):
+                    if (tabPlayer.SelectedTab == tabDM) moveCombatantDown.PerformClick();
+                    return true;
+                    break;
+                // Ctrl + U (Unconscious). Puts focus on the dying list.
+                case (Keys.Control | Keys.U):
+                    if (tabPlayer.SelectedTab == tabDM) dyingList.Focus();
+                    return true;
+                    break;
+                // Ctrl + K (Kill). Moves selected combatant to the dying list.
+                case (Keys.Control | Keys.K):
+                    if (tabPlayer.SelectedTab == tabDM) killButton.PerformClick();
+                    return true;
+                    break;
+                // Ctrl + R (Revive). Moves selected combatant from the dying list to the initiative list.
+                case (Keys.Control | Keys.R):
+                    if (tabPlayer.SelectedTab == tabDM) liveButton.PerformClick();
+                    return true;
+                    break;
+                // Ctrl + W (Wound). Opens the Wound Combatant dialog.
+                case (Keys.Control | Keys.W):
+                    if (tabPlayer.SelectedTab == tabDM)
                     {
-                        WoundCombatant woundDialog = new WoundCombatant(this);
-                        woundDialog.Show();
+                        if (combatantList.SelectedIndex != -1)
+                        {
+                            WoundCombatant woundDialog = new WoundCombatant(this);
+                            woundDialog.Show();
+                        }
                     }
-                }
-            }
-            // Ctrl + N (New round). Increments the round number and selects the topmost combatant.
-            else if (keyData == (Keys.Control | Keys.N))
-            {
-                if (tabPlayer.SelectedTab == tabDM)
-                {
-                    roundNumber.Value++; // increment the round number
-                    combatantList.SelectedIndex = 0; // select the first combatant in the initiative order
-                }
+                    break;
+                // Ctrl + N (New round). Increments the round number and selects the topmost combatant.
+                case (Keys.Control | Keys.N):
+                    if (tabPlayer.SelectedTab == tabDM)
+                    {
+                        roundNumber.Value++; // increment the round number
+                        combatantList.SelectedIndex = 0; // select the first combatant in the initiative order
+                    }
+                    break;
             }
             return base.ProcessCmdKey(ref msg, keyData);
         }
@@ -398,31 +410,7 @@ namespace Squire
 
                 // Effects Group
                 // Destroy and rebuild table, adding the combatant's active effects afterward.
-
-                newEffectButton.Enabled = true;
-
-                // Nuke table for rebuild.
-                while (effectsTable.RowCount > 2)
-                {
-                    for ( int i=0; i < 3; i++ )
-                        effectsTable.Controls.RemoveAt(effectsTable.Controls.Count - 1); // Remove last control
-                    effectsTable.RowCount--;
-                }
-
-                // Now rebuild!
-                for (int i = 0; i < selectedCombatant.EffectCount; i++)
-                {
-                    newEffectButton.PerformClick();
-
-                    // Load effect data into the newly created controls.
-                    TextBox currentEffectName = (TextBox)effectsTable.GetControlFromPosition(1, effectsTable.RowCount - 2);
-                    NumericUpDown currentEffectDuration = (NumericUpDown)effectsTable.GetControlFromPosition(2, effectsTable.RowCount - 2);
-
-                    currentEffectName.Text = selectedCombatant.getEffectName(i);
-                    currentEffectDuration.Value = selectedCombatant.getEffectDuration(i);
-
-                    if (currentEffectName.Text.Length == 0) newEffectButton.Enabled = false;
-                }
+                destroyAndRebuild(effectsTable);                
 
                 combatantList.Refresh();
             }
@@ -820,6 +808,38 @@ namespace Squire
                         dyingList.Refresh();
                     }
                 }
+
+                // Handle effects by reducing the rounds remaining on each one by 1 round.
+                for (int i = 0; i < combatantList.Items.Count; i++)
+                {
+                    Combatant currentCombatant = (Combatant)combatantList.Items[i];
+                    ArrayList indexToDelete = new ArrayList();
+
+                    // Check that the combatant has effects to update.
+                    if (currentCombatant.EffectCount > 0)
+                    {
+                        // Reduce each effect's duration by 1 if it hasn't already reached 0.
+                        for (int j = 0; j < currentCombatant.EffectCount; j++)
+                        {
+                            currentCombatant.setEffectDuration((currentCombatant.getEffectDuration(j) > 0) ? (currentCombatant.getEffectDuration(j) - 1) : 0, j);
+                            
+                            // Prompt user to remove any effects that have "expired".
+                            if (currentCombatant.getEffectDuration(j) == 0)
+                            {
+                                if (MessageBox.Show("Effect duration of " + currentCombatant.getEffectName(j) + " has reached zero."
+                                    + " Remove from effect list?", "Effect on Combatant \""+
+                                    currentCombatant+"\" Expiring", MessageBoxButtons.YesNo,
+                                    MessageBoxIcon.Question) == DialogResult.Yes)
+                                    indexToDelete.Add(j);
+                            }
+                        }
+
+                        for (int j = indexToDelete.Count-1; j > -1; j--)
+                            currentCombatant.removeEffect((int)indexToDelete[j]);
+
+                        destroyAndRebuild(effectsTable);
+                    }
+                }
             }
 
             this.currentRound = roundNumber.Value;
@@ -977,26 +997,64 @@ namespace Squire
 
         private void deleteEffectButton_Click(object sender, EventArgs e)
         {
-            ArrayList indexToDeleteFrom = new ArrayList();
-
-            // Record the indices of the first control in each row marked for deletion.
-            for (int i = 0; i < effectsTable.Controls.Count; i++)
+            if (combatantList.SelectedIndex != 1)
             {
-                if (effectsTable.Controls[i] is CheckBox)
+                Combatant selectedCombatant = (Combatant)combatantList.SelectedItem;
+                ArrayList indexToDeleteFrom = new ArrayList();
+
+                int effectCount = 0;
+
+                // Record the indices of the first control in each row marked for deletion.
+                for (int i = 0; i < effectsTable.Controls.Count; i++)
                 {
-                    CheckBox focalBox = (CheckBox)effectsTable.Controls[i];
-                    if (focalBox.Checked) indexToDeleteFrom.Add(i);
+                    if (effectsTable.Controls[i] is CheckBox)
+                    {
+                        CheckBox focalBox = (CheckBox)effectsTable.Controls[i];
+                        if (focalBox.Checked) indexToDeleteFrom.Add(effectCount);
+                        effectCount++;
+                    }
+                }
+
+                // Remove effects from the combatant.
+                for (int i = indexToDeleteFrom.Count-1; i > -1; i--)
+                    selectedCombatant.removeEffect((int)indexToDeleteFrom[i]);
+
+                // Rebuild table.
+                destroyAndRebuild(effectsTable);
+            }
+        }
+
+        public void destroyAndRebuild(TableLayoutPanel table)
+        {
+            if (combatantList.SelectedIndex != -1)
+            {
+                Combatant selectedCombatant = (Combatant)combatantList.SelectedItem;
+
+                newEffectButton.Enabled = true;
+
+                // Nuke table for rebuild.
+                while (table.RowCount > 2)
+                {
+                    for (int i = 0; i < 3; i++)
+                        table.Controls.RemoveAt(table.Controls.Count - 1); // Remove last control
+                    table.RowCount--;
+                }
+
+                // Now rebuild!
+                for (int i = 0; i < selectedCombatant.EffectCount; i++)
+                {
+                    newEffectButton.PerformClick();
+
+                    // Load effect data into the newly created controls.
+                    TextBox currentEffectName = (TextBox)table.GetControlFromPosition(1, table.RowCount - 2);
+                    NumericUpDown currentEffectDuration = (NumericUpDown)table.GetControlFromPosition(2, table.RowCount - 2);
+
+                    currentEffectName.Text = selectedCombatant.getEffectName(i);
+                    currentEffectDuration.Value = selectedCombatant.getEffectDuration(i);
+
+                    if (currentEffectName.Text.Length == 0) newEffectButton.Enabled = false;
                 }
             }
-
-            // Delete any rows marked for deletion.
-            for (int i = 0; i < indexToDeleteFrom.Count; i++)
-            {
-                for (int j = 0; j < 3; j++)
-                    effectsTable.Controls.RemoveAt((int)indexToDeleteFrom[i]);
-            }
-
-            effectsTable.RowCount -= indexToDeleteFrom.Count;
         }
     }
 }

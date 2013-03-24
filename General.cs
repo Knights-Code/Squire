@@ -207,10 +207,17 @@ namespace Squire
         {
             Combatant casualty = (Combatant)dyingList.SelectedItem;
             ToolStripMenuItem stabilise = new ToolStripMenuItem("Stabilise", null, new EventHandler(stabiliseCasualty));
-            stabilise.Enabled = casualty.isStable() ? false : true;
+            ToolStripMenuItem delete = new ToolStripMenuItem("Delete", null, new EventHandler(deleteCasualty));
+            stabilise.Enabled = !casualty.isStable();
 
             dyingListContextMenu.Items.Clear();
             dyingListContextMenu.Items.Add(stabilise);
+            dyingListContextMenu.Items.Add(delete);
+        }
+
+        private void deleteCasualty(object sender, EventArgs e)
+        {
+            dyingList.Items.Remove(dyingList.SelectedItem);
         }
 
         void stabiliseCasualty(object sender, EventArgs e)

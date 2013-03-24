@@ -167,7 +167,7 @@
             this.tableLayoutPanel4.RowCount = 1;
             this.tableLayoutPanel4.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
             this.tableLayoutPanel4.Size = new System.Drawing.Size(520, 80);
-            this.tableLayoutPanel4.TabIndex = 3;
+            this.tableLayoutPanel4.TabIndex = 0;
             // 
             // groupBox1
             // 

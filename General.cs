@@ -8,6 +8,7 @@ using System.Text;
 using System.Windows.Forms;
 using System.Text.RegularExpressions;
 using System.Collections;
+using System.IO;
 
 namespace Squire
 {
@@ -319,10 +320,24 @@ namespace Squire
 
         private void saveToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            // TODO: battle file export. Probably a basic File stream that prints to a
-            // file in basic unicode with custom delimiters. The file will need to store all data
-            // for all combatants, their condition (fighting, delaying, or dying), their order in
-            // these lists, and of course the round number.
+            SaveFileDialog saveBattle = new SaveFileDialog();
+            saveBattle.DefaultExt = ".btl";
+            saveBattle.OverwritePrompt = true;
+            saveBattle.Title = "Save Battle";
+
+            if (saveBattle.ShowDialog() == DialogResult.OK)
+            {
+                StreamWriter file = new StreamWriter(saveBattle.FileName);
+
+                file.WriteLine("Initiative List");
+                for (int i = 0; i < combatantList.Items.Count; i++)
+                {
+                    Combatant c = (Combatant)combatantList.Items[i];
+                    file.WriteLine(c.toString());
+                }
+
+                file.Close();
+            }
         }
 
         private void closeButton_Click(object sender, EventArgs e)

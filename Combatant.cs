@@ -117,6 +117,7 @@ namespace Squire
         public void setCurrentHP(int newHP)
         {
             if (currentHP >= 0 && newHP < 0) this.bStable = false; // If we've been dropped automatically become unstable
+            else if (newHP >= 0) this.bStable = true;
             this.currentHP = newHP;
         }
 
@@ -165,9 +166,24 @@ namespace Squire
             }
         }
 
-        internal void setMaxHP(int newMax)
+        public void setMaxHP(int newMax)
         {
             this.maxHP = newMax;
+        }
+
+        public string toString()
+        {
+            string effects = "";
+
+            for ( int i=0; i < EffectCount; i++ )
+            {
+                effects += (string)effect[i];
+                effects += "\t";
+                effects += roundsRemaining[i].ToString();
+                if (i < EffectCount-1) effects += "\t";
+            }
+
+            return name + "\t" + currentHP + "\t" + maxHP +"\t"+EffectCount+ (EffectCount > 0 ? ("\t" + effects) : "");
         }
     }
 }

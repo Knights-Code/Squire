@@ -21,6 +21,8 @@ namespace Squire
         Combatant toolTipCombatant;
         Point toolTipLocation;
 
+        enum LoadProgress { START, INITIATIVE, DELAY, DYING, INDICES };
+
         public General()
         {
             InitializeComponent();
@@ -39,6 +41,7 @@ namespace Squire
             delayList.MouseMove += new MouseEventHandler(initiative_MouseMove);
             this.MouseMove += new MouseEventHandler(General_MouseMove);
             combatantList.KeyPress += new KeyPressEventHandler(initiative_KeyPress);
+            openToolStripMenuItem.Click += openToolStripMenuItem_Click;
 
             //-----( Initialise Variables )-----\\
             currentRound = roundNumber.Value;
@@ -245,8 +248,6 @@ namespace Squire
          */
         protected override bool ProcessCmdKey(ref Message msg, Keys keyData)
         {
-            // Interpret the key data. Should really rewrite this as a switch/case.
-
             switch (keyData)
             {
                 // Ctrl + L (List). Puts focus on the initiative list.
@@ -318,6 +319,68 @@ namespace Squire
             return base.ProcessCmdKey(ref msg, keyData);
         }
 
+        private void openToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            OpenFileDialog openBattle = new OpenFileDialog();
+            openBattle.DefaultExt = ".btl";
+            openBattle.Title = "Open Battle";
+
+            if (openBattle.ShowDialog() == DialogResult.OK)
+            {
+                StreamReader file = new StreamReader(openBattle.FileName);
+
+                string currentLine;
+                LoadProgress filePosition = LoadProgress.START;
+
+                while ((currentLine = file.ReadLine()) != null)
+                {
+                    switch (currentLine)
+                    {
+                        case "Initiative List":
+                            filePosition = LoadProgress.INITIATIVE;
+                            currentLine = file.ReadLine();
+                            break;
+                        case "Delay List":
+                            filePosition = LoadProgress.DELAY;
+                            currentLine = file.ReadLine();
+                            break;
+                        case "Dying List":
+                            filePosition = LoadProgress.DYING;
+                            currentLine = file.ReadLine();
+                            break;
+                        case "Indices":
+                            filePosition = LoadProgress.INDICES;
+                            currentLine = file.ReadLine();
+                            break;
+                    }
+
+                    switch (filePosition)
+                    {
+                        case LoadProgress.INITIATIVE:
+                            string[] items = currentLine.Split('\t');
+                            string combatantName = items[0];
+                            int currentHP = int.Parse(items[1]);
+                            int maxHP = int.Parse(items[2]);
+
+                            Combatant newCombatant = new Combatant(items[0], int.Parse(items[2]));
+                            newCombatant.setCurrentHP(int.Parse(items[1]));
+
+                            // Process effects.
+                            for (int i = 4; i < (int.Parse(items[3]) * 2) + 4; i += 2)
+                                newCombatant.addEffect(items[i], Convert.ToDecimal(items[i + 1]));
+
+                            combatantList.Items.Add(newCombatant);
+
+                            break;
+                    }
+                }
+
+                file.Close();
+
+                if (combatantList.Items.Count > 0) combatantList.SelectedIndex = 0;
+            }
+        }
+
         private void saveToolStripMenuItem_Click(object sender, EventArgs e)
         {
             SaveFileDialog saveBattle = new SaveFileDialog();
@@ -335,6 +398,23 @@ namespace Squire
                     Combatant c = (Combatant)combatantList.Items[i];
                     file.WriteLine(c.toString());
                 }
+
+                file.WriteLine("\nDelay List");
+                for (int i = 0; i < delayList.Items.Count; i++)
+                {
+                    Combatant c = (Combatant)delayList.Items[i];
+                    file.WriteLine(c.toString());
+                }
+
+                file.WriteLine("\nDying List");
+                for (int i = 0; i < dyingList.Items.Count; i++)
+                {
+                    Combatant c = (Combatant)dyingList.Items[i];
+                    file.WriteLine(c.toString());
+                }
+
+                file.WriteLine("\nIndices");
+                file.WriteLine(combatantList.SelectedIndex + "\t" + delayList.SelectedIndex + "\t" + dyingList.SelectedIndex);
 
                 file.Close();
             }
@@ -432,7 +512,27 @@ namespace Squire
 
                 // Effects Group
                 // Destroy and rebuild table, adding the combatant's active effects afterward.
-                destroyAndRebuild(effectsTable);                
+                destroyAndRebuild(effectsTable);
+
+                ArrayList indexToDelete = new ArrayList();
+
+                // Check for any effects expiring and prompt user to remove them.
+                for (int j = 0; j < selectedCombatant.EffectCount; j++)
+                {
+                    if (selectedCombatant.getEffectDuration(j) == 0)
+                    {
+                        if (MessageBox.Show("Effect duration of " + selectedCombatant.getEffectName(j) + " has reached zero."
+                            + " Remove from effect list?", "Effect on Combatant \"" +
+                            selectedCombatant + "\" Expiring", MessageBoxButtons.YesNo,
+                            MessageBoxIcon.Question) == DialogResult.Yes)
+                            indexToDelete.Add(j);
+                    }
+                }
+
+                for (int j = indexToDelete.Count - 1; j > -1; j--)
+                    selectedCombatant.removeEffect((int)indexToDelete[j]);
+
+                destroyAndRebuild(effectsTable);
 
                 combatantList.Refresh();
             }
@@ -776,8 +876,8 @@ namespace Squire
                 combatantList.Items.RemoveAt(currentIndex);
                 dyingList.Items.Add(selectedCombatant);
 
-                // If there's no combatant selected in the dying list, select the most recently added one.
-                if (dyingList.SelectedIndex == -1) dyingList.SelectedIndex = (dyingList.Items.Count - 1);
+                // If there's a combatant selected in the dying list, deselect.
+                dyingList.SelectedIndex = -1;
 
                 // If there's a combatant directly after the dying one, select it. Select the last combatant in the list otherwise.
                 if (currentIndex <= (combatantList.Items.Count - 1)) combatantList.SelectedIndex = currentIndex;
@@ -835,31 +935,39 @@ namespace Squire
                 for (int i = 0; i < combatantList.Items.Count; i++)
                 {
                     Combatant currentCombatant = (Combatant)combatantList.Items[i];
-                    ArrayList indexToDelete = new ArrayList();
 
                     // Check that the combatant has effects to update.
                     if (currentCombatant.EffectCount > 0)
                     {
                         // Reduce each effect's duration by 1 if it hasn't already reached 0.
                         for (int j = 0; j < currentCombatant.EffectCount; j++)
-                        {
                             currentCombatant.setEffectDuration((currentCombatant.getEffectDuration(j) > 0) ? (currentCombatant.getEffectDuration(j) - 1) : 0, j);
-                            
-                            // Prompt user to remove any effects that have "expired".
-                            if (currentCombatant.getEffectDuration(j) == 0)
-                            {
-                                if (MessageBox.Show("Effect duration of " + currentCombatant.getEffectName(j) + " has reached zero."
-                                    + " Remove from effect list?", "Effect on Combatant \""+
-                                    currentCombatant+"\" Expiring", MessageBoxButtons.YesNo,
-                                    MessageBoxIcon.Question) == DialogResult.Yes)
-                                    indexToDelete.Add(j);
-                            }
-                        }
+                    }
+                }
 
-                        for (int j = indexToDelete.Count-1; j > -1; j--)
-                            currentCombatant.removeEffect((int)indexToDelete[j]);
+                for (int i = 0; i < delayList.Items.Count; i++)
+                {
+                    Combatant currentCombatant = (Combatant)delayList.Items[i];
 
-                        destroyAndRebuild(effectsTable);
+                    // Check that the combatant has effects to update.
+                    if (currentCombatant.EffectCount > 0)
+                    {
+                        // Reduce each effect's duration by 1 if it hasn't already reached 0.
+                        for (int j = 0; j < currentCombatant.EffectCount; j++)
+                            currentCombatant.setEffectDuration((currentCombatant.getEffectDuration(j) > 0) ? (currentCombatant.getEffectDuration(j) - 1) : 0, j);
+                    }
+                }
+
+                for (int i = 0; i < dyingList.Items.Count; i++)
+                {
+                    Combatant currentCombatant = (Combatant)dyingList.Items[i];
+
+                    // Check that the combatant has effects to update.
+                    if (currentCombatant.EffectCount > 0)
+                    {
+                        // Reduce each effect's duration by 1 if it hasn't already reached 0.
+                        for (int j = 0; j < currentCombatant.EffectCount; j++)
+                            currentCombatant.setEffectDuration((currentCombatant.getEffectDuration(j) > 0) ? (currentCombatant.getEffectDuration(j) - 1) : 0, j);
                     }
                 }
             }

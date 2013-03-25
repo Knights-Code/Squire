@@ -20,6 +20,8 @@ namespace Squire
         ToolTip generalToolTip;
         Combatant toolTipCombatant;
         Point toolTipLocation;
+        Boolean fileLoading;
+        Boolean changesSaved;
 
         enum LoadProgress { START, INITIATIVE, DELAY, DYING, INDICES };
 
@@ -33,20 +35,23 @@ namespace Squire
             combatantHPBar.Dock = DockStyle.Fill;
             dyingListContextMenu = new ContextMenuStrip();
             dyingListContextMenu.RenderMode = generalMenu.RenderMode;
-            dyingListContextMenu.Opening += new CancelEventHandler(dyingListContextMenu_Opening);
+            
             generalToolTip = new ToolTip();
             generalToolTip.Active = false;
-            dyingList.MouseMove += new MouseEventHandler(initiative_MouseMove);
+            
+            //-----( Initialise Variables )-----\\
+            currentRound = roundNumber.Value;
+            fileLoading = false;
+            changesSaved = true;
+
+            //-----( Event Handlers )-----\\
             dyingList.LostFocus += dyingList_LostFocus;
             delayList.MouseMove += new MouseEventHandler(initiative_MouseMove);
             this.MouseMove += new MouseEventHandler(General_MouseMove);
             combatantList.KeyPress += new KeyPressEventHandler(initiative_KeyPress);
             openToolStripMenuItem.Click += openToolStripMenuItem_Click;
-
-            //-----( Initialise Variables )-----\\
-            currentRound = roundNumber.Value;
-
-            //-----( Event Handlers )-----\\
+            dyingList.MouseMove += new MouseEventHandler(initiative_MouseMove);
+            dyingListContextMenu.Opening += new CancelEventHandler(dyingListContextMenu_Opening);
             dyingList.MouseDown += new MouseEventHandler(dyingList_MouseDown);
             dyingList.DrawItem += new DrawItemEventHandler(initiative_DrawItem);
             combatantList.DrawItem += initiative_DrawItem;
@@ -104,7 +109,7 @@ namespace Squire
                     if (!focalCombatant.isPlayer())
                     {
                         generalToolTip.ToolTipTitle = (focalCombatant + " HP");
-                        generalToolTip.Show((focalCombatant.getCurrentHP() + " / " + focalCombatant.getMaxHP()), focalList, e.Location.X,(e.Location.Y+20));
+                        generalToolTip.Show((focalCombatant.getCurrentHP() + " / " + focalCombatant.getMaxHP()) + (focalCombatant.isStable()?" (stable)":String.Empty), focalList, e.Location.X,(e.Location.Y+20));
 
                         toolTipCombatant = focalCombatant;
                         toolTipLocation = e.Location;
@@ -323,61 +328,81 @@ namespace Squire
         {
             OpenFileDialog openBattle = new OpenFileDialog();
             openBattle.DefaultExt = ".btl";
+            openBattle.Filter = "Battle Files (*.btl)|*btl|All files (*.*)|*.*";
             openBattle.Title = "Open Battle";
 
             if (openBattle.ShowDialog() == DialogResult.OK)
             {
                 StreamReader file = new StreamReader(openBattle.FileName);
+                fileLoading = true; // lock down for load
 
                 string currentLine;
                 LoadProgress filePosition = LoadProgress.START;
 
-                while ((currentLine = file.ReadLine()) != null)
+                while ((currentLine = file.ReadLine()) != null )
                 {
-                    switch (currentLine)
+                    if (currentLine != String.Empty)
                     {
-                        case "Initiative List":
-                            filePosition = LoadProgress.INITIATIVE;
-                            currentLine = file.ReadLine();
-                            break;
-                        case "Delay List":
-                            filePosition = LoadProgress.DELAY;
-                            currentLine = file.ReadLine();
-                            break;
-                        case "Dying List":
-                            filePosition = LoadProgress.DYING;
-                            currentLine = file.ReadLine();
-                            break;
-                        case "Indices":
-                            filePosition = LoadProgress.INDICES;
-                            currentLine = file.ReadLine();
-                            break;
-                    }
+                        switch (currentLine)
+                        {
+                            case "Initiative List":
+                                filePosition = LoadProgress.INITIATIVE;
+                                currentLine = file.ReadLine();
+                                break;
+                            case "Delay List":
+                                filePosition = LoadProgress.DELAY;
+                                currentLine = file.ReadLine();
+                                break;
+                            case "Dying List":
+                                filePosition = LoadProgress.DYING;
+                                currentLine = file.ReadLine();
+                                break;
+                            case "Indices":
+                                filePosition = LoadProgress.INDICES;
+                                currentLine = file.ReadLine();
+                                break;
+                        }
 
-                    switch (filePosition)
-                    {
-                        case LoadProgress.INITIATIVE:
+                        if (filePosition != LoadProgress.INDICES)
+                        {
+                            if (currentLine != String.Empty)
+                            {
+                                string[] items = currentLine.Split('\t');
+
+                                Combatant newCombatant = new Combatant(items[0], int.Parse(items[2]));
+                                newCombatant.setCurrentHP(int.Parse(items[1]));
+
+                                // Process effects.
+                                for (int i = 4; i < (int.Parse(items[3]) * 2) + 4; i += 2)
+                                    newCombatant.addEffect(items[i], Convert.ToDecimal(items[i + 1]));
+
+                                switch (filePosition)
+                                {
+                                    case LoadProgress.INITIATIVE:
+                                        combatantList.Items.Add(newCombatant);
+                                        break;
+                                    case LoadProgress.DELAY:
+                                        delayList.Items.Add(newCombatant);
+                                        break;
+                                    case LoadProgress.DYING:
+                                        dyingList.Items.Add(newCombatant);
+                                        break;
+                                }
+                            }
+                        }
+                        else
+                        {
                             string[] items = currentLine.Split('\t');
-                            string combatantName = items[0];
-                            int currentHP = int.Parse(items[1]);
-                            int maxHP = int.Parse(items[2]);
-
-                            Combatant newCombatant = new Combatant(items[0], int.Parse(items[2]));
-                            newCombatant.setCurrentHP(int.Parse(items[1]));
-
-                            // Process effects.
-                            for (int i = 4; i < (int.Parse(items[3]) * 2) + 4; i += 2)
-                                newCombatant.addEffect(items[i], Convert.ToDecimal(items[i + 1]));
-
-                            combatantList.Items.Add(newCombatant);
-
-                            break;
+                            combatantList.SelectedIndex = int.Parse(items[0]);
+                            delayList.SelectedIndex = int.Parse(items[1]);
+                            dyingList.SelectedIndex = int.Parse(items[2]);
+                            roundNumber.Value = Convert.ToDecimal(items[3]);
+                        }
                     }
                 }
 
                 file.Close();
-
-                if (combatantList.Items.Count > 0) combatantList.SelectedIndex = 0;
+                fileLoading = false;
             }
         }
 
@@ -385,6 +410,7 @@ namespace Squire
         {
             SaveFileDialog saveBattle = new SaveFileDialog();
             saveBattle.DefaultExt = ".btl";
+            saveBattle.Filter = "Battle Files (*.btl)|*btl|All files (*.*)|*.*";
             saveBattle.OverwritePrompt = true;
             saveBattle.Title = "Save Battle";
 
@@ -399,22 +425,25 @@ namespace Squire
                     file.WriteLine(c.toString());
                 }
 
-                file.WriteLine("\nDelay List");
+                file.WriteLine();
+                file.WriteLine("Delay List");
                 for (int i = 0; i < delayList.Items.Count; i++)
                 {
                     Combatant c = (Combatant)delayList.Items[i];
                     file.WriteLine(c.toString());
                 }
 
-                file.WriteLine("\nDying List");
+                file.WriteLine();
+                file.WriteLine("Dying List");
                 for (int i = 0; i < dyingList.Items.Count; i++)
                 {
                     Combatant c = (Combatant)dyingList.Items[i];
                     file.WriteLine(c.toString());
                 }
 
-                file.WriteLine("\nIndices");
-                file.WriteLine(combatantList.SelectedIndex + "\t" + delayList.SelectedIndex + "\t" + dyingList.SelectedIndex);
+                file.WriteLine();
+                file.WriteLine("Indices");
+                file.WriteLine(combatantList.SelectedIndex + "\t" + delayList.SelectedIndex + "\t" + dyingList.SelectedIndex +"\t"+roundNumber.Value);
 
                 file.Close();
             }
@@ -910,8 +939,9 @@ namespace Squire
 
         private void roundNumber_ValueChanged(object sender, EventArgs e)
         {
-            // Check that we've just proceeded to the next round.
-            if (roundNumber.Value == (currentRound + 1))
+            // Check that we've just proceeded to the next round. Ignore changes by open menu
+            // item because it's just loading in data and doesn't reflect actual round changes.
+            if (roundNumber.Value == (currentRound + 1) && !fileLoading)
             {
                 // Handle the dead and dying.
                 if (dyingList.Items.Count > 0)
@@ -999,21 +1029,25 @@ namespace Squire
             // Make sure a combatant is selected
             if (combatantList.SelectedIndex != -1)
             {
-                Combatant selectedCombatant = (Combatant)combatantList.SelectedItem;
-                int difference = 0;
-                if (HPChange.IntValue >= selectedCombatant.getMaxHP()) difference = HPChange.IntValue - selectedCombatant.getMaxHP();
-                selectedCombatant.setMaxHP(HPChange.IntValue);
+                if (HPChange.IntValue > 0)
+                {
+                    Combatant selectedCombatant = (Combatant)combatantList.SelectedItem;
+                    int difference = 0;
+                    difference = HPChange.IntValue - selectedCombatant.getMaxHP();
+                    selectedCombatant.setMaxHP(HPChange.IntValue);
 
-                // If new max is lower than current HP, change current HP to match
-                if (selectedCombatant.getCurrentHP() > selectedCombatant.getMaxHP()) selectedCombatant.setCurrentHP(selectedCombatant.getMaxHP());
-                else selectedCombatant.setCurrentHP(selectedCombatant.getCurrentHP() + difference);
+                    // Keep current HP in line.
+                    selectedCombatant.setCurrentHP(selectedCombatant.getCurrentHP() + difference);
 
-                HPChange.IntValue = 0;
+                    HPChange.IntValue = 0;
 
-                combatantHPBar.Maximum = selectedCombatant.getMaxHP();
-                combatantHPBar.Value = selectedCombatant.getCurrentHP(); // update the HP bar
+                    combatantHPBar.Maximum = selectedCombatant.getMaxHP();
+                    combatantHPBar.Value = selectedCombatant.getCurrentHP(); // update the HP bar
 
-                remainingHP.Text = selectedCombatant.getCurrentHP() + " / " + selectedCombatant.getMaxHP(); // update HP label
+                    remainingHP.Text = selectedCombatant.getCurrentHP() + " / " + selectedCombatant.getMaxHP(); // update HP label
+                }
+                else
+                    MessageBox.Show("New maximum must be greater than zero.", "Error: Invalid Maximum", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 

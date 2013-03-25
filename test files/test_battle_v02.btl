@@ -1,10 +1,15 @@
 Initiative List
-Agrivail	60	79	2	Bless	3	Nay	2
-Calista	40	57	0
+Agrivail	50	79	0
+Ahpas	40	40	0
+Calista	57	57	0
+Goblin #3	6	6	0
+Goblin #4	5	5	0
 
 Delay List
 
 Dying List
+Goblin #1	-10	3	0
+Goblin #2	-12	4	0
 
 Indices
-0	-1	-1
+4	-1	-1	6

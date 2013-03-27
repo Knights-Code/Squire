@@ -59,6 +59,12 @@
     <Compile Include="HPBar.cs">
       <SubType>Component</SubType>
     </Compile>
+    <Compile Include="Legend.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Legend.Designer.cs">
+      <DependentUpon>Legend.cs</DependentUpon>
+    </Compile>
     <Compile Include="LevelUp.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -90,6 +96,9 @@
     </Compile>
     <EmbeddedResource Include="AddCombatant.resx">
       <DependentUpon>AddCombatant.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Legend.resx">
+      <DependentUpon>Legend.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="LevelUp.resx">
       <DependentUpon>LevelUp.cs</DependentUpon>

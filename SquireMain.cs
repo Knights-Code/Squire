@@ -27,5 +27,11 @@ namespace Squire
             LevelUp levelup = new LevelUp();
             levelup.Show();
         }
+
+        private void legendButton_Click(object sender, EventArgs e)
+        {
+            Legend legend = new Legend();
+            legend.Show();
+        }
     }
 }

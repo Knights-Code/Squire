@@ -56,6 +56,12 @@
       <DependentUpon>AddCombatant.cs</DependentUpon>
     </Compile>
     <Compile Include="Combatant.cs" />
+    <Compile Include="Familiar.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Familiar.Designer.cs">
+      <DependentUpon>Familiar.cs</DependentUpon>
+    </Compile>
     <Compile Include="LevelUp.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -81,6 +87,9 @@
     </Compile>
     <EmbeddedResource Include="AddCombatant.resx">
       <DependentUpon>AddCombatant.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Familiar.resx">
+      <DependentUpon>Familiar.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="LevelUp.resx">
       <DependentUpon>LevelUp.cs</DependentUpon>

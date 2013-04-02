@@ -33,6 +33,7 @@
             this.tableLayoutPanel2 = new System.Windows.Forms.TableLayoutPanel();
             this.levelUpButton = new System.Windows.Forms.Button();
             this.generalButton = new System.Windows.Forms.Button();
+            this.familiarButton = new System.Windows.Forms.Button();
             this.tableLayoutPanel1.SuspendLayout();
             this.tableLayoutPanel2.SuspendLayout();
             this.SuspendLayout();
@@ -56,6 +57,7 @@
             this.tableLayoutPanel2.ColumnCount = 2;
             this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
             this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.tableLayoutPanel2.Controls.Add(this.familiarButton, 0, 1);
             this.tableLayoutPanel2.Controls.Add(this.levelUpButton, 0, 0);
             this.tableLayoutPanel2.Controls.Add(this.generalButton, 1, 0);
             this.tableLayoutPanel2.Dock = System.Windows.Forms.DockStyle.Fill;
@@ -89,6 +91,17 @@
             this.generalButton.UseVisualStyleBackColor = true;
             this.generalButton.Click += new System.EventHandler(this.generalButton_Click);
             // 
+            // familiarButton
+            // 
+            this.familiarButton.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.familiarButton.Location = new System.Drawing.Point(34, 86);
+            this.familiarButton.Name = "familiarButton";
+            this.familiarButton.Size = new System.Drawing.Size(75, 23);
+            this.familiarButton.TabIndex = 2;
+            this.familiarButton.Text = "&Familiar";
+            this.familiarButton.UseVisualStyleBackColor = true;
+            this.familiarButton.Click += new System.EventHandler(this.familiarButton_Click);
+            // 
             // SquireMain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -111,5 +124,6 @@
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel2;
         private System.Windows.Forms.Button levelUpButton;
         private System.Windows.Forms.Button generalButton;
+        private System.Windows.Forms.Button familiarButton;
     }
 }

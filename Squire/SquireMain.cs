@@ -27,5 +27,11 @@ namespace Squire
             LevelUp levelup = new LevelUp();
             levelup.Show();
         }
+
+        private void familiarButton_Click(object sender, EventArgs e)
+        {
+            Familiar familiar = new Familiar();
+            familiar.Show();
+        }
     }
 }

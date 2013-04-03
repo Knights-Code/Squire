@@ -450,6 +450,7 @@
             // 
             // spellComponentsBox
             // 
+            this.spellComponentsBox.CheckOnClick = true;
             this.spellComponentsBox.Dock = System.Windows.Forms.DockStyle.Fill;
             this.spellComponentsBox.FormattingEnabled = true;
             this.spellComponentsBox.Items.AddRange(new object[] {
@@ -523,6 +524,7 @@
             this.spellLevelTypeBox.Dock = System.Windows.Forms.DockStyle.Fill;
             this.spellLevelTypeBox.FormattingEnabled = true;
             this.spellLevelTypeBox.Items.AddRange(new object[] {
+            "",
             "Bard (Brd)",
             "Cleric (Clr)",
             "Druid (Drd)",

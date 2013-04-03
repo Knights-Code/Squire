@@ -298,6 +298,7 @@
             this.spellBookGrid.ReadOnly = true;
             this.spellBookGrid.Size = new System.Drawing.Size(486, 204);
             this.spellBookGrid.TabIndex = 1;
+            this.spellBookGrid.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.spellBookGrid_CellContentClick);
             // 
             // spellDescriptionBox
             // 

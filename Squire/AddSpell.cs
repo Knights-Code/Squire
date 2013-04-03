@@ -23,5 +23,15 @@ namespace Squire
             this.parentForm = parentForm;
             InitializeComponent();
         }
+
+        private void addSpellButton_Click(object sender, EventArgs e)
+        {
+            if (this.spellNameBox.Text == String.Empty)
+            {
+                
+            }
+        }
+
+
     }
 }

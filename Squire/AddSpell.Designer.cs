@@ -31,45 +31,45 @@
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
             this.tableLayoutPanel15 = new System.Windows.Forms.TableLayoutPanel();
             this.spellDescription = new System.Windows.Forms.Label();
-            this.textBox9 = new System.Windows.Forms.TextBox();
+            this.spellDescriptionBox = new System.Windows.Forms.TextBox();
             this.tableLayoutPanel14 = new System.Windows.Forms.TableLayoutPanel();
             this.spellResistenceLabel = new System.Windows.Forms.Label();
-            this.textBox8 = new System.Windows.Forms.TextBox();
+            this.spellResistanceBox = new System.Windows.Forms.TextBox();
             this.tableLayoutPanel13 = new System.Windows.Forms.TableLayoutPanel();
             this.spellSavingThrowLabel = new System.Windows.Forms.Label();
-            this.textBox7 = new System.Windows.Forms.TextBox();
+            this.spellSavingThrowBox = new System.Windows.Forms.TextBox();
             this.tableLayoutPanel12 = new System.Windows.Forms.TableLayoutPanel();
             this.spellDurationLabel = new System.Windows.Forms.Label();
-            this.textBox6 = new System.Windows.Forms.TextBox();
+            this.spellDurationBox = new System.Windows.Forms.TextBox();
             this.tableLayoutPanel11 = new System.Windows.Forms.TableLayoutPanel();
             this.spellTargetsLabel = new System.Windows.Forms.Label();
-            this.textBox5 = new System.Windows.Forms.TextBox();
+            this.spellTargetsBox = new System.Windows.Forms.TextBox();
             this.tableLayoutPanel10 = new System.Windows.Forms.TableLayoutPanel();
             this.spellEffectLabel = new System.Windows.Forms.Label();
-            this.textBox4 = new System.Windows.Forms.TextBox();
+            this.spellEffectBox = new System.Windows.Forms.TextBox();
             this.tableLayoutPanel9 = new System.Windows.Forms.TableLayoutPanel();
             this.spellRangeLabel = new System.Windows.Forms.Label();
-            this.textBox3 = new System.Windows.Forms.TextBox();
+            this.spellRangeBox = new System.Windows.Forms.TextBox();
             this.tableLayoutPanel8 = new System.Windows.Forms.TableLayoutPanel();
             this.spellCastingTimeLabel = new System.Windows.Forms.Label();
-            this.textBox2 = new System.Windows.Forms.TextBox();
+            this.spellCastingTimeBox = new System.Windows.Forms.TextBox();
             this.tableLayoutPanel6 = new System.Windows.Forms.TableLayoutPanel();
             this.spellComponentsLabel = new System.Windows.Forms.Label();
-            this.checkedListBox1 = new System.Windows.Forms.CheckedListBox();
+            this.spellComponentsBox = new System.Windows.Forms.CheckedListBox();
             this.tableLayoutPanel5 = new System.Windows.Forms.TableLayoutPanel();
             this.spellLevelLabel = new System.Windows.Forms.Label();
             this.tableLayoutPanel7 = new System.Windows.Forms.TableLayoutPanel();
-            this.numericUpDown1 = new System.Windows.Forms.NumericUpDown();
-            this.comboBox3 = new System.Windows.Forms.ComboBox();
+            this.levelNumberBox = new System.Windows.Forms.NumericUpDown();
+            this.levelTypeBox = new System.Windows.Forms.ComboBox();
             this.tableLayoutPanel4 = new System.Windows.Forms.TableLayoutPanel();
             this.spellDescriptor = new System.Windows.Forms.Label();
-            this.comboBox2 = new System.Windows.Forms.ComboBox();
+            this.spellDescriptorBox = new System.Windows.Forms.ComboBox();
             this.tableLayoutPanel3 = new System.Windows.Forms.TableLayoutPanel();
             this.spellSchoolSubschoolLabel = new System.Windows.Forms.Label();
-            this.comboBox1 = new System.Windows.Forms.ComboBox();
+            this.spellSchoolBox = new System.Windows.Forms.ComboBox();
             this.tableLayoutPanel2 = new System.Windows.Forms.TableLayoutPanel();
             this.spellNameLabel = new System.Windows.Forms.Label();
-            this.textBox1 = new System.Windows.Forms.TextBox();
+            this.spellNameBox = new System.Windows.Forms.TextBox();
             this.tableLayoutPanel16 = new System.Windows.Forms.TableLayoutPanel();
             this.addSpellButton = new System.Windows.Forms.Button();
             this.cancelButton = new System.Windows.Forms.Button();
@@ -85,7 +85,7 @@
             this.tableLayoutPanel6.SuspendLayout();
             this.tableLayoutPanel5.SuspendLayout();
             this.tableLayoutPanel7.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.levelNumberBox)).BeginInit();
             this.tableLayoutPanel4.SuspendLayout();
             this.tableLayoutPanel3.SuspendLayout();
             this.tableLayoutPanel2.SuspendLayout();
@@ -137,13 +137,13 @@
             this.tableLayoutPanel15.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 25.75343F));
             this.tableLayoutPanel15.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 74.24657F));
             this.tableLayoutPanel15.Controls.Add(this.spellDescription, 0, 0);
-            this.tableLayoutPanel15.Controls.Add(this.textBox9, 1, 0);
+            this.tableLayoutPanel15.Controls.Add(this.spellDescriptionBox, 1, 0);
             this.tableLayoutPanel15.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tableLayoutPanel15.Location = new System.Drawing.Point(3, 431);
             this.tableLayoutPanel15.Name = "tableLayoutPanel15";
             this.tableLayoutPanel15.RowCount = 1;
             this.tableLayoutPanel15.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tableLayoutPanel15.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 126F));
+            this.tableLayoutPanel15.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 192F));
             this.tableLayoutPanel15.Size = new System.Drawing.Size(327, 192);
             this.tableLayoutPanel15.TabIndex = 12;
             // 
@@ -159,14 +159,14 @@
             this.spellDescription.Text = "Spell Description";
             this.spellDescription.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
-            // textBox9
+            // spellDescriptionBox
             // 
-            this.textBox9.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.textBox9.Location = new System.Drawing.Point(87, 3);
-            this.textBox9.Multiline = true;
-            this.textBox9.Name = "textBox9";
-            this.textBox9.Size = new System.Drawing.Size(237, 186);
-            this.textBox9.TabIndex = 1;
+            this.spellDescriptionBox.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.spellDescriptionBox.Location = new System.Drawing.Point(87, 3);
+            this.spellDescriptionBox.Multiline = true;
+            this.spellDescriptionBox.Name = "spellDescriptionBox";
+            this.spellDescriptionBox.Size = new System.Drawing.Size(237, 186);
+            this.spellDescriptionBox.TabIndex = 1;
             // 
             // tableLayoutPanel14
             // 
@@ -174,7 +174,7 @@
             this.tableLayoutPanel14.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 35.96215F));
             this.tableLayoutPanel14.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 64.03786F));
             this.tableLayoutPanel14.Controls.Add(this.spellResistenceLabel, 0, 0);
-            this.tableLayoutPanel14.Controls.Add(this.textBox8, 1, 0);
+            this.tableLayoutPanel14.Controls.Add(this.spellResistanceBox, 1, 0);
             this.tableLayoutPanel14.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tableLayoutPanel14.Location = new System.Drawing.Point(3, 397);
             this.tableLayoutPanel14.Name = "tableLayoutPanel14";
@@ -196,13 +196,13 @@
             this.spellResistenceLabel.Text = "Spell Resistance";
             this.spellResistenceLabel.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
-            // textBox8
+            // spellResistanceBox
             // 
-            this.textBox8.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.textBox8.Location = new System.Drawing.Point(120, 3);
-            this.textBox8.Name = "textBox8";
-            this.textBox8.Size = new System.Drawing.Size(204, 20);
-            this.textBox8.TabIndex = 1;
+            this.spellResistanceBox.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.spellResistanceBox.Location = new System.Drawing.Point(120, 3);
+            this.spellResistanceBox.Name = "spellResistanceBox";
+            this.spellResistanceBox.Size = new System.Drawing.Size(204, 20);
+            this.spellResistanceBox.TabIndex = 1;
             // 
             // tableLayoutPanel13
             // 
@@ -210,7 +210,7 @@
             this.tableLayoutPanel13.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 30.28391F));
             this.tableLayoutPanel13.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 69.71609F));
             this.tableLayoutPanel13.Controls.Add(this.spellSavingThrowLabel, 0, 0);
-            this.tableLayoutPanel13.Controls.Add(this.textBox7, 1, 0);
+            this.tableLayoutPanel13.Controls.Add(this.spellSavingThrowBox, 1, 0);
             this.tableLayoutPanel13.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tableLayoutPanel13.Location = new System.Drawing.Point(3, 365);
             this.tableLayoutPanel13.Name = "tableLayoutPanel13";
@@ -232,13 +232,13 @@
             this.spellSavingThrowLabel.Text = "Saving Throw";
             this.spellSavingThrowLabel.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
-            // textBox7
+            // spellSavingThrowBox
             // 
-            this.textBox7.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.textBox7.Location = new System.Drawing.Point(102, 3);
-            this.textBox7.Name = "textBox7";
-            this.textBox7.Size = new System.Drawing.Size(222, 20);
-            this.textBox7.TabIndex = 1;
+            this.spellSavingThrowBox.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.spellSavingThrowBox.Location = new System.Drawing.Point(102, 3);
+            this.spellSavingThrowBox.Name = "spellSavingThrowBox";
+            this.spellSavingThrowBox.Size = new System.Drawing.Size(222, 20);
+            this.spellSavingThrowBox.TabIndex = 1;
             // 
             // tableLayoutPanel12
             // 
@@ -246,7 +246,7 @@
             this.tableLayoutPanel12.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 19.72603F));
             this.tableLayoutPanel12.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 80.27397F));
             this.tableLayoutPanel12.Controls.Add(this.spellDurationLabel, 0, 0);
-            this.tableLayoutPanel12.Controls.Add(this.textBox6, 1, 0);
+            this.tableLayoutPanel12.Controls.Add(this.spellDurationBox, 1, 0);
             this.tableLayoutPanel12.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tableLayoutPanel12.Location = new System.Drawing.Point(3, 333);
             this.tableLayoutPanel12.Name = "tableLayoutPanel12";
@@ -268,13 +268,13 @@
             this.spellDurationLabel.Text = "Duration";
             this.spellDurationLabel.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
-            // textBox6
+            // spellDurationBox
             // 
-            this.textBox6.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.textBox6.Location = new System.Drawing.Point(67, 3);
-            this.textBox6.Name = "textBox6";
-            this.textBox6.Size = new System.Drawing.Size(257, 20);
-            this.textBox6.TabIndex = 1;
+            this.spellDurationBox.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.spellDurationBox.Location = new System.Drawing.Point(67, 3);
+            this.spellDurationBox.Name = "spellDurationBox";
+            this.spellDurationBox.Size = new System.Drawing.Size(257, 20);
+            this.spellDurationBox.TabIndex = 1;
             // 
             // tableLayoutPanel11
             // 
@@ -282,7 +282,7 @@
             this.tableLayoutPanel11.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 21.76656F));
             this.tableLayoutPanel11.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 78.23344F));
             this.tableLayoutPanel11.Controls.Add(this.spellTargetsLabel, 0, 0);
-            this.tableLayoutPanel11.Controls.Add(this.textBox5, 1, 0);
+            this.tableLayoutPanel11.Controls.Add(this.spellTargetsBox, 1, 0);
             this.tableLayoutPanel11.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tableLayoutPanel11.Location = new System.Drawing.Point(3, 300);
             this.tableLayoutPanel11.Name = "tableLayoutPanel11";
@@ -304,13 +304,13 @@
             this.spellTargetsLabel.Text = "Target(s)";
             this.spellTargetsLabel.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
-            // textBox5
+            // spellTargetsBox
             // 
-            this.textBox5.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.textBox5.Location = new System.Drawing.Point(74, 3);
-            this.textBox5.Name = "textBox5";
-            this.textBox5.Size = new System.Drawing.Size(250, 20);
-            this.textBox5.TabIndex = 1;
+            this.spellTargetsBox.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.spellTargetsBox.Location = new System.Drawing.Point(74, 3);
+            this.spellTargetsBox.Name = "spellTargetsBox";
+            this.spellTargetsBox.Size = new System.Drawing.Size(250, 20);
+            this.spellTargetsBox.TabIndex = 1;
             // 
             // tableLayoutPanel10
             // 
@@ -318,7 +318,7 @@
             this.tableLayoutPanel10.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 15.82278F));
             this.tableLayoutPanel10.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 84.17722F));
             this.tableLayoutPanel10.Controls.Add(this.spellEffectLabel, 0, 0);
-            this.tableLayoutPanel10.Controls.Add(this.textBox4, 1, 0);
+            this.tableLayoutPanel10.Controls.Add(this.spellEffectBox, 1, 0);
             this.tableLayoutPanel10.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tableLayoutPanel10.Location = new System.Drawing.Point(3, 267);
             this.tableLayoutPanel10.Name = "tableLayoutPanel10";
@@ -340,13 +340,13 @@
             this.spellEffectLabel.Text = "Effect";
             this.spellEffectLabel.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
-            // textBox4
+            // spellEffectBox
             // 
-            this.textBox4.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.textBox4.Location = new System.Drawing.Point(54, 3);
-            this.textBox4.Name = "textBox4";
-            this.textBox4.Size = new System.Drawing.Size(270, 20);
-            this.textBox4.TabIndex = 1;
+            this.spellEffectBox.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.spellEffectBox.Location = new System.Drawing.Point(54, 3);
+            this.spellEffectBox.Name = "spellEffectBox";
+            this.spellEffectBox.Size = new System.Drawing.Size(270, 20);
+            this.spellEffectBox.TabIndex = 1;
             // 
             // tableLayoutPanel9
             // 
@@ -354,7 +354,7 @@
             this.tableLayoutPanel9.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 15.82278F));
             this.tableLayoutPanel9.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 84.17722F));
             this.tableLayoutPanel9.Controls.Add(this.spellRangeLabel, 0, 0);
-            this.tableLayoutPanel9.Controls.Add(this.textBox3, 1, 0);
+            this.tableLayoutPanel9.Controls.Add(this.spellRangeBox, 1, 0);
             this.tableLayoutPanel9.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tableLayoutPanel9.Location = new System.Drawing.Point(3, 234);
             this.tableLayoutPanel9.Name = "tableLayoutPanel9";
@@ -376,13 +376,13 @@
             this.spellRangeLabel.Text = "Range";
             this.spellRangeLabel.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
-            // textBox3
+            // spellRangeBox
             // 
-            this.textBox3.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.textBox3.Location = new System.Drawing.Point(54, 3);
-            this.textBox3.Name = "textBox3";
-            this.textBox3.Size = new System.Drawing.Size(270, 20);
-            this.textBox3.TabIndex = 1;
+            this.spellRangeBox.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.spellRangeBox.Location = new System.Drawing.Point(54, 3);
+            this.spellRangeBox.Name = "spellRangeBox";
+            this.spellRangeBox.Size = new System.Drawing.Size(270, 20);
+            this.spellRangeBox.TabIndex = 1;
             // 
             // tableLayoutPanel8
             // 
@@ -390,7 +390,7 @@
             this.tableLayoutPanel8.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 24.72222F));
             this.tableLayoutPanel8.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 75.27778F));
             this.tableLayoutPanel8.Controls.Add(this.spellCastingTimeLabel, 0, 0);
-            this.tableLayoutPanel8.Controls.Add(this.textBox2, 1, 0);
+            this.tableLayoutPanel8.Controls.Add(this.spellCastingTimeBox, 1, 0);
             this.tableLayoutPanel8.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tableLayoutPanel8.Location = new System.Drawing.Point(3, 201);
             this.tableLayoutPanel8.Name = "tableLayoutPanel8";
@@ -412,13 +412,13 @@
             this.spellCastingTimeLabel.Text = "Casting Time";
             this.spellCastingTimeLabel.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
-            // textBox2
+            // spellCastingTimeBox
             // 
-            this.textBox2.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.textBox2.Location = new System.Drawing.Point(83, 3);
-            this.textBox2.Name = "textBox2";
-            this.textBox2.Size = new System.Drawing.Size(241, 20);
-            this.textBox2.TabIndex = 1;
+            this.spellCastingTimeBox.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.spellCastingTimeBox.Location = new System.Drawing.Point(83, 3);
+            this.spellCastingTimeBox.Name = "spellCastingTimeBox";
+            this.spellCastingTimeBox.Size = new System.Drawing.Size(241, 20);
+            this.spellCastingTimeBox.TabIndex = 1;
             // 
             // tableLayoutPanel6
             // 
@@ -426,7 +426,7 @@
             this.tableLayoutPanel6.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 28.95623F));
             this.tableLayoutPanel6.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 71.04377F));
             this.tableLayoutPanel6.Controls.Add(this.spellComponentsLabel, 0, 0);
-            this.tableLayoutPanel6.Controls.Add(this.checkedListBox1, 1, 0);
+            this.tableLayoutPanel6.Controls.Add(this.spellComponentsBox, 1, 0);
             this.tableLayoutPanel6.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tableLayoutPanel6.Location = new System.Drawing.Point(3, 139);
             this.tableLayoutPanel6.Name = "tableLayoutPanel6";
@@ -448,11 +448,11 @@
             this.spellComponentsLabel.Text = "Components";
             this.spellComponentsLabel.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
-            // checkedListBox1
+            // spellComponentsBox
             // 
-            this.checkedListBox1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.checkedListBox1.FormattingEnabled = true;
-            this.checkedListBox1.Items.AddRange(new object[] {
+            this.spellComponentsBox.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.spellComponentsBox.FormattingEnabled = true;
+            this.spellComponentsBox.Items.AddRange(new object[] {
             "Verbal (V)",
             "Somatic (S)",
             "Material (M)",
@@ -461,10 +461,10 @@
             "Focus OR Divine Focus (F/DF)",
             "Material OR Divine Focus (M/DF)",
             "XP Cost (XP)"});
-            this.checkedListBox1.Location = new System.Drawing.Point(97, 3);
-            this.checkedListBox1.Name = "checkedListBox1";
-            this.checkedListBox1.Size = new System.Drawing.Size(227, 50);
-            this.checkedListBox1.TabIndex = 1;
+            this.spellComponentsBox.Location = new System.Drawing.Point(97, 3);
+            this.spellComponentsBox.Name = "spellComponentsBox";
+            this.spellComponentsBox.Size = new System.Drawing.Size(227, 50);
+            this.spellComponentsBox.TabIndex = 1;
             // 
             // tableLayoutPanel5
             // 
@@ -499,8 +499,8 @@
             this.tableLayoutPanel7.ColumnCount = 2;
             this.tableLayoutPanel7.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 59.91561F));
             this.tableLayoutPanel7.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 40.08439F));
-            this.tableLayoutPanel7.Controls.Add(this.numericUpDown1, 1, 0);
-            this.tableLayoutPanel7.Controls.Add(this.comboBox3, 0, 0);
+            this.tableLayoutPanel7.Controls.Add(this.levelNumberBox, 1, 0);
+            this.tableLayoutPanel7.Controls.Add(this.levelTypeBox, 0, 0);
             this.tableLayoutPanel7.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tableLayoutPanel7.Location = new System.Drawing.Point(66, 0);
             this.tableLayoutPanel7.Margin = new System.Windows.Forms.Padding(0);
@@ -510,19 +510,19 @@
             this.tableLayoutPanel7.Size = new System.Drawing.Size(261, 26);
             this.tableLayoutPanel7.TabIndex = 1;
             // 
-            // numericUpDown1
+            // levelNumberBox
             // 
-            this.numericUpDown1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.numericUpDown1.Location = new System.Drawing.Point(159, 3);
-            this.numericUpDown1.Name = "numericUpDown1";
-            this.numericUpDown1.Size = new System.Drawing.Size(99, 20);
-            this.numericUpDown1.TabIndex = 2;
+            this.levelNumberBox.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.levelNumberBox.Location = new System.Drawing.Point(159, 3);
+            this.levelNumberBox.Name = "levelNumberBox";
+            this.levelNumberBox.Size = new System.Drawing.Size(99, 20);
+            this.levelNumberBox.TabIndex = 2;
             // 
-            // comboBox3
+            // levelTypeBox
             // 
-            this.comboBox3.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.comboBox3.FormattingEnabled = true;
-            this.comboBox3.Items.AddRange(new object[] {
+            this.levelTypeBox.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.levelTypeBox.FormattingEnabled = true;
+            this.levelTypeBox.Items.AddRange(new object[] {
             "Bard (Brd)",
             "Cleric (Clr)",
             "Druid (Drd)",
@@ -552,10 +552,10 @@
             "Trickery",
             "War",
             "Water"});
-            this.comboBox3.Location = new System.Drawing.Point(3, 3);
-            this.comboBox3.Name = "comboBox3";
-            this.comboBox3.Size = new System.Drawing.Size(150, 21);
-            this.comboBox3.TabIndex = 0;
+            this.levelTypeBox.Location = new System.Drawing.Point(3, 3);
+            this.levelTypeBox.Name = "levelTypeBox";
+            this.levelTypeBox.Size = new System.Drawing.Size(150, 21);
+            this.levelTypeBox.TabIndex = 0;
             // 
             // tableLayoutPanel4
             // 
@@ -563,7 +563,7 @@
             this.tableLayoutPanel4.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 26.66667F));
             this.tableLayoutPanel4.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 73.33334F));
             this.tableLayoutPanel4.Controls.Add(this.spellDescriptor, 0, 0);
-            this.tableLayoutPanel4.Controls.Add(this.comboBox2, 1, 0);
+            this.tableLayoutPanel4.Controls.Add(this.spellDescriptorBox, 1, 0);
             this.tableLayoutPanel4.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tableLayoutPanel4.Location = new System.Drawing.Point(3, 73);
             this.tableLayoutPanel4.Name = "tableLayoutPanel4";
@@ -585,11 +585,11 @@
             this.spellDescriptor.Text = "[Descriptor]";
             this.spellDescriptor.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
-            // comboBox2
+            // spellDescriptorBox
             // 
-            this.comboBox2.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.comboBox2.FormattingEnabled = true;
-            this.comboBox2.Items.AddRange(new object[] {
+            this.spellDescriptorBox.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.spellDescriptorBox.FormattingEnabled = true;
+            this.spellDescriptorBox.Items.AddRange(new object[] {
             "",
             "Acid",
             "Air",
@@ -610,10 +610,10 @@
             "Mind-affecting",
             "Sonic",
             "Water"});
-            this.comboBox2.Location = new System.Drawing.Point(90, 3);
-            this.comboBox2.Name = "comboBox2";
-            this.comboBox2.Size = new System.Drawing.Size(234, 21);
-            this.comboBox2.TabIndex = 1;
+            this.spellDescriptorBox.Location = new System.Drawing.Point(90, 3);
+            this.spellDescriptorBox.Name = "spellDescriptorBox";
+            this.spellDescriptorBox.Size = new System.Drawing.Size(234, 21);
+            this.spellDescriptorBox.TabIndex = 1;
             // 
             // tableLayoutPanel3
             // 
@@ -621,7 +621,7 @@
             this.tableLayoutPanel3.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 27.27273F));
             this.tableLayoutPanel3.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 72.72727F));
             this.tableLayoutPanel3.Controls.Add(this.spellSchoolSubschoolLabel, 0, 0);
-            this.tableLayoutPanel3.Controls.Add(this.comboBox1, 1, 0);
+            this.tableLayoutPanel3.Controls.Add(this.spellSchoolBox, 1, 0);
             this.tableLayoutPanel3.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tableLayoutPanel3.Location = new System.Drawing.Point(3, 38);
             this.tableLayoutPanel3.Name = "tableLayoutPanel3";
@@ -642,11 +642,11 @@
             this.spellSchoolSubschoolLabel.Text = "School (Subschool)";
             this.spellSchoolSubschoolLabel.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
-            // comboBox1
+            // spellSchoolBox
             // 
-            this.comboBox1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.comboBox1.FormattingEnabled = true;
-            this.comboBox1.Items.AddRange(new object[] {
+            this.spellSchoolBox.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.spellSchoolBox.FormattingEnabled = true;
+            this.spellSchoolBox.Items.AddRange(new object[] {
             "Abjuration",
             "Conjuration",
             "Conjuration (Calling)",
@@ -669,10 +669,10 @@
             "Necromancy",
             "Transmutation",
             "Universal"});
-            this.comboBox1.Location = new System.Drawing.Point(92, 3);
-            this.comboBox1.Name = "comboBox1";
-            this.comboBox1.Size = new System.Drawing.Size(232, 21);
-            this.comboBox1.TabIndex = 1;
+            this.spellSchoolBox.Location = new System.Drawing.Point(92, 3);
+            this.spellSchoolBox.Name = "spellSchoolBox";
+            this.spellSchoolBox.Size = new System.Drawing.Size(232, 21);
+            this.spellSchoolBox.TabIndex = 1;
             // 
             // tableLayoutPanel2
             // 
@@ -680,7 +680,7 @@
             this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 20.79511F));
             this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 79.2049F));
             this.tableLayoutPanel2.Controls.Add(this.spellNameLabel, 0, 0);
-            this.tableLayoutPanel2.Controls.Add(this.textBox1, 1, 0);
+            this.tableLayoutPanel2.Controls.Add(this.spellNameBox, 1, 0);
             this.tableLayoutPanel2.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tableLayoutPanel2.Location = new System.Drawing.Point(3, 3);
             this.tableLayoutPanel2.Name = "tableLayoutPanel2";
@@ -702,13 +702,13 @@
             this.spellNameLabel.Text = "Name (required)";
             this.spellNameLabel.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
-            // textBox1
+            // spellNameBox
             // 
-            this.textBox1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.textBox1.Location = new System.Drawing.Point(71, 3);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(253, 20);
-            this.textBox1.TabIndex = 1;
+            this.spellNameBox.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.spellNameBox.Location = new System.Drawing.Point(71, 3);
+            this.spellNameBox.Name = "spellNameBox";
+            this.spellNameBox.Size = new System.Drawing.Size(253, 20);
+            this.spellNameBox.TabIndex = 1;
             // 
             // tableLayoutPanel16
             // 
@@ -734,6 +734,7 @@
             this.addSpellButton.TabIndex = 0;
             this.addSpellButton.Text = "&Add Spell";
             this.addSpellButton.UseVisualStyleBackColor = true;
+            this.addSpellButton.Click += new System.EventHandler(this.addSpellButton_Click);
             // 
             // cancelButton
             // 
@@ -778,7 +779,7 @@
             this.tableLayoutPanel5.ResumeLayout(false);
             this.tableLayoutPanel5.PerformLayout();
             this.tableLayoutPanel7.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.levelNumberBox)).EndInit();
             this.tableLayoutPanel4.ResumeLayout(false);
             this.tableLayoutPanel4.PerformLayout();
             this.tableLayoutPanel3.ResumeLayout(false);
@@ -795,45 +796,45 @@
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel1;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel2;
         private System.Windows.Forms.Label spellNameLabel;
-        private System.Windows.Forms.TextBox textBox1;
+        private System.Windows.Forms.TextBox spellNameBox;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel5;
         private System.Windows.Forms.Label spellLevelLabel;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel4;
         private System.Windows.Forms.Label spellDescriptor;
-        private System.Windows.Forms.ComboBox comboBox2;
+        private System.Windows.Forms.ComboBox spellDescriptorBox;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel3;
         private System.Windows.Forms.Label spellSchoolSubschoolLabel;
-        private System.Windows.Forms.ComboBox comboBox1;
+        private System.Windows.Forms.ComboBox spellSchoolBox;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel6;
         private System.Windows.Forms.Label spellComponentsLabel;
-        private System.Windows.Forms.CheckedListBox checkedListBox1;
+        private System.Windows.Forms.CheckedListBox spellComponentsBox;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel9;
         private System.Windows.Forms.Label spellRangeLabel;
-        private System.Windows.Forms.TextBox textBox3;
+        private System.Windows.Forms.TextBox spellRangeBox;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel8;
         private System.Windows.Forms.Label spellCastingTimeLabel;
-        private System.Windows.Forms.TextBox textBox2;
+        private System.Windows.Forms.TextBox spellCastingTimeBox;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel7;
-        private System.Windows.Forms.NumericUpDown numericUpDown1;
-        private System.Windows.Forms.ComboBox comboBox3;
+        private System.Windows.Forms.NumericUpDown levelNumberBox;
+        private System.Windows.Forms.ComboBox levelTypeBox;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel15;
         private System.Windows.Forms.Label spellDescription;
-        private System.Windows.Forms.TextBox textBox9;
+        private System.Windows.Forms.TextBox spellDescriptionBox;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel14;
         private System.Windows.Forms.Label spellResistenceLabel;
-        private System.Windows.Forms.TextBox textBox8;
+        private System.Windows.Forms.TextBox spellResistanceBox;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel13;
         private System.Windows.Forms.Label spellSavingThrowLabel;
-        private System.Windows.Forms.TextBox textBox7;
+        private System.Windows.Forms.TextBox spellSavingThrowBox;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel12;
         private System.Windows.Forms.Label spellDurationLabel;
-        private System.Windows.Forms.TextBox textBox6;
+        private System.Windows.Forms.TextBox spellDurationBox;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel11;
         private System.Windows.Forms.Label spellTargetsLabel;
-        private System.Windows.Forms.TextBox textBox5;
+        private System.Windows.Forms.TextBox spellTargetsBox;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel10;
         private System.Windows.Forms.Label spellEffectLabel;
-        private System.Windows.Forms.TextBox textBox4;
+        private System.Windows.Forms.TextBox spellEffectBox;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel16;
         private System.Windows.Forms.Button addSpellButton;
         private System.Windows.Forms.Button cancelButton;

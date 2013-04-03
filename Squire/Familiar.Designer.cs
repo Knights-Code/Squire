@@ -34,38 +34,38 @@
             this.openSpellbookToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.saveSpellbookToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.addSpellToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.printSpellbookToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.printPreparedSpellsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
             this.tableLayoutPanel3 = new System.Windows.Forms.TableLayoutPanel();
             this.label2 = new System.Windows.Forms.Label();
             this.tableLayoutPanel4 = new System.Windows.Forms.TableLayoutPanel();
-            this.tableLayoutPanel5 = new System.Windows.Forms.TableLayoutPanel();
-            this.preparedSpellsRemaining = new System.Windows.Forms.ProgressBar();
-            this.preparedSpellLevels = new System.Windows.Forms.ListBox();
-            this.tableLayoutPanel2 = new System.Windows.Forms.TableLayoutPanel();
-            this.label1 = new System.Windows.Forms.Label();
-            this.spellBookGrid = new System.Windows.Forms.DataGridView();
-            this.spellDescriptionBox = new System.Windows.Forms.TextBox();
-            this.spellBookName = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.spellBookLevel = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.spellBookSchool = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.spellBookComponents = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.spellBookCastingTime = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
             this.dataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataGridViewTextBoxColumn2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataGridViewTextBoxColumn3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataGridViewTextBoxColumn4 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataGridViewTextBoxColumn5 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.printSpellbookToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.printPreparedSpellsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.tableLayoutPanel5 = new System.Windows.Forms.TableLayoutPanel();
+            this.preparedSpellsRemaining = new System.Windows.Forms.ProgressBar();
+            this.preparedSpellLevels = new System.Windows.Forms.ListBox();
+            this.tableLayoutPanel2 = new System.Windows.Forms.TableLayoutPanel();
+            this.label1 = new System.Windows.Forms.Label();
+            this.spellBookGrid = new System.Windows.Forms.DataGridView();
+            this.spellBookName = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.spellBookLevel = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.spellBookSchool = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.spellBookComponents = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.spellBookCastingTime = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.spellDescriptionBox = new System.Windows.Forms.TextBox();
             this.menuStrip1.SuspendLayout();
             this.tableLayoutPanel1.SuspendLayout();
             this.tableLayoutPanel3.SuspendLayout();
             this.tableLayoutPanel4.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.tableLayoutPanel5.SuspendLayout();
             this.tableLayoutPanel2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.spellBookGrid)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.SuspendLayout();
             // 
             // menuStrip1
@@ -108,6 +108,18 @@
             this.addSpellToolStripMenuItem.Size = new System.Drawing.Size(193, 22);
             this.addSpellToolStripMenuItem.Text = "Add Spell to Spellbook";
             this.addSpellToolStripMenuItem.Click += new System.EventHandler(this.addSpellToolStripMenuItem_Click);
+            // 
+            // printSpellbookToolStripMenuItem
+            // 
+            this.printSpellbookToolStripMenuItem.Name = "printSpellbookToolStripMenuItem";
+            this.printSpellbookToolStripMenuItem.Size = new System.Drawing.Size(193, 22);
+            this.printSpellbookToolStripMenuItem.Text = "Print Spellbook";
+            // 
+            // printPreparedSpellsToolStripMenuItem
+            // 
+            this.printPreparedSpellsToolStripMenuItem.Name = "printPreparedSpellsToolStripMenuItem";
+            this.printPreparedSpellsToolStripMenuItem.Size = new System.Drawing.Size(193, 22);
+            this.printPreparedSpellsToolStripMenuItem.Text = "Print Prepared Spells";
             // 
             // tableLayoutPanel1
             // 
@@ -166,6 +178,57 @@
             this.tableLayoutPanel4.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
             this.tableLayoutPanel4.Size = new System.Drawing.Size(486, 204);
             this.tableLayoutPanel4.TabIndex = 2;
+            // 
+            // dataGridView1
+            // 
+            this.dataGridView1.AllowUserToOrderColumns = true;
+            this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dataGridView1.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.dataGridViewTextBoxColumn1,
+            this.dataGridViewTextBoxColumn2,
+            this.dataGridViewTextBoxColumn3,
+            this.dataGridViewTextBoxColumn4,
+            this.dataGridViewTextBoxColumn5});
+            this.dataGridView1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.dataGridView1.Location = new System.Drawing.Point(3, 53);
+            this.dataGridView1.Name = "dataGridView1";
+            this.dataGridView1.Size = new System.Drawing.Size(480, 148);
+            this.dataGridView1.TabIndex = 2;
+            // 
+            // dataGridViewTextBoxColumn1
+            // 
+            this.dataGridViewTextBoxColumn1.HeaderText = "Name";
+            this.dataGridViewTextBoxColumn1.Name = "dataGridViewTextBoxColumn1";
+            this.dataGridViewTextBoxColumn1.ReadOnly = true;
+            this.dataGridViewTextBoxColumn1.Width = 50;
+            // 
+            // dataGridViewTextBoxColumn2
+            // 
+            this.dataGridViewTextBoxColumn2.HeaderText = "Level";
+            this.dataGridViewTextBoxColumn2.Name = "dataGridViewTextBoxColumn2";
+            this.dataGridViewTextBoxColumn2.ReadOnly = true;
+            this.dataGridViewTextBoxColumn2.Width = 50;
+            // 
+            // dataGridViewTextBoxColumn3
+            // 
+            this.dataGridViewTextBoxColumn3.HeaderText = "School (Subschool)";
+            this.dataGridViewTextBoxColumn3.Name = "dataGridViewTextBoxColumn3";
+            this.dataGridViewTextBoxColumn3.ReadOnly = true;
+            this.dataGridViewTextBoxColumn3.Width = 75;
+            // 
+            // dataGridViewTextBoxColumn4
+            // 
+            this.dataGridViewTextBoxColumn4.HeaderText = "Components";
+            this.dataGridViewTextBoxColumn4.Name = "dataGridViewTextBoxColumn4";
+            this.dataGridViewTextBoxColumn4.ReadOnly = true;
+            this.dataGridViewTextBoxColumn4.Width = 75;
+            // 
+            // dataGridViewTextBoxColumn5
+            // 
+            this.dataGridViewTextBoxColumn5.HeaderText = "Casting Time";
+            this.dataGridViewTextBoxColumn5.Name = "dataGridViewTextBoxColumn5";
+            this.dataGridViewTextBoxColumn5.ReadOnly = true;
+            this.dataGridViewTextBoxColumn5.Width = 75;
             // 
             // tableLayoutPanel5
             // 
@@ -246,19 +309,6 @@
             this.spellBookGrid.Size = new System.Drawing.Size(486, 204);
             this.spellBookGrid.TabIndex = 1;
             // 
-            // spellDescriptionBox
-            // 
-            this.spellDescriptionBox.Cursor = System.Windows.Forms.Cursors.IBeam;
-            this.spellDescriptionBox.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.spellDescriptionBox.Enabled = false;
-            this.spellDescriptionBox.Location = new System.Drawing.Point(501, 3);
-            this.spellDescriptionBox.Multiline = true;
-            this.spellDescriptionBox.Name = "spellDescriptionBox";
-            this.spellDescriptionBox.ReadOnly = true;
-            this.tableLayoutPanel1.SetRowSpan(this.spellDescriptionBox, 2);
-            this.spellDescriptionBox.Size = new System.Drawing.Size(244, 466);
-            this.spellDescriptionBox.TabIndex = 0;
-            // 
             // spellBookName
             // 
             this.spellBookName.HeaderText = "Name";
@@ -294,68 +344,18 @@
             this.spellBookCastingTime.ReadOnly = true;
             this.spellBookCastingTime.Width = 75;
             // 
-            // dataGridView1
+            // spellDescriptionBox
             // 
-            this.dataGridView1.AllowUserToOrderColumns = true;
-            this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView1.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.dataGridViewTextBoxColumn1,
-            this.dataGridViewTextBoxColumn2,
-            this.dataGridViewTextBoxColumn3,
-            this.dataGridViewTextBoxColumn4,
-            this.dataGridViewTextBoxColumn5});
-            this.dataGridView1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.dataGridView1.Location = new System.Drawing.Point(3, 53);
-            this.dataGridView1.Name = "dataGridView1";
-            this.dataGridView1.Size = new System.Drawing.Size(480, 148);
-            this.dataGridView1.TabIndex = 2;
-            // 
-            // dataGridViewTextBoxColumn1
-            // 
-            this.dataGridViewTextBoxColumn1.HeaderText = "Name";
-            this.dataGridViewTextBoxColumn1.Name = "dataGridViewTextBoxColumn1";
-            this.dataGridViewTextBoxColumn1.ReadOnly = true;
-            this.dataGridViewTextBoxColumn1.Width = 50;
-            // 
-            // dataGridViewTextBoxColumn2
-            // 
-            this.dataGridViewTextBoxColumn2.HeaderText = "Level";
-            this.dataGridViewTextBoxColumn2.Name = "dataGridViewTextBoxColumn2";
-            this.dataGridViewTextBoxColumn2.ReadOnly = true;
-            this.dataGridViewTextBoxColumn2.Width = 50;
-            // 
-            // dataGridViewTextBoxColumn3
-            // 
-            this.dataGridViewTextBoxColumn3.HeaderText = "School (Subschool)";
-            this.dataGridViewTextBoxColumn3.Name = "dataGridViewTextBoxColumn3";
-            this.dataGridViewTextBoxColumn3.ReadOnly = true;
-            this.dataGridViewTextBoxColumn3.Width = 75;
-            // 
-            // dataGridViewTextBoxColumn4
-            // 
-            this.dataGridViewTextBoxColumn4.HeaderText = "Components";
-            this.dataGridViewTextBoxColumn4.Name = "dataGridViewTextBoxColumn4";
-            this.dataGridViewTextBoxColumn4.ReadOnly = true;
-            this.dataGridViewTextBoxColumn4.Width = 75;
-            // 
-            // dataGridViewTextBoxColumn5
-            // 
-            this.dataGridViewTextBoxColumn5.HeaderText = "Casting Time";
-            this.dataGridViewTextBoxColumn5.Name = "dataGridViewTextBoxColumn5";
-            this.dataGridViewTextBoxColumn5.ReadOnly = true;
-            this.dataGridViewTextBoxColumn5.Width = 75;
-            // 
-            // printSpellbookToolStripMenuItem
-            // 
-            this.printSpellbookToolStripMenuItem.Name = "printSpellbookToolStripMenuItem";
-            this.printSpellbookToolStripMenuItem.Size = new System.Drawing.Size(193, 22);
-            this.printSpellbookToolStripMenuItem.Text = "Print Spellbook";
-            // 
-            // printPreparedSpellsToolStripMenuItem
-            // 
-            this.printPreparedSpellsToolStripMenuItem.Name = "printPreparedSpellsToolStripMenuItem";
-            this.printPreparedSpellsToolStripMenuItem.Size = new System.Drawing.Size(193, 22);
-            this.printPreparedSpellsToolStripMenuItem.Text = "Print Prepared Spells";
+            this.spellDescriptionBox.Cursor = System.Windows.Forms.Cursors.IBeam;
+            this.spellDescriptionBox.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.spellDescriptionBox.Enabled = false;
+            this.spellDescriptionBox.Location = new System.Drawing.Point(501, 3);
+            this.spellDescriptionBox.Multiline = true;
+            this.spellDescriptionBox.Name = "spellDescriptionBox";
+            this.spellDescriptionBox.ReadOnly = true;
+            this.tableLayoutPanel1.SetRowSpan(this.spellDescriptionBox, 2);
+            this.spellDescriptionBox.Size = new System.Drawing.Size(244, 466);
+            this.spellDescriptionBox.TabIndex = 0;
             // 
             // Familiar
             // 
@@ -376,11 +376,11 @@
             this.tableLayoutPanel3.ResumeLayout(false);
             this.tableLayoutPanel3.PerformLayout();
             this.tableLayoutPanel4.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
             this.tableLayoutPanel5.ResumeLayout(false);
             this.tableLayoutPanel2.ResumeLayout(false);
             this.tableLayoutPanel2.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.spellBookGrid)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 

@@ -21,8 +21,18 @@ namespace Squire
 
         private void addSpellToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            AddSpell addSpellDialog = new AddSpell();
+            AddSpell addSpellDialog = new AddSpell(this);
             addSpellDialog.Show();
+        }
+
+        public void addSpelltoSpellbook(Spell newSpell)
+        {
+            spellBook.Add(newSpell);
+        }
+
+        public void getSpellbookSource()
+        {
+            this.spellBookGrid.DataSource = spellBook;
         }
     }
 }

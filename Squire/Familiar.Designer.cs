@@ -52,11 +52,6 @@
             this.tableLayoutPanel2 = new System.Windows.Forms.TableLayoutPanel();
             this.label1 = new System.Windows.Forms.Label();
             this.spellBookGrid = new System.Windows.Forms.DataGridView();
-            this.spellBookName = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.spellBookLevel = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.spellBookSchool = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.spellBookComponents = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.spellBookCastingTime = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.spellDescriptionBox = new System.Windows.Forms.TextBox();
             this.menuStrip1.SuspendLayout();
             this.tableLayoutPanel1.SuspendLayout();
@@ -294,55 +289,15 @@
             // 
             // spellBookGrid
             // 
-            this.spellBookGrid.AllowUserToOrderColumns = true;
+            this.spellBookGrid.AllowUserToAddRows = false;
             this.spellBookGrid.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.spellBookGrid.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.spellBookName,
-            this.spellBookLevel,
-            this.spellBookSchool,
-            this.spellBookComponents,
-            this.spellBookCastingTime});
             this.spellBookGrid.Dock = System.Windows.Forms.DockStyle.Fill;
             this.spellBookGrid.Location = new System.Drawing.Point(3, 23);
             this.spellBookGrid.MultiSelect = false;
             this.spellBookGrid.Name = "spellBookGrid";
+            this.spellBookGrid.ReadOnly = true;
             this.spellBookGrid.Size = new System.Drawing.Size(486, 204);
             this.spellBookGrid.TabIndex = 1;
-            // 
-            // spellBookName
-            // 
-            this.spellBookName.HeaderText = "Name";
-            this.spellBookName.Name = "spellBookName";
-            this.spellBookName.ReadOnly = true;
-            this.spellBookName.Width = 50;
-            // 
-            // spellBookLevel
-            // 
-            this.spellBookLevel.HeaderText = "Level";
-            this.spellBookLevel.Name = "spellBookLevel";
-            this.spellBookLevel.ReadOnly = true;
-            this.spellBookLevel.Width = 50;
-            // 
-            // spellBookSchool
-            // 
-            this.spellBookSchool.HeaderText = "School (Subschool)";
-            this.spellBookSchool.Name = "spellBookSchool";
-            this.spellBookSchool.ReadOnly = true;
-            this.spellBookSchool.Width = 75;
-            // 
-            // spellBookComponents
-            // 
-            this.spellBookComponents.HeaderText = "Components";
-            this.spellBookComponents.Name = "spellBookComponents";
-            this.spellBookComponents.ReadOnly = true;
-            this.spellBookComponents.Width = 75;
-            // 
-            // spellBookCastingTime
-            // 
-            this.spellBookCastingTime.HeaderText = "Casting Time";
-            this.spellBookCastingTime.Name = "spellBookCastingTime";
-            this.spellBookCastingTime.ReadOnly = true;
-            this.spellBookCastingTime.Width = 75;
             // 
             // spellDescriptionBox
             // 
@@ -402,13 +357,8 @@
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel4;
         private System.Windows.Forms.ListBox preparedSpellLevels;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel5;
-        private System.Windows.Forms.DataGridView spellBookGrid;
+        public System.Windows.Forms.DataGridView spellBookGrid;
         private System.Windows.Forms.ProgressBar preparedSpellsRemaining;
-        private System.Windows.Forms.DataGridViewTextBoxColumn spellBookName;
-        private System.Windows.Forms.DataGridViewTextBoxColumn spellBookLevel;
-        private System.Windows.Forms.DataGridViewTextBoxColumn spellBookSchool;
-        private System.Windows.Forms.DataGridViewTextBoxColumn spellBookComponents;
-        private System.Windows.Forms.DataGridViewTextBoxColumn spellBookCastingTime;
         private System.Windows.Forms.DataGridView dataGridView1;
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn1;
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn2;

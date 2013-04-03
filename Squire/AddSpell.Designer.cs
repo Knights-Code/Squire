@@ -59,8 +59,8 @@
             this.tableLayoutPanel5 = new System.Windows.Forms.TableLayoutPanel();
             this.spellLevelLabel = new System.Windows.Forms.Label();
             this.tableLayoutPanel7 = new System.Windows.Forms.TableLayoutPanel();
-            this.levelNumberBox = new System.Windows.Forms.NumericUpDown();
-            this.levelTypeBox = new System.Windows.Forms.ComboBox();
+            this.spellLevelNumberBox = new System.Windows.Forms.NumericUpDown();
+            this.spellLevelTypeBox = new System.Windows.Forms.ComboBox();
             this.tableLayoutPanel4 = new System.Windows.Forms.TableLayoutPanel();
             this.spellDescriptor = new System.Windows.Forms.Label();
             this.spellDescriptorBox = new System.Windows.Forms.ComboBox();
@@ -85,7 +85,7 @@
             this.tableLayoutPanel6.SuspendLayout();
             this.tableLayoutPanel5.SuspendLayout();
             this.tableLayoutPanel7.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.levelNumberBox)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.spellLevelNumberBox)).BeginInit();
             this.tableLayoutPanel4.SuspendLayout();
             this.tableLayoutPanel3.SuspendLayout();
             this.tableLayoutPanel2.SuspendLayout();
@@ -499,8 +499,8 @@
             this.tableLayoutPanel7.ColumnCount = 2;
             this.tableLayoutPanel7.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 59.91561F));
             this.tableLayoutPanel7.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 40.08439F));
-            this.tableLayoutPanel7.Controls.Add(this.levelNumberBox, 1, 0);
-            this.tableLayoutPanel7.Controls.Add(this.levelTypeBox, 0, 0);
+            this.tableLayoutPanel7.Controls.Add(this.spellLevelNumberBox, 1, 0);
+            this.tableLayoutPanel7.Controls.Add(this.spellLevelTypeBox, 0, 0);
             this.tableLayoutPanel7.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tableLayoutPanel7.Location = new System.Drawing.Point(66, 0);
             this.tableLayoutPanel7.Margin = new System.Windows.Forms.Padding(0);
@@ -510,19 +510,19 @@
             this.tableLayoutPanel7.Size = new System.Drawing.Size(261, 26);
             this.tableLayoutPanel7.TabIndex = 1;
             // 
-            // levelNumberBox
+            // spellLevelNumberBox
             // 
-            this.levelNumberBox.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.levelNumberBox.Location = new System.Drawing.Point(159, 3);
-            this.levelNumberBox.Name = "levelNumberBox";
-            this.levelNumberBox.Size = new System.Drawing.Size(99, 20);
-            this.levelNumberBox.TabIndex = 2;
+            this.spellLevelNumberBox.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.spellLevelNumberBox.Location = new System.Drawing.Point(159, 3);
+            this.spellLevelNumberBox.Name = "spellLevelNumberBox";
+            this.spellLevelNumberBox.Size = new System.Drawing.Size(99, 20);
+            this.spellLevelNumberBox.TabIndex = 2;
             // 
-            // levelTypeBox
+            // spellLevelTypeBox
             // 
-            this.levelTypeBox.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.levelTypeBox.FormattingEnabled = true;
-            this.levelTypeBox.Items.AddRange(new object[] {
+            this.spellLevelTypeBox.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.spellLevelTypeBox.FormattingEnabled = true;
+            this.spellLevelTypeBox.Items.AddRange(new object[] {
             "Bard (Brd)",
             "Cleric (Clr)",
             "Druid (Drd)",
@@ -552,10 +552,10 @@
             "Trickery",
             "War",
             "Water"});
-            this.levelTypeBox.Location = new System.Drawing.Point(3, 3);
-            this.levelTypeBox.Name = "levelTypeBox";
-            this.levelTypeBox.Size = new System.Drawing.Size(150, 21);
-            this.levelTypeBox.TabIndex = 0;
+            this.spellLevelTypeBox.Location = new System.Drawing.Point(3, 3);
+            this.spellLevelTypeBox.Name = "spellLevelTypeBox";
+            this.spellLevelTypeBox.Size = new System.Drawing.Size(150, 21);
+            this.spellLevelTypeBox.TabIndex = 0;
             // 
             // tableLayoutPanel4
             // 
@@ -746,6 +746,7 @@
             this.cancelButton.TabIndex = 1;
             this.cancelButton.Text = "&Cancel";
             this.cancelButton.UseVisualStyleBackColor = true;
+            this.cancelButton.Click += new System.EventHandler(this.cancelButton_Click);
             // 
             // AddSpell
             // 
@@ -779,7 +780,7 @@
             this.tableLayoutPanel5.ResumeLayout(false);
             this.tableLayoutPanel5.PerformLayout();
             this.tableLayoutPanel7.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.levelNumberBox)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.spellLevelNumberBox)).EndInit();
             this.tableLayoutPanel4.ResumeLayout(false);
             this.tableLayoutPanel4.PerformLayout();
             this.tableLayoutPanel3.ResumeLayout(false);
@@ -815,8 +816,8 @@
         private System.Windows.Forms.Label spellCastingTimeLabel;
         private System.Windows.Forms.TextBox spellCastingTimeBox;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel7;
-        private System.Windows.Forms.NumericUpDown levelNumberBox;
-        private System.Windows.Forms.ComboBox levelTypeBox;
+        private System.Windows.Forms.NumericUpDown spellLevelNumberBox;
+        private System.Windows.Forms.ComboBox spellLevelTypeBox;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel15;
         private System.Windows.Forms.Label spellDescription;
         private System.Windows.Forms.TextBox spellDescriptionBox;

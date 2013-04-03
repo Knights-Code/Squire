@@ -11,6 +11,10 @@ namespace Squire
 {
     public partial class Familiar : Form
     {
+
+        List<Spell> spellBook = new List<Spell>();
+        List<Spell> preparedSpells = new List<Spell>();
+
         public Familiar()
         {
             InitializeComponent();

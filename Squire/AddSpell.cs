@@ -11,8 +11,16 @@ namespace Squire
 {
     public partial class AddSpell : Form
     {
+        General parentForm;
+
         public AddSpell()
         {
+            InitializeComponent();
+        }
+
+        public AddSpell(General parentForm)
+        {
+            this.parentForm = parentForm;
             InitializeComponent();
         }
     }

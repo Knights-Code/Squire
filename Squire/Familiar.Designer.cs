@@ -38,32 +38,34 @@
             this.tableLayoutPanel3 = new System.Windows.Forms.TableLayoutPanel();
             this.label2 = new System.Windows.Forms.Label();
             this.tableLayoutPanel4 = new System.Windows.Forms.TableLayoutPanel();
-            this.preparedSpellsList = new System.Windows.Forms.DataGridView();
-            this.preparedSpellName = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.preparedSpellLevel = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.preparedSpellSchool = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.preparedSpellComponents = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.preparedSpellCastingTime = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.tableLayoutPanel5 = new System.Windows.Forms.TableLayoutPanel();
             this.preparedSpellsRemaining = new System.Windows.Forms.ProgressBar();
             this.preparedSpellLevels = new System.Windows.Forms.ListBox();
             this.tableLayoutPanel2 = new System.Windows.Forms.TableLayoutPanel();
             this.label1 = new System.Windows.Forms.Label();
             this.spellBookGrid = new System.Windows.Forms.DataGridView();
+            this.spellDescriptionBox = new System.Windows.Forms.TextBox();
             this.spellBookName = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.spellBookLevel = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.spellBookSchool = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.spellBookComponents = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.spellBookCastingTime = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.spellDescriptionBox = new System.Windows.Forms.TextBox();
+            this.dataGridView1 = new System.Windows.Forms.DataGridView();
+            this.dataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewTextBoxColumn2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewTextBoxColumn3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewTextBoxColumn4 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewTextBoxColumn5 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.printSpellbookToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.printPreparedSpellsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1.SuspendLayout();
             this.tableLayoutPanel1.SuspendLayout();
             this.tableLayoutPanel3.SuspendLayout();
             this.tableLayoutPanel4.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.preparedSpellsList)).BeginInit();
             this.tableLayoutPanel5.SuspendLayout();
             this.tableLayoutPanel2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.spellBookGrid)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.SuspendLayout();
             // 
             // menuStrip1
@@ -81,7 +83,9 @@
             this.fileToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.openSpellbookToolStripMenuItem,
             this.saveSpellbookToolStripMenuItem,
-            this.addSpellToolStripMenuItem});
+            this.addSpellToolStripMenuItem,
+            this.printSpellbookToolStripMenuItem,
+            this.printPreparedSpellsToolStripMenuItem});
             this.fileToolStripMenuItem.Name = "fileToolStripMenuItem";
             this.fileToolStripMenuItem.Size = new System.Drawing.Size(37, 20);
             this.fileToolStripMenuItem.Text = "File";
@@ -89,20 +93,20 @@
             // openSpellbookToolStripMenuItem
             // 
             this.openSpellbookToolStripMenuItem.Name = "openSpellbookToolStripMenuItem";
-            this.openSpellbookToolStripMenuItem.Size = new System.Drawing.Size(158, 22);
+            this.openSpellbookToolStripMenuItem.Size = new System.Drawing.Size(193, 22);
             this.openSpellbookToolStripMenuItem.Text = "Open Spellbook";
             // 
             // saveSpellbookToolStripMenuItem
             // 
             this.saveSpellbookToolStripMenuItem.Name = "saveSpellbookToolStripMenuItem";
-            this.saveSpellbookToolStripMenuItem.Size = new System.Drawing.Size(158, 22);
+            this.saveSpellbookToolStripMenuItem.Size = new System.Drawing.Size(193, 22);
             this.saveSpellbookToolStripMenuItem.Text = "Save Spellbook";
             // 
             // addSpellToolStripMenuItem
             // 
             this.addSpellToolStripMenuItem.Name = "addSpellToolStripMenuItem";
-            this.addSpellToolStripMenuItem.Size = new System.Drawing.Size(158, 22);
-            this.addSpellToolStripMenuItem.Text = "Add Spell";
+            this.addSpellToolStripMenuItem.Size = new System.Drawing.Size(193, 22);
+            this.addSpellToolStripMenuItem.Text = "Add Spell to Spellbook";
             this.addSpellToolStripMenuItem.Click += new System.EventHandler(this.addSpellToolStripMenuItem_Click);
             // 
             // tableLayoutPanel1
@@ -152,7 +156,7 @@
             // 
             this.tableLayoutPanel4.ColumnCount = 1;
             this.tableLayoutPanel4.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableLayoutPanel4.Controls.Add(this.preparedSpellsList, 0, 1);
+            this.tableLayoutPanel4.Controls.Add(this.dataGridView1, 0, 1);
             this.tableLayoutPanel4.Controls.Add(this.tableLayoutPanel5, 0, 0);
             this.tableLayoutPanel4.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tableLayoutPanel4.Location = new System.Drawing.Point(3, 23);
@@ -162,52 +166,6 @@
             this.tableLayoutPanel4.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
             this.tableLayoutPanel4.Size = new System.Drawing.Size(486, 204);
             this.tableLayoutPanel4.TabIndex = 2;
-            // 
-            // preparedSpellsList
-            // 
-            this.preparedSpellsList.AllowUserToOrderColumns = true;
-            this.preparedSpellsList.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.preparedSpellsList.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.preparedSpellName,
-            this.preparedSpellLevel,
-            this.preparedSpellSchool,
-            this.preparedSpellComponents,
-            this.preparedSpellCastingTime});
-            this.preparedSpellsList.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.preparedSpellsList.Location = new System.Drawing.Point(3, 53);
-            this.preparedSpellsList.Name = "preparedSpellsList";
-            this.preparedSpellsList.Size = new System.Drawing.Size(480, 148);
-            this.preparedSpellsList.TabIndex = 2;
-            // 
-            // preparedSpellName
-            // 
-            this.preparedSpellName.HeaderText = "Name";
-            this.preparedSpellName.Name = "preparedSpellName";
-            this.preparedSpellName.ReadOnly = true;
-            // 
-            // preparedSpellLevel
-            // 
-            this.preparedSpellLevel.HeaderText = "Level";
-            this.preparedSpellLevel.Name = "preparedSpellLevel";
-            this.preparedSpellLevel.ReadOnly = true;
-            // 
-            // preparedSpellSchool
-            // 
-            this.preparedSpellSchool.HeaderText = "School";
-            this.preparedSpellSchool.Name = "preparedSpellSchool";
-            this.preparedSpellSchool.ReadOnly = true;
-            // 
-            // preparedSpellComponents
-            // 
-            this.preparedSpellComponents.HeaderText = "Components";
-            this.preparedSpellComponents.Name = "preparedSpellComponents";
-            this.preparedSpellComponents.ReadOnly = true;
-            // 
-            // preparedSpellCastingTime
-            // 
-            this.preparedSpellCastingTime.HeaderText = "Casting Time";
-            this.preparedSpellCastingTime.Name = "preparedSpellCastingTime";
-            this.preparedSpellCastingTime.ReadOnly = true;
             // 
             // tableLayoutPanel5
             // 
@@ -283,39 +241,10 @@
             this.spellBookCastingTime});
             this.spellBookGrid.Dock = System.Windows.Forms.DockStyle.Fill;
             this.spellBookGrid.Location = new System.Drawing.Point(3, 23);
+            this.spellBookGrid.MultiSelect = false;
             this.spellBookGrid.Name = "spellBookGrid";
             this.spellBookGrid.Size = new System.Drawing.Size(486, 204);
             this.spellBookGrid.TabIndex = 1;
-            // 
-            // spellBookName
-            // 
-            this.spellBookName.HeaderText = "Name";
-            this.spellBookName.Name = "spellBookName";
-            this.spellBookName.ReadOnly = true;
-            // 
-            // spellBookLevel
-            // 
-            this.spellBookLevel.HeaderText = "Level";
-            this.spellBookLevel.Name = "spellBookLevel";
-            this.spellBookLevel.ReadOnly = true;
-            // 
-            // spellBookSchool
-            // 
-            this.spellBookSchool.HeaderText = "School";
-            this.spellBookSchool.Name = "spellBookSchool";
-            this.spellBookSchool.ReadOnly = true;
-            // 
-            // spellBookComponents
-            // 
-            this.spellBookComponents.HeaderText = "Components";
-            this.spellBookComponents.Name = "spellBookComponents";
-            this.spellBookComponents.ReadOnly = true;
-            // 
-            // spellBookCastingTime
-            // 
-            this.spellBookCastingTime.HeaderText = "Casting Time";
-            this.spellBookCastingTime.Name = "spellBookCastingTime";
-            this.spellBookCastingTime.ReadOnly = true;
             // 
             // spellDescriptionBox
             // 
@@ -329,6 +258,104 @@
             this.tableLayoutPanel1.SetRowSpan(this.spellDescriptionBox, 2);
             this.spellDescriptionBox.Size = new System.Drawing.Size(244, 466);
             this.spellDescriptionBox.TabIndex = 0;
+            // 
+            // spellBookName
+            // 
+            this.spellBookName.HeaderText = "Name";
+            this.spellBookName.Name = "spellBookName";
+            this.spellBookName.ReadOnly = true;
+            this.spellBookName.Width = 50;
+            // 
+            // spellBookLevel
+            // 
+            this.spellBookLevel.HeaderText = "Level";
+            this.spellBookLevel.Name = "spellBookLevel";
+            this.spellBookLevel.ReadOnly = true;
+            this.spellBookLevel.Width = 50;
+            // 
+            // spellBookSchool
+            // 
+            this.spellBookSchool.HeaderText = "School (Subschool)";
+            this.spellBookSchool.Name = "spellBookSchool";
+            this.spellBookSchool.ReadOnly = true;
+            this.spellBookSchool.Width = 75;
+            // 
+            // spellBookComponents
+            // 
+            this.spellBookComponents.HeaderText = "Components";
+            this.spellBookComponents.Name = "spellBookComponents";
+            this.spellBookComponents.ReadOnly = true;
+            this.spellBookComponents.Width = 75;
+            // 
+            // spellBookCastingTime
+            // 
+            this.spellBookCastingTime.HeaderText = "Casting Time";
+            this.spellBookCastingTime.Name = "spellBookCastingTime";
+            this.spellBookCastingTime.ReadOnly = true;
+            this.spellBookCastingTime.Width = 75;
+            // 
+            // dataGridView1
+            // 
+            this.dataGridView1.AllowUserToOrderColumns = true;
+            this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dataGridView1.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.dataGridViewTextBoxColumn1,
+            this.dataGridViewTextBoxColumn2,
+            this.dataGridViewTextBoxColumn3,
+            this.dataGridViewTextBoxColumn4,
+            this.dataGridViewTextBoxColumn5});
+            this.dataGridView1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.dataGridView1.Location = new System.Drawing.Point(3, 53);
+            this.dataGridView1.Name = "dataGridView1";
+            this.dataGridView1.Size = new System.Drawing.Size(480, 148);
+            this.dataGridView1.TabIndex = 2;
+            // 
+            // dataGridViewTextBoxColumn1
+            // 
+            this.dataGridViewTextBoxColumn1.HeaderText = "Name";
+            this.dataGridViewTextBoxColumn1.Name = "dataGridViewTextBoxColumn1";
+            this.dataGridViewTextBoxColumn1.ReadOnly = true;
+            this.dataGridViewTextBoxColumn1.Width = 50;
+            // 
+            // dataGridViewTextBoxColumn2
+            // 
+            this.dataGridViewTextBoxColumn2.HeaderText = "Level";
+            this.dataGridViewTextBoxColumn2.Name = "dataGridViewTextBoxColumn2";
+            this.dataGridViewTextBoxColumn2.ReadOnly = true;
+            this.dataGridViewTextBoxColumn2.Width = 50;
+            // 
+            // dataGridViewTextBoxColumn3
+            // 
+            this.dataGridViewTextBoxColumn3.HeaderText = "School (Subschool)";
+            this.dataGridViewTextBoxColumn3.Name = "dataGridViewTextBoxColumn3";
+            this.dataGridViewTextBoxColumn3.ReadOnly = true;
+            this.dataGridViewTextBoxColumn3.Width = 75;
+            // 
+            // dataGridViewTextBoxColumn4
+            // 
+            this.dataGridViewTextBoxColumn4.HeaderText = "Components";
+            this.dataGridViewTextBoxColumn4.Name = "dataGridViewTextBoxColumn4";
+            this.dataGridViewTextBoxColumn4.ReadOnly = true;
+            this.dataGridViewTextBoxColumn4.Width = 75;
+            // 
+            // dataGridViewTextBoxColumn5
+            // 
+            this.dataGridViewTextBoxColumn5.HeaderText = "Casting Time";
+            this.dataGridViewTextBoxColumn5.Name = "dataGridViewTextBoxColumn5";
+            this.dataGridViewTextBoxColumn5.ReadOnly = true;
+            this.dataGridViewTextBoxColumn5.Width = 75;
+            // 
+            // printSpellbookToolStripMenuItem
+            // 
+            this.printSpellbookToolStripMenuItem.Name = "printSpellbookToolStripMenuItem";
+            this.printSpellbookToolStripMenuItem.Size = new System.Drawing.Size(193, 22);
+            this.printSpellbookToolStripMenuItem.Text = "Print Spellbook";
+            // 
+            // printPreparedSpellsToolStripMenuItem
+            // 
+            this.printPreparedSpellsToolStripMenuItem.Name = "printPreparedSpellsToolStripMenuItem";
+            this.printPreparedSpellsToolStripMenuItem.Size = new System.Drawing.Size(193, 22);
+            this.printPreparedSpellsToolStripMenuItem.Text = "Print Prepared Spells";
             // 
             // Familiar
             // 
@@ -349,11 +376,11 @@
             this.tableLayoutPanel3.ResumeLayout(false);
             this.tableLayoutPanel3.PerformLayout();
             this.tableLayoutPanel4.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.preparedSpellsList)).EndInit();
             this.tableLayoutPanel5.ResumeLayout(false);
             this.tableLayoutPanel2.ResumeLayout(false);
             this.tableLayoutPanel2.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.spellBookGrid)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -376,17 +403,19 @@
         private System.Windows.Forms.ListBox preparedSpellLevels;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel5;
         private System.Windows.Forms.DataGridView spellBookGrid;
-        private System.Windows.Forms.DataGridView preparedSpellsList;
         private System.Windows.Forms.ProgressBar preparedSpellsRemaining;
-        private System.Windows.Forms.DataGridViewTextBoxColumn preparedSpellName;
-        private System.Windows.Forms.DataGridViewTextBoxColumn preparedSpellLevel;
-        private System.Windows.Forms.DataGridViewTextBoxColumn preparedSpellSchool;
-        private System.Windows.Forms.DataGridViewTextBoxColumn preparedSpellComponents;
-        private System.Windows.Forms.DataGridViewTextBoxColumn preparedSpellCastingTime;
         private System.Windows.Forms.DataGridViewTextBoxColumn spellBookName;
         private System.Windows.Forms.DataGridViewTextBoxColumn spellBookLevel;
         private System.Windows.Forms.DataGridViewTextBoxColumn spellBookSchool;
         private System.Windows.Forms.DataGridViewTextBoxColumn spellBookComponents;
         private System.Windows.Forms.DataGridViewTextBoxColumn spellBookCastingTime;
+        private System.Windows.Forms.DataGridView dataGridView1;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn1;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn2;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn3;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn4;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn5;
+        private System.Windows.Forms.ToolStripMenuItem printSpellbookToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem printPreparedSpellsToolStripMenuItem;
     }
 }

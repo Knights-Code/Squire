@@ -55,7 +55,14 @@
     <Compile Include="AddCombatant.Designer.cs">
       <DependentUpon>AddCombatant.cs</DependentUpon>
     </Compile>
+    <Compile Include="AddSpell.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="AddSpell.Designer.cs">
+      <DependentUpon>AddSpell.cs</DependentUpon>
+    </Compile>
     <Compile Include="Combatant.cs" />
+    <Compile Include="Spell.cs" />
     <Compile Include="Familiar.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -87,6 +94,9 @@
     </Compile>
     <EmbeddedResource Include="AddCombatant.resx">
       <DependentUpon>AddCombatant.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="AddSpell.resx">
+      <DependentUpon>AddSpell.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Familiar.resx">
       <DependentUpon>Familiar.cs</DependentUpon>

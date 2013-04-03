@@ -9,17 +9,11 @@ using System.Windows.Forms;
 
 namespace Squire
 {
-    public partial class Familiar : Form
+    public partial class AddSpell : Form
     {
-        public Familiar()
+        public AddSpell()
         {
             InitializeComponent();
-        }
-
-        private void addSpellToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            AddSpell addSpellDialog = new AddSpell();
-            addSpellDialog.Show();
         }
     }
 }

@@ -92,6 +92,7 @@
             this.openSpellbookToolStripMenuItem.Name = "openSpellbookToolStripMenuItem";
             this.openSpellbookToolStripMenuItem.Size = new System.Drawing.Size(193, 22);
             this.openSpellbookToolStripMenuItem.Text = "Open Spellbook";
+            this.openSpellbookToolStripMenuItem.Click += new System.EventHandler(this.openSpellbookToolStripMenuItem_Click_1);
             // 
             // saveSpellbookToolStripMenuItem
             // 
@@ -352,6 +353,7 @@
             this.MinimumSize = new System.Drawing.Size(764, 534);
             this.Name = "Familiar";
             this.Text = "Squire - Familiar";
+            this.Load += new System.EventHandler(this.Familiar_Load);
             this.menuStrip1.ResumeLayout(false);
             this.menuStrip1.PerformLayout();
             this.tableLayoutPanel2.ResumeLayout(false);

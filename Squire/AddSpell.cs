@@ -50,7 +50,6 @@ namespace Squire
             newSpell.spelldescription = this.spellDescriptionBox.Text;
             
             parentForm.addSpelltoSpellbook(newSpell);
-            parentForm.getSpellbookSource();
             this.Close();
         }
 

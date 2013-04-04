@@ -40,10 +40,8 @@ namespace Squire
 
         private void spellBookGrid_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
-            if (IsAHeaderCell(e))
-            {
-                return;
-            }
+            if (IsAHeaderCell(e)) { return; }
+
             var selectedRow = spellBookGrid.Rows[e.RowIndex];
             int columnindex = 0;
 
@@ -59,6 +57,15 @@ namespace Squire
                 }
                 columnindex++;
             }
+
+
+            // Name
+
+            // School (Subschool) [Descriptor]
+
+            // Everything until Description
+
+            // Description
         }
 
         private bool IsAHeaderCell(DataGridViewCellEventArgs cellEvent)

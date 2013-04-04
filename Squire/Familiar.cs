@@ -47,7 +47,8 @@ namespace Squire
                 if (!String.IsNullOrEmpty(element.Value.ToString()))
                 {
                     string columnname = this.spellBookGrid.Columns[columnindex].Name;
-                    this.spellDescriptionBox.AppendText(columnname + ": " + element.Value.ToString() + Environment.NewLine);
+                    this.spellDescriptionBox.AppendText(columnname + ": ");
+                    this.spellDescriptionBox.AppendText(element.Value.ToString() + Environment.NewLine);
                 }
                 columnindex++;
             }

@@ -697,7 +697,7 @@
             "Abjuration",
             "Conjuration",
             "Conjuration (Calling)",
-            "Conjuration (Creation",
+            "Conjuration (Creation)",
             "Conjuration (Healing)",
             "Conjuration (Summoning)",
             "Conjuration (Teleportation)",

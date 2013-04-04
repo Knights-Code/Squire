@@ -83,7 +83,6 @@ namespace Squire
                         this.spellDescriptionBox.AppendText(Environment.NewLine + "Level: ");
                         formatText("Level: ", false, true);
                         this.spellDescriptionBox.AppendText(element.Value.ToString() + Environment.NewLine);
-                        formatText(element.Value.ToString(), false, false);
                         break;
 
                     // Components
@@ -91,7 +90,6 @@ namespace Squire
                         this.spellDescriptionBox.AppendText("Components: ");
                         formatText("Components: ", false, true);
                         this.spellDescriptionBox.AppendText(element.Value.ToString() + Environment.NewLine);
-                        formatText(element.Value.ToString(), false, false);
                         break;
 
                     // Casting Time
@@ -99,7 +97,6 @@ namespace Squire
                         this.spellDescriptionBox.AppendText("Casting Time: ");
                         formatText("Casting Time: ", false, true);
                         this.spellDescriptionBox.AppendText(element.Value.ToString() + Environment.NewLine);
-                        formatText(element.Value.ToString(), false, false);
                         break;
 
                     // Range
@@ -107,7 +104,6 @@ namespace Squire
                         this.spellDescriptionBox.AppendText("Range: ");
                         formatText("Range: ", false, true);
                         this.spellDescriptionBox.AppendText(element.Value.ToString() + Environment.NewLine);
-                        formatText(element.Value.ToString(), false, false);
                         break;
 
                     // Area
@@ -115,7 +111,6 @@ namespace Squire
                         this.spellDescriptionBox.AppendText("Area: ");
                         formatText("Area: ", false, true);
                         this.spellDescriptionBox.AppendText(element.Value.ToString() + Environment.NewLine);
-                        formatText(element.Value.ToString(), false, false);
                         break;
 
                     // Effect
@@ -123,7 +118,6 @@ namespace Squire
                         this.spellDescriptionBox.AppendText("Effect: ");
                         formatText("Effect: ", false, true);
                         this.spellDescriptionBox.AppendText(element.Value.ToString() + Environment.NewLine);
-                        formatText(element.Value.ToString(), false, false);
                         break;
 
                     // Target(s)
@@ -131,7 +125,6 @@ namespace Squire
                         this.spellDescriptionBox.AppendText("Target(s): ");
                         formatText("Target(s): ", false, true);
                         this.spellDescriptionBox.AppendText(element.Value.ToString() + Environment.NewLine);
-                        formatText(element.Value.ToString(), false, false);
                         break;
 
                     // Duration
@@ -139,7 +132,6 @@ namespace Squire
                         this.spellDescriptionBox.AppendText("Duration: ");
                         formatText("Duration: ", false, true);
                         this.spellDescriptionBox.AppendText(element.Value.ToString() + Environment.NewLine);
-                        formatText(element.Value.ToString(), false, false);
                         break;
 
                     // Saving Throw
@@ -147,7 +139,6 @@ namespace Squire
                         this.spellDescriptionBox.AppendText("Saving Throw)) { ");
                         formatText("Saving Throw)) { ", false, true);
                         this.spellDescriptionBox.AppendText(element.Value.ToString() + Environment.NewLine);
-                        formatText(element.Value.ToString(), false, false);
                         break;
 
                     // Spell Resistance
@@ -155,13 +146,11 @@ namespace Squire
                         this.spellDescriptionBox.AppendText("Spell Resistance)) { ");
                         formatText("Spell Resistance)) { ", false, true);
                         this.spellDescriptionBox.AppendText(element.Value.ToString() + Environment.NewLine);
-                        formatText(element.Value.ToString(), false, false);
                         break;
 
                     // Description
                     case "spelldescription":
                         this.spellDescriptionBox.AppendText(Environment.NewLine + element.Value.ToString() + Environment.NewLine);
-                        formatText(element.Value.ToString(), false, false);
                         break;
                 }
 
@@ -182,23 +171,30 @@ namespace Squire
             }
         }
 
-        private void formatText(string textToFormat, bool title, bool bold)
+        private void formatText(string textToFormat, bool title, bool label)
         {
             int index = spellDescriptionBox.Text.LastIndexOf(textToFormat);
             if (index >= 0)
             {
                 spellDescriptionBox.SelectionStart = index;
-                spellDescriptionBox.SelectionLength = textToFormat.Length - 1;
+                spellDescriptionBox.SelectionLength = textToFormat.Length;
 
                 if (title)
                 {
-                    spellDescriptionBox.SelectionFont = new Font(spellDescriptionBox.Font, FontStyle.Bold & FontStyle.Underline);
+                    spellDescriptionBox.SelectionFont = new Font(spellDescriptionBox.Font.FontFamily, 12, FontStyle.Bold & FontStyle.Underline);
                 }
 
-                if (!title && bold)
+                if (!title && label)
                 {
                     spellDescriptionBox.SelectionFont = new Font(spellDescriptionBox.Font, FontStyle.Bold);
+                    spellDescriptionBox.SelectionIndent = 10;
                 }
+
+                if (!title && !label)
+                {
+                    spellDescriptionBox.SelectionIndent = 10;
+                }
+
 
                 spellDescriptionBox.SelectionStart = 0;
                 spellDescriptionBox.SelectionLength = 0;

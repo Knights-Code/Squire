@@ -40,6 +40,10 @@ namespace Squire
 
         private void spellBookGrid_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
+            if (IsAHeaderCell(e))
+            {
+                return;
+            }
             var selectedRow = spellBookGrid.Rows[e.RowIndex];
             int columnindex = 0;
 
@@ -54,6 +58,17 @@ namespace Squire
                     this.spellDescriptionBox.AppendText(element.Value.ToString() + Environment.NewLine);
                 }
                 columnindex++;
+            }
+        }
+
+        private bool IsAHeaderCell(DataGridViewCellEventArgs cellEvent)
+        {
+            if (cellEvent.RowIndex == -1)
+            {
+                return true;
+            }
+            else {
+                return false;
             }
         }
 

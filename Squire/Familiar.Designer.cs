@@ -40,27 +40,29 @@
             this.tableLayoutPanel3 = new System.Windows.Forms.TableLayoutPanel();
             this.label2 = new System.Windows.Forms.Label();
             this.tableLayoutPanel4 = new System.Windows.Forms.TableLayoutPanel();
-            this.dataGridView1 = new System.Windows.Forms.DataGridView();
-            this.dataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dataGridViewTextBoxColumn2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dataGridViewTextBoxColumn3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dataGridViewTextBoxColumn4 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dataGridViewTextBoxColumn5 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.preparedSpellsGrid = new System.Windows.Forms.DataGridView();
             this.tableLayoutPanel5 = new System.Windows.Forms.TableLayoutPanel();
-            this.preparedSpellsRemaining = new System.Windows.Forms.ProgressBar();
             this.preparedSpellLevels = new System.Windows.Forms.ListBox();
+            this.tableLayoutPanel6 = new System.Windows.Forms.TableLayoutPanel();
+            this.preparedSpellsProgressBar = new System.Windows.Forms.ProgressBar();
             this.tableLayoutPanel2 = new System.Windows.Forms.TableLayoutPanel();
             this.label1 = new System.Windows.Forms.Label();
             this.spellBookGrid = new System.Windows.Forms.DataGridView();
             this.spellDescriptionBox = new System.Windows.Forms.TextBox();
+            this.tableLayoutPanel7 = new System.Windows.Forms.TableLayoutPanel();
+            this.spellsRemainingLabel = new System.Windows.Forms.Label();
+            this.outof = new System.Windows.Forms.Label();
+            this.totalSpellsLabel = new System.Windows.Forms.Label();
             this.menuStrip1.SuspendLayout();
             this.tableLayoutPanel1.SuspendLayout();
             this.tableLayoutPanel3.SuspendLayout();
             this.tableLayoutPanel4.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.preparedSpellsGrid)).BeginInit();
             this.tableLayoutPanel5.SuspendLayout();
+            this.tableLayoutPanel6.SuspendLayout();
             this.tableLayoutPanel2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.spellBookGrid)).BeginInit();
+            this.tableLayoutPanel7.SuspendLayout();
             this.SuspendLayout();
             // 
             // menuStrip1
@@ -163,7 +165,7 @@
             // 
             this.tableLayoutPanel4.ColumnCount = 1;
             this.tableLayoutPanel4.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableLayoutPanel4.Controls.Add(this.dataGridView1, 0, 1);
+            this.tableLayoutPanel4.Controls.Add(this.preparedSpellsGrid, 0, 1);
             this.tableLayoutPanel4.Controls.Add(this.tableLayoutPanel5, 0, 0);
             this.tableLayoutPanel4.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tableLayoutPanel4.Location = new System.Drawing.Point(3, 23);
@@ -174,64 +176,23 @@
             this.tableLayoutPanel4.Size = new System.Drawing.Size(486, 204);
             this.tableLayoutPanel4.TabIndex = 2;
             // 
-            // dataGridView1
+            // preparedSpellsGrid
             // 
-            this.dataGridView1.AllowUserToOrderColumns = true;
-            this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView1.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.dataGridViewTextBoxColumn1,
-            this.dataGridViewTextBoxColumn2,
-            this.dataGridViewTextBoxColumn3,
-            this.dataGridViewTextBoxColumn4,
-            this.dataGridViewTextBoxColumn5});
-            this.dataGridView1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.dataGridView1.Location = new System.Drawing.Point(3, 53);
-            this.dataGridView1.Name = "dataGridView1";
-            this.dataGridView1.Size = new System.Drawing.Size(480, 148);
-            this.dataGridView1.TabIndex = 2;
-            // 
-            // dataGridViewTextBoxColumn1
-            // 
-            this.dataGridViewTextBoxColumn1.HeaderText = "Name";
-            this.dataGridViewTextBoxColumn1.Name = "dataGridViewTextBoxColumn1";
-            this.dataGridViewTextBoxColumn1.ReadOnly = true;
-            this.dataGridViewTextBoxColumn1.Width = 50;
-            // 
-            // dataGridViewTextBoxColumn2
-            // 
-            this.dataGridViewTextBoxColumn2.HeaderText = "Level";
-            this.dataGridViewTextBoxColumn2.Name = "dataGridViewTextBoxColumn2";
-            this.dataGridViewTextBoxColumn2.ReadOnly = true;
-            this.dataGridViewTextBoxColumn2.Width = 50;
-            // 
-            // dataGridViewTextBoxColumn3
-            // 
-            this.dataGridViewTextBoxColumn3.HeaderText = "School (Subschool)";
-            this.dataGridViewTextBoxColumn3.Name = "dataGridViewTextBoxColumn3";
-            this.dataGridViewTextBoxColumn3.ReadOnly = true;
-            this.dataGridViewTextBoxColumn3.Width = 75;
-            // 
-            // dataGridViewTextBoxColumn4
-            // 
-            this.dataGridViewTextBoxColumn4.HeaderText = "Components";
-            this.dataGridViewTextBoxColumn4.Name = "dataGridViewTextBoxColumn4";
-            this.dataGridViewTextBoxColumn4.ReadOnly = true;
-            this.dataGridViewTextBoxColumn4.Width = 75;
-            // 
-            // dataGridViewTextBoxColumn5
-            // 
-            this.dataGridViewTextBoxColumn5.HeaderText = "Casting Time";
-            this.dataGridViewTextBoxColumn5.Name = "dataGridViewTextBoxColumn5";
-            this.dataGridViewTextBoxColumn5.ReadOnly = true;
-            this.dataGridViewTextBoxColumn5.Width = 75;
+            this.preparedSpellsGrid.AllowUserToOrderColumns = true;
+            this.preparedSpellsGrid.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.preparedSpellsGrid.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.preparedSpellsGrid.Location = new System.Drawing.Point(3, 53);
+            this.preparedSpellsGrid.Name = "preparedSpellsGrid";
+            this.preparedSpellsGrid.Size = new System.Drawing.Size(480, 148);
+            this.preparedSpellsGrid.TabIndex = 2;
             // 
             // tableLayoutPanel5
             // 
             this.tableLayoutPanel5.ColumnCount = 2;
             this.tableLayoutPanel5.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle());
             this.tableLayoutPanel5.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 371F));
-            this.tableLayoutPanel5.Controls.Add(this.preparedSpellsRemaining, 0, 0);
             this.tableLayoutPanel5.Controls.Add(this.preparedSpellLevels, 0, 0);
+            this.tableLayoutPanel5.Controls.Add(this.tableLayoutPanel6, 1, 0);
             this.tableLayoutPanel5.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tableLayoutPanel5.Location = new System.Drawing.Point(3, 3);
             this.tableLayoutPanel5.Name = "tableLayoutPanel5";
@@ -241,25 +202,41 @@
             this.tableLayoutPanel5.Size = new System.Drawing.Size(480, 44);
             this.tableLayoutPanel5.TabIndex = 1;
             // 
-            // preparedSpellsRemaining
-            // 
-            this.preparedSpellsRemaining.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.preparedSpellsRemaining.Location = new System.Drawing.Point(112, 3);
-            this.preparedSpellsRemaining.MaximumSize = new System.Drawing.Size(0, 20);
-            this.preparedSpellsRemaining.MinimumSize = new System.Drawing.Size(0, 20);
-            this.preparedSpellsRemaining.Name = "preparedSpellsRemaining";
-            this.preparedSpellsRemaining.Size = new System.Drawing.Size(365, 20);
-            this.preparedSpellsRemaining.TabIndex = 1;
-            // 
             // preparedSpellLevels
             // 
             this.preparedSpellLevels.Dock = System.Windows.Forms.DockStyle.Fill;
             this.preparedSpellLevels.FormattingEnabled = true;
+            this.preparedSpellLevels.Items.AddRange(new object[] {
+            "All"});
             this.preparedSpellLevels.Location = new System.Drawing.Point(3, 3);
             this.preparedSpellLevels.MinimumSize = new System.Drawing.Size(103, 38);
             this.preparedSpellLevels.Name = "preparedSpellLevels";
             this.preparedSpellLevels.Size = new System.Drawing.Size(103, 38);
             this.preparedSpellLevels.TabIndex = 0;
+            // 
+            // tableLayoutPanel6
+            // 
+            this.tableLayoutPanel6.ColumnCount = 1;
+            this.tableLayoutPanel6.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.tableLayoutPanel6.Controls.Add(this.preparedSpellsProgressBar, 0, 0);
+            this.tableLayoutPanel6.Controls.Add(this.tableLayoutPanel7, 0, 1);
+            this.tableLayoutPanel6.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.tableLayoutPanel6.Location = new System.Drawing.Point(109, 0);
+            this.tableLayoutPanel6.Margin = new System.Windows.Forms.Padding(0);
+            this.tableLayoutPanel6.Name = "tableLayoutPanel6";
+            this.tableLayoutPanel6.RowCount = 2;
+            this.tableLayoutPanel6.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.tableLayoutPanel6.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.tableLayoutPanel6.Size = new System.Drawing.Size(371, 44);
+            this.tableLayoutPanel6.TabIndex = 1;
+            // 
+            // preparedSpellsProgressBar
+            // 
+            this.preparedSpellsProgressBar.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.preparedSpellsProgressBar.Location = new System.Drawing.Point(3, 3);
+            this.preparedSpellsProgressBar.Name = "preparedSpellsProgressBar";
+            this.preparedSpellsProgressBar.Size = new System.Drawing.Size(365, 16);
+            this.preparedSpellsProgressBar.TabIndex = 0;
             // 
             // tableLayoutPanel2
             // 
@@ -315,6 +292,56 @@
             this.spellDescriptionBox.Size = new System.Drawing.Size(244, 466);
             this.spellDescriptionBox.TabIndex = 0;
             // 
+            // tableLayoutPanel7
+            // 
+            this.tableLayoutPanel7.ColumnCount = 3;
+            this.tableLayoutPanel7.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 36F));
+            this.tableLayoutPanel7.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 52F));
+            this.tableLayoutPanel7.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 9F));
+            this.tableLayoutPanel7.Controls.Add(this.spellsRemainingLabel, 0, 0);
+            this.tableLayoutPanel7.Controls.Add(this.outof, 1, 0);
+            this.tableLayoutPanel7.Controls.Add(this.totalSpellsLabel, 2, 0);
+            this.tableLayoutPanel7.Dock = System.Windows.Forms.DockStyle.Right;
+            this.tableLayoutPanel7.Location = new System.Drawing.Point(243, 25);
+            this.tableLayoutPanel7.Name = "tableLayoutPanel7";
+            this.tableLayoutPanel7.RowCount = 1;
+            this.tableLayoutPanel7.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
+            this.tableLayoutPanel7.Size = new System.Drawing.Size(125, 16);
+            this.tableLayoutPanel7.TabIndex = 1;
+            // 
+            // spellsRemainingLabel
+            // 
+            this.spellsRemainingLabel.AutoSize = true;
+            this.spellsRemainingLabel.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.spellsRemainingLabel.Location = new System.Drawing.Point(3, 0);
+            this.spellsRemainingLabel.Name = "spellsRemainingLabel";
+            this.spellsRemainingLabel.Size = new System.Drawing.Size(30, 16);
+            this.spellsRemainingLabel.TabIndex = 0;
+            this.spellsRemainingLabel.Text = "0";
+            this.spellsRemainingLabel.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // outof
+            // 
+            this.outof.AutoSize = true;
+            this.outof.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.outof.Location = new System.Drawing.Point(39, 0);
+            this.outof.Name = "outof";
+            this.outof.Size = new System.Drawing.Size(46, 16);
+            this.outof.TabIndex = 1;
+            this.outof.Text = "out of";
+            this.outof.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // totalSpellsLabel
+            // 
+            this.totalSpellsLabel.AutoSize = true;
+            this.totalSpellsLabel.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.totalSpellsLabel.Location = new System.Drawing.Point(91, 0);
+            this.totalSpellsLabel.Name = "totalSpellsLabel";
+            this.totalSpellsLabel.Size = new System.Drawing.Size(31, 16);
+            this.totalSpellsLabel.TabIndex = 2;
+            this.totalSpellsLabel.Text = "0";
+            this.totalSpellsLabel.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
             // Familiar
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -335,11 +362,14 @@
             this.tableLayoutPanel3.ResumeLayout(false);
             this.tableLayoutPanel3.PerformLayout();
             this.tableLayoutPanel4.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.preparedSpellsGrid)).EndInit();
             this.tableLayoutPanel5.ResumeLayout(false);
+            this.tableLayoutPanel6.ResumeLayout(false);
             this.tableLayoutPanel2.ResumeLayout(false);
             this.tableLayoutPanel2.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.spellBookGrid)).EndInit();
+            this.tableLayoutPanel7.ResumeLayout(false);
+            this.tableLayoutPanel7.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -362,14 +392,14 @@
         private System.Windows.Forms.ListBox preparedSpellLevels;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel5;
         public System.Windows.Forms.DataGridView spellBookGrid;
-        private System.Windows.Forms.ProgressBar preparedSpellsRemaining;
-        private System.Windows.Forms.DataGridView dataGridView1;
-        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn1;
-        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn2;
-        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn3;
-        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn4;
-        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn5;
+        private System.Windows.Forms.DataGridView preparedSpellsGrid;
         private System.Windows.Forms.ToolStripMenuItem printSpellbookToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem printPreparedSpellsToolStripMenuItem;
+        private System.Windows.Forms.TableLayoutPanel tableLayoutPanel6;
+        private System.Windows.Forms.ProgressBar preparedSpellsProgressBar;
+        private System.Windows.Forms.TableLayoutPanel tableLayoutPanel7;
+        private System.Windows.Forms.Label spellsRemainingLabel;
+        private System.Windows.Forms.Label outof;
+        private System.Windows.Forms.Label totalSpellsLabel;
     }
 }

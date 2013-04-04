@@ -131,13 +131,8 @@
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
     <None Include="Resources\Pterra.otf" />
-    <None Include="Resources\Scala Sans Italic Thin.ttf" />
-    <None Include="Resources\ScalaSansLF-Regular.otf" />
-    <None Include="Resources\ScalaSansSC-Bold.otf" />
-    <None Include="Resources\ScalaSansSC-BoldItalic.otf" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\Alchemy-GoldA24.ttf" />
     <None Include="Resources\CelestiaAntiqua-Bold_0.otf" />
     <None Include="Resources\CelestiaAntiqua-Italic_0.otf" />
     <None Include="Resources\CelestiaAntiqua_0.otf" />

@@ -49,20 +49,6 @@ namespace Squire
             var selectedRow = spellBookGrid.Rows[e.RowIndex];
             int columnindex = 0;
 
-            // Basic for loop for populating box
-            /*
-            foreach (DataGridViewCell element in selectedRow.Cells)
-            {
-                if (!String.IsNullOrEmpty(element.Value.ToString()))
-                {
-                    string columnname = this.spellBookGrid.Columns[columnindex].Name;
-                    this.spellDescriptionBox.AppendText(columnname + ": ");
-                    this.spellDescriptionBox.AppendText(element.Value.ToString() + Environment.NewLine);
-                }
-                columnindex++;
-            }
-             */
-
             foreach (DataGridViewCell element in selectedRow.Cells)
             {
                 if (String.IsNullOrEmpty(element.Value.ToString())) { continue; }
@@ -134,10 +120,8 @@ namespace Squire
                         this.spellDescriptionBox.AppendText(Environment.NewLine + element.Value.ToString() + Environment.NewLine);
                         break;
                 }
-
                 columnindex++;
             }
-
         }
 
         private bool IsAHeaderCell(DataGridViewCellEventArgs cellEvent)

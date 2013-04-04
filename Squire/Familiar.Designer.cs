@@ -36,7 +36,9 @@
             this.addSpellToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.printSpellbookToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.printPreparedSpellsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
+            this.tableLayoutPanel2 = new System.Windows.Forms.TableLayoutPanel();
+            this.label1 = new System.Windows.Forms.Label();
+            this.spellBookGrid = new System.Windows.Forms.DataGridView();
             this.tableLayoutPanel3 = new System.Windows.Forms.TableLayoutPanel();
             this.label2 = new System.Windows.Forms.Label();
             this.tableLayoutPanel4 = new System.Windows.Forms.TableLayoutPanel();
@@ -45,24 +47,22 @@
             this.preparedSpellLevels = new System.Windows.Forms.ListBox();
             this.tableLayoutPanel6 = new System.Windows.Forms.TableLayoutPanel();
             this.preparedSpellsProgressBar = new System.Windows.Forms.ProgressBar();
-            this.tableLayoutPanel2 = new System.Windows.Forms.TableLayoutPanel();
-            this.label1 = new System.Windows.Forms.Label();
-            this.spellBookGrid = new System.Windows.Forms.DataGridView();
-            this.spellDescriptionBox = new System.Windows.Forms.TextBox();
             this.tableLayoutPanel7 = new System.Windows.Forms.TableLayoutPanel();
             this.spellsRemainingLabel = new System.Windows.Forms.Label();
             this.outof = new System.Windows.Forms.Label();
             this.totalSpellsLabel = new System.Windows.Forms.Label();
+            this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
+            this.spellDescriptionBox = new System.Windows.Forms.RichTextBox();
             this.menuStrip1.SuspendLayout();
-            this.tableLayoutPanel1.SuspendLayout();
+            this.tableLayoutPanel2.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.spellBookGrid)).BeginInit();
             this.tableLayoutPanel3.SuspendLayout();
             this.tableLayoutPanel4.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.preparedSpellsGrid)).BeginInit();
             this.tableLayoutPanel5.SuspendLayout();
             this.tableLayoutPanel6.SuspendLayout();
-            this.tableLayoutPanel2.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.spellBookGrid)).BeginInit();
             this.tableLayoutPanel7.SuspendLayout();
+            this.tableLayoutPanel1.SuspendLayout();
             this.SuspendLayout();
             // 
             // menuStrip1
@@ -118,22 +118,45 @@
             this.printPreparedSpellsToolStripMenuItem.Size = new System.Drawing.Size(193, 22);
             this.printPreparedSpellsToolStripMenuItem.Text = "Print Prepared Spells";
             // 
-            // tableLayoutPanel1
+            // tableLayoutPanel2
             // 
-            this.tableLayoutPanel1.ColumnCount = 2;
-            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 66.66666F));
-            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 33.33333F));
-            this.tableLayoutPanel1.Controls.Add(this.tableLayoutPanel3, 0, 1);
-            this.tableLayoutPanel1.Controls.Add(this.tableLayoutPanel2, 0, 0);
-            this.tableLayoutPanel1.Controls.Add(this.spellDescriptionBox, 1, 0);
-            this.tableLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tableLayoutPanel1.Location = new System.Drawing.Point(0, 24);
-            this.tableLayoutPanel1.Name = "tableLayoutPanel1";
-            this.tableLayoutPanel1.RowCount = 2;
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tableLayoutPanel1.Size = new System.Drawing.Size(748, 472);
-            this.tableLayoutPanel1.TabIndex = 1;
+            this.tableLayoutPanel2.ColumnCount = 1;
+            this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
+            this.tableLayoutPanel2.Controls.Add(this.label1, 0, 0);
+            this.tableLayoutPanel2.Controls.Add(this.spellBookGrid, 0, 1);
+            this.tableLayoutPanel2.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.tableLayoutPanel2.Location = new System.Drawing.Point(3, 3);
+            this.tableLayoutPanel2.Name = "tableLayoutPanel2";
+            this.tableLayoutPanel2.RowCount = 2;
+            this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
+            this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle());
+            this.tableLayoutPanel2.Size = new System.Drawing.Size(492, 230);
+            this.tableLayoutPanel2.TabIndex = 3;
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.label1.Location = new System.Drawing.Point(3, 0);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(486, 20);
+            this.label1.TabIndex = 0;
+            this.label1.Text = "Known Spells";
+            this.label1.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // spellBookGrid
+            // 
+            this.spellBookGrid.AllowUserToAddRows = false;
+            this.spellBookGrid.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.None;
+            this.spellBookGrid.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.spellBookGrid.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.spellBookGrid.Location = new System.Drawing.Point(3, 23);
+            this.spellBookGrid.MultiSelect = false;
+            this.spellBookGrid.Name = "spellBookGrid";
+            this.spellBookGrid.ReadOnly = true;
+            this.spellBookGrid.Size = new System.Drawing.Size(486, 204);
+            this.spellBookGrid.TabIndex = 1;
+            this.spellBookGrid.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.spellBookGrid_CellContentClick);
             // 
             // tableLayoutPanel3
             // 
@@ -238,66 +261,12 @@
             this.preparedSpellsProgressBar.Size = new System.Drawing.Size(365, 16);
             this.preparedSpellsProgressBar.TabIndex = 0;
             // 
-            // tableLayoutPanel2
-            // 
-            this.tableLayoutPanel2.ColumnCount = 1;
-            this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableLayoutPanel2.Controls.Add(this.label1, 0, 0);
-            this.tableLayoutPanel2.Controls.Add(this.spellBookGrid, 0, 1);
-            this.tableLayoutPanel2.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tableLayoutPanel2.Location = new System.Drawing.Point(3, 3);
-            this.tableLayoutPanel2.Name = "tableLayoutPanel2";
-            this.tableLayoutPanel2.RowCount = 2;
-            this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
-            this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle());
-            this.tableLayoutPanel2.Size = new System.Drawing.Size(492, 230);
-            this.tableLayoutPanel2.TabIndex = 3;
-            // 
-            // label1
-            // 
-            this.label1.AutoSize = true;
-            this.label1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.label1.Location = new System.Drawing.Point(3, 0);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(486, 20);
-            this.label1.TabIndex = 0;
-            this.label1.Text = "Known Spells";
-            this.label1.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
-            // spellBookGrid
-            // 
-            this.spellBookGrid.AllowUserToAddRows = false;
-            this.spellBookGrid.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.None;
-            this.spellBookGrid.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.spellBookGrid.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.spellBookGrid.Location = new System.Drawing.Point(3, 23);
-            this.spellBookGrid.MultiSelect = false;
-            this.spellBookGrid.Name = "spellBookGrid";
-            this.spellBookGrid.ReadOnly = true;
-            this.spellBookGrid.Size = new System.Drawing.Size(486, 204);
-            this.spellBookGrid.TabIndex = 1;
-            this.spellBookGrid.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.spellBookGrid_CellContentClick);
-            // 
-            // spellDescriptionBox
-            // 
-            this.spellDescriptionBox.Cursor = System.Windows.Forms.Cursors.IBeam;
-            this.spellDescriptionBox.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.spellDescriptionBox.Enabled = false;
-            this.spellDescriptionBox.Location = new System.Drawing.Point(501, 3);
-            this.spellDescriptionBox.Multiline = true;
-            this.spellDescriptionBox.Name = "spellDescriptionBox";
-            this.spellDescriptionBox.ReadOnly = true;
-            this.tableLayoutPanel1.SetRowSpan(this.spellDescriptionBox, 2);
-            this.spellDescriptionBox.ScrollBars = System.Windows.Forms.ScrollBars.Both;
-            this.spellDescriptionBox.Size = new System.Drawing.Size(244, 466);
-            this.spellDescriptionBox.TabIndex = 0;
-            // 
             // tableLayoutPanel7
             // 
             this.tableLayoutPanel7.ColumnCount = 3;
             this.tableLayoutPanel7.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 36F));
             this.tableLayoutPanel7.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 52F));
-            this.tableLayoutPanel7.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 9F));
+            this.tableLayoutPanel7.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 37F));
             this.tableLayoutPanel7.Controls.Add(this.spellsRemainingLabel, 0, 0);
             this.tableLayoutPanel7.Controls.Add(this.outof, 1, 0);
             this.tableLayoutPanel7.Controls.Add(this.totalSpellsLabel, 2, 0);
@@ -342,6 +311,34 @@
             this.totalSpellsLabel.Text = "0";
             this.totalSpellsLabel.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
+            // tableLayoutPanel1
+            // 
+            this.tableLayoutPanel1.ColumnCount = 2;
+            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 66.66666F));
+            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 33.33333F));
+            this.tableLayoutPanel1.Controls.Add(this.tableLayoutPanel3, 0, 1);
+            this.tableLayoutPanel1.Controls.Add(this.tableLayoutPanel2, 0, 0);
+            this.tableLayoutPanel1.Controls.Add(this.spellDescriptionBox, 1, 0);
+            this.tableLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.tableLayoutPanel1.Location = new System.Drawing.Point(0, 24);
+            this.tableLayoutPanel1.Name = "tableLayoutPanel1";
+            this.tableLayoutPanel1.RowCount = 2;
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.tableLayoutPanel1.Size = new System.Drawing.Size(748, 472);
+            this.tableLayoutPanel1.TabIndex = 1;
+            // 
+            // spellDescriptionBox
+            // 
+            this.spellDescriptionBox.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.spellDescriptionBox.Location = new System.Drawing.Point(501, 3);
+            this.spellDescriptionBox.Name = "spellDescriptionBox";
+            this.spellDescriptionBox.ReadOnly = true;
+            this.tableLayoutPanel1.SetRowSpan(this.spellDescriptionBox, 2);
+            this.spellDescriptionBox.Size = new System.Drawing.Size(244, 466);
+            this.spellDescriptionBox.TabIndex = 5;
+            this.spellDescriptionBox.Text = "";
+            // 
             // Familiar
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -354,22 +351,20 @@
             this.MinimumSize = new System.Drawing.Size(764, 534);
             this.Name = "Familiar";
             this.Text = "Squire - Familiar";
-            this.Load += new System.EventHandler(this.Familiar_Load);
             this.menuStrip1.ResumeLayout(false);
             this.menuStrip1.PerformLayout();
-            this.tableLayoutPanel1.ResumeLayout(false);
-            this.tableLayoutPanel1.PerformLayout();
+            this.tableLayoutPanel2.ResumeLayout(false);
+            this.tableLayoutPanel2.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.spellBookGrid)).EndInit();
             this.tableLayoutPanel3.ResumeLayout(false);
             this.tableLayoutPanel3.PerformLayout();
             this.tableLayoutPanel4.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.preparedSpellsGrid)).EndInit();
             this.tableLayoutPanel5.ResumeLayout(false);
             this.tableLayoutPanel6.ResumeLayout(false);
-            this.tableLayoutPanel2.ResumeLayout(false);
-            this.tableLayoutPanel2.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.spellBookGrid)).EndInit();
             this.tableLayoutPanel7.ResumeLayout(false);
             this.tableLayoutPanel7.PerformLayout();
+            this.tableLayoutPanel1.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -382,24 +377,24 @@
         private System.Windows.Forms.ToolStripMenuItem openSpellbookToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem saveSpellbookToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem addSpellToolStripMenuItem;
-        private System.Windows.Forms.TableLayoutPanel tableLayoutPanel1;
-        private System.Windows.Forms.TextBox spellDescriptionBox;
-        private System.Windows.Forms.TableLayoutPanel tableLayoutPanel3;
-        private System.Windows.Forms.TableLayoutPanel tableLayoutPanel2;
-        private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.TableLayoutPanel tableLayoutPanel4;
-        private System.Windows.Forms.ListBox preparedSpellLevels;
-        private System.Windows.Forms.TableLayoutPanel tableLayoutPanel5;
-        public System.Windows.Forms.DataGridView spellBookGrid;
-        private System.Windows.Forms.DataGridView preparedSpellsGrid;
         private System.Windows.Forms.ToolStripMenuItem printSpellbookToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem printPreparedSpellsToolStripMenuItem;
+        private System.Windows.Forms.TableLayoutPanel tableLayoutPanel2;
+        private System.Windows.Forms.Label label1;
+        public System.Windows.Forms.DataGridView spellBookGrid;
+        private System.Windows.Forms.TableLayoutPanel tableLayoutPanel3;
+        private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.TableLayoutPanel tableLayoutPanel4;
+        private System.Windows.Forms.DataGridView preparedSpellsGrid;
+        private System.Windows.Forms.TableLayoutPanel tableLayoutPanel5;
+        private System.Windows.Forms.ListBox preparedSpellLevels;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel6;
         private System.Windows.Forms.ProgressBar preparedSpellsProgressBar;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel7;
         private System.Windows.Forms.Label spellsRemainingLabel;
         private System.Windows.Forms.Label outof;
         private System.Windows.Forms.Label totalSpellsLabel;
+        private System.Windows.Forms.TableLayoutPanel tableLayoutPanel1;
+        private System.Windows.Forms.RichTextBox spellDescriptionBox;
     }
 }

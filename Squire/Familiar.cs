@@ -40,13 +40,17 @@ namespace Squire
 
         private void spellBookGrid_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
+            // Reset the box to be blank
+            this.spellDescriptionBox.Text = "";
+
+            // If the cell clicked is a header, return
             if (IsAHeaderCell(e)) { return; }
 
             var selectedRow = spellBookGrid.Rows[e.RowIndex];
             int columnindex = 0;
 
-            this.spellDescriptionBox.Text = "";
-
+            // Basic for loop for populating box
+            /*
             foreach (DataGridViewCell element in selectedRow.Cells)
             {
                 if (!String.IsNullOrEmpty(element.Value.ToString()))
@@ -57,15 +61,83 @@ namespace Squire
                 }
                 columnindex++;
             }
+             */
 
+            foreach (DataGridViewCell element in selectedRow.Cells)
+            {
+                if (String.IsNullOrEmpty(element.Value.ToString())) { continue; }
+                
+                switch (this.spellBookGrid.Columns[columnindex].Name)
+                {
+                    case "spellname":
+                        this.spellDescriptionBox.AppendText(element.Value.ToString());
+                        break;
 
-            // Name
+                    case "spellschoolandsubschool":
+                        this.spellDescriptionBox.AppendText(Environment.NewLine + element.Value.ToString());
+                        break;
+                    
+                    case "spelldescriptor":
+                        this.spellDescriptionBox.AppendText(" [" + element.Value.ToString() + "]");
+                        break;
+                    
+                    case "spelllevel":
+                        this.spellDescriptionBox.AppendText(Environment.NewLine + element.Value.ToString() + Environment.NewLine);
+                        break;
+                    
+                    case "spellcomponents":
+                        this.spellDescriptionBox.AppendText("Components: ");
+                        this.spellDescriptionBox.AppendText(element.Value.ToString() + Environment.NewLine);
+                        break;
+                    
+                    case "spellcastingtime":
+                        this.spellDescriptionBox.AppendText("Casting Time: ");
+                        this.spellDescriptionBox.AppendText(element.Value.ToString() + Environment.NewLine);
+                        break;
+                    
+                    case "spellrange":
+                        this.spellDescriptionBox.AppendText("Range: ");
+                        this.spellDescriptionBox.AppendText(element.Value.ToString() + Environment.NewLine);
+                        break;
+                    
+                    case "spellarea":
+                        this.spellDescriptionBox.AppendText("Area: ");
+                        this.spellDescriptionBox.AppendText(element.Value.ToString() + Environment.NewLine);
+                        break;
+                    
+                    case "spelleffect":
+                        this.spellDescriptionBox.AppendText("Effect: ");
+                        this.spellDescriptionBox.AppendText(element.Value.ToString() + Environment.NewLine);
+                        break;
+                    
+                    case "spelltargets":
+                        this.spellDescriptionBox.AppendText("Target(s): ");
+                        this.spellDescriptionBox.AppendText(element.Value.ToString() + Environment.NewLine);
+                        break;
+                    
+                    case "spellduration":
+                        this.spellDescriptionBox.AppendText("Duration: ");
+                        this.spellDescriptionBox.AppendText(element.Value.ToString() + Environment.NewLine);
+                        break;
+                    
+                    case "spellsavingthrow":
+                        this.spellDescriptionBox.AppendText("Saving Throw: ");
+                        this.spellDescriptionBox.AppendText(element.Value.ToString() + Environment.NewLine);
+                        break;
+                    
+                    case "spellresistance":
+                        this.spellDescriptionBox.AppendText("Spell Resistance: ");
+                        this.spellDescriptionBox.AppendText(element.Value.ToString() + Environment.NewLine);
+                        break;
+                    
+                    case "spelldescription":
+                        this.spellDescriptionBox.AppendText(Environment.NewLine + element.Value.ToString() + Environment.NewLine);
+                        break;
+                }
 
-            // School (Subschool) [Descriptor]
+                columnindex++;
+            }
 
-            // Everything until Description
-
-            // Description
         }
 
         private bool IsAHeaderCell(DataGridViewCellEventArgs cellEvent)

@@ -290,6 +290,7 @@
             // spellBookGrid
             // 
             this.spellBookGrid.AllowUserToAddRows = false;
+            this.spellBookGrid.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.None;
             this.spellBookGrid.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.spellBookGrid.Dock = System.Windows.Forms.DockStyle.Fill;
             this.spellBookGrid.Location = new System.Drawing.Point(3, 23);
@@ -310,6 +311,7 @@
             this.spellDescriptionBox.Name = "spellDescriptionBox";
             this.spellDescriptionBox.ReadOnly = true;
             this.tableLayoutPanel1.SetRowSpan(this.spellDescriptionBox, 2);
+            this.spellDescriptionBox.ScrollBars = System.Windows.Forms.ScrollBars.Both;
             this.spellDescriptionBox.Size = new System.Drawing.Size(244, 466);
             this.spellDescriptionBox.TabIndex = 0;
             // 

@@ -14,6 +14,7 @@ namespace Squire
         public string spellcomponents { get; set; }
         public string spellcastingtime { get; set; }
         public string spellrange { get; set; }
+        public string spellarea { get; set; }
         public string spelleffect { get; set; }
         public string spelltargets { get; set; }
         public string spellduration { get; set; }

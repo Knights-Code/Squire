@@ -37,19 +37,18 @@ namespace Squire
 
             newSpell.spellschoolandsubschool = this.spellSchoolBox.Text;
             newSpell.spelldescriptor = this.spellDescriptorBox.Text;
-            newSpell.spelllevel = this.spellLevelTypeBox.Text + this.spellLevelNumberBox.Text;
+            newSpell.spelllevel = this.spellLevelTypeBox.Text + " " + this.spellLevelNumberBox.Text;
             newSpell.spellcomponents = this.spellComponentsBox.Text;
             newSpell.spellcastingtime = this.spellCastingTimeBox.Text;
             newSpell.spellrange = this.spellRangeBox.Text;
-            newSpell.spellrange = this.spellRangeBox.Text;
+            newSpell.spellarea = this.spellAreaBox.Text;
             newSpell.spelleffect = this.spellEffectBox.Text;
             newSpell.spelltargets = this.spellTargetsBox.Text;
             newSpell.spellduration = this.spellDurationBox.Text;
             newSpell.spellsavingthrow = this.spellSavingThrowBox.Text;
             newSpell.spellresistance = this.spellResistanceBox.Text;
             newSpell.spelldescription = this.spellDescriptionBox.Text;
-
-
+            
             parentForm.addSpelltoSpellbook(newSpell);
             parentForm.getSpellbookSource();
             this.Close();
@@ -59,6 +58,5 @@ namespace Squire
         {
             this.Close();
         }
-
     }
 }

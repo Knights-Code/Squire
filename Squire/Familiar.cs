@@ -186,9 +186,15 @@ namespace Squire
                 spellDescriptionBox.SelectionStart = index;
                 spellDescriptionBox.SelectionLength = textToFormat.Length;
 
-                if (title)
+                if (title && !label)
                 {
                     spellDescriptionBox.SelectionFont = new Font(spellDescriptionBox.Font.FontFamily, 12, FontStyle.Bold & FontStyle.Underline);
+                }
+
+                if (title && label)
+                {
+                    spellDescriptionBox.SelectionFont = new Font(spellDescriptionBox.Font.FontFamily, 12, FontStyle.Bold & FontStyle.Underline);
+                    spellDescriptionBox.SelectionFont = new Font(spellDescriptionBox.Font, FontStyle.Bold);
                 }
 
                 if (!title && label)
@@ -203,10 +209,8 @@ namespace Squire
                     spellDescriptionBox.SelectionIndent = 10;
                 }
 
-
                 spellDescriptionBox.SelectionStart = 0;
                 spellDescriptionBox.SelectionLength = 0;
-                spellDescriptionBox.SelectionFont = spellDescriptionBox.Font;
             }
         }
 

@@ -23,6 +23,7 @@
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|x86' ">
     <PlatformTarget>x86</PlatformTarget>
@@ -129,11 +130,21 @@
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
+    <None Include="Resources\Pterra.otf" />
+    <None Include="Resources\Scala Sans Italic Thin.ttf" />
+    <None Include="Resources\ScalaSansLF-Regular.otf" />
+    <None Include="Resources\ScalaSansSC-Bold.otf" />
+    <None Include="Resources\ScalaSansSC-BoldItalic.otf" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="Resources\Alchemy-GoldA24.ttf" />
+    <None Include="Resources\CelestiaAntiqua-Bold_0.otf" />
+    <None Include="Resources\CelestiaAntiqua-Italic_0.otf" />
+    <None Include="Resources\CelestiaAntiqua_0.otf" />
     <None Include="Resources\HPADDICON.gif" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Resources\itextsharp.dll" />
     <Content Include="squire.ico" />
     <Content Include="Squire_Patsy.ico" />
   </ItemGroup>

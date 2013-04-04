@@ -6,6 +6,8 @@ using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Windows.Forms;
+using System.Drawing.Text;
+using System.IO;
 
 namespace Squire
 {
@@ -13,6 +15,7 @@ namespace Squire
     {
         BindingList<Spell> spellBook = new BindingList<Spell>();
         BindingList<Spell> preparedSpells = new BindingList<Spell>();
+        PrivateFontCollection pfc = new PrivateFontCollection();
 
         public Familiar()
         {
@@ -53,5 +56,24 @@ namespace Squire
                 columnindex++;
             }
         }
+
+        private void Familiar_Load(object sender, EventArgs e)
+        {
+
+            Stream fontStream = this.GetType().Assembly.GetManifestResourceStream("embedfont.Alphd___.ttf");
+
+            byte[] fontdata = new byte[fontStream.Length];
+            fontStream.Read(fontdata, 0, (int)fontStream.Length);
+            fontStream.Close();
+            unsafe
+            {
+                fixed (byte* pFontData = fontdata)
+                {
+                    pfc.AddMemoryFont((System.IntPtr)pFontData, fontdata.Length);
+                }
+            }
+
+        }
+
     }
 }

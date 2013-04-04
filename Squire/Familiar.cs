@@ -200,5 +200,198 @@ namespace Squire
                 spellDescriptionBox.SelectionLength = 0;
             }
         }
+
+        private void saveSpellbookToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            SaveFileDialog saveSpells = new SaveFileDialog();
+            saveSpells.DefaultExt = ".spl";
+            saveSpells.Filter = "Spell Files (*.fmlr)|*fmlr|All files (*.*)|*.*";
+            saveSpells.OverwritePrompt = true;
+            saveSpells.Title = "Save Spellbook";
+
+            if (saveSpells.ShowDialog() == DialogResult.OK)
+            {
+                StreamWriter file = new StreamWriter(saveSpells.FileName);
+                if (spellBook != null && spellBook.Count > 0)
+                {
+                    file.WriteLine("Spellbook" + Environment.NewLine);
+
+                    foreach (Spell currentSpell in spellBook)
+                    {
+                        // clear string from last spell
+                        string spellsavingformat = "";
+
+                        spellsavingformat += currentSpell.spellname;
+                        spellsavingformat += ",";
+                        spellsavingformat += currentSpell.spellschoolandsubschool;
+                        spellsavingformat += ",";
+                        spellsavingformat += currentSpell.spelldescriptor;
+                        spellsavingformat += ",";
+                        spellsavingformat += currentSpell.spelllevel;
+                        spellsavingformat += ",";
+                        spellsavingformat += currentSpell.spellcomponents;
+                        spellsavingformat += ",";
+                        spellsavingformat += currentSpell.spellcastingtime;
+                        spellsavingformat += ",";
+                        spellsavingformat += currentSpell.spellrange;
+                        spellsavingformat += ",";
+                        spellsavingformat += currentSpell.spellarea;
+                        spellsavingformat += ",";
+                        spellsavingformat += currentSpell.spelleffect;
+                        spellsavingformat += ",";
+                        spellsavingformat += currentSpell.spelltargets;
+                        spellsavingformat += ",";
+                        spellsavingformat += currentSpell.spellduration;
+                        spellsavingformat += ",";
+                        spellsavingformat += currentSpell.spellsavingthrow;
+                        spellsavingformat += ",";
+                        spellsavingformat += currentSpell.spellresistance;
+                        spellsavingformat += ",";
+                        spellsavingformat += currentSpell.spelldescription;
+
+                        file.WriteLine(spellsavingformat);
+                    }
+                }
+
+                if (preparedSpells != null && preparedSpells.Count > 0)
+                {
+                    file.WriteLine("Prepared Spells" + Environment.NewLine);
+
+                    foreach (Spell currentSpell in preparedSpells)
+                    {
+                        // clear string from last spell
+                        string spellsavingformat = "";
+
+                        spellsavingformat += currentSpell.spellname;
+                        spellsavingformat += ",";
+                        spellsavingformat += currentSpell.spellschoolandsubschool;
+                        spellsavingformat += ",";
+                        spellsavingformat += currentSpell.spelldescriptor;
+                        spellsavingformat += ",";
+                        spellsavingformat += currentSpell.spelllevel;
+                        spellsavingformat += ",";
+                        spellsavingformat += currentSpell.spellcomponents;
+                        spellsavingformat += ",";
+                        spellsavingformat += currentSpell.spellcastingtime;
+                        spellsavingformat += ",";
+                        spellsavingformat += currentSpell.spellrange;
+                        spellsavingformat += ",";
+                        spellsavingformat += currentSpell.spellarea;
+                        spellsavingformat += ",";
+                        spellsavingformat += currentSpell.spelleffect;
+                        spellsavingformat += ",";
+                        spellsavingformat += currentSpell.spelltargets;
+                        spellsavingformat += ",";
+                        spellsavingformat += currentSpell.spellduration;
+                        spellsavingformat += ",";
+                        spellsavingformat += currentSpell.spellsavingthrow;
+                        spellsavingformat += ",";
+                        spellsavingformat += currentSpell.spellresistance;
+                        spellsavingformat += ",";
+                        spellsavingformat += currentSpell.spelldescription;
+
+                        file.WriteLine(spellsavingformat);
+                    }
+                }
+                
+                file.Close();
+            }
+        }
+
+        private void openSpellbookToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            OpenFileDialog openSpells = new OpenFileDialog();
+            openSpells.DefaultExt = ".spl";
+            openSpells.Filter = "Spell Files (*.fmlr)|*fmlr|All files (*.*)|*.*";
+            openSpells.Title = "Open Spellbook";
+
+            if (openSpells.ShowDialog() == DialogResult.OK)
+            {
+                StreamReader file = new StreamReader(openSpells.FileName);
+                if (spellBook != null && spellBook.Count > 0)
+                {
+                    file.ReadLine("Spellbook" + Environment.NewLine);
+
+                    foreach (Spell currentSpell in spellBook)
+                    {
+                        // clear string from last spell
+                        string spellsavingformat = "";
+
+                        spellsavingformat += currentSpell.spellname;
+                        spellsavingformat += ",";
+                        spellsavingformat += currentSpell.spellschoolandsubschool;
+                        spellsavingformat += ",";
+                        spellsavingformat += currentSpell.spelldescriptor;
+                        spellsavingformat += ",";
+                        spellsavingformat += currentSpell.spelllevel;
+                        spellsavingformat += ",";
+                        spellsavingformat += currentSpell.spellcomponents;
+                        spellsavingformat += ",";
+                        spellsavingformat += currentSpell.spellcastingtime;
+                        spellsavingformat += ",";
+                        spellsavingformat += currentSpell.spellrange;
+                        spellsavingformat += ",";
+                        spellsavingformat += currentSpell.spellarea;
+                        spellsavingformat += ",";
+                        spellsavingformat += currentSpell.spelleffect;
+                        spellsavingformat += ",";
+                        spellsavingformat += currentSpell.spelltargets;
+                        spellsavingformat += ",";
+                        spellsavingformat += currentSpell.spellduration;
+                        spellsavingformat += ",";
+                        spellsavingformat += currentSpell.spellsavingthrow;
+                        spellsavingformat += ",";
+                        spellsavingformat += currentSpell.spellresistance;
+                        spellsavingformat += ",";
+                        spellsavingformat += currentSpell.spelldescription;
+
+                        file.WriteLine(spellsavingformat);
+                    }
+                }
+
+                if (preparedSpells != null && preparedSpells.Count > 0)
+                {
+                    file.WriteLine("Prepared Spells" + Environment.NewLine);
+
+                    foreach (Spell currentSpell in preparedSpells)
+                    {
+                        // clear string from last spell
+                        string spellsavingformat = "";
+
+                        spellsavingformat += currentSpell.spellname;
+                        spellsavingformat += ",";
+                        spellsavingformat += currentSpell.spellschoolandsubschool;
+                        spellsavingformat += ",";
+                        spellsavingformat += currentSpell.spelldescriptor;
+                        spellsavingformat += ",";
+                        spellsavingformat += currentSpell.spelllevel;
+                        spellsavingformat += ",";
+                        spellsavingformat += currentSpell.spellcomponents;
+                        spellsavingformat += ",";
+                        spellsavingformat += currentSpell.spellcastingtime;
+                        spellsavingformat += ",";
+                        spellsavingformat += currentSpell.spellrange;
+                        spellsavingformat += ",";
+                        spellsavingformat += currentSpell.spellarea;
+                        spellsavingformat += ",";
+                        spellsavingformat += currentSpell.spelleffect;
+                        spellsavingformat += ",";
+                        spellsavingformat += currentSpell.spelltargets;
+                        spellsavingformat += ",";
+                        spellsavingformat += currentSpell.spellduration;
+                        spellsavingformat += ",";
+                        spellsavingformat += currentSpell.spellsavingthrow;
+                        spellsavingformat += ",";
+                        spellsavingformat += currentSpell.spellresistance;
+                        spellsavingformat += ",";
+                        spellsavingformat += currentSpell.spelldescription;
+
+                        file.WriteLine(spellsavingformat);
+                    }
+                }
+
+                file.Close();
+            }
+        }
     }
 }

@@ -98,6 +98,7 @@
             this.saveSpellbookToolStripMenuItem.Name = "saveSpellbookToolStripMenuItem";
             this.saveSpellbookToolStripMenuItem.Size = new System.Drawing.Size(193, 22);
             this.saveSpellbookToolStripMenuItem.Text = "Save Spellbook";
+            this.saveSpellbookToolStripMenuItem.Click += new System.EventHandler(this.saveSpellbookToolStripMenuItem_Click);
             // 
             // addSpellToolStripMenuItem
             // 

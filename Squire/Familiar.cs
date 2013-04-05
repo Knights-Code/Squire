@@ -13,12 +13,25 @@ namespace Squire
 {
     public partial class Familiar : Form
     {
-        BindingList<Spell> spellBook = new BindingList<Spell>();
-        BindingList<Spell> preparedSpells = new BindingList<Spell>();
+
+        Spellcaster spellcaster;
 
         public Familiar()
         {
+            this.spellcaster = new Spellcaster();
             InitializeComponent();
+        }
+
+        public void addSpell(Spell newSpell, bool preparedSpell)
+        {
+            if (preparedSpell)
+            {
+                spellcaster.preparedSpells.Add(newSpell);
+            }
+            else
+            {
+                spellcaster.spellBook.Add(newSpell);
+            }
         }
 
         private void addSpellToolStripMenuItem_Click(object sender, EventArgs e)
@@ -27,18 +40,16 @@ namespace Squire
             addSpellDialog.Show();
         }
 
-        public void addSpelltoSpellbook(Spell newSpell)
-        {
-            spellBook.Add(newSpell);
-        }
-
         private void spellBookGrid_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
             // Reset the box to be blank
             this.spellDescriptionBox.Text = "";
 
             // If the cell clicked is a header, return
-            if (IsAHeaderCell(e)) { return; }
+            if (isAHeaderCell(e))
+            {
+                return;
+            }
 
             var selectedRow = spellBookGrid.Rows[e.RowIndex];
             int columnindex = 0;
@@ -166,7 +177,7 @@ namespace Squire
 
         }
 
-        private bool IsAHeaderCell(DataGridViewCellEventArgs cellEvent)
+        private bool isAHeaderCell(DataGridViewCellEventArgs cellEvent)
         {
             if (cellEvent.RowIndex == -1)
             {
@@ -225,86 +236,10 @@ namespace Squire
             if (saveSpells.ShowDialog() == DialogResult.OK)
             {
                 StreamWriter file = new StreamWriter(saveSpells.FileName);
-                if (spellBook != null && spellBook.Count > 0)
+
+                foreach (string line in spellcaster.generateSaveContent())
                 {
-                    file.WriteLine("Spellbook" + Environment.NewLine);
-
-                    foreach (Spell currentSpell in spellBook)
-                    {
-                        // clear string from last spell
-                        string spellsavingformat = "";
-
-                        spellsavingformat += currentSpell.spellname;
-                        spellsavingformat += "\t";
-                        spellsavingformat += currentSpell.spellschoolandsubschool;
-                        spellsavingformat += "\t";
-                        spellsavingformat += currentSpell.spelldescriptor;
-                        spellsavingformat += "\t";
-                        spellsavingformat += currentSpell.spelllevel;
-                        spellsavingformat += "\t";
-                        spellsavingformat += currentSpell.spellcomponents;
-                        spellsavingformat += "\t";
-                        spellsavingformat += currentSpell.spellcastingtime;
-                        spellsavingformat += "\t";
-                        spellsavingformat += currentSpell.spellrange;
-                        spellsavingformat += "\t";
-                        spellsavingformat += currentSpell.spellarea;
-                        spellsavingformat += "\t";
-                        spellsavingformat += currentSpell.spelleffect;
-                        spellsavingformat += "\t";
-                        spellsavingformat += currentSpell.spelltargets;
-                        spellsavingformat += "\t";
-                        spellsavingformat += currentSpell.spellduration;
-                        spellsavingformat += "\t";
-                        spellsavingformat += currentSpell.spellsavingthrow;
-                        spellsavingformat += "\t";
-                        spellsavingformat += currentSpell.spellresistance;
-                        spellsavingformat += "\t";
-                        spellsavingformat += currentSpell.spelldescription;
-
-                        file.WriteLine(spellsavingformat);
-                    }
-                }
-
-                if (preparedSpells != null && preparedSpells.Count > 0)
-                {
-                    file.WriteLine("Prepared Spells" + Environment.NewLine);
-
-                    foreach (Spell currentSpell in preparedSpells)
-                    {
-                        // clear string from last spell
-                        string spellsavingformat = "";
-
-                        spellsavingformat += currentSpell.spellname;
-                        spellsavingformat += "\t";
-                        spellsavingformat += currentSpell.spellschoolandsubschool;
-                        spellsavingformat += "\t";
-                        spellsavingformat += currentSpell.spelldescriptor;
-                        spellsavingformat += "\t";
-                        spellsavingformat += currentSpell.spelllevel;
-                        spellsavingformat += "\t";
-                        spellsavingformat += currentSpell.spellcomponents;
-                        spellsavingformat += "\t";
-                        spellsavingformat += currentSpell.spellcastingtime;
-                        spellsavingformat += "\t";
-                        spellsavingformat += currentSpell.spellrange;
-                        spellsavingformat += "\t";
-                        spellsavingformat += currentSpell.spellarea;
-                        spellsavingformat += "\t";
-                        spellsavingformat += currentSpell.spelleffect;
-                        spellsavingformat += "\t";
-                        spellsavingformat += currentSpell.spelltargets;
-                        spellsavingformat += "\t";
-                        spellsavingformat += currentSpell.spellduration;
-                        spellsavingformat += "\t";
-                        spellsavingformat += currentSpell.spellsavingthrow;
-                        spellsavingformat += "\t";
-                        spellsavingformat += currentSpell.spellresistance;
-                        spellsavingformat += "\t";
-                        spellsavingformat += currentSpell.spelldescription;
-
-                        file.WriteLine(spellsavingformat);
-                    }
+                    file.WriteLine(line);
                 }
 
                 file.Close();
@@ -323,61 +258,69 @@ namespace Squire
                 StreamReader file = new StreamReader(openSpells.FileName);
 
                 string currentLine;
-                bool spellbookloading = true; // versus prepared spells loading
+                List<String> fileSection = new List<String>();
 
-                while ((currentLine = file.ReadLine()) != null)
-                {
-                    if (String.Equals(currentLine, "Spellbook"))
+                    while ((currentLine = file.ReadLine()) != null)
                     {
-                        spellbookloading = true;
-                        continue;
+                        if (currentLine == String.Empty || String.Equals(currentLine, "Spellbook"))
+                        {
+                            continue;
+                        }
+
+                        if (String.Equals(currentLine, "Prepared Spells"))
+                        {
+                            break;
+                        }
+
+                        fileSection.Add(currentLine);
                     }
 
-                    if (String.Equals(currentLine, "Prepared Spells"))
+                    spellcaster.generateSpellbookFromList(fileSection);
+                    fileSection = new List<String>();
+
+                    while ((currentLine = file.ReadLine()) != null)
                     {
-                        spellbookloading = false;
-                        continue;
+                        if (currentLine == String.Empty || String.Equals(currentLine, "Spellbook"))
+                        {
+                            continue;
+                        }
+
+                        if (String.Equals(currentLine, "Prepared Spell Settings"))
+                        {
+                            break;
+                        }
+
+                        fileSection.Add(currentLine);
                     }
 
-                    if (currentLine == String.Empty)
+                    spellcaster.generatePreparedSpellsFromList(fileSection);
+                    fileSection = new List<String>();
+
+                    while ((currentLine = file.ReadLine()) != null)
                     {
-                        continue;
+                        if (currentLine == String.Empty || String.Equals(currentLine, "Spellbook"))
+                        {
+                            continue;
+                        }
+
+                        if (String.Equals(currentLine, "Prepared Spells"))
+                        {
+                            break;
+                        }
+
+                        fileSection.Add(currentLine);
                     }
 
-                    string[] spellproperties = currentLine.Split('\t');
-                    Spell newSpell = new Spell(spellproperties[0]);
-                    newSpell.spellschoolandsubschool = spellproperties[1];
-                    newSpell.spelldescriptor = spellproperties[2];
-                    newSpell.spelllevel = spellproperties[3];
-                    newSpell.spellcomponents = spellproperties[4];
-                    newSpell.spellcastingtime = spellproperties[5];
-                    newSpell.spellrange = spellproperties[6];
-                    newSpell.spellarea = spellproperties[7];
-                    newSpell.spelleffect = spellproperties[8];
-                    newSpell.spelltargets = spellproperties[9];
-                    newSpell.spellduration = spellproperties[10];
-                    newSpell.spellsavingthrow = spellproperties[11];
-                    newSpell.spellresistance = spellproperties[12];
-                    newSpell.spelldescription = spellproperties[13];
+                    spellcaster.generatePreparedSpellSettingsFromList(fileSection);
 
-                    if (spellbookloading)
-                    {
-                        spellBook.Add(newSpell);
-                    }
-                    else
-                    {
-                        preparedSpells.Add(newSpell);
-                    }
-
-                }
                 file.Close();
             }
         }
 
         private void Familiar_Load(object sender, EventArgs e)
         {
-            this.spellBookGrid.DataSource = spellBook;
-            this.preparedSpellsGrid.DataSource = preparedSpells;
+            this.spellBookGrid.DataSource = spellcaster.spellBook;
+            this.preparedSpellsGrid.DataSource = spellcaster.preparedSpells;
         }
     }
 }

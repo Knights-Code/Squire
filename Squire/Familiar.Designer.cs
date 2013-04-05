@@ -53,6 +53,8 @@
             this.totalSpellsLabel = new System.Windows.Forms.Label();
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
             this.spellDescriptionBox = new System.Windows.Forms.RichTextBox();
+            this.preparedSpellsWizardToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.preparedSpellsSettingsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1.SuspendLayout();
             this.tableLayoutPanel2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.spellBookGrid)).BeginInit();
@@ -78,9 +80,11 @@
             // fileToolStripMenuItem
             // 
             this.fileToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.openSpellbookToolStripMenuItem,
-            this.saveSpellbookToolStripMenuItem,
             this.addSpellToolStripMenuItem,
+            this.saveSpellbookToolStripMenuItem,
+            this.openSpellbookToolStripMenuItem,
+            this.preparedSpellsWizardToolStripMenuItem,
+            this.preparedSpellsSettingsToolStripMenuItem,
             this.printSpellbookToolStripMenuItem,
             this.printPreparedSpellsToolStripMenuItem});
             this.fileToolStripMenuItem.Name = "fileToolStripMenuItem";
@@ -90,34 +94,34 @@
             // openSpellbookToolStripMenuItem
             // 
             this.openSpellbookToolStripMenuItem.Name = "openSpellbookToolStripMenuItem";
-            this.openSpellbookToolStripMenuItem.Size = new System.Drawing.Size(193, 22);
+            this.openSpellbookToolStripMenuItem.Size = new System.Drawing.Size(199, 22);
             this.openSpellbookToolStripMenuItem.Text = "Open Spellbook";
             this.openSpellbookToolStripMenuItem.Click += new System.EventHandler(this.openSpellbookToolStripMenuItem_Click_1);
             // 
             // saveSpellbookToolStripMenuItem
             // 
             this.saveSpellbookToolStripMenuItem.Name = "saveSpellbookToolStripMenuItem";
-            this.saveSpellbookToolStripMenuItem.Size = new System.Drawing.Size(193, 22);
+            this.saveSpellbookToolStripMenuItem.Size = new System.Drawing.Size(199, 22);
             this.saveSpellbookToolStripMenuItem.Text = "Save Spellbook";
             this.saveSpellbookToolStripMenuItem.Click += new System.EventHandler(this.saveSpellbookToolStripMenuItem_Click);
             // 
             // addSpellToolStripMenuItem
             // 
             this.addSpellToolStripMenuItem.Name = "addSpellToolStripMenuItem";
-            this.addSpellToolStripMenuItem.Size = new System.Drawing.Size(193, 22);
+            this.addSpellToolStripMenuItem.Size = new System.Drawing.Size(199, 22);
             this.addSpellToolStripMenuItem.Text = "Add Spell to Spellbook";
             this.addSpellToolStripMenuItem.Click += new System.EventHandler(this.addSpellToolStripMenuItem_Click);
             // 
             // printSpellbookToolStripMenuItem
             // 
             this.printSpellbookToolStripMenuItem.Name = "printSpellbookToolStripMenuItem";
-            this.printSpellbookToolStripMenuItem.Size = new System.Drawing.Size(193, 22);
+            this.printSpellbookToolStripMenuItem.Size = new System.Drawing.Size(199, 22);
             this.printSpellbookToolStripMenuItem.Text = "Print Spellbook";
             // 
             // printPreparedSpellsToolStripMenuItem
             // 
             this.printPreparedSpellsToolStripMenuItem.Name = "printPreparedSpellsToolStripMenuItem";
-            this.printPreparedSpellsToolStripMenuItem.Size = new System.Drawing.Size(193, 22);
+            this.printPreparedSpellsToolStripMenuItem.Size = new System.Drawing.Size(199, 22);
             this.printPreparedSpellsToolStripMenuItem.Text = "Print Prepared Spells";
             // 
             // tableLayoutPanel2
@@ -341,6 +345,18 @@
             this.spellDescriptionBox.TabIndex = 5;
             this.spellDescriptionBox.Text = "";
             // 
+            // preparedSpellsWizardToolStripMenuItem
+            // 
+            this.preparedSpellsWizardToolStripMenuItem.Name = "preparedSpellsWizardToolStripMenuItem";
+            this.preparedSpellsWizardToolStripMenuItem.Size = new System.Drawing.Size(199, 22);
+            this.preparedSpellsWizardToolStripMenuItem.Text = "Prepared Spells Wizard";
+            // 
+            // preparedSpellsSettingsToolStripMenuItem
+            // 
+            this.preparedSpellsSettingsToolStripMenuItem.Name = "preparedSpellsSettingsToolStripMenuItem";
+            this.preparedSpellsSettingsToolStripMenuItem.Size = new System.Drawing.Size(199, 22);
+            this.preparedSpellsSettingsToolStripMenuItem.Text = "Prepared Spells Settings";
+            // 
             // Familiar
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -399,5 +415,7 @@
         private System.Windows.Forms.Label totalSpellsLabel;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel1;
         private System.Windows.Forms.RichTextBox spellDescriptionBox;
+        private System.Windows.Forms.ToolStripMenuItem preparedSpellsWizardToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem preparedSpellsSettingsToolStripMenuItem;
     }
 }

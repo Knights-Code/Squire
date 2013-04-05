@@ -48,8 +48,8 @@ namespace Squire
             newSpell.spellsavingthrow = this.spellSavingThrowBox.Text;
             newSpell.spellresistance = this.spellResistanceBox.Text;
             newSpell.spelldescription = this.spellDescriptionBox.Text;
-            
-            parentForm.addSpelltoSpellbook(newSpell);
+
+            parentForm.addSpell(newSpell, false);
             this.Close();
         }
 

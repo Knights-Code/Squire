@@ -9,7 +9,7 @@ namespace Squire
     class Spellcaster
     {
         public BindingList<Spell> spellBook;
-        public BindingList<Spell> preparedSpells;
+        public BindingList<PreparedSpell> preparedSpells;
 
         bool preparedSpellsSet = false;
 
@@ -23,14 +23,14 @@ namespace Squire
         public Spellcaster()
         {
             this.spellBook = new BindingList<Spell>();
-            this.preparedSpells = new BindingList<Spell>();
+            this.preparedSpells = new BindingList<PreparedSpell>();
         }
 
-        public List<String> generateSaveContent()
+        public List<String> getSaveContent()
         {
             List<String> saveContent = new List<String>();
 
-            saveContent.Add("Spellbook" + Environment.NewLine);
+            saveContent.Add(Common.Spellbook + Environment.NewLine);
             if (spellBook != null && spellBook.Count > 0)
             {
                 foreach (Spell currentSpell in spellBook)
@@ -40,7 +40,8 @@ namespace Squire
             }
 
             saveContent.Add(Environment.NewLine);
-            saveContent.Add("Prepared Spells" + Environment.NewLine);
+
+            saveContent.Add(Common.PreparedSpells + Environment.NewLine);
 
             if (preparedSpells != null && preparedSpells.Count > 0)
             {
@@ -52,7 +53,7 @@ namespace Squire
 
             saveContent.Add(Environment.NewLine);
 
-            saveContent.Add("Prepared Spell Settings" + Environment.NewLine);
+            saveContent.Add(Common.PreparedSpellsSettings + Environment.NewLine);
             if (preparedSpellsSet)
             {
                 saveContent.Add("Spontaneous Caster?");
@@ -84,23 +85,23 @@ namespace Squire
             return saveContent;
         }
 
-        public void generateSpellbookFromList(List<String> providedList)
+        public void setSpellbook(List<Spell> spellList)
         {
-            foreach (string line in providedList)
+            foreach (Spell spell in spellList)
             {
-                spellBook.Add(new Spell(line.Split('\t')));
+                spellBook.Add(spell);
             }
         }
 
-        public void generatePreparedSpellsFromList(List<String> providedList)
+        public void setPreparedSpells(List<PreparedSpell> spellList)
         {
-            foreach (string line in providedList)
+            foreach (PreparedSpell spell in spellList)
             {
-                preparedSpells.Add(new Spell(line.Split('\t')));
+                preparedSpells.Add(spell);
             }
         }
 
-        public void generatePreparedSpellSettingsFromList(List<String> providedList)
+        public void setPreparedSpellSettings(List<String> providedList)
         {
             int index = 0;
 

@@ -1,6 +1,6 @@
 ﻿namespace Squire
 {
-    partial class AddSpell
+    partial class NewSpell
     {
         /// <summary>
         /// Required designer variable.
@@ -792,7 +792,7 @@
             this.spellResistanceBox.Size = new System.Drawing.Size(212, 20);
             this.spellResistanceBox.TabIndex = 1;
             // 
-            // AddSpell
+            // NewSpell
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -801,7 +801,7 @@
             this.MaximizeBox = false;
             this.MaximumSize = new System.Drawing.Size(349, 694);
             this.MinimumSize = new System.Drawing.Size(349, 694);
-            this.Name = "AddSpell";
+            this.Name = "NewSpell";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "AddSpell";
             this.tableLayoutPanel1.ResumeLayout(false);

@@ -56,24 +56,25 @@
     <Compile Include="AddCombatant.Designer.cs">
       <DependentUpon>AddCombatant.cs</DependentUpon>
     </Compile>
-    <Compile Include="AddSpell.cs">
+    <Compile Include="Familiar\Common.cs" />
+    <Compile Include="Familiar\NewSpell.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="AddSpell.Designer.cs">
-      <DependentUpon>AddSpell.cs</DependentUpon>
+    <Compile Include="Familiar\NewSpell.Designer.cs">
+      <DependentUpon>NewSpell.cs</DependentUpon>
     </Compile>
     <Compile Include="Combatant.cs" />
-    <Compile Include="PreparedSpellsWizard.cs">
+    <Compile Include="Familiar\PreparedSpellsWizard.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="PreparedSpellsWizard.Designer.cs">
+    <Compile Include="Familiar\PreparedSpellsWizard.Designer.cs">
       <DependentUpon>PreparedSpellsWizard.cs</DependentUpon>
     </Compile>
-    <Compile Include="Spell.cs" />
-    <Compile Include="Familiar.cs">
+    <Compile Include="Familiar\Spell.cs" />
+    <Compile Include="Familiar\Familiar.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Familiar.Designer.cs">
+    <Compile Include="Familiar\Familiar.Designer.cs">
       <DependentUpon>Familiar.cs</DependentUpon>
     </Compile>
     <Compile Include="LevelUp.cs">
@@ -91,9 +92,16 @@
     <Compile Include="NumericTextBox.cs">
       <SubType>Component</SubType>
     </Compile>
+    <Compile Include="PreparedSpell.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Spellcaster.cs" />
+    <Compile Include="Familiar\LoadSpellbook.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Familiar\LoadSpellbook.Designer.cs">
+      <DependentUpon>LoadSpellbook.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Familiar\Spellcaster.cs" />
     <Compile Include="SquireMain.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -103,10 +111,10 @@
     <EmbeddedResource Include="AddCombatant.resx">
       <DependentUpon>AddCombatant.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="AddSpell.resx">
-      <DependentUpon>AddSpell.cs</DependentUpon>
+    <EmbeddedResource Include="Familiar\NewSpell.resx">
+      <DependentUpon>NewSpell.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Familiar.resx">
+    <EmbeddedResource Include="Familiar\Familiar.resx">
       <DependentUpon>Familiar.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="LevelUp.resx">
@@ -115,7 +123,7 @@
     <EmbeddedResource Include="General.resx">
       <DependentUpon>General.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="PreparedSpellsWizard.resx">
+    <EmbeddedResource Include="Familiar\PreparedSpellsWizard.resx">
       <DependentUpon>PreparedSpellsWizard.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
@@ -128,6 +136,9 @@
       <DependentUpon>Resources.resx</DependentUpon>
       <DesignTime>True</DesignTime>
     </Compile>
+    <EmbeddedResource Include="Familiar\LoadSpellbook.resx">
+      <DependentUpon>LoadSpellbook.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="SquireMain.resx">
       <DependentUpon>SquireMain.cs</DependentUpon>
     </EmbeddedResource>

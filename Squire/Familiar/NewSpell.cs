@@ -9,16 +9,16 @@ using System.Windows.Forms;
 
 namespace Squire
 {
-    public partial class AddSpell : Form
+    public partial class NewSpell : Form
     {
         Familiar parentForm;
 
-        public AddSpell()
+        public NewSpell()
         {
             InitializeComponent();
         }
 
-        public AddSpell(Familiar parentForm)
+        public NewSpell(Familiar parentForm)
         {
             this.parentForm = parentForm;
             InitializeComponent();
@@ -38,7 +38,15 @@ namespace Squire
             newSpell.spellschoolandsubschool = this.spellSchoolBox.Text;
             newSpell.spelldescriptor = this.spellDescriptorBox.Text;
             newSpell.spelllevel = this.spellLevelTypeBox.Text + " " + this.spellLevelNumberBox.Text;
-            newSpell.spellcomponents = this.spellComponentsBox.Text;
+            foreach (object item in this.spellComponentsBox.CheckedItems)
+            {
+                newSpell.spellcomponents += item.ToString() + ", ";
+            }
+
+
+            newSpell.spellcomponents = newSpell.spellcomponents.TrimEnd(' ');
+            newSpell.spellcomponents = newSpell.spellcomponents.TrimEnd(',');
+
             newSpell.spellcastingtime = this.spellCastingTimeBox.Text;
             newSpell.spellrange = this.spellRangeBox.Text;
             newSpell.spellarea = this.spellAreaBox.Text;

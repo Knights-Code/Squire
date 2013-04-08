@@ -32,13 +32,22 @@
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.fileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.addSpellToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.saveSpellbookToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.loadSpellsFromSavedSpellbookToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.openSpellbookToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.saveSpellbookToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
+            this.saveSpellbookToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.prepareSpellsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.prepareSpellsWizardToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.manualSettingsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.printToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.printSpellbookToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.printPreparedSpellsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.printAllToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.tableLayoutPanel2 = new System.Windows.Forms.TableLayoutPanel();
-            this.label1 = new System.Windows.Forms.Label();
+            this.knownSpellsLabel = new System.Windows.Forms.Label();
             this.spellBookGrid = new System.Windows.Forms.DataGridView();
             this.tableLayoutPanel3 = new System.Windows.Forms.TableLayoutPanel();
-            this.label2 = new System.Windows.Forms.Label();
+            this.preparedSpells = new System.Windows.Forms.Label();
             this.tableLayoutPanel4 = new System.Windows.Forms.TableLayoutPanel();
             this.preparedSpellsGrid = new System.Windows.Forms.DataGridView();
             this.tableLayoutPanel5 = new System.Windows.Forms.TableLayoutPanel();
@@ -51,15 +60,6 @@
             this.totalSpellsLabel = new System.Windows.Forms.Label();
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
             this.spellDescriptionBox = new System.Windows.Forms.RichTextBox();
-            this.printToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.printSpellbookToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.printPreparedSpellsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.printAllToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.prepareSpellsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.prepareSpellsWizardToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.manualSettingsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.loadSpellsFromSavedSpellbookToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.saveSpellbookToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1.SuspendLayout();
             this.tableLayoutPanel2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.spellBookGrid)).BeginInit();
@@ -101,27 +101,89 @@
             this.addSpellToolStripMenuItem.Name = "addSpellToolStripMenuItem";
             this.addSpellToolStripMenuItem.Size = new System.Drawing.Size(251, 22);
             this.addSpellToolStripMenuItem.Text = "Add Spell to Spellbook";
-            this.addSpellToolStripMenuItem.Click += new System.EventHandler(this.addSpellMenu);
+            this.addSpellToolStripMenuItem.Click += new System.EventHandler(this.addSingleSpell);
             // 
-            // saveSpellbookToolStripMenuItem
+            // loadSpellsFromSavedSpellbookToolStripMenuItem
             // 
-            this.saveSpellbookToolStripMenuItem.Name = "saveSpellbookToolStripMenuItem";
-            this.saveSpellbookToolStripMenuItem.Size = new System.Drawing.Size(251, 22);
-            this.saveSpellbookToolStripMenuItem.Text = "Save Spellcaster Data";
-            this.saveSpellbookToolStripMenuItem.Click += new System.EventHandler(this.saveSpellbookToolStripMenuItem_Click);
+            this.loadSpellsFromSavedSpellbookToolStripMenuItem.Name = "loadSpellsFromSavedSpellbookToolStripMenuItem";
+            this.loadSpellsFromSavedSpellbookToolStripMenuItem.Size = new System.Drawing.Size(251, 22);
+            this.loadSpellsFromSavedSpellbookToolStripMenuItem.Text = "Load Spells from Saved Spellbook";
+            this.loadSpellsFromSavedSpellbookToolStripMenuItem.Click += new System.EventHandler(this.openSpellsFromSpellbook);
             // 
             // openSpellbookToolStripMenuItem
             // 
             this.openSpellbookToolStripMenuItem.Name = "openSpellbookToolStripMenuItem";
             this.openSpellbookToolStripMenuItem.Size = new System.Drawing.Size(251, 22);
             this.openSpellbookToolStripMenuItem.Text = "Load Spellcaster Data";
-            this.openSpellbookToolStripMenuItem.Click += new System.EventHandler(this.openSpellbookToolStripMenuItem_Click_1);
+            this.openSpellbookToolStripMenuItem.Click += new System.EventHandler(this.openSpellcaster);
+            // 
+            // saveSpellbookToolStripMenuItem1
+            // 
+            this.saveSpellbookToolStripMenuItem1.Name = "saveSpellbookToolStripMenuItem1";
+            this.saveSpellbookToolStripMenuItem1.Size = new System.Drawing.Size(251, 22);
+            this.saveSpellbookToolStripMenuItem1.Text = "Save Spellbook";
+            // 
+            // saveSpellbookToolStripMenuItem
+            // 
+            this.saveSpellbookToolStripMenuItem.Name = "saveSpellbookToolStripMenuItem";
+            this.saveSpellbookToolStripMenuItem.Size = new System.Drawing.Size(251, 22);
+            this.saveSpellbookToolStripMenuItem.Text = "Save Spellcaster Data";
+            this.saveSpellbookToolStripMenuItem.Click += new System.EventHandler(this.saveSpellcaster);
+            // 
+            // prepareSpellsToolStripMenuItem
+            // 
+            this.prepareSpellsToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.prepareSpellsWizardToolStripMenuItem,
+            this.manualSettingsToolStripMenuItem});
+            this.prepareSpellsToolStripMenuItem.Name = "prepareSpellsToolStripMenuItem";
+            this.prepareSpellsToolStripMenuItem.Size = new System.Drawing.Size(251, 22);
+            this.prepareSpellsToolStripMenuItem.Text = "Prepare Spells";
+            // 
+            // prepareSpellsWizardToolStripMenuItem
+            // 
+            this.prepareSpellsWizardToolStripMenuItem.Name = "prepareSpellsWizardToolStripMenuItem";
+            this.prepareSpellsWizardToolStripMenuItem.Size = new System.Drawing.Size(186, 22);
+            this.prepareSpellsWizardToolStripMenuItem.Text = "Prepare Spells Wizard";
+            // 
+            // manualSettingsToolStripMenuItem
+            // 
+            this.manualSettingsToolStripMenuItem.Name = "manualSettingsToolStripMenuItem";
+            this.manualSettingsToolStripMenuItem.Size = new System.Drawing.Size(186, 22);
+            this.manualSettingsToolStripMenuItem.Text = "Manual Settings";
+            // 
+            // printToolStripMenuItem
+            // 
+            this.printToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.printSpellbookToolStripMenuItem,
+            this.printPreparedSpellsToolStripMenuItem,
+            this.printAllToolStripMenuItem});
+            this.printToolStripMenuItem.Name = "printToolStripMenuItem";
+            this.printToolStripMenuItem.Size = new System.Drawing.Size(251, 22);
+            this.printToolStripMenuItem.Text = "Print";
+            // 
+            // printSpellbookToolStripMenuItem
+            // 
+            this.printSpellbookToolStripMenuItem.Name = "printSpellbookToolStripMenuItem";
+            this.printSpellbookToolStripMenuItem.Size = new System.Drawing.Size(182, 22);
+            this.printSpellbookToolStripMenuItem.Text = "Print Spellbook";
+            // 
+            // printPreparedSpellsToolStripMenuItem
+            // 
+            this.printPreparedSpellsToolStripMenuItem.Name = "printPreparedSpellsToolStripMenuItem";
+            this.printPreparedSpellsToolStripMenuItem.Size = new System.Drawing.Size(182, 22);
+            this.printPreparedSpellsToolStripMenuItem.Text = "Print Prepared Spells";
+            // 
+            // printAllToolStripMenuItem
+            // 
+            this.printAllToolStripMenuItem.Name = "printAllToolStripMenuItem";
+            this.printAllToolStripMenuItem.Size = new System.Drawing.Size(182, 22);
+            this.printAllToolStripMenuItem.Text = "Print All";
             // 
             // tableLayoutPanel2
             // 
             this.tableLayoutPanel2.ColumnCount = 1;
             this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableLayoutPanel2.Controls.Add(this.label1, 0, 0);
+            this.tableLayoutPanel2.Controls.Add(this.knownSpellsLabel, 0, 0);
             this.tableLayoutPanel2.Controls.Add(this.spellBookGrid, 0, 1);
             this.tableLayoutPanel2.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tableLayoutPanel2.Location = new System.Drawing.Point(3, 3);
@@ -132,16 +194,16 @@
             this.tableLayoutPanel2.Size = new System.Drawing.Size(492, 230);
             this.tableLayoutPanel2.TabIndex = 3;
             // 
-            // label1
+            // knownSpellsLabel
             // 
-            this.label1.AutoSize = true;
-            this.label1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.label1.Location = new System.Drawing.Point(3, 0);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(486, 20);
-            this.label1.TabIndex = 0;
-            this.label1.Text = "Known Spells";
-            this.label1.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.knownSpellsLabel.AutoSize = true;
+            this.knownSpellsLabel.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.knownSpellsLabel.Location = new System.Drawing.Point(3, 0);
+            this.knownSpellsLabel.Name = "knownSpellsLabel";
+            this.knownSpellsLabel.Size = new System.Drawing.Size(486, 20);
+            this.knownSpellsLabel.TabIndex = 0;
+            this.knownSpellsLabel.Text = "Known Spells";
+            this.knownSpellsLabel.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // spellBookGrid
             // 
@@ -161,7 +223,7 @@
             // 
             this.tableLayoutPanel3.ColumnCount = 1;
             this.tableLayoutPanel3.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableLayoutPanel3.Controls.Add(this.label2, 0, 0);
+            this.tableLayoutPanel3.Controls.Add(this.preparedSpells, 0, 0);
             this.tableLayoutPanel3.Controls.Add(this.tableLayoutPanel4, 0, 1);
             this.tableLayoutPanel3.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tableLayoutPanel3.Location = new System.Drawing.Point(3, 239);
@@ -172,16 +234,16 @@
             this.tableLayoutPanel3.Size = new System.Drawing.Size(492, 230);
             this.tableLayoutPanel3.TabIndex = 4;
             // 
-            // label2
+            // preparedSpells
             // 
-            this.label2.AutoSize = true;
-            this.label2.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.label2.Location = new System.Drawing.Point(3, 0);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(486, 20);
-            this.label2.TabIndex = 1;
-            this.label2.Text = "Prepared Spells";
-            this.label2.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.preparedSpells.AutoSize = true;
+            this.preparedSpells.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.preparedSpells.Location = new System.Drawing.Point(3, 0);
+            this.preparedSpells.Name = "preparedSpells";
+            this.preparedSpells.Size = new System.Drawing.Size(486, 20);
+            this.preparedSpells.TabIndex = 1;
+            this.preparedSpells.Text = "Prepared Spells";
+            this.preparedSpells.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // tableLayoutPanel4
             // 
@@ -338,68 +400,6 @@
             this.spellDescriptionBox.TabIndex = 5;
             this.spellDescriptionBox.Text = "";
             // 
-            // printToolStripMenuItem
-            // 
-            this.printToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.printSpellbookToolStripMenuItem,
-            this.printPreparedSpellsToolStripMenuItem,
-            this.printAllToolStripMenuItem});
-            this.printToolStripMenuItem.Name = "printToolStripMenuItem";
-            this.printToolStripMenuItem.Size = new System.Drawing.Size(251, 22);
-            this.printToolStripMenuItem.Text = "Print";
-            // 
-            // printSpellbookToolStripMenuItem
-            // 
-            this.printSpellbookToolStripMenuItem.Name = "printSpellbookToolStripMenuItem";
-            this.printSpellbookToolStripMenuItem.Size = new System.Drawing.Size(182, 22);
-            this.printSpellbookToolStripMenuItem.Text = "Print Spellbook";
-            // 
-            // printPreparedSpellsToolStripMenuItem
-            // 
-            this.printPreparedSpellsToolStripMenuItem.Name = "printPreparedSpellsToolStripMenuItem";
-            this.printPreparedSpellsToolStripMenuItem.Size = new System.Drawing.Size(182, 22);
-            this.printPreparedSpellsToolStripMenuItem.Text = "Print Prepared Spells";
-            // 
-            // printAllToolStripMenuItem
-            // 
-            this.printAllToolStripMenuItem.Name = "printAllToolStripMenuItem";
-            this.printAllToolStripMenuItem.Size = new System.Drawing.Size(182, 22);
-            this.printAllToolStripMenuItem.Text = "Print All";
-            // 
-            // prepareSpellsToolStripMenuItem
-            // 
-            this.prepareSpellsToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.prepareSpellsWizardToolStripMenuItem,
-            this.manualSettingsToolStripMenuItem});
-            this.prepareSpellsToolStripMenuItem.Name = "prepareSpellsToolStripMenuItem";
-            this.prepareSpellsToolStripMenuItem.Size = new System.Drawing.Size(251, 22);
-            this.prepareSpellsToolStripMenuItem.Text = "Prepare Spells";
-            // 
-            // prepareSpellsWizardToolStripMenuItem
-            // 
-            this.prepareSpellsWizardToolStripMenuItem.Name = "prepareSpellsWizardToolStripMenuItem";
-            this.prepareSpellsWizardToolStripMenuItem.Size = new System.Drawing.Size(186, 22);
-            this.prepareSpellsWizardToolStripMenuItem.Text = "Prepare Spells Wizard";
-            // 
-            // manualSettingsToolStripMenuItem
-            // 
-            this.manualSettingsToolStripMenuItem.Name = "manualSettingsToolStripMenuItem";
-            this.manualSettingsToolStripMenuItem.Size = new System.Drawing.Size(186, 22);
-            this.manualSettingsToolStripMenuItem.Text = "Manual Settings";
-            // 
-            // loadSpellsFromSavedSpellbookToolStripMenuItem
-            // 
-            this.loadSpellsFromSavedSpellbookToolStripMenuItem.Name = "loadSpellsFromSavedSpellbookToolStripMenuItem";
-            this.loadSpellsFromSavedSpellbookToolStripMenuItem.Size = new System.Drawing.Size(251, 22);
-            this.loadSpellsFromSavedSpellbookToolStripMenuItem.Text = "Load Spells from Saved Spellbook";
-            this.loadSpellsFromSavedSpellbookToolStripMenuItem.Click += new System.EventHandler(this.loadSpellsFromSavedSpellbookToolStripMenuItem_Click);
-            // 
-            // saveSpellbookToolStripMenuItem1
-            // 
-            this.saveSpellbookToolStripMenuItem1.Name = "saveSpellbookToolStripMenuItem1";
-            this.saveSpellbookToolStripMenuItem1.Size = new System.Drawing.Size(251, 22);
-            this.saveSpellbookToolStripMenuItem1.Text = "Save Spellbook";
-            // 
             // Familiar
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -440,10 +440,10 @@
         private System.Windows.Forms.ToolStripMenuItem saveSpellbookToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem addSpellToolStripMenuItem;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel2;
-        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Label knownSpellsLabel;
         public System.Windows.Forms.DataGridView spellBookGrid;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel3;
-        private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.Label preparedSpells;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel4;
         private System.Windows.Forms.DataGridView preparedSpellsGrid;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel5;

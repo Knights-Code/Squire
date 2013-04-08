@@ -57,7 +57,7 @@ namespace Squire
             newSpell.spellresistance = this.spellResistanceBox.Text;
             newSpell.spelldescription = this.spellDescriptionBox.Text;
 
-            parentForm.addSpell(newSpell, false);
+            parentForm.addSpelltoSpellcaster(newSpell, false);
             this.Close();
         }
 

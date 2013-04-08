@@ -57,6 +57,7 @@
       <DependentUpon>AddCombatant.cs</DependentUpon>
     </Compile>
     <Compile Include="Familiar\Common.cs" />
+    <Compile Include="Familiar\LoadedSpell.cs" />
     <Compile Include="Familiar\NewSpell.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -92,7 +93,7 @@
     <Compile Include="NumericTextBox.cs">
       <SubType>Component</SubType>
     </Compile>
-    <Compile Include="PreparedSpell.cs" />
+    <Compile Include="Familiar\PreparedSpell.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Familiar\LoadSpellbook.cs">

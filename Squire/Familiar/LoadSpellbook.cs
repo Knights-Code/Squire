@@ -12,43 +12,31 @@ namespace Squire
     public partial class LoadSpellbook : Form
     {
 
-        BindingList<SpellsToLoad> loadedSpellbook;
+        BindingList<LoadedSpell> loadedSpellbook;
         Familiar parentForm;
-
-        public struct SpellsToLoad
-        {
-            public Spell spellValue;
-            public bool load;
-
-            public SpellsToLoad(Spell spell, bool loadstart = false)
-            {
-                spellValue = spell;
-                load = loadstart;
-            }
-        }
 
         public LoadSpellbook(Familiar parentForm, List<Spell> spellBook)
         {
             this.parentForm = parentForm;
-            this.loadedSpellbook = new BindingList<SpellsToLoad>();
+            InitializeComponent();
+
+            this.loadedSpellbook = new BindingList<LoadedSpell>();
 
             foreach (Spell spell in spellBook)
             {
-                loadedSpellbook.Add(new SpellsToLoad(spell));
+                loadedSpellbook.Add(new LoadedSpell(spell));
             }
 
             this.spellBookGrid.DataSource = loadedSpellbook;
-
-            InitializeComponent();
         }
 
         private void loadSpellsButton_Click(object sender, EventArgs e)
         {
-            foreach (SpellsToLoad spellstruct in loadedSpellbook)
+            foreach (LoadedSpell spell in loadedSpellbook)
             {
-                if (spellstruct.load)
+                if (spell.loadspell)
                 {
-                    parentForm.addSpell(spellstruct.spellValue, false);
+                    parentForm.addSpelltoSpellcaster(spell, false);
                 }
             }
 

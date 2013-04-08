@@ -26,7 +26,7 @@ namespace Squire
             this.preparedSpells = new BindingList<PreparedSpell>();
         }
 
-        public List<String> getSaveContent()
+        public List<String> getSpellcasterSaveContent()
         {
             List<String> saveContent = new List<String>();
 
@@ -79,6 +79,23 @@ namespace Squire
                     saveContent.Add(spellCountIndex.ToString());
                     saveContent.Add(spellsRemainingPerLevel.ToString());
                     spellCountIndex++;
+                }
+            }
+
+            return saveContent;
+        }
+
+        public List<String> getSpellbookSaveContent()
+        {
+            List<String> saveContent = new List<String>();
+
+            saveContent.Add(Common.Spellbook + Environment.NewLine);
+
+            if (spellBook != null && spellBook.Count > 0)
+            {
+                foreach (Spell currentSpell in spellBook)
+                {
+                    saveContent.Add(currentSpell.ToString());
                 }
             }
 

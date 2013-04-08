@@ -59,6 +59,9 @@ namespace Squire
         public const string SpellUsedVar = "spellused";
         public const string SpellUsed = "Used";
 
+        public const string LoadSpellVar = "loadspell";
+        public const string LoadSpell = "Load";
+
 
         // File Strings
 
@@ -69,6 +72,10 @@ namespace Squire
         public const string AllExtensions = "All files (*.*)|*.*";
 
         public const string SaveSpellbook = "Save Spellbook";
+        public const string SaveSpellcaster = "Save Spellcaster";
+
+        public const string OpenSpellbook = "Open Spellbook";
+        public const string OpenSpellcaster =   "Open Spellcaster";
 
         // File Section Headings
         public const string Spellbook = "Spellbook";
@@ -105,9 +112,9 @@ namespace Squire
         public static List<string> openFile()
         {
             OpenFileDialog openSpells = new OpenFileDialog();
-            openSpells.DefaultExt = ".fmlr";
-            openSpells.Filter = "Spell Files (*.fmlr)|*fmlr|All files (*.*)|*.*";
-            openSpells.Title = "Open Spellbook";
+            openSpells.DefaultExt = Common.FamiliarExtension;
+            openSpells.Filter = Common.SpellExtensions + "|" + Common.AllExtensions;
+            openSpells.Title = Common.OpenSpellbook;
 
             if (openSpells.ShowDialog() == DialogResult.OK)
             {
@@ -125,6 +132,99 @@ namespace Squire
             }
 
             return new List<string>();
+        }
+
+        private void changeHeaderNames(DataGridView dataGrid)
+        {
+            for (int i = 0; i < dataGrid.Columns.Count; i++)
+            {
+                switch (dataGrid.Columns[i].Name)
+                {
+                    // Name
+                    case Common.SpellNameVar:
+                        dataGrid.Columns[i].HeaderCell.Value = Common.SpellName;
+                        break;
+
+                    // School (Subschool)
+                    case Common.SpellSchoolSubschoolVar:
+                        dataGrid.Columns[i].HeaderCell.Value = Common.SpellSchoolSubschool;
+                        break;
+
+                    // [Descriptor]
+                    case Common.SpellDescriptorVar:
+                        dataGrid.Columns[i].HeaderCell.Value = Common.SpellDescriptor;
+                        break;
+
+                    // Level
+                    case Common.SpellLevelVar:
+                        dataGrid.Columns[i].HeaderCell.Value = Common.SpellLevel;
+                        break;
+
+                    // Components
+                    case Common.SpellComponentsVar:
+                        dataGrid.Columns[i].HeaderCell.Value = Common.SpellComponents;
+                        break;
+
+                    // Casting Time
+                    case Common.SpellCastingTimeVar:
+                        dataGrid.Columns[i].HeaderCell.Value = Common.SpellCastingTime;
+                        break;
+
+                    // Range
+                    case Common.SpellRangeVar:
+                        dataGrid.Columns[i].HeaderCell.Value = Common.SpellRange;
+                        break;
+
+                    // Area
+                    case Common.SpellAreaVar:
+                        dataGrid.Columns[i].HeaderCell.Value = Common.SpellArea;
+                        break;
+
+                    // Effect
+                    case Common.SpellEffectVar:
+                        dataGrid.Columns[i].HeaderCell.Value = Common.SpellEffect;
+                        break;
+
+                    // Target(s)
+                    case Common.SpellTargetsVar:
+                        dataGrid.Columns[i].HeaderCell.Value = Common.SpellTargets;
+                        break;
+
+                    // Duration
+                    case Common.SpellDurationVar:
+                        dataGrid.Columns[i].HeaderCell.Value = Common.SpellDuration;
+                        break;
+
+                    // Saving Throw
+                    case Common.SpellSavingThrowVar:
+                        dataGrid.Columns[i].HeaderCell.Value = Common.SpellSavingThrow;
+
+                        break;
+
+                    // Spell Resistance
+                    case Common.SpellResistanceVar:
+                        dataGrid.Columns[i].HeaderCell.Value = Common.SpellResistance;
+                        break;
+
+                    // Description
+                    case Common.SpellDescriptionVar:
+                        dataGrid.Columns[i].HeaderCell.Value = Common.SpellDescription;
+                        break;
+
+                    // Prepared Spell Used
+                    case Common.SpellUsedVar:
+                        dataGrid.Columns[i].HeaderCell.Value = Common.SpellUsed;
+                        dataGrid.Columns[i].Width = 40;
+                        break;
+
+                    // Load Spell
+                    case Common.LoadSpellVar:
+                        dataGrid.Columns[i].HeaderCell.Value = Common.LoadSpell;
+                        dataGrid.Columns[i].Width = 40;
+                        break;
+                }
+            }
+
         }
     }
 }

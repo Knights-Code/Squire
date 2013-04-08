@@ -16,13 +16,30 @@ namespace Squire
 
         Spellcaster spellcaster;
 
+        // Main Class Functions
         public Familiar()
         {
             this.spellcaster = new Spellcaster();
             InitializeComponent();
         }
 
-        public void addSpell(Spell newSpell, bool preparedSpell)
+        private void Familiar_Load(object sender, EventArgs e)
+        {
+            this.spellBookGrid.DataSource = spellcaster.spellBook;
+            this.preparedSpellsGrid.DataSource = spellcaster.preparedSpells;
+
+            changeHeaderNames(this.spellBookGrid);
+            changeHeaderNames(this.preparedSpellsGrid);
+        }
+
+        // Add Spells
+        private void addSingleSpell(object sender, EventArgs e)
+        {
+            NewSpell addSpellDialog = new NewSpell(this);
+            addSpellDialog.Show();
+        }
+
+        public void addSpelltoSpellcaster(Spell newSpell, bool preparedSpell)
         {
             if (preparedSpell)
             {
@@ -34,12 +51,7 @@ namespace Squire
             }
         }
 
-        private void addSpellMenu(object sender, EventArgs e)
-        {
-            NewSpell addSpellDialog = new NewSpell(this);
-            addSpellDialog.Show();
-        }
-
+        // DataGrid Functions
         private void spellBookGridSpellClick(object sender, DataGridViewCellEventArgs e)
         {
             // If the cell clicked is a header, return
@@ -229,12 +241,15 @@ namespace Squire
             }
         }
 
-        private void saveSpellbookToolStripMenuItem_Click(object sender, EventArgs e)
+
+        // Open and Save Files
+
+        private void saveSpellcaster(object sender, EventArgs e)
         {
-            Common.saveFile(Common.SaveSpellbook, spellcaster.getSaveContent());
+            Common.saveFile(Common.SaveSpellbook, spellcaster.getSpellcasterSaveContent());
         }
 
-        private void openSpellbookToolStripMenuItem_Click_1(object sender, EventArgs e)
+        private void openSpellcaster(object sender, EventArgs e)
         {
             List<string> fileContents = Common.openFile();
             string fileSection = "";
@@ -300,128 +315,27 @@ namespace Squire
             }
         }
 
-
-        private void Familiar_Load(object sender, EventArgs e)
+        private void saveSpellbook(object sender, EventArgs e)
         {
-            this.spellBookGrid.DataSource = spellcaster.spellBook;
-            this.preparedSpellsGrid.DataSource = spellcaster.preparedSpells;
-
-            changeHeaderNames(this.spellBookGrid);
-            changeHeaderNames(this.preparedSpellsGrid);
+            Common.saveFile(Common.SaveSpellbook, spellcaster.getSpellbookSaveContent());
         }
 
-        private void loadSpellsFromSavedSpellbookToolStripMenuItem_Click(object sender, EventArgs e)
+        private void openSpellsFromSpellbook(object sender, EventArgs e)
         {
-            OpenFileDialog openSpells = new OpenFileDialog();
-            openSpells.DefaultExt = ".fmlr";
-            openSpells.Filter = "Spell Files (*.fmlr)|*fmlr|All files (*.*)|*.*";
-            openSpells.Title = "Open Spellbook";
+            List<string> fileContent = Common.openFile();
+            List<Spell> loadedSpellbook = new List<Spell>();
 
-            if (openSpells.ShowDialog() == DialogResult.OK)
+            foreach (string line in fileContent)
             {
-                StreamReader file = new StreamReader(openSpells.FileName);
-
-                string currentLine;
-                List<Spell> loadedSpellbook = new List<Spell>();
-
-                while ((currentLine = file.ReadLine()) != null)
+                if (line.Split('~').Length == 14)
                 {
-                    if (currentLine.Split('~').Length == 14)
-                    {
-                        loadedSpellbook.Add(new Spell(currentLine.Split('~')));
-                    }
-                }
-
-                LoadSpellbook loadSpellbookDialog = new LoadSpellbook(this, loadedSpellbook);
-                loadSpellbookDialog.Show();
-            }
-        }
-
-        private void changeHeaderNames(DataGridView dataGrid)
-        {
-            for (int i = 0; i < dataGrid.Columns.Count; i++)
-            {
-                switch (dataGrid.Columns[i].Name)
-                {
-                    // Name
-                    case Common.SpellNameVar:
-                        dataGrid.Columns[i].HeaderCell.Value = Common.SpellName;
-                        break;
-
-                    // School (Subschool)
-                    case Common.SpellSchoolSubschoolVar:
-                        dataGrid.Columns[i].HeaderCell.Value = Common.SpellSchoolSubschool;
-                        break;
-
-                    // [Descriptor]
-                    case Common.SpellDescriptorVar:
-                        dataGrid.Columns[i].HeaderCell.Value = Common.SpellDescriptor;
-                        break;
-
-                    // Level
-                    case Common.SpellLevelVar:
-                        dataGrid.Columns[i].HeaderCell.Value = Common.SpellLevel;
-                        break;
-
-                    // Components
-                    case Common.SpellComponentsVar:
-                        dataGrid.Columns[i].HeaderCell.Value = Common.SpellComponents;
-                        break;
-
-                    // Casting Time
-                    case Common.SpellCastingTimeVar:
-                        dataGrid.Columns[i].HeaderCell.Value = Common.SpellCastingTime;
-                        break;
-
-                    // Range
-                    case Common.SpellRangeVar:
-                        dataGrid.Columns[i].HeaderCell.Value = Common.SpellRange;
-                        break;
-
-                    // Area
-                    case Common.SpellAreaVar:
-                        dataGrid.Columns[i].HeaderCell.Value = Common.SpellArea;
-                        break;
-
-                    // Effect
-                    case Common.SpellEffectVar:
-                        dataGrid.Columns[i].HeaderCell.Value = Common.SpellEffect;
-                        break;
-
-                    // Target(s)
-                    case Common.SpellTargetsVar:
-                        dataGrid.Columns[i].HeaderCell.Value = Common.SpellTargets;
-                        break;
-
-                    // Duration
-                    case Common.SpellDurationVar:
-                        dataGrid.Columns[i].HeaderCell.Value = Common.SpellDuration;
-                        break;
-
-                    // Saving Throw
-                    case Common.SpellSavingThrowVar:
-                        dataGrid.Columns[i].HeaderCell.Value = Common.SpellSavingThrow;
-
-                        break;
-
-                    // Spell Resistance
-                    case Common.SpellResistanceVar:
-                        dataGrid.Columns[i].HeaderCell.Value = Common.SpellResistance;
-                        break;
-
-                    // Description
-                    case Common.SpellDescriptionVar:
-                        dataGrid.Columns[i].HeaderCell.Value = Common.SpellDescription;
-                        break;
-
-                    // Prepared Spell Used
-                    case Common.SpellUsedVar:
-                        dataGrid.Columns[i].HeaderCell.Value = Common.SpellUsed;
-                        dataGrid.Columns[i].Width = 40;
-                        break;
+                    loadedSpellbook.Add(new Spell(line.Split('~')));
                 }
             }
 
+            LoadSpellbook loadSpellbookDialog = new LoadSpellbook(this, loadedSpellbook);
+            loadSpellbookDialog.Show();
         }
     }
+
 }

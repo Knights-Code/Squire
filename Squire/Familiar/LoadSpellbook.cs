@@ -28,6 +28,7 @@ namespace Squire
             }
 
             this.spellBookGrid.DataSource = loadedSpellbook;
+            Common.changeHeaderNames(this.spellBookGrid);
         }
 
         private void loadSpellsButton_Click(object sender, EventArgs e)

@@ -134,7 +134,7 @@ namespace Squire
             return new List<string>();
         }
 
-        private void changeHeaderNames(DataGridView dataGrid)
+        public static void changeHeaderNames(DataGridView dataGrid)
         {
             for (int i = 0; i < dataGrid.Columns.Count; i++)
             {

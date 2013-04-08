@@ -28,8 +28,8 @@ namespace Squire
             this.spellBookGrid.DataSource = spellcaster.spellBook;
             this.preparedSpellsGrid.DataSource = spellcaster.preparedSpells;
 
-            changeHeaderNames(this.spellBookGrid);
-            changeHeaderNames(this.preparedSpellsGrid);
+            Common.changeHeaderNames(this.spellBookGrid);
+            Common.changeHeaderNames(this.preparedSpellsGrid);
         }
 
         // Add Spells

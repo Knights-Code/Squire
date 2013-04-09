@@ -9,9 +9,9 @@ using System.Windows.Forms;
 
 namespace Squire
 {
-    public partial class PreparedSpellsWizard : Form
+    public partial class SpellPreparationSettings : Form
     {
-        public PreparedSpellsWizard()
+        public SpellPreparationSettings()
         {
             InitializeComponent();
         }

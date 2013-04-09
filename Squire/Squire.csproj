@@ -65,12 +65,6 @@
       <DependentUpon>NewSpell.cs</DependentUpon>
     </Compile>
     <Compile Include="Combatant.cs" />
-    <Compile Include="Familiar\PreparedSpellsWizard.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Familiar\PreparedSpellsWizard.Designer.cs">
-      <DependentUpon>PreparedSpellsWizard.cs</DependentUpon>
-    </Compile>
     <Compile Include="Familiar\Spell.cs" />
     <Compile Include="Familiar\Familiar.cs">
       <SubType>Form</SubType>
@@ -103,6 +97,12 @@
       <DependentUpon>LoadSpellbook.cs</DependentUpon>
     </Compile>
     <Compile Include="Familiar\Spellcaster.cs" />
+    <Compile Include="Familiar\SpellPreparationSettings.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Familiar\SpellPreparationSettings.Designer.cs">
+      <DependentUpon>SpellPreparationSettings.cs</DependentUpon>
+    </Compile>
     <Compile Include="SquireMain.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -124,9 +124,6 @@
     <EmbeddedResource Include="General.resx">
       <DependentUpon>General.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Familiar\PreparedSpellsWizard.resx">
-      <DependentUpon>PreparedSpellsWizard.cs</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
@@ -139,6 +136,9 @@
     </Compile>
     <EmbeddedResource Include="Familiar\LoadSpellbook.resx">
       <DependentUpon>LoadSpellbook.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Familiar\SpellPreparationSettings.resx">
+      <DependentUpon>SpellPreparationSettings.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="SquireMain.resx">
       <DependentUpon>SquireMain.cs</DependentUpon>

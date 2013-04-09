@@ -37,8 +37,6 @@
             this.saveSpellbookToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
             this.saveSpellbookToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.prepareSpellsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.prepareSpellsWizardToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.manualSettingsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.printToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.printSpellbookToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.printPreparedSpellsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -132,24 +130,9 @@
             // 
             // prepareSpellsToolStripMenuItem
             // 
-            this.prepareSpellsToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.prepareSpellsWizardToolStripMenuItem,
-            this.manualSettingsToolStripMenuItem});
             this.prepareSpellsToolStripMenuItem.Name = "prepareSpellsToolStripMenuItem";
             this.prepareSpellsToolStripMenuItem.Size = new System.Drawing.Size(251, 22);
-            this.prepareSpellsToolStripMenuItem.Text = "Prepare Spells";
-            // 
-            // prepareSpellsWizardToolStripMenuItem
-            // 
-            this.prepareSpellsWizardToolStripMenuItem.Name = "prepareSpellsWizardToolStripMenuItem";
-            this.prepareSpellsWizardToolStripMenuItem.Size = new System.Drawing.Size(186, 22);
-            this.prepareSpellsWizardToolStripMenuItem.Text = "Prepare Spells Wizard";
-            // 
-            // manualSettingsToolStripMenuItem
-            // 
-            this.manualSettingsToolStripMenuItem.Name = "manualSettingsToolStripMenuItem";
-            this.manualSettingsToolStripMenuItem.Size = new System.Drawing.Size(186, 22);
-            this.manualSettingsToolStripMenuItem.Text = "Manual Settings";
+            this.prepareSpellsToolStripMenuItem.Text = "Spell Preparation Settings";
             // 
             // printToolStripMenuItem
             // 
@@ -461,8 +444,6 @@
         private System.Windows.Forms.ToolStripMenuItem printPreparedSpellsToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem printAllToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem prepareSpellsToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem prepareSpellsWizardToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem manualSettingsToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem loadSpellsFromSavedSpellbookToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem saveSpellbookToolStripMenuItem1;
     }

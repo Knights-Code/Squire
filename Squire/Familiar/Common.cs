@@ -75,7 +75,7 @@ namespace Squire
         public const string SaveSpellcaster = "Save Spellcaster";
 
         public const string OpenSpellbook = "Open Spellbook";
-        public const string OpenSpellcaster =   "Open Spellcaster";
+        public const string OpenSpellcaster = "Open Spellcaster";
 
         // File Section Headings
         public const string Spellbook = "Spellbook";
@@ -87,6 +87,90 @@ namespace Squire
         public const string HighestPreparedSpellLevel = "Highest Prepared Spell Level";
         public const string PreparedSpellsCount = "Prepared Spells Count Per Level";
         public const string PreparedSpellsRemaining = "Prepared Spells Remaining Per Level";
+
+        // Spell Classes and Domains
+        public const string[] spellSchools = {
+                                    "Abjuration",
+                                    "Conjuration",
+                                    "Conjuration (Calling)",
+                                    "Conjuration (Creation)",
+                                    "Conjuration (Healing)",
+                                    "Conjuration (Summoning)",
+                                    "Conjuration (Teleportation)",
+                                    "Divination",
+                                    "Divination (Scrying)",
+                                    "Enchantment",
+                                    "Enchantment (Charm)",
+                                    "Enchantment (Compulsion)",
+                                    "Evocation",
+                                    "Illusion",
+                                    "Illusion (Figment)",
+                                    "Illusion (Glamer)",
+                                    "Illusion (Pattern)",
+                                    "Illusion (Phantasm)",
+                                    "Illusion (Shadow)",
+                                    "Necromancy",
+                                    "Transmutation",
+                                    "Universal"
+                                };
+
+        public const string[] spellDescriptors = {
+                                    "Acid",
+                                    "Air",
+                                    "Chaotic",
+                                    "Cold",
+                                    "Darkness",
+                                    "Death",
+                                    "Earth",
+                                    "Electricy",
+                                    "Evil",
+                                    "Fear",
+                                    "Fire",
+                                    "Force",
+                                    "Good",
+                                    "Language-dependent",
+                                    "Lawful",
+                                    "Light",
+                                    "Mind-affecting",
+                                    "Sonic",
+                                    "Water"
+                                    };
+
+        string[] spellClasses = {
+                                    "Bard (Brd)",
+                                    "Cleric (Clr)",
+                                    "Druid (Drd)",
+                                    "Paladin (Pal)",
+                                    "Ranger (Rgr)",
+                                    "Sorcerer (Sor)",
+                                    "Wizard (Wiz)"
+                                };
+
+        string[] spellDomains = {
+                                    "Air",
+                                    "Animal",
+                                    "Chaos",
+                                    "Death",
+                                    "Destruction",
+                                    "Earth",
+                                    "Evil",
+                                    "Fire",
+                                    "Good",
+                                    "Healing",
+                                    "Knowledge",
+                                    "Law",
+                                    "Luck",
+                                    "Magic",
+                                    "Plant",
+                                    "Protection",
+                                    "Strength",
+                                    "Sun",
+                                    "Travel",
+                                    "Trickery",
+                                    "War",
+                                    "Water"
+                                };
+
 
         public static void saveFile(String title, List<string> fileContents)
         {

@@ -13,7 +13,6 @@ namespace Squire
 {
     public partial class Familiar : Form
     {
-
         Spellcaster spellcaster;
 
         // Main Class Functions
@@ -335,6 +334,22 @@ namespace Squire
 
             LoadSpellbook loadSpellbookDialog = new LoadSpellbook(this, loadedSpellbook);
             loadSpellbookDialog.Show();
+        }
+
+        private void prepareSpellsToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            SpellcasterSettings spellcasterSettings = new SpellcasterSettings(this);
+            spellcasterSettings.Show();
+        }
+
+        public void setHighestSpellLevel(uint highestSpellLevel)
+        {
+            this.spellcaster.setHighestSpellLevel(highestSpellLevel);
+        }
+
+        public void setSpontaneousCaster(bool spontaneouscaster)
+        {
+            this.spellcaster.setSpontaneousCaster(spontaneouscaster);
         }
     }
 

@@ -97,11 +97,11 @@
       <DependentUpon>LoadSpellbook.cs</DependentUpon>
     </Compile>
     <Compile Include="Familiar\Spellcaster.cs" />
-    <Compile Include="Familiar\SpellPreparationSettings.cs">
+    <Compile Include="Familiar\SpellcasterSettings.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Familiar\SpellPreparationSettings.Designer.cs">
-      <DependentUpon>SpellPreparationSettings.cs</DependentUpon>
+    <Compile Include="Familiar\SpellcasterSettings.Designer.cs">
+      <DependentUpon>SpellcasterSettings.cs</DependentUpon>
     </Compile>
     <Compile Include="SquireMain.cs">
       <SubType>Form</SubType>
@@ -137,8 +137,8 @@
     <EmbeddedResource Include="Familiar\LoadSpellbook.resx">
       <DependentUpon>LoadSpellbook.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Familiar\SpellPreparationSettings.resx">
-      <DependentUpon>SpellPreparationSettings.cs</DependentUpon>
+    <EmbeddedResource Include="Familiar\SpellcasterSettings.resx">
+      <DependentUpon>SpellcasterSettings.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="SquireMain.resx">
       <DependentUpon>SquireMain.cs</DependentUpon>

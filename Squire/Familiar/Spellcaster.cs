@@ -12,9 +12,9 @@ namespace Squire
         public BindingList<PreparedSpell> preparedSpells;
 
         bool preparedSpellsSet = false;
-
         bool spontaneousCaster { get; set; }
-        uint highestSpellLevel { get; set; }
+
+        uint highestSpellLevel = 0;
 
         uint[] preparedSpellCount;
         uint[] preparedSpellsRemaining;
@@ -24,6 +24,8 @@ namespace Squire
         {
             this.spellBook = new BindingList<Spell>();
             this.preparedSpells = new BindingList<PreparedSpell>();
+
+            this.spontaneousCaster = false;
         }
 
         public List<String> getSpellcasterSaveContent()
@@ -153,6 +155,16 @@ namespace Squire
                 }
             }
 
+        }
+
+        public void setHighestSpellLevel(uint highestSpellLevel)
+        {
+            this.highestSpellLevel = highestSpellLevel;
+        }
+
+        public void setSpontaneousCaster(bool spontaneouscaster)
+        {
+            this.spontaneousCaster = spontaneouscaster;
         }
     }
 }

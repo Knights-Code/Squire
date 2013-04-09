@@ -132,7 +132,8 @@
             // 
             this.prepareSpellsToolStripMenuItem.Name = "prepareSpellsToolStripMenuItem";
             this.prepareSpellsToolStripMenuItem.Size = new System.Drawing.Size(251, 22);
-            this.prepareSpellsToolStripMenuItem.Text = "Spell Preparation Settings";
+            this.prepareSpellsToolStripMenuItem.Text = "Spellcaster Settings";
+            this.prepareSpellsToolStripMenuItem.Click += new System.EventHandler(this.prepareSpellsToolStripMenuItem_Click);
             // 
             // printToolStripMenuItem
             // 
@@ -191,13 +192,13 @@
             // spellBookGrid
             // 
             this.spellBookGrid.AllowUserToAddRows = false;
+            this.spellBookGrid.AllowUserToOrderColumns = true;
             this.spellBookGrid.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.None;
             this.spellBookGrid.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.spellBookGrid.Dock = System.Windows.Forms.DockStyle.Fill;
             this.spellBookGrid.Location = new System.Drawing.Point(3, 23);
             this.spellBookGrid.MultiSelect = false;
             this.spellBookGrid.Name = "spellBookGrid";
-            this.spellBookGrid.ReadOnly = true;
             this.spellBookGrid.Size = new System.Drawing.Size(486, 204);
             this.spellBookGrid.TabIndex = 1;
             this.spellBookGrid.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.spellBookGridSpellClick);

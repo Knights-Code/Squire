@@ -68,7 +68,7 @@ namespace Squire
         {
             get
             {
-                return Int32.Parse(this.Text);
+                return this.Text.Length>0?Int32.Parse(this.Text):0;
             }
 
             set

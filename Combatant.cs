@@ -6,7 +6,7 @@ using System.Collections;
 
 namespace Squire
 {
-    class Combatant
+    public class Combatant
     {
         string name;
         int maxHP;
@@ -21,11 +21,20 @@ namespace Squire
         public Combatant(string name, int HP)
         {
             this.name = name;
-            this.maxHP = HP;
-            this.currentHP = HP;
+            if (HP != 0)
+            {
+                this.maxHP = HP;
+                this.currentHP = HP;
+
+                this.bPlayer = false;
+            }
+            else
+            {
+                this.bPlayer = true;
+            }
+            
             this.attackBonus = new int[3] {0,0,0};
             this.damage = new string[3] {"+0","+0","+0"};
-            this.bPlayer = false;
             this.bStable = true;
 
             effect = new ArrayList();

@@ -1220,5 +1220,11 @@ namespace Squire
                 }
             }
         }
+
+        private void rollInitiativeToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            RollInitiative rollInitiative = new RollInitiative(this);
+            rollInitiative.Show();
+        }
     }
 }

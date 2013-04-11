@@ -85,6 +85,7 @@ namespace Squire
                 if (levelsAreEqual && playerList.Items.Count > 1)
                 {
                     Contender firstPlayer = (Contender)playerList.Items[0];
+                    XP = 0;
 
                     for (int i = 0; i < enemyList.Items.Count; i++)
                     {
@@ -103,6 +104,7 @@ namespace Squire
                     for (int p = 0; p < playerList.Items.Count; p++)
                     {
                         Contender currentPlayer = (Contender)playerList.Items[p];
+                        XP = 0;
 
                         for (int i = 0; i < enemyList.Items.Count; i++)
                         {
@@ -113,7 +115,7 @@ namespace Squire
                         XP = Math.Floor(XP / playerList.Items.Count);
                         intXP = Convert.ToInt32(XP);
 
-                        MessageBox.Show(currentPlayer+" earns " + intXP + " experience points.", "Result", MessageBoxButtons.OK,
+                        MessageBox.Show(currentPlayer.name+" earns " + intXP + " experience points.", "Result", MessageBoxButtons.OK,
                                 MessageBoxIcon.Asterisk);
                     }
                 }
@@ -122,6 +124,30 @@ namespace Squire
 
         private decimal calculateXP(decimal playerLevel, decimal enemyLevel)
         {
+            double x = (double)playerLevel;
+            double y = (double)enemyLevel;
+            double z = y - x;
+
+            double result = 0;
+
+            if (z != 0)
+            {
+                if (z % 2 == 0)
+                    result = (300 * x) * Math.Pow(2, (z / 2));
+                else
+                {
+                    if (x < y)
+                        result = ((300 * x) * Math.Pow(2, ((z + 1) / 2)) + (300 * x) * Math.Pow(2, ((z - 1) / 2))) / 2;
+                    else
+                        result = ((((300 * x) * Math.Pow(2, ((z + 1) / 2))) - (z==1?300*x:((300 * x) * Math.Pow(2, ((z - 1) / 2))) / 2)) * (2/3)) + ( z==1?300*x:((300 * x) * Math.Pow(2, ((z - 1) / 2))));
+                }
+            }
+            else
+                result = 300 * x;
+
+            return Convert.ToDecimal(result);
+
+            /*
             decimal XPmodifier = 1;
             decimal equationMultiplier = 300;
             decimal result = 0;
@@ -162,7 +188,8 @@ namespace Squire
                 {
                     if (i == (playerLevel + 1))
                         equationMultiplier = 400;
-                    numSteps++;
+                    else
+                        numSteps++;
                 }
 
                 result = playerLevel * equationMultiplier;
@@ -171,7 +198,7 @@ namespace Squire
                     result *= 2;
             }
 
-            return result * XPmodifier;
+            return result * XPmodifier;*/
         }
 
         private void removePlayer_Click(object sender, EventArgs e)

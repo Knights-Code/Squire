@@ -56,25 +56,26 @@ namespace Squire
 
             //-----( Event Handlers )-----\\
             okButton.Click += okButton_Click;
+            initiativeScore.KeyPress += new KeyPressEventHandler(initiativeScore_KeyPress);
+
+            if (initiativeList.Items.Count > 0)
+                initiativeList.SelectedIndex = 0;
+
+            initiativeScore.Select(0, initiativeScore.Text.Length);
         }
 
-        /*void initiativeScore_TextChanged(object sender, EventArgs e)
+        void initiativeScore_KeyPress(object sender, KeyPressEventArgs e)
         {
-            if (initiativeList.SelectedIndex != -1)
+            if (e.KeyChar == (char)Keys.Enter)
             {
-                Placeholder selectedHolder = (Placeholder)initiativeList.SelectedItem;
-
-                selectedHolder.init = initiativeScore.IntValue;
-
-                Console.WriteLine("Selected holder is " + selectedHolder);
-
-                initiativeList.Refresh();
+                initiativeList.SelectedIndex = initiativeList.SelectedIndex != (initiativeList.Items.Count - 1) ? initiativeList.SelectedIndex + 1 : initiativeList.Items.Count - 1;
+                initiativeScore.Select(0, initiativeScore.Text.Length);
             }
-        }*/
+        }
 
         void okButton_Click(object sender, EventArgs e)
         {
-            // This is where the magic happens!
+            // This is where the magic happens! (read: "this is where the bubble sort algorithm happens")
             for (int i = 0; i < initiativeList.Items.Count; i++)
             {
                 for (int j = 0; j < initiativeList.Items.Count - i; j++)
@@ -82,6 +83,7 @@ namespace Squire
                     if (j + 1 < scores.Length)
                     {
                         Combatant currentCombatant = (Combatant)initiativeList.Items[j];
+                        Combatant nextCombatant = (Combatant)initiativeList.Items[j + 1];
                         int currentScore = scores[j];
                         int nextScore = scores[j + 1];
 
@@ -92,6 +94,18 @@ namespace Squire
                             initiativeList.Items.RemoveAt(j);
                             if (initiativeList.Items.Count == 1) initiativeList.Items.Add(currentCombatant);
                             else initiativeList.Items.Insert(j + 1, currentCombatant);
+                        }
+                        else if (scores[j + 1] == scores[j])
+                        {
+                            if (MessageBox.Show(currentCombatant + " and " + nextCombatant + " have identical scores; does " + currentCombatant + " go first?",
+                                "Initiative Conflict", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.No)
+                            {
+                                scores[j] = nextScore;
+                                scores[j + 1] = currentScore;
+                                initiativeList.Items.RemoveAt(j);
+                                if (initiativeList.Items.Count == 1) initiativeList.Items.Add(currentCombatant);
+                                else initiativeList.Items.Insert(j + 1, currentCombatant);
+                            }
                         }
                     }
                 }
@@ -125,6 +139,11 @@ namespace Squire
             }
             else
                 initiativeScore.Enabled = false;
+        }
+
+        private void cancelButton_Click(object sender, EventArgs e)
+        {
+            this.Close();
         }
     }
 }

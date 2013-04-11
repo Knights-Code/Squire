@@ -73,7 +73,7 @@
             this.label1.Size = new System.Drawing.Size(286, 39);
             this.label1.TabIndex = 0;
             this.label1.Text = "Select each combatant taking part in the encounter, and enter their initiative sc" +
-    "ore in the box below. Once all scores have been recorded, click OK.";
+                "ore in the box below. Once all scores have been recorded, click OK.";
             // 
             // initiativeList
             // 
@@ -107,7 +107,7 @@
             this.flowLayoutPanel1.Name = "flowLayoutPanel1";
             this.flowLayoutPanel1.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
             this.flowLayoutPanel1.Size = new System.Drawing.Size(292, 30);
-            this.flowLayoutPanel1.TabIndex = 4;
+            this.flowLayoutPanel1.TabIndex = 1;
             // 
             // cancelButton
             // 
@@ -118,6 +118,7 @@
             this.cancelButton.TabIndex = 0;
             this.cancelButton.Text = "&Cancel";
             this.cancelButton.UseVisualStyleBackColor = true;
+            this.cancelButton.Click += new System.EventHandler(this.cancelButton_Click);
             // 
             // okButton
             // 
@@ -133,13 +134,12 @@
             this.initiativeScore.Anchor = System.Windows.Forms.AnchorStyles.Left;
             this.initiativeScore.Location = new System.Drawing.Point(149, 218);
             this.initiativeScore.Name = "initiativeScore";
-            this.initiativeScore.Size = new System.Drawing.Size(57, 20);
-            this.initiativeScore.TabIndex = 5;
+            this.initiativeScore.Size = new System.Drawing.Size(47, 20);
+            this.initiativeScore.TabIndex = 0;
             this.initiativeScore.ValueChanged += new System.EventHandler(this.initiativeScore_ValueChanged);
             // 
             // RollInitiative
             // 
-            this.AcceptButton = this.okButton;
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.CancelButton = this.cancelButton;

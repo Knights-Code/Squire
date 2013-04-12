@@ -77,17 +77,19 @@ namespace Squire
 
         private void calculateButton_Click(object sender, EventArgs e)
         {
-            decimal XP = 0;
-            int intXP = 0;
-
             if (playerList.Items.Count <= 0 || enemyList.Items.Count <= 0)
             {
                 return;
             }
 
+            decimal XP = 0;
+            int intXP = 0;
+            string xpresults = "";
+
             foreach (Contender player in playerList.Items)
             {
                 XP = 0;
+
                 foreach (Contender enemy in enemyList.Items)
                 {
                     XP += calculateXP(player.level, enemy.level);
@@ -95,12 +97,10 @@ namespace Squire
 
                 XP = Math.Ceiling(XP / playerList.Items.Count);
                 intXP = Convert.ToInt32(XP);
-
-                MessageBox.Show(player.name + " earns " + intXP + " experience points.", "Result", MessageBoxButtons.OK,
-                        MessageBoxIcon.Asterisk);
+                xpresults += player.name + " earns " + intXP + " experience points. \n";
             }
-
-
+            xpresults.TrimEnd('\n');
+            MessageBox.Show(xpresults, "Result", MessageBoxButtons.OK, MessageBoxIcon.Asterisk);
         }
 
         private decimal calculateXP(decimal playerLevel, decimal enemyLevel)

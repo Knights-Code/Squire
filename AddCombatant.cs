@@ -79,6 +79,7 @@ namespace Squire
                             HP += bonus; // add Constitution modifier
 
                             Combatant newCombatant = new Combatant(combatantName, HP);
+                            newCombatant.setBatchRoot(batchName.Text);
                             parentForm.combatantList.Items.Add(newCombatant);
                         }
 

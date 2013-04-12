@@ -9,6 +9,7 @@ namespace Squire
     public class Combatant
     {
         string name;
+        string batchRoot;
         int maxHP;
         int currentHP;
         int[] attackBonus;
@@ -21,6 +22,7 @@ namespace Squire
         public Combatant(string name, int HP)
         {
             this.name = name;
+            this.batchRoot = String.Empty;
             if (HP != 0)
             {
                 this.maxHP = HP;
@@ -44,6 +46,7 @@ namespace Squire
         public Combatant(string name)
         {
             this.name = name;
+            this.batchRoot = String.Empty;
             this.attackBonus = new int[3] {0,0,0};
             this.damage = new string[3] {"+0","+0","+0"};
             this.bPlayer = true;
@@ -51,6 +54,16 @@ namespace Squire
 
             effect = new ArrayList();
             roundsRemaining = new ArrayList();
+        }
+
+        public string getBatchRoot()
+        {
+            return batchRoot;
+        }
+
+        public void setBatchRoot(string root)
+        {
+            this.batchRoot = root;
         }
 
         public int EffectCount

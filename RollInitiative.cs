@@ -6,6 +6,7 @@ using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Windows.Forms;
+using System.Collections;
 
 namespace Squire
 {
@@ -75,10 +76,16 @@ namespace Squire
 
         void okButton_Click(object sender, EventArgs e)
         {
+            int numCombatants = initiativeList.Items.Count;
+
+            // These track which same-score combatants have already had their scores compared (and their positions resolved).
+            ArrayList comparisonLog = new ArrayList();
+            Combatant[] comparisonRecord = new Combatant[2];
+
             // This is where the magic happens! (read: "this is where the bubble sort algorithm happens")
-            for (int i = 0; i < initiativeList.Items.Count; i++)
+            for (int i = 0; i < numCombatants; i++)
             {
-                for (int j = 0; j < initiativeList.Items.Count - i; j++)
+                for (int j = 0; j < numCombatants - i; j++)
                 {
                     if (j + 1 < scores.Length)
                     {
@@ -95,16 +102,36 @@ namespace Squire
                             if (initiativeList.Items.Count == 1) initiativeList.Items.Add(currentCombatant);
                             else initiativeList.Items.Insert(j + 1, currentCombatant);
                         }
+                        // If two combatants rolled the same initiative, determine who goes first.
                         else if (scores[j + 1] == scores[j])
                         {
-                            if (MessageBox.Show(currentCombatant + " and " + nextCombatant + " have identical scores; does " + currentCombatant + " go first?",
-                                "Initiative Conflict", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.No)
+                            Boolean haveBeenCompared = false;
+
+                            // Check the log to determine if these combatants have had their scores compared already.
+                            for (int k = 0; k < comparisonLog.Count; k++)
                             {
-                                scores[j] = nextScore;
-                                scores[j + 1] = currentScore;
-                                initiativeList.Items.RemoveAt(j);
-                                if (initiativeList.Items.Count == 1) initiativeList.Items.Add(currentCombatant);
-                                else initiativeList.Items.Insert(j + 1, currentCombatant);
+                                Combatant[] currentRecord = (Combatant[])comparisonLog[k];
+                                haveBeenCompared = (currentRecord.Contains(currentCombatant) && currentRecord.Contains(nextCombatant));
+                                if (haveBeenCompared) break;
+                            }
+
+                            // If they haven't been compared yet, compare them now and then make a note that they've been compared.
+                            if (!haveBeenCompared)
+                            {
+                                // Ask user who goes first and then reposition accordingly.
+                                if (MessageBox.Show(currentCombatant + " and " + nextCombatant + " have identical scores; does " + currentCombatant + " go first?",
+                                    "Initiative Conflict", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.No)
+                                {
+                                    scores[j] = nextScore;
+                                    scores[j + 1] = currentScore;
+                                    initiativeList.Items.RemoveAt(j);
+                                    if (initiativeList.Items.Count == 1) initiativeList.Items.Add(currentCombatant);
+                                    else initiativeList.Items.Insert(j + 1, currentCombatant);
+                                }
+
+                                // Record comparison.
+                                Combatant[] newRecord = new Combatant[] {currentCombatant,nextCombatant};
+                                comparisonLog.Add(newRecord);
                             }
                         }
                     }
@@ -115,9 +142,9 @@ namespace Squire
 
             for (int i = 0; i < initiativeList.Items.Count; i++) parentForm.combatantList.Items.Add(initiativeList.Items[i]);
 
-            this.Close();
+            parentForm.roundNumber.Value = 1;
 
-            initiativeList.Refresh();
+            this.Close();
         }
 
         private void initiativeScore_ValueChanged(object sender, EventArgs e)

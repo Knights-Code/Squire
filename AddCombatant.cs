@@ -79,7 +79,12 @@ namespace Squire
                             HP += bonus; // add Constitution modifier
 
                             Combatant newCombatant = new Combatant(combatantName, HP);
+
+                            // These two variables are used by RollInitiative to help handle multiple combatants acting on the
+                            // same initiative count.
                             newCombatant.setBatchRoot(batchName.Text);
+                            newCombatant.setBatchTotal((int)batchNumber.Value + 1);
+
                             parentForm.combatantList.Items.Add(newCombatant);
                         }
 

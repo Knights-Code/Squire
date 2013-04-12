@@ -12,6 +12,7 @@ namespace Squire
         string batchRoot;
         int maxHP;
         int currentHP;
+        int batchTotal;
         int[] attackBonus;
         string[] damage;
         ArrayList effect;
@@ -23,6 +24,7 @@ namespace Squire
         {
             this.name = name;
             this.batchRoot = String.Empty;
+            this.batchTotal = 0;
             if (HP != 0)
             {
                 this.maxHP = HP;
@@ -47,6 +49,7 @@ namespace Squire
         {
             this.name = name;
             this.batchRoot = String.Empty;
+            this.batchTotal = 0;
             this.attackBonus = new int[3] {0,0,0};
             this.damage = new string[3] {"+0","+0","+0"};
             this.bPlayer = true;
@@ -54,6 +57,16 @@ namespace Squire
 
             effect = new ArrayList();
             roundsRemaining = new ArrayList();
+        }
+
+        public int getBatchTotal()
+        {
+            return batchTotal;
+        }
+
+        public void setBatchTotal(int total)
+        {
+            this.batchTotal = total;
         }
 
         public string getBatchRoot()

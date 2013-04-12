@@ -32,6 +32,8 @@ namespace Squire
         General parentForm;
         Combatant[] combatants;
         int[] scores;
+        ArrayList rootsChecked;
+        ArrayList batchGroups;
 
         public RollInitiative()
         {
@@ -47,11 +49,58 @@ namespace Squire
 
             combatants = new Combatant[parentForm.combatantList.Items.Count];
             scores = new int[parentForm.combatantList.Items.Count];
+            rootsChecked = new ArrayList();
+            batchGroups = new ArrayList();
 
+            // Process each combatant and add them to the initiative list.
             for (int i = 0; i < parentForm.combatantList.Items.Count; i++)
             {
                 Combatant currentCombatant = (Combatant)parentForm.combatantList.Items[i];
-                initiativeList.Items.Add(currentCombatant);
+                
+                // It's easier to have the twelve goblins act on the same initiative count. Let's check if the current combatant is
+                // part of a batch, and then ask the user if they want to treat them as one entity in the initiative order.
+                if (currentCombatant.getBatchRoot() != String.Empty)
+                {
+                    // Make sure we haven't already asked about this particular batch.
+                    Boolean hasBeenChecked = false;
+                    for (int j = 0; j < rootsChecked.Count; j++)
+                    {
+                        hasBeenChecked = (currentCombatant.getBatchRoot() == Convert.ToString(rootsChecked[j]));
+                        if (hasBeenChecked) break;
+                    }
+
+                    // If it's a new batch, ask if the combatants should be "folded in" to one entity for the purpose of initiative.
+                    if (!hasBeenChecked)
+                    {
+                        if (MessageBox.Show(currentCombatant + " is part of a generated batch of combatants. Would you like to have them all act on"
+                            + " the same initiative count?", "Batch Combatant Detected", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
+                        {
+                            Combatant batchGroupName = new Combatant(currentCombatant.getBatchRoot()+"s");
+                            batchGroupName.setBatchRoot(currentCombatant.getBatchRoot());
+                            ArrayList batchGroup = new ArrayList(); // create a place to store the batch
+
+                            // Check the combatant list for any members of the batch and then add them to the list.
+                            for (int id = 1; id < currentCombatant.getBatchTotal(); id++)
+                            {
+                                for (int iter = 0; iter < parentForm.combatantList.Items.Count; iter++)
+                                {
+                                    Combatant currentBatch = (Combatant)parentForm.combatantList.Items[iter];
+
+                                    if (currentBatch.getName() == batchGroupName.getBatchRoot() + " #" + id)
+                                        batchGroup.Add(currentBatch);
+                                }
+                            }
+
+                            batchGroups.Add(batchGroup);
+                            initiativeList.Items.Add(batchGroupName);
+                        }
+                        else
+                            initiativeList.Items.Add(currentCombatant);
+
+                        rootsChecked.Add(currentCombatant.getBatchRoot());
+                    }
+                } else
+                    initiativeList.Items.Add(currentCombatant);
                 scores[i] = 0;
             }
 
@@ -102,6 +151,7 @@ namespace Squire
                             if (initiativeList.Items.Count == 1) initiativeList.Items.Add(currentCombatant);
                             else initiativeList.Items.Insert(j + 1, currentCombatant);
                         }
+
                         // If two combatants rolled the same initiative, determine who goes first.
                         else if (scores[j + 1] == scores[j])
                         {
@@ -140,7 +190,29 @@ namespace Squire
 
             for (int i = 0; i < initiativeList.Items.Count; i++) parentForm.combatantList.Items.RemoveAt(0);
 
-            for (int i = 0; i < initiativeList.Items.Count; i++) parentForm.combatantList.Items.Add(initiativeList.Items[i]);
+            for (int i = 0; i < initiativeList.Items.Count; i++)
+            {
+                Combatant currentCombatant = (Combatant)initiativeList.Items[i];
+
+                // Check to see if this is actually a header for a batch of combatants.
+                if (currentCombatant.getBatchRoot() != String.Empty && currentCombatant.getName() == currentCombatant.getBatchRoot() + "s")
+                {
+                    // If so, check the batch root of the first combatant in each batch group. If it matches, add the batch to the combatant
+                    // list all at once.
+                    for (int j = 0; j < batchGroups.Count; j++)
+                    {
+                        ArrayList batchGroup = (ArrayList)batchGroups[j];
+                        Combatant firstInstance = (Combatant)batchGroup[0];
+
+                        if (firstInstance.getBatchRoot() == currentCombatant.getBatchRoot())
+                        {
+                            for (int k = 0; k < batchGroup.Count; k++)
+                                parentForm.combatantList.Items.Add(batchGroup[k]);
+                        }
+                    }
+                } else
+                    parentForm.combatantList.Items.Add(initiativeList.Items[i]);
+            }
 
             parentForm.roundNumber.Value = 1;
 

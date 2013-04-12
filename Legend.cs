@@ -105,24 +105,78 @@ namespace Squire
 
         private decimal calculateXP(decimal playerLevel, decimal enemyLevel)
         {
-            int scale = (int)enemyLevel - (int)playerLevel + 8;
-            double Offset = 12.5;
-            double XPModifier = Offset * 2;
+            int scale = ((int)enemyLevel - (int)playerLevel) + 8;
+            double XPModifier;
 
+            switch (scale)
+            {
+                case 1:
+                    XPModifier = 25;
+                    break;
+                case 2:
+                    XPModifier = 38;
+                    break;
+                case 3:
+                    XPModifier = 50;
+                    break;
+                case 4:
+                    XPModifier = 75;
+                    break;
+                case 5:
+                    XPModifier = 100;
+                    break;
+                case 6:
+                    XPModifier = 150;
+                    break;
+                case 7:
+                    XPModifier = 200;
+                    break;
+                case 8:
+                    XPModifier = 300;
+                    break;
+                case 9:
+                    XPModifier = 450;
+                    break;
+                case 10:
+                    XPModifier = 600;
+                    break;
+                case 11:
+                    XPModifier = 900;
+                    break;
+                case 12:
+                    XPModifier = 1200;
+                    break;
+                case 13:
+                    XPModifier = 1800;
+                    break;
+                case 14:
+                    XPModifier = 2400;
+                    break;
+                case 15:
+                    XPModifier = 3600;
+                    break;
+                default:
+                    XPModifier = -1;
+                    break;
+            }
+
+            /*
+            double Offset = 12.5;
             for (int i = 1; i < scale; i++)
             {
-                if (i % 2 == 1 && i != 8)
+                XPModifier += Offset;
+
+                if (Offset == 100)
+                {
+                    Offset = 150;
+                    continue;
+                }
+
+                if (i % 2 == 0 && i != 7)
                 {
                     Offset += Offset;
                 }
-
-                if (i == 8)
-                {
-                    Offset = Offset * 1.5;
-                }
-
-                XPModifier += Offset;
-            }
+            }*/
 
             double XP = XPModifier * (double)playerLevel;
 

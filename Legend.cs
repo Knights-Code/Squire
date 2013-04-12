@@ -22,7 +22,7 @@ namespace Squire
 
         public override string ToString()
         {
-            return name + " ("+level+")";
+            return name + " (" + level + ")";
         }
     }
 
@@ -80,125 +80,53 @@ namespace Squire
             decimal XP = 0;
             int intXP = 0;
 
-            if (playerList.Items.Count > 0 && enemyList.Items.Count > 0)
+            if (playerList.Items.Count <= 0 || enemyList.Items.Count <= 0)
             {
-                if (levelsAreEqual && playerList.Items.Count > 1)
-                {
-                    Contender firstPlayer = (Contender)playerList.Items[0];
-                    XP = 0;
-
-                    for (int i = 0; i < enemyList.Items.Count; i++)
-                    {
-                        Contender enemy = (Contender)enemyList.Items[i];
-                        XP += calculateXP(firstPlayer.level, enemy.level);
-                    }
-
-                    XP = Math.Floor(XP / playerList.Items.Count);
-                    intXP = Convert.ToInt32(XP);
-
-                    MessageBox.Show("Each party member earns " + intXP + " experience points.", "Result", MessageBoxButtons.OK,
-                            MessageBoxIcon.Asterisk);
-                }
-                else
-                {
-                    for (int p = 0; p < playerList.Items.Count; p++)
-                    {
-                        Contender currentPlayer = (Contender)playerList.Items[p];
-                        XP = 0;
-
-                        for (int i = 0; i < enemyList.Items.Count; i++)
-                        {
-                            Contender enemy = (Contender)enemyList.Items[i];
-                            XP += calculateXP(currentPlayer.level, enemy.level);
-                        }
-
-                        XP = Math.Floor(XP / playerList.Items.Count);
-                        intXP = Convert.ToInt32(XP);
-
-                        MessageBox.Show(currentPlayer.name+" earns " + intXP + " experience points.", "Result", MessageBoxButtons.OK,
-                                MessageBoxIcon.Asterisk);
-                    }
-                }
+                return;
             }
+
+            foreach (Contender player in playerList.Items)
+            {
+                XP = 0;
+                foreach (Contender enemy in enemyList.Items)
+                {
+                    XP += calculateXP(player.level, enemy.level);
+                }
+
+                XP = Math.Floor(XP / playerList.Items.Count);
+                intXP = Convert.ToInt32(XP);
+
+                MessageBox.Show(player.name + " earns " + intXP + " experience points.", "Result", MessageBoxButtons.OK,
+                        MessageBoxIcon.Asterisk);
+            }
+
+
         }
 
         private decimal calculateXP(decimal playerLevel, decimal enemyLevel)
         {
-            double x = (double)playerLevel;
-            double y = (double)enemyLevel;
-            double z = y - x;
+            int scale = (int)enemyLevel - (int)playerLevel + 8;
+            double Offset = 12.5;
+            double XPModifier = Offset * 2;
 
-            double result = 0;
-
-            if (z != 0)
+            for (int i = 1; i < scale; i++)
             {
-                if (z % 2 == 0)
-                    result = (300 * x) * Math.Pow(2, (z / 2));
-                else
+                if (i % 2 == 1 && i != 8)
                 {
-                    if (x < y)
-                        result = ((300 * x) * Math.Pow(2, ((z + 1) / 2)) + (300 * x) * Math.Pow(2, ((z - 1) / 2))) / 2;
-                    else
-                        result = ((((300 * x) * Math.Pow(2, ((z + 1) / 2))) - (z==1?300*x:((300 * x) * Math.Pow(2, ((z - 1) / 2))) / 2)) * (2/3)) + ( z==1?300*x:((300 * x) * Math.Pow(2, ((z - 1) / 2))));
-                }
-            }
-            else
-                result = 300 * x;
-
-            return Convert.ToDecimal(result);
-
-            /*
-            decimal XPmodifier = 1;
-            decimal equationMultiplier = 300;
-            decimal result = 0;
-            int numSteps = 0;
-
-            if (enemyLevel < 1)
-            {
-                XPmodifier = enemyLevel;
-                enemyLevel = 1;
-            }
-            if (playerLevel < 4) playerLevel = 1;
-
-            playerLevel = Math.Floor(playerLevel);
-            enemyLevel = Math.Floor(enemyLevel);
-
-            if (enemyLevel < playerLevel)
-            {
-                for (decimal i = enemyLevel; i < playerLevel; i += 2)
-                {
-                    if ( i == (playerLevel-1) )
-                        equationMultiplier = 200;
-                    else
-                        numSteps++;
+                    Offset += Offset;
                 }
 
-                result = playerLevel * equationMultiplier;
-
-                for (int i = 0; i < numSteps; i++)
-                    result /= 2;
-            }
-            else if (enemyLevel == playerLevel)
-            {
-                result = playerLevel * equationMultiplier;
-            }
-            else
-            {
-                for (decimal i = enemyLevel; i > playerLevel; i -= 2)
+                if (i == 8)
                 {
-                    if (i == (playerLevel + 1))
-                        equationMultiplier = 400;
-                    else
-                        numSteps++;
+                    Offset = Offset * 1.5;
                 }
 
-                result = playerLevel * equationMultiplier;
-
-                for (int i = 0; i < numSteps; i++)
-                    result *= 2;
+                XPModifier += Offset;
             }
 
-            return result * XPmodifier;*/
+            double XP = XPModifier * (double)playerLevel;
+
+            return (decimal)XP;
         }
 
         private void removePlayer_Click(object sender, EventArgs e)

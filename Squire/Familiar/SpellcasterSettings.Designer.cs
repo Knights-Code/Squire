@@ -307,7 +307,7 @@
             this.tableLayoutPanel2.ColumnCount = 3;
             this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 66.50485F));
             this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 33.49514F));
-            this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 137F));
+            this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 139F));
             this.tableLayoutPanel2.Controls.Add(this.clearCustomTextButton, 0, 2);
             this.tableLayoutPanel2.Controls.Add(this.removeClassOrDomainButton, 1, 1);
             this.tableLayoutPanel2.Controls.Add(this.addClassOrDomainButton, 1, 0);
@@ -327,7 +327,7 @@
             // clearCustomTextButton
             // 
             this.clearCustomTextButton.Anchor = System.Windows.Forms.AnchorStyles.Top;
-            this.clearCustomTextButton.Location = new System.Drawing.Point(226, 149);
+            this.clearCustomTextButton.Location = new System.Drawing.Point(224, 149);
             this.clearCustomTextButton.Name = "clearCustomTextButton";
             this.clearCustomTextButton.Size = new System.Drawing.Size(53, 21);
             this.clearCustomTextButton.TabIndex = 8;
@@ -338,7 +338,7 @@
             // removeClassOrDomainButton
             // 
             this.removeClassOrDomainButton.Anchor = System.Windows.Forms.AnchorStyles.Top;
-            this.removeClassOrDomainButton.Location = new System.Drawing.Point(221, 90);
+            this.removeClassOrDomainButton.Location = new System.Drawing.Point(219, 90);
             this.removeClassOrDomainButton.Name = "removeClassOrDomainButton";
             this.removeClassOrDomainButton.Size = new System.Drawing.Size(62, 22);
             this.removeClassOrDomainButton.TabIndex = 7;
@@ -349,7 +349,7 @@
             // addClassOrDomainButton
             // 
             this.addClassOrDomainButton.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
-            this.addClassOrDomainButton.Location = new System.Drawing.Point(221, 61);
+            this.addClassOrDomainButton.Location = new System.Drawing.Point(219, 61);
             this.addClassOrDomainButton.Name = "addClassOrDomainButton";
             this.addClassOrDomainButton.Size = new System.Drawing.Size(62, 23);
             this.addClassOrDomainButton.TabIndex = 6;
@@ -361,11 +361,11 @@
             // 
             this.spellcasterClassesAndDomains.Dock = System.Windows.Forms.DockStyle.Fill;
             this.spellcasterClassesAndDomains.FormattingEnabled = true;
-            this.spellcasterClassesAndDomains.Location = new System.Drawing.Point(306, 3);
+            this.spellcasterClassesAndDomains.Location = new System.Drawing.Point(304, 3);
             this.spellcasterClassesAndDomains.Name = "spellcasterClassesAndDomains";
             this.tableLayoutPanel2.SetRowSpan(this.spellcasterClassesAndDomains, 3);
             this.spellcasterClassesAndDomains.SelectionMode = System.Windows.Forms.SelectionMode.MultiSimple;
-            this.spellcasterClassesAndDomains.Size = new System.Drawing.Size(132, 167);
+            this.spellcasterClassesAndDomains.Size = new System.Drawing.Size(134, 167);
             this.spellcasterClassesAndDomains.TabIndex = 2;
             // 
             // masterListOfClassesAndDomains
@@ -405,15 +405,16 @@
             this.masterListOfClassesAndDomains.Location = new System.Drawing.Point(3, 3);
             this.masterListOfClassesAndDomains.Name = "masterListOfClassesAndDomains";
             this.tableLayoutPanel2.SetRowSpan(this.masterListOfClassesAndDomains, 2);
-            this.masterListOfClassesAndDomains.Size = new System.Drawing.Size(196, 140);
+            this.masterListOfClassesAndDomains.Size = new System.Drawing.Size(194, 140);
             this.masterListOfClassesAndDomains.TabIndex = 0;
+            this.masterListOfClassesAndDomains.SelectedIndexChanged += new System.EventHandler(this.masterListOfClassesAndDomains_SelectedIndexChanged);
             // 
             // customClassDomainTextbox
             // 
             this.customClassDomainTextbox.Dock = System.Windows.Forms.DockStyle.Fill;
             this.customClassDomainTextbox.Location = new System.Drawing.Point(3, 149);
             this.customClassDomainTextbox.Name = "customClassDomainTextbox";
-            this.customClassDomainTextbox.Size = new System.Drawing.Size(196, 20);
+            this.customClassDomainTextbox.Size = new System.Drawing.Size(194, 20);
             this.customClassDomainTextbox.TabIndex = 3;
             this.customClassDomainTextbox.Text = "Type Other Class or Domain Here";
             this.customClassDomainTextbox.TextChanged += new System.EventHandler(this.customClassDomainTextbox_TextChanged);

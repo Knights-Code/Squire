@@ -16,8 +16,8 @@ namespace Squire
 
         struct SpellCount
         {
-            uint spellsPerDay = 0;
-            uint spellsRemaining = 0;
+            uint spellsPerDay;
+            uint spellsRemaining;
         }
 
         public SpellcasterSettings()
@@ -49,10 +49,12 @@ namespace Squire
             if (customClassDomainTextbox.Text != Common.customClassDomainDefault)
             {
                 spellcasterClassesAndDomains.Items.Add(customClassDomainTextbox.Text);
+                masterListOfClassesAndDomains.ClearSelected();
                 return;
             }
 
             spellcasterClassesAndDomains.Items.Add(masterListOfClassesAndDomains.SelectedItem.ToString());
+            customClassDomainTextbox.Text = Common.customClassDomainDefault;
         }
 
         private void customClassDomainTextbox_TextChanged(object sender, EventArgs e)
@@ -78,6 +80,11 @@ namespace Squire
         private void spellLevelListBox_SelectedIndexChanged(object sender, EventArgs e)
         {
 
+        }
+
+        private void masterListOfClassesAndDomains_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            customClassDomainTextbox.Text = Common.customClassDomainDefault;
         }
     }
 }

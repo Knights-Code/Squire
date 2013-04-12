@@ -93,7 +93,7 @@ namespace Squire
                     XP += calculateXP(player.level, enemy.level);
                 }
 
-                XP = Math.Floor(XP / playerList.Items.Count);
+                XP = Math.Ceiling(XP / playerList.Items.Count);
                 intXP = Convert.ToInt32(XP);
 
                 MessageBox.Show(player.name + " earns " + intXP + " experience points.", "Result", MessageBoxButtons.OK,
@@ -105,9 +105,20 @@ namespace Squire
 
         private decimal calculateXP(decimal playerLevel, decimal enemyLevel)
         {
-            int scale = ((int)enemyLevel - (int)playerLevel) + 8;
-            double XPModifier;
+            if (playerLevel < 3 && enemyLevel > 3)
+            {
+                playerLevel = 3;
+            }
+            else if (playerLevel < 3 && enemyLevel <= 3)
+            {
+                playerLevel = enemyLevel;
+            }
 
+            int scale = (int)enemyLevel - (int)playerLevel;
+            double XPModifier = 300;
+            double Offset = 0;
+
+            /*
             switch (scale)
             {
                 case 1:
@@ -158,25 +169,36 @@ namespace Squire
                 default:
                     XPModifier = -1;
                     break;
-            }
-
-            /*
-            double Offset = 12.5;
-            for (int i = 1; i < scale; i++)
-            {
-                XPModifier += Offset;
-
-                if (Offset == 100)
-                {
-                    Offset = 150;
-                    continue;
-                }
-
-                if (i % 2 == 0 && i != 7)
-                {
-                    Offset += Offset;
-                }
             }*/
+
+            if (scale < 0)
+            {
+                Offset = XPModifier - (XPModifier / 1.5);
+
+                for (int i = -1; i >= scale; i--)
+                {
+                    XPModifier -= Offset;
+
+                    if (i % 2 != 0)
+                    {
+                        Offset = Offset / 2;
+                    }
+                }
+            }
+            else if (scale > 0)
+            {
+                Offset = XPModifier * .5;
+
+                for (int i = 1; i <= scale; i++)
+                {
+                    XPModifier += Offset;
+
+                    if (i % 2 == 0)
+                    {
+                        Offset = Offset * 2;
+                    }
+                }
+            }
 
             double XP = XPModifier * (double)playerLevel;
 

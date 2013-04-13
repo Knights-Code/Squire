@@ -118,59 +118,6 @@ namespace Squire
             double XPModifier = 300;
             double Offset = 0;
 
-            /*
-            switch (scale)
-            {
-                case 1:
-                    XPModifier = 25;
-                    break;
-                case 2:
-                    XPModifier = 38;
-                    break;
-                case 3:
-                    XPModifier = 50;
-                    break;
-                case 4:
-                    XPModifier = 75;
-                    break;
-                case 5:
-                    XPModifier = 100;
-                    break;
-                case 6:
-                    XPModifier = 150;
-                    break;
-                case 7:
-                    XPModifier = 200;
-                    break;
-                case 8:
-                    XPModifier = 300;
-                    break;
-                case 9:
-                    XPModifier = 450;
-                    break;
-                case 10:
-                    XPModifier = 600;
-                    break;
-                case 11:
-                    XPModifier = 900;
-                    break;
-                case 12:
-                    XPModifier = 1200;
-                    break;
-                case 13:
-                    XPModifier = 1800;
-                    break;
-                case 14:
-                    XPModifier = 2400;
-                    break;
-                case 15:
-                    XPModifier = 3600;
-                    break;
-                default:
-                    XPModifier = -1;
-                    break;
-            }*/
-
             if (scale < 0)
             {
                 Offset = XPModifier - (XPModifier / 1.5);

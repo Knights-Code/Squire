@@ -105,6 +105,7 @@ namespace Squire
 
         private decimal calculateXP(decimal playerLevel, decimal enemyLevel)
         {
+
             if (playerLevel < 3 && enemyLevel > 3)
             {
                 playerLevel = 3;
@@ -151,6 +152,13 @@ namespace Squire
 
             return (decimal)XP;
         }
+
+ /*       private decimal calculateEpicXP(decimal playerLevel, decimal enemyLevel)
+        {
+            uint adjustment = 
+
+
+        }*/
 
         private void removePlayer_Click(object sender, EventArgs e)
         {

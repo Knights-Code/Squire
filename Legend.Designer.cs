@@ -36,15 +36,15 @@
             this.label1 = new System.Windows.Forms.Label();
             this.playerList = new System.Windows.Forms.ListBox();
             this.enemyList = new System.Windows.Forms.ListBox();
-            this.addPlayer = new System.Windows.Forms.Button();
-            this.addEnemy = new System.Windows.Forms.Button();
             this.calculateButton = new System.Windows.Forms.Button();
             this.tableLayoutPanel2 = new System.Windows.Forms.TableLayoutPanel();
             this.playerName = new System.Windows.Forms.TextBox();
             this.playerLevel = new System.Windows.Forms.NumericUpDown();
             this.tableLayoutPanel4 = new System.Windows.Forms.TableLayoutPanel();
-            this.tableLayoutPanel5 = new System.Windows.Forms.TableLayoutPanel();
+            this.addPlayer = new System.Windows.Forms.Button();
             this.removePlayer = new System.Windows.Forms.Button();
+            this.tableLayoutPanel5 = new System.Windows.Forms.TableLayoutPanel();
+            this.addEnemy = new System.Windows.Forms.Button();
             this.removeEnemy = new System.Windows.Forms.Button();
             this.tableLayoutPanel1.SuspendLayout();
             this.tableLayoutPanel3.SuspendLayout();
@@ -72,8 +72,8 @@
             this.tableLayoutPanel1.Location = new System.Drawing.Point(0, 0);
             this.tableLayoutPanel1.Name = "tableLayoutPanel1";
             this.tableLayoutPanel1.RowCount = 6;
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 12.93103F));
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 87.06896F));
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 17.58242F));
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 82.41758F));
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 31F));
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 38F));
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 41F));
@@ -117,7 +117,7 @@
             this.tableLayoutPanel1.SetColumnSpan(this.label1, 2);
             this.label1.Location = new System.Drawing.Point(3, 0);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(277, 23);
+            this.label1.Size = new System.Drawing.Size(277, 26);
             this.label1.TabIndex = 0;
             this.label1.Text = "Create a list of players on the left and a list of enemies on the right, then cli" +
                 "ck \"Calculate\".";
@@ -126,41 +126,19 @@
             // 
             this.playerList.Dock = System.Windows.Forms.DockStyle.Fill;
             this.playerList.FormattingEnabled = true;
-            this.playerList.Location = new System.Drawing.Point(3, 26);
+            this.playerList.Location = new System.Drawing.Point(3, 35);
             this.playerList.Name = "playerList";
-            this.playerList.Size = new System.Drawing.Size(140, 153);
+            this.playerList.Size = new System.Drawing.Size(140, 144);
             this.playerList.TabIndex = 1;
             // 
             // enemyList
             // 
             this.enemyList.Dock = System.Windows.Forms.DockStyle.Fill;
             this.enemyList.FormattingEnabled = true;
-            this.enemyList.Location = new System.Drawing.Point(149, 26);
+            this.enemyList.Location = new System.Drawing.Point(149, 35);
             this.enemyList.Name = "enemyList";
-            this.enemyList.Size = new System.Drawing.Size(140, 153);
+            this.enemyList.Size = new System.Drawing.Size(140, 144);
             this.enemyList.TabIndex = 2;
-            // 
-            // addPlayer
-            // 
-            this.addPlayer.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.addPlayer.Location = new System.Drawing.Point(3, 4);
-            this.addPlayer.Name = "addPlayer";
-            this.addPlayer.Size = new System.Drawing.Size(67, 23);
-            this.addPlayer.TabIndex = 3;
-            this.addPlayer.Text = "Add ...";
-            this.addPlayer.UseVisualStyleBackColor = true;
-            this.addPlayer.Click += new System.EventHandler(this.addPlayer_Click);
-            // 
-            // addEnemy
-            // 
-            this.addEnemy.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.addEnemy.Location = new System.Drawing.Point(3, 4);
-            this.addEnemy.Name = "addEnemy";
-            this.addEnemy.Size = new System.Drawing.Size(67, 23);
-            this.addEnemy.TabIndex = 4;
-            this.addEnemy.Text = "Add ...";
-            this.addEnemy.UseVisualStyleBackColor = true;
-            this.addEnemy.Click += new System.EventHandler(this.addEnemy_Click);
             // 
             // calculateButton
             // 
@@ -220,6 +198,28 @@
             this.tableLayoutPanel4.Size = new System.Drawing.Size(146, 31);
             this.tableLayoutPanel4.TabIndex = 8;
             // 
+            // addPlayer
+            // 
+            this.addPlayer.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.addPlayer.Location = new System.Drawing.Point(3, 4);
+            this.addPlayer.Name = "addPlayer";
+            this.addPlayer.Size = new System.Drawing.Size(67, 23);
+            this.addPlayer.TabIndex = 3;
+            this.addPlayer.Text = "Add";
+            this.addPlayer.UseVisualStyleBackColor = true;
+            this.addPlayer.Click += new System.EventHandler(this.addPlayer_Click);
+            // 
+            // removePlayer
+            // 
+            this.removePlayer.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.removePlayer.Location = new System.Drawing.Point(76, 4);
+            this.removePlayer.Name = "removePlayer";
+            this.removePlayer.Size = new System.Drawing.Size(67, 23);
+            this.removePlayer.TabIndex = 4;
+            this.removePlayer.Text = "Remove";
+            this.removePlayer.UseVisualStyleBackColor = true;
+            this.removePlayer.Click += new System.EventHandler(this.removePlayer_Click);
+            // 
             // tableLayoutPanel5
             // 
             this.tableLayoutPanel5.ColumnCount = 2;
@@ -236,16 +236,16 @@
             this.tableLayoutPanel5.Size = new System.Drawing.Size(146, 31);
             this.tableLayoutPanel5.TabIndex = 9;
             // 
-            // removePlayer
+            // addEnemy
             // 
-            this.removePlayer.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.removePlayer.Location = new System.Drawing.Point(76, 4);
-            this.removePlayer.Name = "removePlayer";
-            this.removePlayer.Size = new System.Drawing.Size(67, 23);
-            this.removePlayer.TabIndex = 4;
-            this.removePlayer.Text = "Remove";
-            this.removePlayer.UseVisualStyleBackColor = true;
-            this.removePlayer.Click += new System.EventHandler(this.removePlayer_Click);
+            this.addEnemy.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.addEnemy.Location = new System.Drawing.Point(3, 4);
+            this.addEnemy.Name = "addEnemy";
+            this.addEnemy.Size = new System.Drawing.Size(67, 23);
+            this.addEnemy.TabIndex = 4;
+            this.addEnemy.Text = "Add";
+            this.addEnemy.UseVisualStyleBackColor = true;
+            this.addEnemy.Click += new System.EventHandler(this.addEnemy_Click);
             // 
             // removeEnemy
             // 

@@ -28,14 +28,9 @@ namespace Squire
 
     public partial class Legend : Form
     {
-        Boolean levelsAreEqual;
-        decimal levelStandard;
-
         public Legend()
         {
             InitializeComponent();
-            levelsAreEqual = true;
-            levelStandard = 0;
         }
 
         private void addPlayer_Click(object sender, EventArgs e)
@@ -44,19 +39,40 @@ namespace Squire
             {
                 playerList.Items.Add(new Contender(playerName.Text, playerLevel.Value));
 
-                if (playerList.Items.Count == 1)
-                    levelStandard = playerLevel.Value;
-                else if (playerLevel.Value != levelStandard)
-                    levelsAreEqual = false;
-
                 playerName.Text = String.Empty;
                 playerLevel.Value = 0;
+
+                playerName.Focus(); // put cursor back in name entry box
 
                 if (enemyList.Items.Count > 0)
                     calculateButton.Enabled = true;
                 else
                     calculateButton.Enabled = false;
             }
+        }
+
+        private Boolean areLevelsEqual()
+        {
+            Boolean result = true;
+            if (playerList.Items.Count > 0)
+            {
+                Contender currentContender = (Contender)playerList.Items[0];
+                decimal levelStandard = currentContender.level; // set the standard. All levels must be equal to this one.
+
+                // Check the levels of every player in the list. If any of them have levels that don't match the standard, break the loop to
+                // send back a result of "false".
+                for (int i = 1; i < playerList.Items.Count; i++)
+                {
+                    currentContender = (Contender)playerList.Items[i];
+                    if (currentContender.level != levelStandard)
+                    {
+                        result = false;
+                        break;
+                    }
+                }
+            }
+
+            return result;
         }
 
         private void addEnemy_Click(object sender, EventArgs e)
@@ -67,6 +83,8 @@ namespace Squire
 
                 enemyName.Text = String.Empty;
                 enemyLevel.Value = 0;
+
+                enemyName.Focus(); // put cursor back in name entry box
 
                 if (playerList.Items.Count > 0)
                     calculateButton.Enabled = true;
@@ -82,7 +100,7 @@ namespace Squire
 
             if (playerList.Items.Count > 0 && enemyList.Items.Count > 0)
             {
-                if (levelsAreEqual && playerList.Items.Count > 1)
+                if (areLevelsEqual() && playerList.Items.Count > 1)
                 {
                     Contender firstPlayer = (Contender)playerList.Items[0];
                     XP = 0;
@@ -136,15 +154,19 @@ namespace Squire
                     result = (300 * x) * Math.Pow(2, (z / 2));
                 else
                 {
+                    decimal lower = Convert.ToDecimal((300 * x) * Math.Pow(2, ((z - 1) / 2)));
+                    decimal higher = Convert.ToDecimal((300 * x) * Math.Pow(2, ((z + 1) / 2)));
+
                     if (x < y)
-                        result = ((300 * x) * Math.Pow(2, ((z + 1) / 2)) + (300 * x) * Math.Pow(2, ((z - 1) / 2))) / 2;
+                    {
+                        //result = ((300 * x) * Math.Pow(2, ((z + 1) / 2)) + (300 * x) * Math.Pow(2, ((z - 1) / 2))) / 2;
+                        double total = (double)(lower + higher);
+                        result = total / 2;
+                    }
                     else
                     {
-                        decimal lower = Convert.ToDecimal((300 * x) * Math.Pow(2, ((z - 1) / 2)));
-                        decimal higher = Convert.ToDecimal((300 * x) * Math.Pow(2, ((z + 1) / 2)));
                         double diff = (double)(higher - lower);
                         result = (diff / 3) + (double)lower;
-                        //result = ((((300 * x) * Math.Pow(2, ((z + 1) / 2))) - (z == 1 ? 300 * x : ((300 * x) * Math.Pow(2, ((z - 1) / 2))) / 2)) * (1 / 3)) + (z == 1 ? 300 * x : ((300 * x) * Math.Pow(2, ((z - 1) / 2))));
                     }
                 }
             }

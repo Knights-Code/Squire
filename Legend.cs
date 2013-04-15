@@ -142,7 +142,7 @@ namespace Squire
 
         private decimal calculateXP(decimal playerLevel, decimal enemyLevel)
         {
-            double x = (double)playerLevel;
+            double x = (double)(playerLevel <= 3?(enemyLevel<=3?enemyLevel:1):playerLevel);
             double y = (double)enemyLevel;
             double z = y - x;
 

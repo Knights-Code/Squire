@@ -142,7 +142,9 @@ namespace Squire
 
         private decimal calculateXP(decimal playerLevel, decimal enemyLevel)
         {
-            double x = (double)(playerLevel <= 3?(enemyLevel<=3?enemyLevel:1):playerLevel);
+            double x = (double)(playerLevel <= 3?(enemyLevel<=3?enemyLevel:3):(enemyLevel==1&&playerLevel<7?1:playerLevel)); // tell me THIS isn't confusing.
+            // Nested ternary operators, everybody! The above line changes player level to another value if it and enemy level are low enough (because low-
+            // level characters get special treatment).
             double y = (double)enemyLevel;
             double z = y - x;
 

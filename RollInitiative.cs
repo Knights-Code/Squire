@@ -31,7 +31,7 @@ namespace Squire
     {
         General parentForm;
         Combatant[] combatants;
-        int[] scores;
+        ArrayList scores;
         ArrayList rootsChecked;
         ArrayList batchGroups;
 
@@ -48,7 +48,7 @@ namespace Squire
             this.parentForm = parentForm;
 
             combatants = new Combatant[parentForm.combatantList.Items.Count];
-            scores = new int[parentForm.combatantList.Items.Count];
+            scores = new ArrayList();
             rootsChecked = new ArrayList();
             batchGroups = new ArrayList();
 
@@ -75,7 +75,7 @@ namespace Squire
                         if (MessageBox.Show(currentCombatant + " is part of a generated batch of combatants. Would you like to have them all act on"
                             + " the same initiative count?", "Batch Combatant Detected", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
                         {
-                            Combatant batchGroupName = new Combatant(currentCombatant.getBatchRoot()+"s");
+                            Combatant batchGroupName = new Combatant(currentCombatant.getBatchRoot() + "s");
                             batchGroupName.setBatchRoot(currentCombatant.getBatchRoot());
                             ArrayList batchGroup = new ArrayList(); // create a place to store the batch
 
@@ -97,11 +97,15 @@ namespace Squire
                         else
                             initiativeList.Items.Add(currentCombatant);
 
+                        scores.Add(0);
                         rootsChecked.Add(currentCombatant.getBatchRoot());
                     }
-                } else
+                }
+                else
+                {
                     initiativeList.Items.Add(currentCombatant);
-                scores[i] = 0;
+                    scores.Add(0);
+                }
             }
 
             //-----( Event Handlers )-----\\
@@ -136,14 +140,14 @@ namespace Squire
             {
                 for (int j = 0; j < numCombatants - i; j++)
                 {
-                    if (j + 1 < scores.Length)
+                    if (j + 1 < scores.Count)
                     {
                         Combatant currentCombatant = (Combatant)initiativeList.Items[j];
                         Combatant nextCombatant = (Combatant)initiativeList.Items[j + 1];
-                        int currentScore = scores[j];
-                        int nextScore = scores[j + 1];
+                        int currentScore = (int)scores[j];
+                        int nextScore = (int)scores[j + 1];
 
-                        if (scores[j + 1] > scores[j])
+                        if (nextScore > currentScore)
                         {
                             scores[j] = nextScore;
                             scores[j + 1] = currentScore;
@@ -153,7 +157,7 @@ namespace Squire
                         }
 
                         // If two combatants rolled the same initiative, determine who goes first.
-                        else if (scores[j + 1] == scores[j])
+                        else if (nextScore == currentScore)
                         {
                             Boolean haveBeenCompared = false;
 
@@ -188,7 +192,8 @@ namespace Squire
                 }
             }
 
-            for (int i = 0; i < initiativeList.Items.Count; i++) parentForm.combatantList.Items.RemoveAt(0);
+            int combatantsTotal = parentForm.combatantList.Items.Count;
+            for (int i = 0; i < combatantsTotal; i++) parentForm.combatantList.Items.RemoveAt(0);
 
             for (int i = 0; i < initiativeList.Items.Count; i++)
             {
@@ -233,7 +238,7 @@ namespace Squire
         {
             if (initiativeList.SelectedIndex != -1)
             {
-                initiativeScore.Value = scores[initiativeList.SelectedIndex];
+                initiativeScore.Value = Convert.ToDecimal((int)scores[initiativeList.SelectedIndex]);
                 initiativeScore.Enabled = true;
             }
             else

@@ -139,12 +139,19 @@ namespace Squire
                     if (x < y)
                         result = ((300 * x) * Math.Pow(2, ((z + 1) / 2)) + (300 * x) * Math.Pow(2, ((z - 1) / 2))) / 2;
                     else
-                        result = ((((300 * x) * Math.Pow(2, ((z + 1) / 2))) - (z==1?300*x:((300 * x) * Math.Pow(2, ((z - 1) / 2))) / 2)) * (2/3)) + ( z==1?300*x:((300 * x) * Math.Pow(2, ((z - 1) / 2))));
+                    {
+                        decimal lower = Convert.ToDecimal((300 * x) * Math.Pow(2, ((z - 1) / 2)));
+                        decimal higher = Convert.ToDecimal((300 * x) * Math.Pow(2, ((z + 1) / 2)));
+                        double diff = (double)(higher - lower);
+                        result = (diff / 3) + (double)lower;
+                        //result = ((((300 * x) * Math.Pow(2, ((z + 1) / 2))) - (z == 1 ? 300 * x : ((300 * x) * Math.Pow(2, ((z - 1) / 2))) / 2)) * (1 / 3)) + (z == 1 ? 300 * x : ((300 * x) * Math.Pow(2, ((z - 1) / 2))));
+                    }
                 }
             }
             else
                 result = 300 * x;
 
+            result = Math.Ceiling(result);
             return Convert.ToDecimal(result);
 
             /*

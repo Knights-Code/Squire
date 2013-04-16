@@ -37,22 +37,15 @@ namespace Squire
             // If we're adding a batch of combatants ...
             if (useBatch.Checked)
             {
-                int dieCount;
-                int dieType;
-                int bonus;
+                //Regex damageFormat = new Regex(@"(\d*).(\d*)(.)(\d*)"); // regular expression to catch digits in a string
+                Regex batchFormat = new Regex(@"(\d+.\d+.\d+)"); // regular expression to find instances of the damage format
+                Regex damageFormat = new Regex(@"(\d+).(\d+)(.)(\d+)"); // regular expression to catch digits in a string
+                MatchCollection matches = batchFormat.Matches(batchExpression.Text);
 
-                Regex damageFormat = new Regex(@"(\d*).(\d*)(.)(\d*)"); // regular expression to catch digits in a string
-                Match match = damageFormat.Match(batchExpression.Text);
-
-                if (match.Success)
+                if (matches.Count > 0)
                 {
                     try
                     {
-                        dieCount = Convert.ToInt32(match.Groups[1].Value);
-                        dieType = Convert.ToInt32(match.Groups[2].Value);
-                        bonus = Convert.ToInt32(match.Groups[4].Value);
-                        bonus *= (string)match.Groups[3].Value == "-" ? -1 : 1;
-
                         // Create a means of generating random numbers. Use GUID for seed
                         // because the default system time seed doesn't use enough decimal
                         // places and therefore generating multiple random numbers in a row
@@ -60,27 +53,40 @@ namespace Squire
                         Random dieRoller = new Random(int.Parse(Guid.NewGuid().ToString().Substring(0, 8), System.Globalization.NumberStyles.HexNumber));
 
                         // For each combatant to be batch created ...
-                        for (int i = 1; i < (int)batchNumber.Value + 1; i++)
+                        for (int c = 1; c < (int)batchNumber.Value + 1; c++)
                         {
-                            string combatantName = batchName.Text + " #" + i;
+                            string combatantName = batchName.Text + " #" + c;
                             int HP = 0;
 
-                            // "Roll" Hit Dice and add them to the total one at a time.
-                            for (int HD = 0; HD < dieCount; HD++)
+                            for (int i = 0; i < matches.Count; i++)
                             {
-                                int roll = dieRoller.Next(1, dieType);
+                                Match damageMatch = damageFormat.Match(matches[i].Value);
 
-                                if (useGenerousHP.Checked)
+                                if (damageMatch.Success)
                                 {
-                                    decimal modRoll = (roll + dieType) / 2; // super secret balancing feature
-                                    modRoll = Math.Floor(modRoll);
-                                    roll = (int)modRoll;
+                                    int dieCount = Convert.ToInt32(damageMatch.Groups[1].Value);
+                                    int dieType = Convert.ToInt32(damageMatch.Groups[2].Value);
+                                    int bonus = Convert.ToInt32(damageMatch.Groups[4].Value);
+                                    bonus *= (string)damageMatch.Groups[3].Value == "-" ? -1 : 1;
+
+                                    // "Roll" Hit Dice and add them to the total one at a time.
+                                    for (int HD = 0; HD < dieCount; HD++)
+                                    {
+                                        int roll = dieRoller.Next(1, dieType);
+
+                                        if (useGenerousHP.Checked)
+                                        {
+                                            decimal modRoll = (roll + dieType) / 2; // super secret balancing feature
+                                            modRoll = Math.Floor(modRoll);
+                                            roll = (int)modRoll;
+                                        }
+
+                                        HP += roll;
+                                    }
+
+                                    HP += bonus; // add Constitution modifier
                                 }
-
-                                HP += roll;
                             }
-
-                            HP += bonus; // add Constitution modifier
 
                             Combatant newCombatant = new Combatant(combatantName, HP);
 
@@ -132,6 +138,7 @@ namespace Squire
                 batchExpression.Enabled = true;
                 batchName.Enabled = true;
                 batchNumber.Enabled = true;
+                useGenerousHP.Enabled = true;
             }
             else
             {
@@ -141,6 +148,7 @@ namespace Squire
                 batchExpression.Enabled = false;
                 batchName.Enabled = false;
                 batchNumber.Enabled = false;
+                useGenerousHP.Enabled = false;
             }
         }
     }

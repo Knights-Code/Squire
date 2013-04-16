@@ -35,6 +35,7 @@
             this.tableLayoutPanel6 = new System.Windows.Forms.TableLayoutPanel();
             this.checkboxIsPlayer = new System.Windows.Forms.CheckBox();
             this.useBatch = new System.Windows.Forms.CheckBox();
+            this.useGenerousHP = new System.Windows.Forms.CheckBox();
             this.flowLayoutPanel1 = new System.Windows.Forms.FlowLayoutPanel();
             this.addCancel = new System.Windows.Forms.Button();
             this.addOK = new System.Windows.Forms.Button();
@@ -43,6 +44,7 @@
             this.tableLayoutPanel3 = new System.Windows.Forms.TableLayoutPanel();
             this.labelCombatantName = new System.Windows.Forms.Label();
             this.combatantName = new System.Windows.Forms.TextBox();
+            this.combatantHP = new Squire.NumericTextBox();
             this.labelCombatantHP = new System.Windows.Forms.Label();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.tableLayoutPanel5 = new System.Windows.Forms.TableLayoutPanel();
@@ -52,8 +54,6 @@
             this.batchNumber = new System.Windows.Forms.NumericUpDown();
             this.label3 = new System.Windows.Forms.Label();
             this.batchExpression = new System.Windows.Forms.TextBox();
-            this.combatantHP = new Squire.NumericTextBox();
-            this.useGenerousHP = new System.Windows.Forms.CheckBox();
             this.tableLayoutPanel1.SuspendLayout();
             this.tableLayoutPanel2.SuspendLayout();
             this.tableLayoutPanel6.SuspendLayout();
@@ -151,6 +151,18 @@
             this.useBatch.UseVisualStyleBackColor = true;
             this.useBatch.CheckedChanged += new System.EventHandler(this.useBatch_CheckedChanged);
             // 
+            // useGenerousHP
+            // 
+            this.useGenerousHP.Anchor = System.Windows.Forms.AnchorStyles.Left;
+            this.useGenerousHP.AutoSize = true;
+            this.useGenerousHP.Enabled = false;
+            this.useGenerousHP.Location = new System.Drawing.Point(3, 51);
+            this.useGenerousHP.Name = "useGenerousHP";
+            this.useGenerousHP.Size = new System.Drawing.Size(128, 15);
+            this.useGenerousHP.TabIndex = 3;
+            this.useGenerousHP.Text = "Use \"Generous HP\"?";
+            this.useGenerousHP.UseVisualStyleBackColor = true;
+            // 
             // flowLayoutPanel1
             // 
             this.flowLayoutPanel1.Controls.Add(this.addCancel);
@@ -246,6 +258,23 @@
             this.combatantName.Name = "combatantName";
             this.combatantName.Size = new System.Drawing.Size(118, 20);
             this.combatantName.TabIndex = 0;
+            // 
+            // combatantHP
+            // 
+            this.combatantHP.AllowSpace = false;
+            this.combatantHP.Anchor = System.Windows.Forms.AnchorStyles.Left;
+            this.combatantHP.DecimalValue = new decimal(new int[] {
+            0,
+            0,
+            0,
+            0});
+            this.combatantHP.IntValue = 0;
+            this.combatantHP.Location = new System.Drawing.Point(121, 31);
+            this.combatantHP.Margin = new System.Windows.Forms.Padding(3, 0, 0, 0);
+            this.combatantHP.Name = "combatantHP";
+            this.combatantHP.Size = new System.Drawing.Size(118, 20);
+            this.combatantHP.TabIndex = 3;
+            this.combatantHP.Text = "0";
             // 
             // labelCombatantHP
             // 
@@ -348,34 +377,6 @@
             this.batchExpression.Name = "batchExpression";
             this.batchExpression.Size = new System.Drawing.Size(100, 20);
             this.batchExpression.TabIndex = 5;
-            // 
-            // combatantHP
-            // 
-            this.combatantHP.AllowSpace = false;
-            this.combatantHP.Anchor = System.Windows.Forms.AnchorStyles.Left;
-            this.combatantHP.DecimalValue = new decimal(new int[] {
-            0,
-            0,
-            0,
-            0});
-            this.combatantHP.IntValue = 0;
-            this.combatantHP.Location = new System.Drawing.Point(121, 31);
-            this.combatantHP.Margin = new System.Windows.Forms.Padding(3, 0, 0, 0);
-            this.combatantHP.Name = "combatantHP";
-            this.combatantHP.Size = new System.Drawing.Size(118, 20);
-            this.combatantHP.TabIndex = 3;
-            this.combatantHP.Text = "0";
-            // 
-            // useGenerousHP
-            // 
-            this.useGenerousHP.Anchor = System.Windows.Forms.AnchorStyles.Left;
-            this.useGenerousHP.AutoSize = true;
-            this.useGenerousHP.Location = new System.Drawing.Point(3, 51);
-            this.useGenerousHP.Name = "useGenerousHP";
-            this.useGenerousHP.Size = new System.Drawing.Size(128, 15);
-            this.useGenerousHP.TabIndex = 3;
-            this.useGenerousHP.Text = "Use \"Generous HP\"?";
-            this.useGenerousHP.UseVisualStyleBackColor = true;
             // 
             // AddCombatant
             // 

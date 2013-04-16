@@ -178,8 +178,8 @@
             // 
             // tabPlayer
             // 
-            this.tabPlayer.Controls.Add(this.tabPC);
             this.tabPlayer.Controls.Add(this.tabDM);
+            this.tabPlayer.Controls.Add(this.tabPC);
             this.tabPlayer.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tabPlayer.Location = new System.Drawing.Point(0, 0);
             this.tabPlayer.Margin = new System.Windows.Forms.Padding(0, 0, 0, 3);

@@ -1223,8 +1223,14 @@ namespace Squire
 
         private void rollInitiativeToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            RollInitiative rollInitiative = new RollInitiative(this);
-            rollInitiative.Show();
+            if (combatantList.Items.Count > 0)
+            {
+                RollInitiative rollInitiative = new RollInitiative(this);
+                rollInitiative.Show();
+            }
+            else
+                MessageBox.Show("There are no combatants in the combatant list. Please add some using the \"Add ...\" button.",
+                    "Error: No Combatants", MessageBoxButtons.OK, MessageBoxIcon.Error);
         }
     }
 }

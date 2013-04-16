@@ -69,9 +69,13 @@ namespace Squire
                             for (int HD = 0; HD < dieCount; HD++)
                             {
                                 int roll = dieRoller.Next(1, dieType);
-                                decimal modRoll = (roll + dieType) / 2; // super secret balancing feature
-                                modRoll = Math.Floor(modRoll);
-                                roll = (int)modRoll;
+
+                                if (useGenerousHP.Checked)
+                                {
+                                    decimal modRoll = (roll + dieType) / 2; // super secret balancing feature
+                                    modRoll = Math.Floor(modRoll);
+                                    roll = (int)modRoll;
+                                }
 
                                 HP += roll;
                             }

@@ -31,6 +31,19 @@ namespace Squire
         public Legend()
         {
             InitializeComponent();
+
+            //-----( Event Handlers )-----\\
+            playerLevel.Enter += new EventHandler(numericField_Enter);
+            enemyLevel.Enter += numericField_Enter;
+            playerLevel.Click += numericField_Enter;
+            enemyLevel.Click += numericField_Enter;
+        }
+
+        void numericField_Enter(object sender, EventArgs e)
+        {
+            NumericUpDown source = (NumericUpDown)sender;
+
+            source.Select(0, source.Text.Length);
         }
 
         private void addPlayer_Click(object sender, EventArgs e)
@@ -142,7 +155,7 @@ namespace Squire
 
         private decimal calculateXP(decimal playerLevel, decimal enemyLevel)
         {
-            double x = (double)(playerLevel <= 3?(enemyLevel<=3?enemyLevel:3):(enemyLevel==1&&playerLevel<7?1:playerLevel)); // tell me THIS isn't confusing.
+            double x = (double)( playerLevel<=3?( enemyLevel<=3?enemyLevel:3 ):( enemyLevel==1&&playerLevel<7?1:playerLevel )); // tell me THIS isn't confusing.
             // Nested ternary operators, everybody! The above line changes player level to another value if it and enemy level are low enough (because low-
             // level characters get special treatment).
             double y = (double)enemyLevel;
@@ -161,7 +174,6 @@ namespace Squire
 
                     if (x < y)
                     {
-                        //result = ((300 * x) * Math.Pow(2, ((z + 1) / 2)) + (300 * x) * Math.Pow(2, ((z - 1) / 2))) / 2;
                         double total = (double)(lower + higher);
                         result = total / 2;
                     }
@@ -177,59 +189,6 @@ namespace Squire
 
             result = Math.Ceiling(result);
             return Convert.ToDecimal(result);
-
-            /*
-            decimal XPmodifier = 1;
-            decimal equationMultiplier = 300;
-            decimal result = 0;
-            int numSteps = 0;
-
-            if (enemyLevel < 1)
-            {
-                XPmodifier = enemyLevel;
-                enemyLevel = 1;
-            }
-            if (playerLevel < 4) playerLevel = 1;
-
-            playerLevel = Math.Floor(playerLevel);
-            enemyLevel = Math.Floor(enemyLevel);
-
-            if (enemyLevel < playerLevel)
-            {
-                for (decimal i = enemyLevel; i < playerLevel; i += 2)
-                {
-                    if ( i == (playerLevel-1) )
-                        equationMultiplier = 200;
-                    else
-                        numSteps++;
-                }
-
-                result = playerLevel * equationMultiplier;
-
-                for (int i = 0; i < numSteps; i++)
-                    result /= 2;
-            }
-            else if (enemyLevel == playerLevel)
-            {
-                result = playerLevel * equationMultiplier;
-            }
-            else
-            {
-                for (decimal i = enemyLevel; i > playerLevel; i -= 2)
-                {
-                    if (i == (playerLevel + 1))
-                        equationMultiplier = 400;
-                    else
-                        numSteps++;
-                }
-
-                result = playerLevel * equationMultiplier;
-
-                for (int i = 0; i < numSteps; i++)
-                    result *= 2;
-            }
-
-            return result * XPmodifier;*/
         }
 
         private void removePlayer_Click(object sender, EventArgs e)

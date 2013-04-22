@@ -1,15 +1,18 @@
 Initiative List
-Smiles	89	149	0
-Gillian	95	121	1	Shaken	10
-Konda	126	126	1	Panicked	10
-Braxus	191	267	3	Haste	13	Protection from Electricity	9	Shaken	10
-Garth	195	195	1	Shaken	10
-Erystas	193	193	1	Panicked	10
-Arkan	99	279	1	Shaken	10
+Konda	123	126	0
+Smiles	149	149	0
+Arkan	279	279	1	Heroism	97
+Gillian	121	121	0
+Braxus	267	267	0
+Garth	195	195	0
 
 Delay List
 
 Dying List
+Erystas	193	193	0
+Golem #3	34	200	0
+Golem #1	116	200	0
+Golem #2	-16	200	0
 
 Indices
-3	-1	-1	6
+4	-1	-1	1

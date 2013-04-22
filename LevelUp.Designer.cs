@@ -188,7 +188,7 @@
             this.tableLayoutPanel2.ColumnCount = 3;
             this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 61.26126F));
             this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 38.73874F));
-            this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 154F));
+            this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 155F));
             this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 131F));
             this.tableLayoutPanel2.Controls.Add(this.characterFile, 0, 1);
             this.tableLayoutPanel2.Controls.Add(this.labelExplanation, 0, 0);
@@ -231,7 +231,7 @@
             this.flowLayoutPanel2.Controls.Add(this.loadButton);
             this.flowLayoutPanel2.Location = new System.Drawing.Point(270, 24);
             this.flowLayoutPanel2.Name = "flowLayoutPanel2";
-            this.flowLayoutPanel2.Size = new System.Drawing.Size(163, 29);
+            this.flowLayoutPanel2.Size = new System.Drawing.Size(162, 29);
             this.flowLayoutPanel2.TabIndex = 5;
             // 
             // browseButton
@@ -686,7 +686,7 @@
             this.hitPointsPanel.ColumnCount = 3;
             this.hitPointsPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 66.74208F));
             this.hitPointsPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 33.25792F));
-            this.hitPointsPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 41F));
+            this.hitPointsPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 42F));
             this.hitPointsPanel.Controls.Add(this.labelHP, 0, 0);
             this.hitPointsPanel.Controls.Add(this.addHPButton, 2, 0);
             this.hitPointsPanel.Dock = System.Windows.Forms.DockStyle.Fill;
@@ -703,7 +703,7 @@
             this.labelHP.Dock = System.Windows.Forms.DockStyle.Fill;
             this.labelHP.Location = new System.Drawing.Point(3, 0);
             this.labelHP.Name = "labelHP";
-            this.labelHP.Size = new System.Drawing.Size(45, 27);
+            this.labelHP.Size = new System.Drawing.Size(44, 27);
             this.labelHP.TabIndex = 6;
             this.labelHP.Text = "Hit Points";
             this.labelHP.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -713,9 +713,9 @@
             this.addHPButton.Dock = System.Windows.Forms.DockStyle.Fill;
             this.addHPButton.Enabled = false;
             this.addHPButton.Image = global::Squire.Properties.Resources.HPADDICON2;
-            this.addHPButton.Location = new System.Drawing.Point(79, 3);
+            this.addHPButton.Location = new System.Drawing.Point(78, 3);
             this.addHPButton.Name = "addHPButton";
-            this.addHPButton.Size = new System.Drawing.Size(36, 21);
+            this.addHPButton.Size = new System.Drawing.Size(37, 21);
             this.addHPButton.TabIndex = 6;
             this.addHPButton.TextAlign = System.Drawing.ContentAlignment.TopCenter;
             this.addHPButton.UseVisualStyleBackColor = true;

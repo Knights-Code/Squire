@@ -1010,17 +1010,24 @@ namespace Squire
             // Make sure a combatant is selected
             if (combatantList.SelectedIndex != -1)
             {
-                Combatant selectedCombatant = (Combatant)combatantList.SelectedItem;
+                try
+                {
+                    Combatant selectedCombatant = (Combatant)combatantList.SelectedItem;
 
-                // If the user tries to set current hp to a value higher than max, stop 'em
-                if (HPChange.IntValue <= selectedCombatant.getMaxHP()) selectedCombatant.setCurrentHP(HPChange.IntValue);
-                else MessageBox.Show("Current HP can't be higher than max HP!", "Error: Value Exceeds Maximum", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    // If the user tries to set current hp to a value higher than max, stop 'em
+                    if (HPChange.IntValue <= selectedCombatant.getMaxHP()) selectedCombatant.setCurrentHP(HPChange.IntValue);
+                    else MessageBox.Show("Current HP can't be higher than max HP!", "Error: Value Exceeds Maximum", MessageBoxButtons.OK, MessageBoxIcon.Error);
 
-                HPChange.IntValue = 0;
+                    HPChange.IntValue = 0;
 
-                combatantHPBar.Value = selectedCombatant.getCurrentHP(); // update the HP bar
+                    combatantHPBar.Value = selectedCombatant.getCurrentHP() < 0 ? 0 : selectedCombatant.getCurrentHP(); // update the HP bar
 
-                remainingHP.Text = selectedCombatant.getCurrentHP() + " / " + selectedCombatant.getMaxHP(); // update HP label
+                    remainingHP.Text = selectedCombatant.getCurrentHP() + " / " + selectedCombatant.getMaxHP(); // update HP label
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show("Error: " + ex.Message, "Error!", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
             }
         }
 
@@ -1029,25 +1036,32 @@ namespace Squire
             // Make sure a combatant is selected
             if (combatantList.SelectedIndex != -1)
             {
-                if (HPChange.IntValue > 0)
+                try
                 {
-                    Combatant selectedCombatant = (Combatant)combatantList.SelectedItem;
-                    int difference = 0;
-                    difference = HPChange.IntValue - selectedCombatant.getMaxHP();
-                    selectedCombatant.setMaxHP(HPChange.IntValue);
+                    if (HPChange.IntValue > 0)
+                    {
+                        Combatant selectedCombatant = (Combatant)combatantList.SelectedItem;
+                        int difference = 0;
+                        difference = HPChange.IntValue - selectedCombatant.getMaxHP();
+                        selectedCombatant.setMaxHP(HPChange.IntValue);
 
-                    // Keep current HP in line.
-                    selectedCombatant.setCurrentHP(selectedCombatant.getCurrentHP() + difference);
+                        // Keep current HP in line.
+                        selectedCombatant.setCurrentHP(selectedCombatant.getCurrentHP() + difference);
 
-                    HPChange.IntValue = 0;
+                        HPChange.IntValue = 0;
 
-                    combatantHPBar.Maximum = selectedCombatant.getMaxHP();
-                    combatantHPBar.Value = selectedCombatant.getCurrentHP(); // update the HP bar
+                        combatantHPBar.Maximum = selectedCombatant.getMaxHP();
+                        combatantHPBar.Value = selectedCombatant.getCurrentHP(); // update the HP bar
 
-                    remainingHP.Text = selectedCombatant.getCurrentHP() + " / " + selectedCombatant.getMaxHP(); // update HP label
+                        remainingHP.Text = selectedCombatant.getCurrentHP() + " / " + selectedCombatant.getMaxHP(); // update HP label
+                    }
+                    else
+                        MessageBox.Show("New maximum must be greater than zero.", "Error: Invalid Maximum", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
-                else
-                    MessageBox.Show("New maximum must be greater than zero.", "Error: Invalid Maximum", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                catch (Exception ex)
+                {
+                    MessageBox.Show("Error: " + ex.Message, "Error!", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
             }
         }
 

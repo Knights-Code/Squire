@@ -44,7 +44,6 @@
             this.tableLayoutPanel3 = new System.Windows.Forms.TableLayoutPanel();
             this.labelCombatantName = new System.Windows.Forms.Label();
             this.combatantName = new System.Windows.Forms.TextBox();
-            this.combatantHP = new Squire.NumericTextBox();
             this.labelCombatantHP = new System.Windows.Forms.Label();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.tableLayoutPanel5 = new System.Windows.Forms.TableLayoutPanel();
@@ -54,6 +53,11 @@
             this.batchNumber = new System.Windows.Forms.NumericUpDown();
             this.label3 = new System.Windows.Forms.Label();
             this.batchExpression = new System.Windows.Forms.TextBox();
+            this.label4 = new System.Windows.Forms.Label();
+            this.batchCR = new System.Windows.Forms.NumericUpDown();
+            this.label5 = new System.Windows.Forms.Label();
+            this.combatantLevel = new System.Windows.Forms.NumericUpDown();
+            this.combatantHP = new Squire.NumericTextBox();
             this.tableLayoutPanel1.SuspendLayout();
             this.tableLayoutPanel2.SuspendLayout();
             this.tableLayoutPanel6.SuspendLayout();
@@ -64,6 +68,8 @@
             this.groupBox2.SuspendLayout();
             this.tableLayoutPanel5.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.batchNumber)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.batchCR)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.combatantLevel)).BeginInit();
             this.SuspendLayout();
             // 
             // tableLayoutPanel1
@@ -81,7 +87,7 @@
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 30F));
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
-            this.tableLayoutPanel1.Size = new System.Drawing.Size(526, 197);
+            this.tableLayoutPanel1.Size = new System.Drawing.Size(526, 226);
             this.tableLayoutPanel1.TabIndex = 0;
             // 
             // tableLayoutPanel2
@@ -103,12 +109,11 @@
             // 
             this.labelAddCombatant.Anchor = System.Windows.Forms.AnchorStyles.Left;
             this.labelAddCombatant.AutoSize = true;
-            this.labelAddCombatant.Location = new System.Drawing.Point(3, 24);
+            this.labelAddCombatant.Location = new System.Drawing.Point(3, 31);
             this.labelAddCombatant.Name = "labelAddCombatant";
-            this.labelAddCombatant.Size = new System.Drawing.Size(357, 26);
+            this.labelAddCombatant.Size = new System.Drawing.Size(237, 13);
             this.labelAddCombatant.TabIndex = 0;
-            this.labelAddCombatant.Text = "Enter the name (and hit points in the case of a monster or NPC) of the new combat" +
-                "ant, below.\r\n";
+            this.labelAddCombatant.Text = "Enter the details of the new combatant(s), below.\r\n";
             // 
             // tableLayoutPanel6
             // 
@@ -168,7 +173,7 @@
             this.flowLayoutPanel1.Controls.Add(this.addCancel);
             this.flowLayoutPanel1.Controls.Add(this.addOK);
             this.flowLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.flowLayoutPanel1.Location = new System.Drawing.Point(0, 167);
+            this.flowLayoutPanel1.Location = new System.Drawing.Point(0, 196);
             this.flowLayoutPanel1.Margin = new System.Windows.Forms.Padding(0);
             this.flowLayoutPanel1.Name = "flowLayoutPanel1";
             this.flowLayoutPanel1.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
@@ -208,7 +213,7 @@
             this.tableLayoutPanel4.Name = "tableLayoutPanel4";
             this.tableLayoutPanel4.RowCount = 1;
             this.tableLayoutPanel4.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tableLayoutPanel4.Size = new System.Drawing.Size(520, 80);
+            this.tableLayoutPanel4.Size = new System.Drawing.Size(520, 109);
             this.tableLayoutPanel4.TabIndex = 0;
             // 
             // groupBox1
@@ -217,7 +222,7 @@
             this.groupBox1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.groupBox1.Location = new System.Drawing.Point(3, 3);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(254, 74);
+            this.groupBox1.Size = new System.Drawing.Size(254, 103);
             this.groupBox1.TabIndex = 0;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Add Single";
@@ -231,14 +236,16 @@
             this.tableLayoutPanel3.Controls.Add(this.combatantName, 1, 0);
             this.tableLayoutPanel3.Controls.Add(this.combatantHP, 1, 1);
             this.tableLayoutPanel3.Controls.Add(this.labelCombatantHP, 0, 1);
+            this.tableLayoutPanel3.Controls.Add(this.label5, 0, 2);
+            this.tableLayoutPanel3.Controls.Add(this.combatantLevel, 1, 2);
             this.tableLayoutPanel3.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tableLayoutPanel3.Location = new System.Drawing.Point(3, 16);
             this.tableLayoutPanel3.Name = "tableLayoutPanel3";
-            this.tableLayoutPanel3.RowCount = 2;
-            this.tableLayoutPanel3.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tableLayoutPanel3.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tableLayoutPanel3.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
-            this.tableLayoutPanel3.Size = new System.Drawing.Size(248, 55);
+            this.tableLayoutPanel3.RowCount = 3;
+            this.tableLayoutPanel3.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 33.33333F));
+            this.tableLayoutPanel3.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 33.33333F));
+            this.tableLayoutPanel3.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 33.33333F));
+            this.tableLayoutPanel3.Size = new System.Drawing.Size(248, 84);
             this.tableLayoutPanel3.TabIndex = 0;
             // 
             // labelCombatantName
@@ -259,23 +266,6 @@
             this.combatantName.Size = new System.Drawing.Size(118, 20);
             this.combatantName.TabIndex = 0;
             // 
-            // combatantHP
-            // 
-            this.combatantHP.AllowSpace = false;
-            this.combatantHP.Anchor = System.Windows.Forms.AnchorStyles.Left;
-            this.combatantHP.DecimalValue = new decimal(new int[] {
-            0,
-            0,
-            0,
-            0});
-            this.combatantHP.IntValue = 0;
-            this.combatantHP.Location = new System.Drawing.Point(121, 31);
-            this.combatantHP.Margin = new System.Windows.Forms.Padding(3, 0, 0, 0);
-            this.combatantHP.Name = "combatantHP";
-            this.combatantHP.Size = new System.Drawing.Size(118, 20);
-            this.combatantHP.TabIndex = 3;
-            this.combatantHP.Text = "0";
-            // 
             // labelCombatantHP
             // 
             this.labelCombatantHP.Anchor = System.Windows.Forms.AnchorStyles.Right;
@@ -292,7 +282,7 @@
             this.groupBox2.Dock = System.Windows.Forms.DockStyle.Fill;
             this.groupBox2.Location = new System.Drawing.Point(263, 3);
             this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new System.Drawing.Size(254, 74);
+            this.groupBox2.Size = new System.Drawing.Size(254, 103);
             this.groupBox2.TabIndex = 1;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Add Multiple (\"Batch\" Add)";
@@ -308,15 +298,18 @@
             this.tableLayoutPanel5.Controls.Add(this.batchName, 1, 0);
             this.tableLayoutPanel5.Controls.Add(this.label2, 2, 0);
             this.tableLayoutPanel5.Controls.Add(this.batchNumber, 3, 0);
-            this.tableLayoutPanel5.Controls.Add(this.label3, 0, 1);
-            this.tableLayoutPanel5.Controls.Add(this.batchExpression, 2, 1);
+            this.tableLayoutPanel5.Controls.Add(this.batchExpression, 2, 2);
+            this.tableLayoutPanel5.Controls.Add(this.label3, 2, 1);
+            this.tableLayoutPanel5.Controls.Add(this.label4, 0, 1);
+            this.tableLayoutPanel5.Controls.Add(this.batchCR, 1, 1);
             this.tableLayoutPanel5.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tableLayoutPanel5.Location = new System.Drawing.Point(3, 16);
             this.tableLayoutPanel5.Name = "tableLayoutPanel5";
-            this.tableLayoutPanel5.RowCount = 2;
-            this.tableLayoutPanel5.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tableLayoutPanel5.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tableLayoutPanel5.Size = new System.Drawing.Size(248, 55);
+            this.tableLayoutPanel5.RowCount = 3;
+            this.tableLayoutPanel5.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 33.33333F));
+            this.tableLayoutPanel5.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 33.33333F));
+            this.tableLayoutPanel5.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 33.33333F));
+            this.tableLayoutPanel5.Size = new System.Drawing.Size(248, 84);
             this.tableLayoutPanel5.TabIndex = 0;
             // 
             // label1
@@ -359,10 +352,10 @@
             // 
             // label3
             // 
-            this.label3.Anchor = System.Windows.Forms.AnchorStyles.Right;
+            this.label3.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.label3.AutoSize = true;
             this.tableLayoutPanel5.SetColumnSpan(this.label3, 2);
-            this.label3.Location = new System.Drawing.Point(46, 34);
+            this.label3.Location = new System.Drawing.Point(148, 34);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(76, 13);
             this.label3.TabIndex = 4;
@@ -370,13 +363,71 @@
             // 
             // batchExpression
             // 
-            this.batchExpression.Anchor = System.Windows.Forms.AnchorStyles.Left;
+            this.batchExpression.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
             this.tableLayoutPanel5.SetColumnSpan(this.batchExpression, 2);
             this.batchExpression.Enabled = false;
-            this.batchExpression.Location = new System.Drawing.Point(128, 31);
+            this.batchExpression.Location = new System.Drawing.Point(128, 59);
             this.batchExpression.Name = "batchExpression";
-            this.batchExpression.Size = new System.Drawing.Size(100, 20);
-            this.batchExpression.TabIndex = 5;
+            this.batchExpression.Size = new System.Drawing.Size(117, 20);
+            this.batchExpression.TabIndex = 6;
+            // 
+            // label4
+            // 
+            this.label4.Anchor = System.Windows.Forms.AnchorStyles.Right;
+            this.label4.AutoSize = true;
+            this.label4.Location = new System.Drawing.Point(19, 49);
+            this.label4.Name = "label4";
+            this.tableLayoutPanel5.SetRowSpan(this.label4, 2);
+            this.label4.Size = new System.Drawing.Size(22, 13);
+            this.label4.TabIndex = 6;
+            this.label4.Text = "CR";
+            // 
+            // batchCR
+            // 
+            this.batchCR.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.batchCR.DecimalPlaces = 2;
+            this.batchCR.Enabled = false;
+            this.batchCR.Location = new System.Drawing.Point(61, 45);
+            this.batchCR.Name = "batchCR";
+            this.tableLayoutPanel5.SetRowSpan(this.batchCR, 2);
+            this.batchCR.Size = new System.Drawing.Size(46, 20);
+            this.batchCR.TabIndex = 5;
+            // 
+            // label5
+            // 
+            this.label5.Anchor = System.Windows.Forms.AnchorStyles.Right;
+            this.label5.AutoSize = true;
+            this.label5.Location = new System.Drawing.Point(82, 62);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(33, 13);
+            this.label5.TabIndex = 4;
+            this.label5.Text = "Level";
+            // 
+            // combatantLevel
+            // 
+            this.combatantLevel.Anchor = System.Windows.Forms.AnchorStyles.Left;
+            this.combatantLevel.DecimalPlaces = 2;
+            this.combatantLevel.Location = new System.Drawing.Point(121, 59);
+            this.combatantLevel.Name = "combatantLevel";
+            this.combatantLevel.Size = new System.Drawing.Size(120, 20);
+            this.combatantLevel.TabIndex = 5;
+            // 
+            // combatantHP
+            // 
+            this.combatantHP.AllowSpace = false;
+            this.combatantHP.Anchor = System.Windows.Forms.AnchorStyles.Left;
+            this.combatantHP.DecimalValue = new decimal(new int[] {
+            0,
+            0,
+            0,
+            0});
+            this.combatantHP.IntValue = 0;
+            this.combatantHP.Location = new System.Drawing.Point(121, 30);
+            this.combatantHP.Margin = new System.Windows.Forms.Padding(3, 0, 0, 0);
+            this.combatantHP.Name = "combatantHP";
+            this.combatantHP.Size = new System.Drawing.Size(118, 20);
+            this.combatantHP.TabIndex = 3;
+            this.combatantHP.Text = "0";
             // 
             // AddCombatant
             // 
@@ -384,7 +435,7 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.CancelButton = this.addCancel;
-            this.ClientSize = new System.Drawing.Size(526, 197);
+            this.ClientSize = new System.Drawing.Size(526, 226);
             this.Controls.Add(this.tableLayoutPanel1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
@@ -408,6 +459,8 @@
             this.tableLayoutPanel5.ResumeLayout(false);
             this.tableLayoutPanel5.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.batchNumber)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.batchCR)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.combatantLevel)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -439,5 +492,9 @@
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel6;
         private System.Windows.Forms.CheckBox useBatch;
         private System.Windows.Forms.CheckBox useGenerousHP;
+        private System.Windows.Forms.Label label5;
+        private System.Windows.Forms.NumericUpDown combatantLevel;
+        private System.Windows.Forms.Label label4;
+        private System.Windows.Forms.NumericUpDown batchCR;
     }
 }

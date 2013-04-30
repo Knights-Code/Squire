@@ -1246,5 +1246,25 @@ namespace Squire
                 MessageBox.Show("There are no combatants in the combatant list. Please add some using the \"Add ...\" button.",
                     "Error: No Combatants", MessageBoxButtons.OK, MessageBoxIcon.Error);
         }
+
+        private void calculateXPToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (MessageBox.Show("Legend will now open. The combatants list will be loaded in to the players list and the dead and dying list will"
+                + " be loaded in to the enemies list. Proceed?", "Continue to Legend?", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
+            {
+                // Lists to hold players and enemies to load into Legend.
+                ArrayList players = new ArrayList();
+                ArrayList enemies = new ArrayList();
+
+                // Populate lists.
+                for (int i = 0; i < combatantList.Items.Count; i++)
+                    players.Add(combatantList.Items[i]);
+                for (int i = 0; i < dyingList.Items.Count; i++)
+                    enemies.Add(dyingList.Items[i]);
+
+                Legend legend = new Legend(players, enemies);
+                legend.Show();
+            }
+        }
     }
 }

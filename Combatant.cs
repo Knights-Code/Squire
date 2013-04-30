@@ -14,17 +14,24 @@ namespace Squire
         int currentHP;
         int batchTotal;
         int[] attackBonus;
+        decimal level;
         string[] damage;
         ArrayList effect;
         ArrayList roundsRemaining;
         Boolean bPlayer;
         Boolean bStable;
 
-        public Combatant(string name, int HP)
+        public Combatant(string name)
+        {
+            this.name = name;
+        }
+
+        public Combatant(string name, int HP, decimal level)
         {
             this.name = name;
             this.batchRoot = String.Empty;
             this.batchTotal = 0;
+            this.level = level;
             if (HP != 0)
             {
                 this.maxHP = HP;
@@ -45,11 +52,12 @@ namespace Squire
             roundsRemaining = new ArrayList();
         }
 
-        public Combatant(string name)
+        public Combatant(string name, decimal level)
         {
             this.name = name;
             this.batchRoot = String.Empty;
             this.batchTotal = 0;
+            this.level = level;
             this.attackBonus = new int[3] {0,0,0};
             this.damage = new string[3] {"+0","+0","+0"};
             this.bPlayer = true;
@@ -57,6 +65,11 @@ namespace Squire
 
             effect = new ArrayList();
             roundsRemaining = new ArrayList();
+        }
+
+        public decimal getLevel()
+        {
+            return level;
         }
 
         public int getBatchTotal()

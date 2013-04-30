@@ -6,6 +6,7 @@ using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Windows.Forms;
+using System.Collections;
 
 namespace Squire
 {
@@ -37,6 +38,33 @@ namespace Squire
             enemyLevel.Enter += numericField_Enter;
             playerLevel.Click += numericField_Enter;
             enemyLevel.Click += numericField_Enter;
+        }
+
+        public Legend(ArrayList players, ArrayList enemies)
+        {
+            InitializeComponent();
+
+            //-----( Event Handlers )-----\\
+            playerLevel.Enter += new EventHandler(numericField_Enter);
+            enemyLevel.Enter += numericField_Enter;
+            playerLevel.Click += numericField_Enter;
+            enemyLevel.Click += numericField_Enter;
+
+            // Load in players and enemies.
+            for (int i = 0; i < players.Count; i++)
+            {
+                Combatant currentPlayer = (Combatant)players[i];
+                Contender newPlayer = new Contender(currentPlayer.getName(), currentPlayer.getLevel());
+                playerList.Items.Add(newPlayer);
+            }
+            for (int i = 0; i < enemies.Count; i++)
+            {
+                Combatant currentEnemy = (Combatant)enemies[i];
+                Contender newEnemy = new Contender(currentEnemy.getName(), currentEnemy.getLevel());
+                enemyList.Items.Add(newEnemy);
+            }
+
+            calculateButton.Enabled = (playerList.Items.Count > 0 && enemyList.Items.Count > 0);
         }
 
         void numericField_Enter(object sender, EventArgs e)

@@ -56,6 +56,7 @@ namespace Squire
                         for (int c = 1; c < (int)batchNumber.Value + 1; c++)
                         {
                             string combatantName = batchName.Text + " #" + c;
+                            decimal CR = batchCR.Value;
                             int HP = 0;
 
                             for (int i = 0; i < matches.Count; i++)
@@ -88,7 +89,7 @@ namespace Squire
                                 }
                             }
 
-                            Combatant newCombatant = new Combatant(combatantName, HP);
+                            Combatant newCombatant = new Combatant(combatantName, HP, CR);
 
                             // These two variables are used by RollInitiative to help handle multiple combatants acting on the
                             // same initiative count.
@@ -110,15 +111,31 @@ namespace Squire
             {
                 if (this.combatantName.Text != String.Empty)
                 {
-                    Combatant newCombatant;
-                    if (combatantHP.Enabled && combatantHP.IntValue != 0) newCombatant = new Combatant(combatantName.Text, combatantHP.IntValue);
-                    else newCombatant = new Combatant(combatantName.Text);
+                    Combatant newCombatant = null;
+                    if (combatantHP.Enabled && combatantHP.IntValue != 0)
+                    {
+                        if (combatantLevel.Enabled && combatantLevel.Value != 0)
+                            newCombatant = new Combatant(combatantName.Text, combatantHP.IntValue, combatantLevel.Value);
+                        else
+                            MessageBox.Show("You must enter a level for the combatant.", "Error: No Level", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        newCombatant = new Combatant(combatantName.Text, combatantHP.IntValue);
+                    }
+                    else
+                    {
+                        if (combatantLevel.Enabled && combatantLevel.Value != 0)
+                            newCombatant = new Combatant(combatantName.Text, combatantLevel.Value);
+                        else
+                            MessageBox.Show("You must enter a level for the combatant.", "Error: No Level", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    }
 
-                    parentForm.combatantList.Items.Add(newCombatant);
+                    if (newCombatant != null)
+                    {
+                        parentForm.combatantList.Items.Add(newCombatant);
 
-                    // If there's no selected combatant in the list, select the recently added one.
-                    if (parentForm.combatantList.SelectedIndex == -1) parentForm.combatantList.SelectedIndex = (parentForm.combatantList.Items.Count - 1);
-                    this.Close();
+                        // If there's no selected combatant in the list, select the recently added one.
+                        if (parentForm.combatantList.SelectedIndex == -1) parentForm.combatantList.SelectedIndex = (parentForm.combatantList.Items.Count - 1);
+                        this.Close();
+                    }
                 }
             }
         }
@@ -134,20 +151,24 @@ namespace Squire
             {
                 combatantHP.Enabled = false;
                 combatantName.Enabled = false;
+                combatantLevel.Enabled = false;
 
                 batchExpression.Enabled = true;
                 batchName.Enabled = true;
                 batchNumber.Enabled = true;
+                batchCR.Enabled = true;
                 useGenerousHP.Enabled = true;
             }
             else
             {
                 combatantHP.Enabled = true;
                 combatantName.Enabled = true;
+                combatantLevel.Enabled = true;
 
                 batchExpression.Enabled = false;
                 batchName.Enabled = false;
                 batchNumber.Enabled = false;
+                batchCR.Enabled = false;
                 useGenerousHP.Enabled = false;
             }
         }

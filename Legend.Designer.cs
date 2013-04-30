@@ -106,6 +106,7 @@
             // 
             // enemyLevel
             // 
+            this.enemyLevel.DecimalPlaces = 2;
             this.enemyLevel.Location = new System.Drawing.Point(73, 3);
             this.enemyLevel.Name = "enemyLevel";
             this.enemyLevel.Size = new System.Drawing.Size(64, 20);
@@ -177,6 +178,7 @@
             // 
             // playerLevel
             // 
+            this.playerLevel.DecimalPlaces = 2;
             this.playerLevel.Location = new System.Drawing.Point(73, 3);
             this.playerLevel.Name = "playerLevel";
             this.playerLevel.Size = new System.Drawing.Size(64, 20);

@@ -307,7 +307,7 @@
             this.tableLayoutPanel2.ColumnCount = 3;
             this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 66.50485F));
             this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 33.49514F));
-            this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 139F));
+            this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 140F));
             this.tableLayoutPanel2.Controls.Add(this.clearCustomTextButton, 0, 2);
             this.tableLayoutPanel2.Controls.Add(this.removeClassOrDomainButton, 1, 1);
             this.tableLayoutPanel2.Controls.Add(this.addClassOrDomainButton, 1, 0);
@@ -327,7 +327,7 @@
             // clearCustomTextButton
             // 
             this.clearCustomTextButton.Anchor = System.Windows.Forms.AnchorStyles.Top;
-            this.clearCustomTextButton.Location = new System.Drawing.Point(224, 149);
+            this.clearCustomTextButton.Location = new System.Drawing.Point(223, 149);
             this.clearCustomTextButton.Name = "clearCustomTextButton";
             this.clearCustomTextButton.Size = new System.Drawing.Size(53, 21);
             this.clearCustomTextButton.TabIndex = 8;
@@ -361,11 +361,11 @@
             // 
             this.spellcasterClassesAndDomains.Dock = System.Windows.Forms.DockStyle.Fill;
             this.spellcasterClassesAndDomains.FormattingEnabled = true;
-            this.spellcasterClassesAndDomains.Location = new System.Drawing.Point(304, 3);
+            this.spellcasterClassesAndDomains.Location = new System.Drawing.Point(303, 3);
             this.spellcasterClassesAndDomains.Name = "spellcasterClassesAndDomains";
             this.tableLayoutPanel2.SetRowSpan(this.spellcasterClassesAndDomains, 3);
             this.spellcasterClassesAndDomains.SelectionMode = System.Windows.Forms.SelectionMode.MultiSimple;
-            this.spellcasterClassesAndDomains.Size = new System.Drawing.Size(134, 167);
+            this.spellcasterClassesAndDomains.Size = new System.Drawing.Size(135, 167);
             this.spellcasterClassesAndDomains.TabIndex = 2;
             // 
             // masterListOfClassesAndDomains

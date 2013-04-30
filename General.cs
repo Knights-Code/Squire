@@ -369,11 +369,11 @@ namespace Squire
                             {
                                 string[] items = currentLine.Split('\t');
 
-                                Combatant newCombatant = new Combatant(items[0], int.Parse(items[2]));
+                                Combatant newCombatant = new Combatant(items[0], int.Parse(items[2]), Convert.ToDecimal(items[3]));
                                 newCombatant.setCurrentHP(int.Parse(items[1]));
 
                                 // Process effects.
-                                for (int i = 4; i < (int.Parse(items[3]) * 2) + 4; i += 2)
+                                for (int i = 5; i < (int.Parse(items[4]) * 2) + 5; i += 2)
                                     newCombatant.addEffect(items[i], Convert.ToDecimal(items[i + 1]));
 
                                 switch (filePosition)

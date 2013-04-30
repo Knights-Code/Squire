@@ -186,7 +186,11 @@ namespace Squire
             double x = (double)( playerLevel<=3?( enemyLevel<=3?enemyLevel:3 ):( enemyLevel==1&&playerLevel<7?1:playerLevel )); // tell me THIS isn't confusing.
             // Nested ternary operators, everybody! The above line changes player level to another value if it and enemy level are low enough (because low-
             // level characters get special treatment).
-            double y = (double)enemyLevel;
+
+            // Used for those pesky extra low CR monsters.
+            double multiplier = (double)(enemyLevel<1?enemyLevel:1);
+
+            double y = (double)(enemyLevel<1?1:enemyLevel);
             double z = y - x;
 
             double result = 0;
@@ -215,7 +219,7 @@ namespace Squire
             else
                 result = 300 * x;
 
-            result = Math.Ceiling(result);
+            result = Math.Floor(Math.Ceiling(result)*multiplier);
             return Convert.ToDecimal(result);
         }
 

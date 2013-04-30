@@ -231,7 +231,7 @@ namespace Squire
                 if (i < EffectCount-1) effects += "\t";
             }
 
-            return name + "\t" + currentHP + "\t" + maxHP +"\t"+EffectCount+ (EffectCount > 0 ? ("\t" + effects) : "");
+            return name + "\t" + currentHP + "\t" + maxHP + "\t" + level + "\t"+EffectCount+ (EffectCount > 0 ? ("\t" + effects) : "");
         }
     }
 }

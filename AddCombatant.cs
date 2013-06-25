@@ -118,7 +118,7 @@ namespace Squire
                             newCombatant = new Combatant(combatantName.Text, combatantHP.IntValue, combatantLevel.Value);
                         else
                             MessageBox.Show("You must enter a level for the combatant.", "Error: No Level", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                        newCombatant = new Combatant(combatantName.Text, combatantHP.IntValue);
+                        //newCombatant = new Combatant(combatantName.Text, combatantHP.IntValue);
                     }
                     else
                     {

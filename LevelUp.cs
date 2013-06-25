@@ -290,7 +290,7 @@ namespace Squire
                         featEntry.Enabled = true;
 
                         reader.ReadToNextSibling("HandleAnimalRanks");
-                        if (!reader.IsEmptyElement)
+                        if (!reader.IsEmptyElement && reader.IsStartElement())
                         {
                             skillNames[skillIndex].Text = "Handle Animal";
                             skillNames[skillIndex].Visible = true;
@@ -300,7 +300,7 @@ namespace Squire
                         }
 
                         reader.ReadToNextSibling("DiplomacyRanks");
-                        if (!reader.IsEmptyElement)
+                        if (!reader.IsEmptyElement && reader.IsStartElement())
                         {
                             skillNames[skillIndex].Text = "Diplomacy";
                             skillNames[skillIndex].Visible = true;
@@ -309,13 +309,20 @@ namespace Squire
                             skillIndex++;
                         }
 
+                        int count = 0;
                         // Process class features -- iterate through the 23 class feature slots on the sheet.
                         reader.ReadToNextSibling("SpecialAbilities");
-                        for (int i = 0; i < numberClassFeatureSlots; i++)
+                        while (count < numberClassFeatureSlots)
                         {
-                            if (!reader.IsEmptyElement) classFeaturesBox.Items.Add(reader.ReadElementContentAsString());
+                            if (reader.Name == "SpecialAbilities")
+                            {
+                                if (!reader.IsEmptyElement) classFeaturesBox.Items.Add(reader.ReadElementContentAsString());
+                                else reader.ReadString(); // Skip to next node
+                                count++;
+                            }
                             else reader.ReadString(); // Skip to next node
                         }
+
                         classFeatureEntry.Enabled = true;
 
                         // Unlock controls
@@ -565,19 +572,43 @@ namespace Squire
                 // Update feats (a little different because the "Feats" element tags are identical for every feat)
                 int count = 0; // used to reference featBox
 
-                    for (XmlNode i = root.SelectSingleNode("descendant::Feats"); i.NextSibling.Name == "Feats"; i = i.NextSibling)
+                    for (XmlNode i = root.SelectSingleNode("descendant::Feats"); i.NextSibling.Name == "Feats" || count < numberFeatSlots; i = i.NextSibling)
                     {
-                        // Check to make sure we still have feats to add from the feat box
-                        if (count < featBox.Items.Count)
+                        // Make sure it's a feat.
+                        if (i.Name == "Feats")
                         {
-                            editor = i.CreateNavigator();
-                            editor.SetValue(featBox.Items[count].ToString());
-                            count++;
+                            // Check to make sure we still have feats to add from the feat box
+                            if (count < featBox.Items.Count)
+                            {
+                                editor = i.CreateNavigator();
+                                editor.SetValue(featBox.Items[count].ToString());
+                                count++;
+                            }
+                            else // If we've run out of feats, clear the remaining feat slots
+                            {
+                                editor = i.CreateNavigator();
+                                editor.SetValue(String.Empty);
+                            }
                         }
-                        else // If we've run out of feats, clear the remaining feat slots
+                    }
+
+                    for (XmlNode i = root.SelectSingleNode("descendant::SpecialAbilities"); i.NextSibling.Name == "SpecialAbilities" || count < numberClassFeatureSlots; i = i.NextSibling)
+                    {
+                        // Make sure it's a class feature.
+                        if (i.Name == "SpecialAbilities")
                         {
-                            editor = i.CreateNavigator();
-                            editor.SetValue(String.Empty);
+                            // Check to make sure we still have feats to add from the class features box
+                            if (count < classFeaturesBox.Items.Count)
+                            {
+                                editor = i.CreateNavigator();
+                                editor.SetValue(classFeaturesBox.Items[count].ToString());
+                                count++;
+                            }
+                            else // If we've run out of class features, clear the remaining class feature slots
+                            {
+                                editor = i.CreateNavigator();
+                                editor.SetValue(String.Empty);
+                            }
                         }
                     }
 

@@ -84,6 +84,7 @@
     <Compile Include="AddCombatant.Designer.cs">
       <DependentUpon>AddCombatant.cs</DependentUpon>
     </Compile>
+    <Compile Include="Character.cs" />
     <Compile Include="Combatant.cs" />
     <Compile Include="HPBar.cs">
       <SubType>Component</SubType>
@@ -108,6 +109,12 @@
     </Compile>
     <Compile Include="NumericTextBox.cs">
       <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="PlayerManifest.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="PlayerManifest.Designer.cs">
+      <DependentUpon>PlayerManifest.cs</DependentUpon>
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -140,6 +147,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="General.resx">
       <DependentUpon>General.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="PlayerManifest.resx">
+      <DependentUpon>PlayerManifest.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>

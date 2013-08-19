@@ -1,10 +1,11 @@
 Initiative List
-Mareili	39	39	4.00	0
-Lonfarrell	45	75	4	0
-Clydos	53	56	4	0
+Mareili	32	39	4.00	0
 Rasmik	50	50	4	0
+Lonfarrell	71	75	4	2	Sickened	5	Paralysed	5
+Clydos	53	56	4	0
 Midir	40	40	4	0
 Metraxes	49	49	4.00	0
+Tim	33	49	7	0
 
 Delay List
 Wolf	26	26	4	0
@@ -12,4 +13,4 @@ Wolf	26	26	4	0
 Dying List
 
 Indices
-1	0	-1	1
+2	0	-1	1

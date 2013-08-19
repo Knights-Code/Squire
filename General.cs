@@ -257,8 +257,7 @@ namespace Squire
             {
                 // Ctrl + L (List). Puts focus on the initiative list.
                 case (Keys.Control | Keys.L):
-                    if (tabPlayer.SelectedTab == tabPC) listCombatants.Focus();
-                    else combatantList.Focus();
+                    combatantList.Focus();
                     return true;
                     break;
                 // Ctrl + D (Delay). Puts focus on the delay list.

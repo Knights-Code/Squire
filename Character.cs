@@ -12,6 +12,11 @@ namespace Squire
         decimal baseAC, touchAC, FFAC;
         ArrayList metricName, metricValue;
 
+        public Character(string name)
+        {
+            this.name = name;
+        }
+
         public override String ToString()
         {
             return name;

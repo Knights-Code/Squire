@@ -1265,5 +1265,17 @@ namespace Squire
                 legend.Show();
             }
         }
+
+        private void clearDyingListToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (MessageBox.Show("Reset round number to one?", "Reset Round Number", MessageBoxButtons.YesNo,
+                MessageBoxIcon.Question) == DialogResult.Yes)
+            {
+                roundNumber.Value = 1;
+            }
+
+            while (dyingList.Items.Count > 0)
+                dyingList.Items.RemoveAt(0);
+        }
     }
 }

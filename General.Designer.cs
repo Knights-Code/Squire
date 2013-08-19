@@ -117,6 +117,8 @@
             this.closeButton = new System.Windows.Forms.Button();
             this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
+            this.toolsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.clearDyingListToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.tabPlayer.SuspendLayout();
             this.tabDM.SuspendLayout();
             this.tableLayoutPanel8.SuspendLayout();
@@ -1220,7 +1222,8 @@
             // generalMenu
             // 
             this.generalMenu.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.fileToolStripMenuItem});
+            this.fileToolStripMenuItem,
+            this.toolsToolStripMenuItem});
             this.generalMenu.Location = new System.Drawing.Point(0, 0);
             this.generalMenu.Name = "generalMenu";
             this.generalMenu.RenderMode = System.Windows.Forms.ToolStripRenderMode.System;
@@ -1317,6 +1320,21 @@
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
             this.tableLayoutPanel1.Size = new System.Drawing.Size(734, 412);
             this.tableLayoutPanel1.TabIndex = 0;
+            // 
+            // toolsToolStripMenuItem
+            // 
+            this.toolsToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.clearDyingListToolStripMenuItem});
+            this.toolsToolStripMenuItem.Name = "toolsToolStripMenuItem";
+            this.toolsToolStripMenuItem.Size = new System.Drawing.Size(44, 20);
+            this.toolsToolStripMenuItem.Text = "Tools";
+            // 
+            // clearDyingListToolStripMenuItem
+            // 
+            this.clearDyingListToolStripMenuItem.Name = "clearDyingListToolStripMenuItem";
+            this.clearDyingListToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.clearDyingListToolStripMenuItem.Text = "Clear Dying List";
+            this.clearDyingListToolStripMenuItem.Click += new System.EventHandler(this.clearDyingListToolStripMenuItem_Click);
             // 
             // General
             // 
@@ -1473,5 +1491,7 @@
         public System.Windows.Forms.NumericUpDown roundNumber;
         private System.Windows.Forms.ToolStripMenuItem calculateXPToolStripMenuItem;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel1;
+        private System.Windows.Forms.ToolStripMenuItem toolsToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem clearDyingListToolStripMenuItem;
     }
 }

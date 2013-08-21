@@ -20,5 +20,11 @@ namespace Squire
         {
             Character currentCharacter = (Character)manifest.SelectedItem; // store character information for quick access
         }
+
+        private void addPlayerToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            AskName nameDialog = new AskName(this);
+            nameDialog.Show();
+        }
     }
 }

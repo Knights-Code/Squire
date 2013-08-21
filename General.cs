@@ -1249,7 +1249,7 @@ namespace Squire
         private void calculateXPToolStripMenuItem_Click(object sender, EventArgs e)
         {
             if (MessageBox.Show("Legend will now open. The combatants list will be loaded in to the players list and the dead and dying list will"
-                + " be loaded in to the enemies list. Proceed?", "Continue to Legend?", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
+                + " be loaded in to the enemies list. Proceed?", "Continue to Legend", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
             {
                 // Lists to hold players and enemies to load into Legend.
                 ArrayList players = new ArrayList();

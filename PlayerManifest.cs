@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Windows.Forms;
@@ -114,6 +115,67 @@ namespace Squire
 
             if (currentCharacter.metricCount() == 0)
                 deleteMetric.Enabled = false;
+        }
+
+        private void saveManifestToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            SaveFileDialog saveManifest = new SaveFileDialog();
+            saveManifest.DefaultExt = ".man";
+            saveManifest.Filter = "Manifest Files (*.man)|*man|All files (*.*)|*.*";
+            saveManifest.OverwritePrompt = true;
+            saveManifest.Title = "Save Manifest";
+
+            if (saveManifest.ShowDialog() == DialogResult.OK)
+            {
+                StreamWriter file = new StreamWriter(saveManifest.FileName);
+
+                for (int i = 0; i < manifest.Items.Count; i++)
+                {
+                    Character c = (Character)manifest.Items[i];
+                    file.WriteLine(c.toString());
+                }
+
+                file.Close();
+            }
+        }
+
+        private void openManifestToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            OpenFileDialog openManifest = new OpenFileDialog();
+            openManifest.DefaultExt = ".man";
+            openManifest.Filter = "Manifest Files (*.man)|*man|All files (*.*)|*.*";
+            openManifest.Title = "Open Manifest";
+
+            if (openManifest.ShowDialog() == DialogResult.OK)
+            {
+                if (MessageBox.Show("Current manifest will be cleared and unsaved work will be lost. Continue?",
+                    "Clear Current Manifest", MessageBoxButtons.YesNo, MessageBoxIcon.Warning) == DialogResult.Yes)
+                {
+
+                    StreamReader file = new StreamReader(openManifest.FileName);
+                    string currentLine;
+
+                    while ((currentLine = file.ReadLine()) != null)
+                    {
+                        if (currentLine != String.Empty)
+                        {
+                            string[] items = currentLine.Split('\t');
+                            Character newCharacter = new Character(items[0]);
+                            newCharacter.setBaseAC(Convert.ToDecimal(items[1]));
+                            newCharacter.setTouchAC(Convert.ToDecimal(items[2]));
+                            newCharacter.setFFAC(Convert.ToDecimal(items[3]));
+
+                            // Process metrics.
+                            for (int i = 5; i < (int.Parse(items[4]) * 2) + 5; i += 2)
+                                newCharacter.addMetric(items[i], Convert.ToDecimal(items[i + 1]));
+
+                            manifest.Items.Add(newCharacter);
+                        }
+                    }
+
+                    file.Close();
+                }
+            }
         }
     }
 }

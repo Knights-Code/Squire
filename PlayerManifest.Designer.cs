@@ -91,19 +91,24 @@
             // saveManifestToolStripMenuItem
             // 
             this.saveManifestToolStripMenuItem.Name = "saveManifestToolStripMenuItem";
-            this.saveManifestToolStripMenuItem.Size = new System.Drawing.Size(184, 24);
+            this.saveManifestToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.S)));
+            this.saveManifestToolStripMenuItem.Size = new System.Drawing.Size(237, 24);
             this.saveManifestToolStripMenuItem.Text = "Save Manifest...";
+            this.saveManifestToolStripMenuItem.Click += new System.EventHandler(this.saveManifestToolStripMenuItem_Click);
             // 
             // openManifestToolStripMenuItem
             // 
             this.openManifestToolStripMenuItem.Name = "openManifestToolStripMenuItem";
-            this.openManifestToolStripMenuItem.Size = new System.Drawing.Size(184, 24);
+            this.openManifestToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.O)));
+            this.openManifestToolStripMenuItem.Size = new System.Drawing.Size(237, 24);
             this.openManifestToolStripMenuItem.Text = "Open Manifest...";
+            this.openManifestToolStripMenuItem.Click += new System.EventHandler(this.openManifestToolStripMenuItem_Click);
             // 
             // addPlayerToolStripMenuItem
             // 
             this.addPlayerToolStripMenuItem.Name = "addPlayerToolStripMenuItem";
-            this.addPlayerToolStripMenuItem.Size = new System.Drawing.Size(184, 24);
+            this.addPlayerToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Alt | System.Windows.Forms.Keys.A)));
+            this.addPlayerToolStripMenuItem.Size = new System.Drawing.Size(237, 24);
             this.addPlayerToolStripMenuItem.Text = "Add Player...";
             this.addPlayerToolStripMenuItem.Click += new System.EventHandler(this.addPlayerToolStripMenuItem_Click);
             // 

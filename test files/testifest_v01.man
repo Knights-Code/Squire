@@ -1,0 +1,2 @@
+Cadrus	23	11	22	1	Diplomacy	6
+Myrina	16	13	13	2	Listen	7	Spot	7

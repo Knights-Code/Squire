@@ -148,9 +148,20 @@ namespace Squire
 
             if (openManifest.ShowDialog() == DialogResult.OK)
             {
-                if (MessageBox.Show("Current manifest will be cleared and unsaved work will be lost. Continue?",
-                    "Clear Current Manifest", MessageBoxButtons.YesNo, MessageBoxIcon.Warning) == DialogResult.Yes)
+                Boolean loadOK = manifest.Items.Count == 0;
+                if (manifest.Items.Count > 0)
                 {
+                    if (MessageBox.Show("Current manifest will be cleared and unsaved work will be lost. Continue?",
+                        "Clear Current Manifest", MessageBoxButtons.YesNo, MessageBoxIcon.Warning) == DialogResult.Yes)
+                        loadOK = true;
+                    else
+                        loadOK = false;
+                }
+
+                if (loadOK)
+                {
+                    while (manifest.Items.Count > 0)
+                        manifest.Items.RemoveAt(0); 
 
                     StreamReader file = new StreamReader(openManifest.FileName);
                     string currentLine;

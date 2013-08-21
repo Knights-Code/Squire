@@ -30,6 +30,7 @@ namespace Squire
         {
             Character newCharacter = new Character(playerName.Text);
             parentForm.manifest.Items.Add(newCharacter);
+            parentForm.manifest.SelectedIndex = parentForm.manifest.Items.Count - 1;
             this.Close();
         }
     }

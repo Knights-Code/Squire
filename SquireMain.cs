@@ -33,5 +33,11 @@ namespace Squire
             Legend legend = new Legend();
             legend.Show();
         }
+
+        private void playerManifestButton_Click(object sender, EventArgs e)
+        {
+            PlayerManifest playerManifest = new PlayerManifest();
+            playerManifest.Show();
+        }
     }
 }

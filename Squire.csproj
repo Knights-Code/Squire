@@ -84,6 +84,12 @@
     <Compile Include="AddCombatant.Designer.cs">
       <DependentUpon>AddCombatant.cs</DependentUpon>
     </Compile>
+    <Compile Include="AddMetric.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="AddMetric.Designer.cs">
+      <DependentUpon>AddMetric.cs</DependentUpon>
+    </Compile>
     <Compile Include="AskName.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -144,6 +150,9 @@
     </Compile>
     <EmbeddedResource Include="AddCombatant.resx">
       <DependentUpon>AddCombatant.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="AddMetric.resx">
+      <DependentUpon>AddMetric.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="AskName.resx">
       <DependentUpon>AskName.cs</DependentUpon>

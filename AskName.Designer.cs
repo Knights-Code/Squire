@@ -57,9 +57,9 @@
             // 
             this.label1.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(37, 7);
+            this.label1.Location = new System.Drawing.Point(11, 5);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(205, 13);
+            this.label1.Size = new System.Drawing.Size(257, 17);
             this.label1.TabIndex = 0;
             this.label1.Text = "Enter the player character\'s name below.";
             // 
@@ -68,7 +68,7 @@
             this.playerName.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.playerName.Location = new System.Drawing.Point(90, 31);
             this.playerName.Name = "playerName";
-            this.playerName.Size = new System.Drawing.Size(100, 21);
+            this.playerName.Size = new System.Drawing.Size(100, 24);
             this.playerName.TabIndex = 1;
             // 
             // OKButton
@@ -85,7 +85,7 @@
             // AskName
             // 
             this.AcceptButton = this.OKButton;
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 17F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(280, 85);
             this.Controls.Add(this.tableLayoutPanel1);

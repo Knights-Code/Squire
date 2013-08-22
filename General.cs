@@ -325,126 +325,136 @@ namespace Squire
 
         private void openToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            OpenFileDialog openBattle = new OpenFileDialog();
-            openBattle.DefaultExt = ".btl";
-            openBattle.Filter = "Battle Files (*.btl)|*btl|All files (*.*)|*.*";
-            openBattle.Title = "Open Battle";
-
-            if (openBattle.ShowDialog() == DialogResult.OK)
+            if (tabPlayer.SelectedTab == tabDM)
             {
-                StreamReader file = new StreamReader(openBattle.FileName);
-                fileLoading = true; // lock down for load
+                OpenFileDialog openBattle = new OpenFileDialog();
+                openBattle.DefaultExt = ".btl";
+                openBattle.Filter = "Battle Files (*.btl)|*btl|All files (*.*)|*.*";
+                openBattle.Title = "Open Battle";
 
-                string currentLine;
-                LoadProgress filePosition = LoadProgress.START;
-
-                while ((currentLine = file.ReadLine()) != null )
+                if (openBattle.ShowDialog() == DialogResult.OK)
                 {
-                    if (currentLine != String.Empty)
+                    StreamReader file = new StreamReader(openBattle.FileName);
+                    fileLoading = true; // lock down for load
+
+                    string currentLine;
+                    LoadProgress filePosition = LoadProgress.START;
+
+                    while ((currentLine = file.ReadLine()) != null)
                     {
-                        switch (currentLine)
+                        if (currentLine != String.Empty)
                         {
-                            case "Initiative List":
-                                filePosition = LoadProgress.INITIATIVE;
-                                currentLine = file.ReadLine();
-                                break;
-                            case "Delay List":
-                                filePosition = LoadProgress.DELAY;
-                                currentLine = file.ReadLine();
-                                break;
-                            case "Dying List":
-                                filePosition = LoadProgress.DYING;
-                                currentLine = file.ReadLine();
-                                break;
-                            case "Indices":
-                                filePosition = LoadProgress.INDICES;
-                                currentLine = file.ReadLine();
-                                break;
-                        }
-
-                        if (filePosition != LoadProgress.INDICES)
-                        {
-                            if (currentLine != String.Empty)
+                            switch (currentLine)
                             {
-                                string[] items = currentLine.Split('\t');
+                                case "Initiative List":
+                                    filePosition = LoadProgress.INITIATIVE;
+                                    currentLine = file.ReadLine();
+                                    break;
+                                case "Delay List":
+                                    filePosition = LoadProgress.DELAY;
+                                    currentLine = file.ReadLine();
+                                    break;
+                                case "Dying List":
+                                    filePosition = LoadProgress.DYING;
+                                    currentLine = file.ReadLine();
+                                    break;
+                                case "Indices":
+                                    filePosition = LoadProgress.INDICES;
+                                    currentLine = file.ReadLine();
+                                    break;
+                            }
 
-                                Combatant newCombatant = new Combatant(items[0], int.Parse(items[2]), Convert.ToDecimal(items[3]));
-                                newCombatant.setCurrentHP(int.Parse(items[1]));
-
-                                // Process effects.
-                                for (int i = 5; i < (int.Parse(items[4]) * 2) + 5; i += 2)
-                                    newCombatant.addEffect(items[i], Convert.ToDecimal(items[i + 1]));
-
-                                switch (filePosition)
+                            if (filePosition != LoadProgress.INDICES)
+                            {
+                                if (currentLine != String.Empty)
                                 {
-                                    case LoadProgress.INITIATIVE:
-                                        combatantList.Items.Add(newCombatant);
-                                        break;
-                                    case LoadProgress.DELAY:
-                                        delayList.Items.Add(newCombatant);
-                                        break;
-                                    case LoadProgress.DYING:
-                                        dyingList.Items.Add(newCombatant);
-                                        break;
+                                    string[] items = currentLine.Split('\t');
+
+                                    Combatant newCombatant = new Combatant(items[0], int.Parse(items[2]), Convert.ToDecimal(items[3]));
+                                    newCombatant.setCurrentHP(int.Parse(items[1]));
+
+                                    // Process effects.
+                                    for (int i = 5; i < (int.Parse(items[4]) * 2) + 5; i += 2)
+                                        newCombatant.addEffect(items[i], Convert.ToDecimal(items[i + 1]));
+
+                                    switch (filePosition)
+                                    {
+                                        case LoadProgress.INITIATIVE:
+                                            combatantList.Items.Add(newCombatant);
+                                            break;
+                                        case LoadProgress.DELAY:
+                                            delayList.Items.Add(newCombatant);
+                                            break;
+                                        case LoadProgress.DYING:
+                                            dyingList.Items.Add(newCombatant);
+                                            break;
+                                    }
                                 }
                             }
-                        }
-                        else
-                        {
-                            string[] items = currentLine.Split('\t');
-                            combatantList.SelectedIndex = int.Parse(items[0]);
-                            delayList.SelectedIndex = int.Parse(items[1]);
-                            dyingList.SelectedIndex = int.Parse(items[2]);
-                            roundNumber.Value = Convert.ToDecimal(items[3]);
+                            else
+                            {
+                                string[] items = currentLine.Split('\t');
+                                combatantList.SelectedIndex = int.Parse(items[0]);
+                                delayList.SelectedIndex = int.Parse(items[1]);
+                                dyingList.SelectedIndex = int.Parse(items[2]);
+                                roundNumber.Value = Convert.ToDecimal(items[3]);
+                            }
                         }
                     }
-                }
 
-                file.Close();
-                fileLoading = false;
+                    file.Close();
+                    fileLoading = false;
+                }
             }
         }
 
         private void saveToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            SaveFileDialog saveBattle = new SaveFileDialog();
-            saveBattle.DefaultExt = ".btl";
-            saveBattle.Filter = "Battle Files (*.btl)|*btl|All files (*.*)|*.*";
-            saveBattle.OverwritePrompt = true;
-            saveBattle.Title = "Save Battle";
-
-            if (saveBattle.ShowDialog() == DialogResult.OK)
+            if (tabPlayer.SelectedTab == tabDM)
             {
-                StreamWriter file = new StreamWriter(saveBattle.FileName);
+                SaveFileDialog saveBattle = new SaveFileDialog();
+                saveBattle.DefaultExt = ".btl";
+                saveBattle.Filter = "Battle Files (*.btl)|*btl|All files (*.*)|*.*";
+                saveBattle.OverwritePrompt = true;
+                saveBattle.Title = "Save Battle";
 
-                file.WriteLine("Initiative List");
-                for (int i = 0; i < combatantList.Items.Count; i++)
+                if (saveBattle.ShowDialog() == DialogResult.OK)
                 {
-                    Combatant c = (Combatant)combatantList.Items[i];
-                    file.WriteLine(c.toString());
+                    StreamWriter file = new StreamWriter(saveBattle.FileName);
+
+                    file.WriteLine("Initiative List");
+                    for (int i = 0; i < combatantList.Items.Count; i++)
+                    {
+                        Combatant c = (Combatant)combatantList.Items[i];
+                        file.WriteLine(c.toString());
+                    }
+
+                    file.WriteLine();
+                    file.WriteLine("Delay List");
+                    for (int i = 0; i < delayList.Items.Count; i++)
+                    {
+                        Combatant c = (Combatant)delayList.Items[i];
+                        file.WriteLine(c.toString());
+                    }
+
+                    file.WriteLine();
+                    file.WriteLine("Dying List");
+                    for (int i = 0; i < dyingList.Items.Count; i++)
+                    {
+                        Combatant c = (Combatant)dyingList.Items[i];
+                        file.WriteLine(c.toString());
+                    }
+
+                    file.WriteLine();
+                    file.WriteLine("Indices");
+                    file.WriteLine(combatantList.SelectedIndex + "\t" + delayList.SelectedIndex + "\t" + dyingList.SelectedIndex + "\t" + roundNumber.Value);
+
+                    file.Close();
                 }
+            }
+            else
+            {
 
-                file.WriteLine();
-                file.WriteLine("Delay List");
-                for (int i = 0; i < delayList.Items.Count; i++)
-                {
-                    Combatant c = (Combatant)delayList.Items[i];
-                    file.WriteLine(c.toString());
-                }
-
-                file.WriteLine();
-                file.WriteLine("Dying List");
-                for (int i = 0; i < dyingList.Items.Count; i++)
-                {
-                    Combatant c = (Combatant)dyingList.Items[i];
-                    file.WriteLine(c.toString());
-                }
-
-                file.WriteLine();
-                file.WriteLine("Indices");
-                file.WriteLine(combatantList.SelectedIndex + "\t" + delayList.SelectedIndex + "\t" + dyingList.SelectedIndex +"\t"+roundNumber.Value);
-
-                file.Close();
             }
         }
 

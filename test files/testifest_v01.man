@@ -1,2 +1,1 @@
-Cadrus	23	11	22	1	Diplomacy	6
-Myrina	16	13	13	2	Listen	7	Spot	7
+Myrina	16	13	13	4	Listen	5	Spot	5	Hide	6	Move Silently	6

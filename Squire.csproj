@@ -122,6 +122,7 @@
     <Compile Include="NumericTextBox.cs">
       <SubType>Component</SubType>
     </Compile>
+    <Compile Include="Player.cs" />
     <Compile Include="PlayerManifest.cs">
       <SubType>Form</SubType>
     </Compile>

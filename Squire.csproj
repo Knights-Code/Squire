@@ -119,6 +119,12 @@
     <Compile Include="General.Designer.cs">
       <DependentUpon>General.cs</DependentUpon>
     </Compile>
+    <Compile Include="NewPlayer.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="NewPlayer.Designer.cs">
+      <DependentUpon>NewPlayer.cs</DependentUpon>
+    </Compile>
     <Compile Include="NumericTextBox.cs">
       <SubType>Component</SubType>
     </Compile>
@@ -166,6 +172,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="General.resx">
       <DependentUpon>General.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="NewPlayer.resx">
+      <DependentUpon>NewPlayer.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="PlayerManifest.resx">
       <DependentUpon>PlayerManifest.cs</DependentUpon>

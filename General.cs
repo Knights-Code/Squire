@@ -22,6 +22,8 @@ namespace Squire
         Point toolTipLocation;
         Boolean fileLoading;
         Boolean changesSaved;
+        public Player player;
+        private HPBar playerHPBar;
 
         enum LoadProgress { START, INITIATIVE, DELAY, DYING, INDICES };
 
@@ -30,6 +32,10 @@ namespace Squire
             InitializeComponent();
 
             //-----( Initialise Components )-----\\
+            playerHPBar = new HPBar();
+            playerHPBar.Parent = HPPanel;
+            playerHPBar.Dock = DockStyle.Fill;
+
             combatantHPBar = new HPBar();
             combatantHPBar.Parent = tableLayoutPanel12;
             combatantHPBar.Dock = DockStyle.Fill;
@@ -1286,6 +1292,111 @@ namespace Squire
 
             while (dyingList.Items.Count > 0)
                 dyingList.Items.RemoveAt(0);
+        }
+
+        private void newToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (tabPlayer.SelectedTab == tabPC)
+            {
+                NewPlayer newPlayer = new NewPlayer(this);
+                newPlayer.Show();
+            }
+            else
+            {
+                if (MessageBox.Show("The lists will be cleared and the round number will be reset to 1. Proceed?", "Clear lists", MessageBoxButtons.YesNo,
+                    MessageBoxIcon.Warning) == DialogResult.Yes)
+                {
+                    while (combatantList.Items.Count > 0)
+                        combatantList.Items.RemoveAt(0);
+                    while (delayList.Items.Count > 0)
+                        delayList.Items.RemoveAt(0);
+                    while (dyingList.Items.Count > 0)
+                        dyingList.Items.RemoveAt(0);
+
+                    roundNumber.Value = 1;
+                }
+            }
+        }
+
+        public void loadPC()
+        {
+            if (player != null)
+            {
+                playerName.Text = player.getName();
+
+                playerHPBar.Maximum = player.getMaxHP();
+                playerHPBar.Value = player.getCurrentHP();
+                HPLabel.Text = player.HPTotal();
+
+                nonlethalBar.Maximum = player.getMaxHP();
+                nonlethalBar.Value = player.getNonLethal();
+
+                while (abilityDropdown.Items.Count > 0)
+                    abilityDropdown.Items.RemoveAt(0);
+
+                if (player.numAbilities() > 0)
+                {
+                    for (int i = 0; i < player.numAbilities(); i++)
+                        abilityDropdown.Items.Add(player.getAbilityName(i));
+                }
+
+                lockOrUnlockPCTabControls("unlock");
+            }
+        }
+
+        private void lockOrUnlockPCTabControls(string command)
+        {
+            Boolean doLock = command == "lock" ? true : false;
+            
+            setCurrentHPButton.Enabled = doLock;
+            HPDownButton.Enabled = doLock;
+            HPAdjustBox.Enabled = doLock;
+            HPUpButton.Enabled = doLock;
+            setMaxHPButton.Enabled = doLock;
+
+            setCurrentNLButton.Enabled = doLock;
+            NLDownButton.Enabled = doLock;
+            NLAdjustBox.Enabled = doLock;
+
+        }
+
+        private void abilityDropdown_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (player != null && abilityDropdown.SelectedIndex >= 0 && abilityDropdown.SelectedIndex < abilityDropdown.Items.Count)
+                abilityDescription.Text = player.getAbilityDescription(abilityDropdown.SelectedIndex);
+        }
+
+        private void setCurrentHPButton_Click(object sender, EventArgs e)
+        {
+            player.setCurrentHP(HPAdjustBox.IntValue); // change player's HP
+            playerHPBar.updateValue(player.getCurrentHP()); // update HP bar
+            nonlethalBar.Value = player.getNonLethal() > nonlethalBar.Maximum ? nonlethalBar.Maximum : player.getNonLethal(); // update NL bar
+            hitPointLabel.Text = player.HPTotal(); // update HP label
+
+            // Update graphics.
+            playerHPBar.Refresh();
+            nonlethalBar.Refresh();
+        }
+
+        private void HPDownButton_Click(object sender, EventArgs e)
+        {
+            player.adjustHP(HPAdjustBox.IntValue * -1); // change player's HP
+            playerHPBar.updateValue(player.getCurrentHP()); // update HP bar
+            hitPointLabel.Text = player.HPTotal(); // update HP label
+
+            // Update graphics.
+            playerHPBar.Refresh();
+        }
+
+        private void HPUpButton_Click(object sender, EventArgs e)
+        {
+            player.adjustHP(HPAdjustBox.IntValue); // change player's HP
+            playerHPBar.updateValue(player.getCurrentHP()); // update HP bar
+            hitPointLabel.Text = player.HPTotal(); // update HP label
+
+            // Update graphics.
+            playerHPBar.Refresh();
+            nonlethalBar.Refresh();
         }
     }
 }

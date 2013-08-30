@@ -136,9 +136,10 @@
             this.abilityDropdown = new System.Windows.Forms.ComboBox();
             this.addAbilityButton = new System.Windows.Forms.Button();
             this.removeAbilityButton = new System.Windows.Forms.Button();
-            this.textBox1 = new System.Windows.Forms.TextBox();
+            this.abilityDescription = new System.Windows.Forms.TextBox();
             this.generalMenu = new System.Windows.Forms.MenuStrip();
             this.fileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.newToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.saveToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.openToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.rollInitiativeToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -1562,6 +1563,7 @@
             this.HPDownButton.TabIndex = 0;
             this.HPDownButton.Text = "–";
             this.HPDownButton.UseVisualStyleBackColor = true;
+            this.HPDownButton.Click += new System.EventHandler(this.HPDownButton_Click);
             // 
             // HPAdjustBox
             // 
@@ -1593,6 +1595,7 @@
             this.HPUpButton.TabIndex = 2;
             this.HPUpButton.Text = "+";
             this.HPUpButton.UseVisualStyleBackColor = true;
+            this.HPUpButton.Click += new System.EventHandler(this.HPUpButton_Click);
             // 
             // setCurrentHPButton
             // 
@@ -1606,6 +1609,7 @@
             this.setCurrentHPButton.TabIndex = 3;
             this.setCurrentHPButton.Text = "Set Curr.";
             this.setCurrentHPButton.UseVisualStyleBackColor = true;
+            this.setCurrentHPButton.Click += new System.EventHandler(this.setCurrentHPButton_Click);
             // 
             // setMaxHPButton
             // 
@@ -1647,7 +1651,7 @@
             this.tableLayoutPanel4.ColumnCount = 1;
             this.tableLayoutPanel4.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
             this.tableLayoutPanel4.Controls.Add(this.tableLayoutPanel29, 0, 0);
-            this.tableLayoutPanel4.Controls.Add(this.textBox1, 0, 1);
+            this.tableLayoutPanel4.Controls.Add(this.abilityDescription, 0, 1);
             this.tableLayoutPanel4.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tableLayoutPanel4.Location = new System.Drawing.Point(3, 20);
             this.tableLayoutPanel4.Name = "tableLayoutPanel4";
@@ -1662,7 +1666,7 @@
             this.tableLayoutPanel29.ColumnCount = 3;
             this.tableLayoutPanel29.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 67.70834F));
             this.tableLayoutPanel29.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 32.29167F));
-            this.tableLayoutPanel29.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 80F));
+            this.tableLayoutPanel29.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 85F));
             this.tableLayoutPanel29.Controls.Add(this.abilityDropdown, 0, 0);
             this.tableLayoutPanel29.Controls.Add(this.addAbilityButton, 1, 0);
             this.tableLayoutPanel29.Controls.Add(this.removeAbilityButton, 2, 0);
@@ -1681,16 +1685,17 @@
             this.abilityDropdown.FormattingEnabled = true;
             this.abilityDropdown.Location = new System.Drawing.Point(3, 14);
             this.abilityDropdown.Name = "abilityDropdown";
-            this.abilityDropdown.Size = new System.Drawing.Size(149, 25);
+            this.abilityDropdown.Size = new System.Drawing.Size(146, 25);
             this.abilityDropdown.TabIndex = 0;
+            this.abilityDropdown.SelectedIndexChanged += new System.EventHandler(this.abilityDropdown_SelectedIndexChanged);
             // 
             // addAbilityButton
             // 
             this.addAbilityButton.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.addAbilityButton.Enabled = false;
-            this.addAbilityButton.Location = new System.Drawing.Point(158, 15);
+            this.addAbilityButton.Location = new System.Drawing.Point(155, 15);
             this.addAbilityButton.Name = "addAbilityButton";
-            this.addAbilityButton.Size = new System.Drawing.Size(68, 23);
+            this.addAbilityButton.Size = new System.Drawing.Size(66, 23);
             this.addAbilityButton.TabIndex = 1;
             this.addAbilityButton.Text = "Add";
             this.addAbilityButton.UseVisualStyleBackColor = true;
@@ -1699,22 +1704,23 @@
             // 
             this.removeAbilityButton.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.removeAbilityButton.Enabled = false;
-            this.removeAbilityButton.Location = new System.Drawing.Point(232, 15);
+            this.removeAbilityButton.Location = new System.Drawing.Point(230, 15);
             this.removeAbilityButton.Name = "removeAbilityButton";
             this.removeAbilityButton.Size = new System.Drawing.Size(74, 23);
             this.removeAbilityButton.TabIndex = 2;
             this.removeAbilityButton.Text = "Remove";
             this.removeAbilityButton.UseVisualStyleBackColor = true;
             // 
-            // textBox1
+            // abilityDescription
             // 
-            this.textBox1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.textBox1.Location = new System.Drawing.Point(3, 62);
-            this.textBox1.Multiline = true;
-            this.textBox1.Name = "textBox1";
-            this.textBox1.ReadOnly = true;
-            this.textBox1.Size = new System.Drawing.Size(310, 415);
-            this.textBox1.TabIndex = 1;
+            this.abilityDescription.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.abilityDescription.Location = new System.Drawing.Point(3, 62);
+            this.abilityDescription.Multiline = true;
+            this.abilityDescription.Name = "abilityDescription";
+            this.abilityDescription.ReadOnly = true;
+            this.abilityDescription.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
+            this.abilityDescription.Size = new System.Drawing.Size(310, 415);
+            this.abilityDescription.TabIndex = 1;
             // 
             // generalMenu
             // 
@@ -1732,6 +1738,7 @@
             // fileToolStripMenuItem
             // 
             this.fileToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.newToolStripMenuItem,
             this.saveToolStripMenuItem,
             this.openToolStripMenuItem,
             this.rollInitiativeToolStripMenuItem,
@@ -1739,6 +1746,13 @@
             this.fileToolStripMenuItem.Name = "fileToolStripMenuItem";
             this.fileToolStripMenuItem.Size = new System.Drawing.Size(44, 24);
             this.fileToolStripMenuItem.Text = "File";
+            // 
+            // newToolStripMenuItem
+            // 
+            this.newToolStripMenuItem.Name = "newToolStripMenuItem";
+            this.newToolStripMenuItem.Size = new System.Drawing.Size(184, 24);
+            this.newToolStripMenuItem.Text = "New ...";
+            this.newToolStripMenuItem.Click += new System.EventHandler(this.newToolStripMenuItem_Click);
             // 
             // saveToolStripMenuItem
             // 
@@ -1998,7 +2012,6 @@
         private System.Windows.Forms.ToolStripMenuItem toolsToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem clearDyingListToolStripMenuItem;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel2;
-        private System.Windows.Forms.Label playerName;
         private System.Windows.Forms.GroupBox groupBox2;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel3;
         private System.Windows.Forms.TableLayoutPanel HPPanel;
@@ -2025,6 +2038,8 @@
         private System.Windows.Forms.ComboBox abilityDropdown;
         private System.Windows.Forms.Button addAbilityButton;
         private System.Windows.Forms.Button removeAbilityButton;
-        private System.Windows.Forms.TextBox textBox1;
+        private System.Windows.Forms.TextBox abilityDescription;
+        private System.Windows.Forms.ToolStripMenuItem newToolStripMenuItem;
+        public System.Windows.Forms.Label playerName;
     }
 }

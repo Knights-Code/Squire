@@ -19,6 +19,11 @@ namespace Squire
             this.SetStyle(ControlStyles.UserPaint, true);
         }
 
+        public void updateValue(int HP)
+        {
+            this.Value = HP >= 0 ? (HP <= this.Maximum ? HP : this.Maximum ) : 0;
+        }
+
         protected override void OnPaint(PaintEventArgs e)
         {
             Rectangle rec = e.ClipRectangle;

@@ -23,7 +23,7 @@ namespace Squire
         Boolean fileLoading;
         Boolean changesSaved;
         public Player player;
-        private HPBar playerHPBar;
+        public HPBar playerHPBar;
 
         enum LoadProgress { START, INITIATIVE, DELAY, DYING, INDICES };
 
@@ -946,7 +946,7 @@ namespace Squire
                 dyingList.Items.RemoveAt(dyingIndex);
                 combatantList.SelectedIndex = (currentIndex); // select the combatant that just regained consciousness
 
-                // If there's a combatant below the one we just removed in the dying list, select it. Select that last combatant in the dying list otherwise.
+                // If there's a combatant below the one we just removed in the dying list, select it. Select the last combatant in the dying list otherwise.
                 if (dyingIndex < dyingList.Items.Count) dyingList.SelectedIndex = dyingIndex;
                 else dyingList.SelectedIndex = (dyingList.Items.Count - 1);
             }
@@ -1358,6 +1358,8 @@ namespace Squire
             NLDownButton.Enabled = doLock;
             NLAdjustBox.Enabled = doLock;
 
+            addAbilityButton.Enabled = doLock;
+            removeAbilityButton.Enabled = !doLock && player.numAbilities() > 0;
         }
 
         private void abilityDropdown_SelectedIndexChanged(object sender, EventArgs e)
@@ -1372,10 +1374,13 @@ namespace Squire
             playerHPBar.updateValue(player.getCurrentHP()); // update HP bar
             nonlethalBar.Value = player.getNonLethal() > nonlethalBar.Maximum ? nonlethalBar.Maximum : player.getNonLethal(); // update NL bar
             hitPointLabel.Text = player.HPTotal(); // update HP label
+            nonlethalLabel.Text = (player.getNonLethal()).ToString(); // update NL label
 
             // Update graphics.
             playerHPBar.Refresh();
             nonlethalBar.Refresh();
+
+            HPAdjustBox.IntValue = 0; // reset adjust box
         }
 
         private void HPDownButton_Click(object sender, EventArgs e)
@@ -1386,6 +1391,8 @@ namespace Squire
 
             // Update graphics.
             playerHPBar.Refresh();
+
+            HPAdjustBox.IntValue = 0; // reset adjust box
         }
 
         private void HPUpButton_Click(object sender, EventArgs e)
@@ -1393,10 +1400,69 @@ namespace Squire
             player.adjustHP(HPAdjustBox.IntValue); // change player's HP
             playerHPBar.updateValue(player.getCurrentHP()); // update HP bar
             hitPointLabel.Text = player.HPTotal(); // update HP label
+            nonlethalLabel.Text = (player.getNonLethal()).ToString(); // update NL label
 
             // Update graphics.
             playerHPBar.Refresh();
             nonlethalBar.Refresh();
+
+            HPAdjustBox.IntValue = 0; // reset adjust box
+        }
+
+        private void setMaxHPButton_Click(object sender, EventArgs e)
+        {
+            player.setMaxHP(HPAdjustBox.IntValue); // change player's max hp
+            playerHPBar.Maximum = player.getMaxHP(); // update HP bar
+            nonlethalBar.Maximum = player.getMaxHP(); // update NL bar
+            playerHPBar.updateValue(player.getCurrentHP());
+            hitPointLabel.Text = player.HPTotal(); // update HP label
+
+            //Update graphics.
+            playerHPBar.Refresh();
+            nonlethalBar.Refresh();
+
+            HPAdjustBox.IntValue = 0; // reset adjust box
+        }
+
+        private void setCurrentNLButton_Click(object sender, EventArgs e)
+        {
+            player.setNonLethal(NLAdjustBox.IntValue); // change player's nonlethal
+            nonlethalBar.Value = player.getNonLethal(); // update NL bar
+            nonlethalLabel.Text = (player.getNonLethal()).ToString(); // update NL label
+
+            // Update graphics
+            nonlethalBar.Refresh();
+
+            NLAdjustBox.IntValue = 0; // reset adjust box
+        }
+
+        private void NLDownButton_Click(object sender, EventArgs e)
+        {
+            player.setNonLethal(player.getNonLethal()-NLAdjustBox.IntValue); // change player's nonlethal
+            nonlethalBar.Value = player.getNonLethal(); // update NL bar
+            nonlethalLabel.Text = (player.getNonLethal()).ToString(); // update NL label
+
+            // Update graphics
+            nonlethalBar.Refresh();
+
+            NLAdjustBox.IntValue = 0; // reset adjust box
+        }
+
+        private void NLUpButton_Click(object sender, EventArgs e)
+        {
+            player.setNonLethal(player.getNonLethal()+NLAdjustBox.IntValue); // change player's nonlethal
+            nonlethalBar.Value = player.getNonLethal(); // update NL bar
+            nonlethalLabel.Text = (player.getNonLethal()).ToString(); // update NL label
+
+            // Update graphics
+            nonlethalBar.Refresh();
+
+            NLAdjustBox.IntValue = 0; // reset adjust box
+        }
+
+        private void addAbilityButton_Click(object sender, EventArgs e)
+        {
+            AddPCAbility addAbility = new AddPCAbility(this);
         }
     }
 }

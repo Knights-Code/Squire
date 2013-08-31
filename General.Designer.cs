@@ -1435,6 +1435,7 @@
             this.NLDownButton.TabIndex = 0;
             this.NLDownButton.Text = "–";
             this.NLDownButton.UseVisualStyleBackColor = true;
+            this.NLDownButton.Click += new System.EventHandler(this.NLDownButton_Click);
             // 
             // NLAdjustBox
             // 
@@ -1466,6 +1467,7 @@
             this.NLUpButton.TabIndex = 2;
             this.NLUpButton.Text = "+";
             this.NLUpButton.UseVisualStyleBackColor = true;
+            this.NLUpButton.Click += new System.EventHandler(this.NLUpButton_Click);
             // 
             // setCurrentNLButton
             // 
@@ -1479,17 +1481,18 @@
             this.setCurrentNLButton.TabIndex = 3;
             this.setCurrentNLButton.Text = "Set Curr.";
             this.setCurrentNLButton.UseVisualStyleBackColor = true;
+            this.setCurrentNLButton.Click += new System.EventHandler(this.setCurrentNLButton_Click);
             // 
             // nonlethalLabel
             // 
             this.nonlethalLabel.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.nonlethalLabel.AutoSize = true;
-            this.nonlethalLabel.Location = new System.Drawing.Point(19, 79);
+            this.nonlethalLabel.Location = new System.Drawing.Point(30, 79);
             this.nonlethalLabel.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.nonlethalLabel.Name = "nonlethalLabel";
-            this.nonlethalLabel.Size = new System.Drawing.Size(41, 17);
+            this.nonlethalLabel.Size = new System.Drawing.Size(18, 17);
             this.nonlethalLabel.TabIndex = 3;
-            this.nonlethalLabel.Text = "-- / --";
+            this.nonlethalLabel.Text = "--";
             // 
             // nonlethalBar
             // 
@@ -1623,6 +1626,7 @@
             this.setMaxHPButton.TabIndex = 4;
             this.setMaxHPButton.Text = "Set Max";
             this.setMaxHPButton.UseVisualStyleBackColor = true;
+            this.setMaxHPButton.Click += new System.EventHandler(this.setMaxHPButton_Click);
             // 
             // hitPointLabel
             // 
@@ -1666,7 +1670,7 @@
             this.tableLayoutPanel29.ColumnCount = 3;
             this.tableLayoutPanel29.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 67.70834F));
             this.tableLayoutPanel29.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 32.29167F));
-            this.tableLayoutPanel29.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 85F));
+            this.tableLayoutPanel29.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 86F));
             this.tableLayoutPanel29.Controls.Add(this.abilityDropdown, 0, 0);
             this.tableLayoutPanel29.Controls.Add(this.addAbilityButton, 1, 0);
             this.tableLayoutPanel29.Controls.Add(this.removeAbilityButton, 2, 0);
@@ -1685,7 +1689,7 @@
             this.abilityDropdown.FormattingEnabled = true;
             this.abilityDropdown.Location = new System.Drawing.Point(3, 14);
             this.abilityDropdown.Name = "abilityDropdown";
-            this.abilityDropdown.Size = new System.Drawing.Size(146, 25);
+            this.abilityDropdown.Size = new System.Drawing.Size(145, 25);
             this.abilityDropdown.TabIndex = 0;
             this.abilityDropdown.SelectedIndexChanged += new System.EventHandler(this.abilityDropdown_SelectedIndexChanged);
             // 
@@ -1693,18 +1697,19 @@
             // 
             this.addAbilityButton.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.addAbilityButton.Enabled = false;
-            this.addAbilityButton.Location = new System.Drawing.Point(155, 15);
+            this.addAbilityButton.Location = new System.Drawing.Point(154, 15);
             this.addAbilityButton.Name = "addAbilityButton";
             this.addAbilityButton.Size = new System.Drawing.Size(66, 23);
             this.addAbilityButton.TabIndex = 1;
             this.addAbilityButton.Text = "Add";
             this.addAbilityButton.UseVisualStyleBackColor = true;
+            this.addAbilityButton.Click += new System.EventHandler(this.addAbilityButton_Click);
             // 
             // removeAbilityButton
             // 
             this.removeAbilityButton.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.removeAbilityButton.Enabled = false;
-            this.removeAbilityButton.Location = new System.Drawing.Point(230, 15);
+            this.removeAbilityButton.Location = new System.Drawing.Point(229, 15);
             this.removeAbilityButton.Name = "removeAbilityButton";
             this.removeAbilityButton.Size = new System.Drawing.Size(74, 23);
             this.removeAbilityButton.TabIndex = 2;
@@ -1922,7 +1927,6 @@
 
         #endregion
 
-        private System.Windows.Forms.TabControl tabPlayer;
         private System.Windows.Forms.TabPage tabPC;
         private System.Windows.Forms.TabPage tabDM;
         private System.Windows.Forms.MenuStrip generalMenu;
@@ -2035,11 +2039,12 @@
         private System.Windows.Forms.GroupBox groupBox3;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel4;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel29;
-        private System.Windows.Forms.ComboBox abilityDropdown;
         private System.Windows.Forms.Button addAbilityButton;
-        private System.Windows.Forms.Button removeAbilityButton;
         private System.Windows.Forms.TextBox abilityDescription;
         private System.Windows.Forms.ToolStripMenuItem newToolStripMenuItem;
         public System.Windows.Forms.Label playerName;
+        public System.Windows.Forms.ComboBox abilityDropdown;
+        public System.Windows.Forms.Button removeAbilityButton;
+        public System.Windows.Forms.TabControl tabPlayer;
     }
 }

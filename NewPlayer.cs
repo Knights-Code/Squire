@@ -52,6 +52,9 @@ namespace Squire
 
             Player newPlayer = new Player(nameBox.Text, (int)HPBox.Value);
             parentForm.player = newPlayer;
+
+            parentForm.loadPC();
+            this.Close();
         }
     }
 }

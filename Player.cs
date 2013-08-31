@@ -8,7 +8,7 @@ using System.Text;
 namespace Squire
 {
     [Serializable]
-    class Player : ISerializable
+    public class Player : ISerializable
     {
         string name;
         int currentHP, nonlethal, maxHP;
@@ -69,8 +69,14 @@ namespace Squire
 
         public void setCurrentHP(int newHP)
         {
-            if ( newHP <= maxHP )
+            if (newHP <= maxHP)
+            {
+                // If the player is healing, reduce nonlethal damage by an equal amount.
+                if (newHP > currentHP)
+                    adjustNL((newHP - currentHP)*-1);
+
                 currentHP = newHP;
+            }
         }
 
         public int getMaxHP()
@@ -96,7 +102,7 @@ namespace Squire
 
         public void setNonLethal(int newNL)
         {
-            nonlethal = newNL;
+            nonlethal = newNL < 0 ? 0: (newNL>maxHP?maxHP:newNL);
         }
 
         public int numAbilities()

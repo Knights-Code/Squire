@@ -90,6 +90,12 @@
     <Compile Include="AddMetric.Designer.cs">
       <DependentUpon>AddMetric.cs</DependentUpon>
     </Compile>
+    <Compile Include="AddPCAbility.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="AddPCAbility.Designer.cs">
+      <DependentUpon>AddPCAbility.cs</DependentUpon>
+    </Compile>
     <Compile Include="AskName.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -160,6 +166,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="AddMetric.resx">
       <DependentUpon>AddMetric.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="AddPCAbility.resx">
+      <DependentUpon>AddPCAbility.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="AskName.resx">
       <DependentUpon>AskName.cs</DependentUpon>

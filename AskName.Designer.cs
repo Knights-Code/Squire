@@ -50,33 +50,33 @@
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 33.33333F));
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 33.33333F));
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 33.33333F));
-            this.tableLayoutPanel1.Size = new System.Drawing.Size(280, 85);
+            this.tableLayoutPanel1.Size = new System.Drawing.Size(280, 80);
             this.tableLayoutPanel1.TabIndex = 0;
             // 
             // label1
             // 
             this.label1.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(11, 5);
+            this.label1.Location = new System.Drawing.Point(7, 4);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(257, 17);
+            this.label1.Size = new System.Drawing.Size(266, 17);
             this.label1.TabIndex = 0;
             this.label1.Text = "Enter the player character\'s name below.";
             // 
             // playerName
             // 
             this.playerName.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.playerName.Location = new System.Drawing.Point(90, 31);
+            this.playerName.Location = new System.Drawing.Point(90, 29);
             this.playerName.Name = "playerName";
-            this.playerName.Size = new System.Drawing.Size(100, 24);
+            this.playerName.Size = new System.Drawing.Size(100, 22);
             this.playerName.TabIndex = 1;
             // 
             // OKButton
             // 
             this.OKButton.Anchor = System.Windows.Forms.AnchorStyles.Right;
-            this.OKButton.Location = new System.Drawing.Point(202, 59);
+            this.OKButton.Location = new System.Drawing.Point(202, 55);
             this.OKButton.Name = "OKButton";
-            this.OKButton.Size = new System.Drawing.Size(75, 23);
+            this.OKButton.Size = new System.Drawing.Size(75, 22);
             this.OKButton.TabIndex = 2;
             this.OKButton.Text = "&OK";
             this.OKButton.UseVisualStyleBackColor = true;
@@ -85,11 +85,11 @@
             // AskName
             // 
             this.AcceptButton = this.OKButton;
-            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 17F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(280, 85);
+            this.ClientSize = new System.Drawing.Size(280, 80);
             this.Controls.Add(this.tableLayoutPanel1);
-            this.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MaximizeBox = false;

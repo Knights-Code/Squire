@@ -36,6 +36,9 @@ namespace Squire
             parentForm.player.addAbility(abilityName.Text, abilityDescription.Text);
             parentForm.abilityDropdown.Items.Add(abilityName.Text);
             parentForm.removeAbilityButton.Enabled = parentForm.player.numAbilities() > 0;
+            parentForm.abilityDropdown.Enabled = parentForm.player.numAbilities() > 0;
+
+            this.Close();
         }
 
         private void abilityName_TextChanged(object sender, EventArgs e)

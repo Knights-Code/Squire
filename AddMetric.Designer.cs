@@ -57,7 +57,7 @@
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 33.33333F));
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 33.33333F));
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 33.33333F));
-            this.tableLayoutPanel1.Size = new System.Drawing.Size(396, 118);
+            this.tableLayoutPanel1.Size = new System.Drawing.Size(453, 118);
             this.tableLayoutPanel1.TabIndex = 0;
             // 
             // label1
@@ -67,25 +67,25 @@
             this.tableLayoutPanel1.SetColumnSpan(this.label1, 2);
             this.label1.Location = new System.Drawing.Point(3, 11);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(321, 17);
+            this.label1.Size = new System.Drawing.Size(326, 17);
             this.label1.TabIndex = 0;
             this.label1.Text = "Enter the name and value of the new metric below.";
             // 
             // metricName
             // 
             this.metricName.Anchor = System.Windows.Forms.AnchorStyles.Right;
-            this.metricName.Location = new System.Drawing.Point(38, 47);
+            this.metricName.Location = new System.Drawing.Point(44, 47);
             this.metricName.Name = "metricName";
-            this.metricName.Size = new System.Drawing.Size(157, 23);
+            this.metricName.Size = new System.Drawing.Size(179, 22);
             this.metricName.TabIndex = 1;
             this.metricName.TextChanged += new System.EventHandler(this.metricName_TextChanged);
             // 
             // metricValue
             // 
             this.metricValue.Anchor = System.Windows.Forms.AnchorStyles.Left;
-            this.metricValue.Location = new System.Drawing.Point(201, 47);
+            this.metricValue.Location = new System.Drawing.Point(229, 47);
             this.metricValue.Name = "metricValue";
-            this.metricValue.Size = new System.Drawing.Size(50, 23);
+            this.metricValue.Size = new System.Drawing.Size(57, 22);
             this.metricValue.TabIndex = 2;
             // 
             // flowLayoutPanel1
@@ -98,15 +98,15 @@
             this.flowLayoutPanel1.Location = new System.Drawing.Point(0, 81);
             this.flowLayoutPanel1.Margin = new System.Windows.Forms.Padding(0, 3, 0, 0);
             this.flowLayoutPanel1.Name = "flowLayoutPanel1";
-            this.flowLayoutPanel1.Size = new System.Drawing.Size(396, 37);
+            this.flowLayoutPanel1.Size = new System.Drawing.Size(453, 37);
             this.flowLayoutPanel1.TabIndex = 3;
             // 
             // cancelButton
             // 
             this.cancelButton.DialogResult = System.Windows.Forms.DialogResult.Cancel;
-            this.cancelButton.Location = new System.Drawing.Point(318, 3);
+            this.cancelButton.Location = new System.Drawing.Point(364, 3);
             this.cancelButton.Name = "cancelButton";
-            this.cancelButton.Size = new System.Drawing.Size(75, 23);
+            this.cancelButton.Size = new System.Drawing.Size(86, 23);
             this.cancelButton.TabIndex = 1;
             this.cancelButton.Text = "&Cancel";
             this.cancelButton.UseVisualStyleBackColor = true;
@@ -116,9 +116,9 @@
             // 
             this.OKButton.Anchor = System.Windows.Forms.AnchorStyles.Left;
             this.OKButton.Enabled = false;
-            this.OKButton.Location = new System.Drawing.Point(237, 3);
+            this.OKButton.Location = new System.Drawing.Point(272, 3);
             this.OKButton.Name = "OKButton";
-            this.OKButton.Size = new System.Drawing.Size(75, 23);
+            this.OKButton.Size = new System.Drawing.Size(86, 23);
             this.OKButton.TabIndex = 0;
             this.OKButton.Text = "&OK";
             this.OKButton.UseVisualStyleBackColor = true;
@@ -127,12 +127,12 @@
             // AddMetric
             // 
             this.AcceptButton = this.OKButton;
-            this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 16F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.CancelButton = this.cancelButton;
-            this.ClientSize = new System.Drawing.Size(396, 118);
+            this.ClientSize = new System.Drawing.Size(453, 118);
             this.Controls.Add(this.tableLayoutPanel1);
-            this.Font = new System.Drawing.Font("Tahoma", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MaximizeBox = false;

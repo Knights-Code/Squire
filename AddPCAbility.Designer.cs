@@ -51,6 +51,7 @@
             this.tableLayoutPanel1.Controls.Add(this.abilityDescription, 0, 3);
             this.tableLayoutPanel1.Controls.Add(this.flowLayoutPanel1, 0, 4);
             this.tableLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.tableLayoutPanel1.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.tableLayoutPanel1.Location = new System.Drawing.Point(0, 0);
             this.tableLayoutPanel1.Name = "tableLayoutPanel1";
             this.tableLayoutPanel1.RowCount = 5;
@@ -59,7 +60,7 @@
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 36F));
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 282F));
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 37F));
-            this.tableLayoutPanel1.Size = new System.Drawing.Size(425, 423);
+            this.tableLayoutPanel1.Size = new System.Drawing.Size(297, 423);
             this.tableLayoutPanel1.TabIndex = 0;
             // 
             // label1
@@ -68,15 +69,17 @@
             this.label1.AutoSize = true;
             this.label1.Location = new System.Drawing.Point(3, 18);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(43, 17);
+            this.label1.Size = new System.Drawing.Size(45, 17);
             this.label1.TabIndex = 0;
             this.label1.Text = "Name";
             // 
             // abilityName
             // 
+            this.abilityName.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.abilityName.Font = new System.Drawing.Font("Tahoma", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.abilityName.Location = new System.Drawing.Point(3, 38);
             this.abilityName.Name = "abilityName";
-            this.abilityName.Size = new System.Drawing.Size(193, 23);
+            this.abilityName.Size = new System.Drawing.Size(291, 28);
             this.abilityName.TabIndex = 1;
             this.abilityName.TextChanged += new System.EventHandler(this.abilityName_TextChanged);
             // 
@@ -86,7 +89,7 @@
             this.label2.AutoSize = true;
             this.label2.Location = new System.Drawing.Point(3, 86);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(77, 17);
+            this.label2.Size = new System.Drawing.Size(79, 17);
             this.label2.TabIndex = 2;
             this.label2.Text = "Description";
             // 
@@ -99,7 +102,7 @@
             this.abilityDescription.Multiline = true;
             this.abilityDescription.Name = "abilityDescription";
             this.abilityDescription.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-            this.abilityDescription.Size = new System.Drawing.Size(419, 276);
+            this.abilityDescription.Size = new System.Drawing.Size(291, 276);
             this.abilityDescription.TabIndex = 3;
             this.abilityDescription.TextChanged += new System.EventHandler(this.abilityDescription_TextChanged);
             // 
@@ -111,14 +114,14 @@
             this.flowLayoutPanel1.FlowDirection = System.Windows.Forms.FlowDirection.RightToLeft;
             this.flowLayoutPanel1.Location = new System.Drawing.Point(3, 388);
             this.flowLayoutPanel1.Name = "flowLayoutPanel1";
-            this.flowLayoutPanel1.Size = new System.Drawing.Size(419, 32);
+            this.flowLayoutPanel1.Size = new System.Drawing.Size(291, 32);
             this.flowLayoutPanel1.TabIndex = 4;
             // 
             // cancelButton
             // 
             this.cancelButton.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.cancelButton.DialogResult = System.Windows.Forms.DialogResult.Cancel;
-            this.cancelButton.Location = new System.Drawing.Point(341, 3);
+            this.cancelButton.Location = new System.Drawing.Point(213, 3);
             this.cancelButton.Name = "cancelButton";
             this.cancelButton.Size = new System.Drawing.Size(75, 23);
             this.cancelButton.TabIndex = 0;
@@ -129,7 +132,7 @@
             // OKButton
             // 
             this.OKButton.Enabled = false;
-            this.OKButton.Location = new System.Drawing.Point(260, 3);
+            this.OKButton.Location = new System.Drawing.Point(132, 3);
             this.OKButton.Name = "OKButton";
             this.OKButton.Size = new System.Drawing.Size(75, 23);
             this.OKButton.TabIndex = 1;
@@ -143,7 +146,7 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.CancelButton = this.cancelButton;
-            this.ClientSize = new System.Drawing.Size(425, 423);
+            this.ClientSize = new System.Drawing.Size(297, 423);
             this.Controls.Add(this.tableLayoutPanel1);
             this.Font = new System.Drawing.Font("Tahoma", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
@@ -151,6 +154,7 @@
             this.MaximizeBox = false;
             this.MinimizeBox = false;
             this.Name = "AddPCAbility";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Add Ability";
             this.tableLayoutPanel1.ResumeLayout(false);
             this.tableLayoutPanel1.PerformLayout();

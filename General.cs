@@ -9,6 +9,7 @@ using System.Windows.Forms;
 using System.Text.RegularExpressions;
 using System.Collections;
 using System.IO;
+using System.Runtime.Serialization.Formatters.Binary;
 
 namespace Squire
 {
@@ -22,8 +23,11 @@ namespace Squire
         Point toolTipLocation;
         Boolean fileLoading;
         Boolean changesSaved;
-        public Player player;
         public HPBar playerHPBar;
+
+        public Player player;
+        string currentGeneralFile;
+        string currentPlayerFile;
 
         enum LoadProgress { START, INITIATIVE, DELAY, DYING, INDICES };
 
@@ -340,81 +344,109 @@ namespace Squire
 
                 if (openBattle.ShowDialog() == DialogResult.OK)
                 {
-                    StreamReader file = new StreamReader(openBattle.FileName);
-                    fileLoading = true; // lock down for load
+                    openBattleFile(openBattle.FileName, true);
+                    currentGeneralFile = openBattle.FileName;
+                }
+            }
+            else
+            {
+                OpenFileDialog openPlayer = new OpenFileDialog();
+                openPlayer.DefaultExt = ".pc";
+                openPlayer.Filter = "Player Files (*.pc)|*pc|All files (*.*)|*.*";
+                openPlayer.Title = "Open Player";
 
-                    string currentLine;
-                    LoadProgress filePosition = LoadProgress.START;
+                if (openPlayer.ShowDialog() == DialogResult.OK)
+                {
+                    Stream stream = File.Open(openPlayer.FileName, FileMode.Open);
+                    BinaryFormatter formatter = new BinaryFormatter();
 
-                    while ((currentLine = file.ReadLine()) != null)
-                    {
-                        if (currentLine != String.Empty)
-                        {
-                            switch (currentLine)
-                            {
-                                case "Initiative List":
-                                    filePosition = LoadProgress.INITIATIVE;
-                                    currentLine = file.ReadLine();
-                                    break;
-                                case "Delay List":
-                                    filePosition = LoadProgress.DELAY;
-                                    currentLine = file.ReadLine();
-                                    break;
-                                case "Dying List":
-                                    filePosition = LoadProgress.DYING;
-                                    currentLine = file.ReadLine();
-                                    break;
-                                case "Indices":
-                                    filePosition = LoadProgress.INDICES;
-                                    currentLine = file.ReadLine();
-                                    break;
-                            }
+                    player = (Player)formatter.Deserialize(stream);
+                    stream.Close();
 
-                            if (filePosition != LoadProgress.INDICES)
-                            {
-                                if (currentLine != String.Empty)
-                                {
-                                    string[] items = currentLine.Split('\t');
-
-                                    Combatant newCombatant = new Combatant(items[0], int.Parse(items[2]), Convert.ToDecimal(items[3]));
-                                    newCombatant.setCurrentHP(int.Parse(items[1]));
-
-                                    // Process effects.
-                                    for (int i = 5; i < (int.Parse(items[4]) * 2) + 5; i += 2)
-                                        newCombatant.addEffect(items[i], Convert.ToDecimal(items[i + 1]));
-
-                                    switch (filePosition)
-                                    {
-                                        case LoadProgress.INITIATIVE:
-                                            combatantList.Items.Add(newCombatant);
-                                            break;
-                                        case LoadProgress.DELAY:
-                                            delayList.Items.Add(newCombatant);
-                                            break;
-                                        case LoadProgress.DYING:
-                                            dyingList.Items.Add(newCombatant);
-                                            break;
-                                    }
-                                }
-                            }
-                            else
-                            {
-                                string[] items = currentLine.Split('\t');
-                                combatantList.SelectedIndex = int.Parse(items[0]);
-                                delayList.SelectedIndex = int.Parse(items[1]);
-                                dyingList.SelectedIndex = int.Parse(items[2]);
-                                roundNumber.Value = Convert.ToDecimal(items[3]);
-                            }
-                        }
-                    }
-
-                    file.Close();
-                    fileLoading = false;
+                    currentPlayerFile = openPlayer.FileName;
+                    loadPC();
                 }
             }
         }
 
-        private void saveToolStripMenuItem_Click(object sender, EventArgs e)
+        private void openBattleFile(string fileName, bool doClear)
+        {
+            if (doClear)
+                purgeLists();
+
+            StreamReader file = new StreamReader(fileName);
+            fileLoading = true; // lock down for load
+
+            string currentLine;
+            LoadProgress filePosition = LoadProgress.START;
+
+            while ((currentLine = file.ReadLine()) != null)
+            {
+                if (currentLine != String.Empty)
+                {
+                    switch (currentLine)
+                    {
+                        case "Initiative List":
+                            filePosition = LoadProgress.INITIATIVE;
+                            currentLine = file.ReadLine();
+                            break;
+                        case "Delay List":
+                            filePosition = LoadProgress.DELAY;
+                            currentLine = file.ReadLine();
+                            break;
+                        case "Dying List":
+                            filePosition = LoadProgress.DYING;
+                            currentLine = file.ReadLine();
+                            break;
+                        case "Indices":
+                            filePosition = LoadProgress.INDICES;
+                            currentLine = file.ReadLine();
+                            break;
+                    }
+
+                    if (filePosition != LoadProgress.INDICES)
+                    {
+                        if (currentLine != String.Empty)
+                        {
+                            string[] items = currentLine.Split('\t');
+
+                            Combatant newCombatant = new Combatant(items[0], int.Parse(items[2]), Convert.ToDecimal(items[3]));
+                            newCombatant.setCurrentHP(int.Parse(items[1]));
+
+                            // Process effects.
+                            for (int i = 5; i < (int.Parse(items[4]) * 2) + 5; i += 2)
+                                newCombatant.addEffect(items[i], Convert.ToDecimal(items[i + 1]));
+
+                            switch (filePosition)
+                            {
+                                case LoadProgress.INITIATIVE:
+                                    combatantList.Items.Add(newCombatant);
+                                    break;
+                                case LoadProgress.DELAY:
+                                    delayList.Items.Add(newCombatant);
+                                    break;
+                                case LoadProgress.DYING:
+                                    dyingList.Items.Add(newCombatant);
+                                    break;
+                            }
+                        }
+                    }
+                    else
+                    {
+                        string[] items = currentLine.Split('\t');
+                        combatantList.SelectedIndex = int.Parse(items[0]);
+                        delayList.SelectedIndex = int.Parse(items[1]);
+                        dyingList.SelectedIndex = int.Parse(items[2]);
+                        roundNumber.Value = Convert.ToDecimal(items[3]);
+                    }
+                }
+            }
+
+            file.Close();
+            fileLoading = false;
+        }
+
+        private void saveAsToolStripMenuItem_Click(object sender, EventArgs e)
         {
             if (tabPlayer.SelectedTab == tabDM)
             {
@@ -422,46 +454,45 @@ namespace Squire
                 saveBattle.DefaultExt = ".btl";
                 saveBattle.Filter = "Battle Files (*.btl)|*btl|All files (*.*)|*.*";
                 saveBattle.OverwritePrompt = true;
-                saveBattle.Title = "Save Battle";
+                saveBattle.Title = "Save As...";
 
                 if (saveBattle.ShowDialog() == DialogResult.OK)
                 {
-                    StreamWriter file = new StreamWriter(saveBattle.FileName);
+                    saveBattleFile(saveBattle.FileName);
 
-                    file.WriteLine("Initiative List");
-                    for (int i = 0; i < combatantList.Items.Count; i++)
-                    {
-                        Combatant c = (Combatant)combatantList.Items[i];
-                        file.WriteLine(c.toString());
-                    }
-
-                    file.WriteLine();
-                    file.WriteLine("Delay List");
-                    for (int i = 0; i < delayList.Items.Count; i++)
-                    {
-                        Combatant c = (Combatant)delayList.Items[i];
-                        file.WriteLine(c.toString());
-                    }
-
-                    file.WriteLine();
-                    file.WriteLine("Dying List");
-                    for (int i = 0; i < dyingList.Items.Count; i++)
-                    {
-                        Combatant c = (Combatant)dyingList.Items[i];
-                        file.WriteLine(c.toString());
-                    }
-
-                    file.WriteLine();
-                    file.WriteLine("Indices");
-                    file.WriteLine(combatantList.SelectedIndex + "\t" + delayList.SelectedIndex + "\t" + dyingList.SelectedIndex + "\t" + roundNumber.Value);
-
-                    file.Close();
+                    currentGeneralFile = saveBattle.FileName;
                 }
             }
             else
             {
+                if (player != null)
+                {                    
+                    SaveFileDialog savePlayer = new SaveFileDialog();
+                    savePlayer.DefaultExt = ".pc";
+                    savePlayer.Filter = "Player Files (*.pc)|*pc|All files (*.*)|*.*";
+                    savePlayer.OverwritePrompt = true;
+                    savePlayer.Title = "Save Player";
 
+                    if (savePlayer.ShowDialog() == DialogResult.OK)
+                    {
+                        savePlayerFile(savePlayer.FileName);
+
+                        currentPlayerFile = savePlayer.FileName;
+                    }
+                }
+                else
+                    MessageBox.Show("No player is loaded! Either load a pc file or create a one before trying again.", "No PC Loaded", MessageBoxButtons.OK,
+                        MessageBoxIcon.Error);
             }
+        }
+
+        private void savePlayerFile(string fileName)
+        {
+            Stream stream = File.Open(fileName, FileMode.Create);
+            BinaryFormatter formatter = new BinaryFormatter();
+
+            formatter.Serialize(stream, player);
+            stream.Close();
         }
 
         private void closeButton_Click(object sender, EventArgs e)
@@ -1306,16 +1337,21 @@ namespace Squire
                 if (MessageBox.Show("The lists will be cleared and the round number will be reset to 1. Proceed?", "Clear lists", MessageBoxButtons.YesNo,
                     MessageBoxIcon.Warning) == DialogResult.Yes)
                 {
-                    while (combatantList.Items.Count > 0)
-                        combatantList.Items.RemoveAt(0);
-                    while (delayList.Items.Count > 0)
-                        delayList.Items.RemoveAt(0);
-                    while (dyingList.Items.Count > 0)
-                        dyingList.Items.RemoveAt(0);
+                    purgeLists();
 
                     roundNumber.Value = 1;
                 }
             }
+        }
+
+        private void purgeLists()
+        {
+            while (combatantList.Items.Count > 0)
+                combatantList.Items.RemoveAt(0);
+            while (delayList.Items.Count > 0)
+                delayList.Items.RemoveAt(0);
+            while (dyingList.Items.Count > 0)
+                dyingList.Items.RemoveAt(0);
         }
 
         public void loadPC()
@@ -1326,10 +1362,11 @@ namespace Squire
 
                 playerHPBar.Maximum = player.getMaxHP();
                 playerHPBar.Value = player.getCurrentHP();
-                HPLabel.Text = player.HPTotal();
+                hitPointLabel.Text = player.HPTotal();
 
                 nonlethalBar.Maximum = player.getMaxHP();
                 nonlethalBar.Value = player.getNonLethal();
+                nonlethalLabel.Text = player.getNonLethal().ToString();
 
                 while (abilityDropdown.Items.Count > 0)
                     abilityDropdown.Items.RemoveAt(0);
@@ -1346,7 +1383,7 @@ namespace Squire
 
         private void lockOrUnlockPCTabControls(string command)
         {
-            Boolean doLock = command == "lock" ? true : false;
+            Boolean doLock = command == "unlock" ? true : false;
             
             setCurrentHPButton.Enabled = doLock;
             HPDownButton.Enabled = doLock;
@@ -1357,9 +1394,11 @@ namespace Squire
             setCurrentNLButton.Enabled = doLock;
             NLDownButton.Enabled = doLock;
             NLAdjustBox.Enabled = doLock;
+            NLUpButton.Enabled = doLock;
 
             addAbilityButton.Enabled = doLock;
-            removeAbilityButton.Enabled = !doLock && player.numAbilities() > 0;
+            removeAbilityButton.Enabled = doLock && player.numAbilities() > 0;
+            abilityDropdown.Enabled = doLock && player.numAbilities() > 0;
         }
 
         private void abilityDropdown_SelectedIndexChanged(object sender, EventArgs e)
@@ -1463,6 +1502,100 @@ namespace Squire
         private void addAbilityButton_Click(object sender, EventArgs e)
         {
             AddPCAbility addAbility = new AddPCAbility(this);
+            addAbility.Show();
+        }
+
+        private void removeAbilityButton_Click(object sender, EventArgs e)
+        {
+            player.removeAbility(abilityDropdown.SelectedIndex); // remove current ability from player
+            abilityDropdown.Items.RemoveAt(abilityDropdown.SelectedIndex); // remove ability from dropdown
+
+            // If there are abilities remaining, select the first one. Otherwise, simply lock the dropdown and remove button, and clear the 
+            // ability description.
+            if (player.numAbilities() > 0)
+            {
+                abilityDropdown.SelectedIndex = 0;
+            }
+            else
+            {
+                abilityDropdown.Enabled = false;
+                removeAbilityButton.Enabled = false;
+                abilityDropdown.Text = ""; // clear residual text
+                abilityDescription.Text = "";
+            }
+        }
+
+        private void saveToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (tabPlayer.SelectedTab == tabDM)
+            {
+                // Save to existing filepath if one exists. Otherwise, load the save as dialog.
+                if (currentGeneralFile != null)
+                    saveBattleFile(currentGeneralFile);
+                else
+                    saveAsToolStripMenuItem_Click(this, new EventArgs());
+            }
+            else if (tabPlayer.SelectedTab == tabPC)
+            {
+                // Save to existing filepath if one exists. Otherwise, load the save as dialog.
+                if (currentPlayerFile != null)
+                    savePlayerFile(currentPlayerFile);
+                else
+                    saveAsToolStripMenuItem_Click(this, new EventArgs());
+            }
+        }
+
+        private void saveBattleFile(string fileName)
+        {
+            StreamWriter file = new StreamWriter(fileName);
+
+            file.WriteLine("Initiative List");
+            for (int i = 0; i < combatantList.Items.Count; i++)
+            {
+                Combatant c = (Combatant)combatantList.Items[i];
+                file.WriteLine(c.toString());
+            }
+
+            file.WriteLine();
+            file.WriteLine("Delay List");
+            for (int i = 0; i < delayList.Items.Count; i++)
+            {
+                Combatant c = (Combatant)delayList.Items[i];
+                file.WriteLine(c.toString());
+            }
+
+            file.WriteLine();
+            file.WriteLine("Dying List");
+            for (int i = 0; i < dyingList.Items.Count; i++)
+            {
+                Combatant c = (Combatant)dyingList.Items[i];
+                file.WriteLine(c.toString());
+            }
+
+            file.WriteLine();
+            file.WriteLine("Indices");
+            file.WriteLine(combatantList.SelectedIndex + "\t" + delayList.SelectedIndex + "\t" + dyingList.SelectedIndex + "\t" + roundNumber.Value);
+
+            file.Close();
+        }
+
+        private void addCombatantsToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (MessageBox.Show("Select a battle file containing combatants you would like to introduce to the current encounter and click Open. New" +
+                " combatants will be added to the combatants list on the DM tab.", "Add Combatants", MessageBoxButtons.OKCancel, MessageBoxIcon.Information)
+                == DialogResult.OK)
+            {
+                OpenFileDialog openBattle = new OpenFileDialog();
+                openBattle.DefaultExt = ".btl";
+                openBattle.Filter = "Battle Files (*.btl)|*btl|All files (*.*)|*.*";
+                openBattle.Title = "Open";
+
+                if (openBattle.ShowDialog() == DialogResult.OK)
+                {
+                    openBattleFile(openBattle.FileName, false);
+                    currentGeneralFile = openBattle.FileName;
+                }
+            }
         }
     }
 }

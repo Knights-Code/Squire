@@ -113,8 +113,12 @@ namespace Squire
             if (metricList.Items.Count > 0)
                 metricList.SelectedIndex = 0; // select first metric in list to look tidy
 
+            // If we just deleted the last metric, lock the Delete button and clear the dropdown text.
             if (currentCharacter.metricCount() == 0)
+            {
                 deleteMetric.Enabled = false;
+                metricList.Text = "";
+            }
         }
 
         private void saveManifestToolStripMenuItem_Click(object sender, EventArgs e)

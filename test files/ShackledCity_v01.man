@@ -1,0 +1,5 @@
+Thane	23	10	23	9	Fort	10	Ref	2	Will	5	Spot	-1	Listen	-1	Sense Motive	-1	Hide	-7	Move Silently	-7	Knowledge (nature)	10
+Calista	21	16	21	10	Fort	6	Ref	11	Will	4	Spot	17	Listen	15	Hide	15	Move Silently	15	Knowledge (Dungeoneering)	13	Sense Motive	2	Search	13
+Ja'Nee	21	12	19	19	Fort	6	Ref	4	Will	6	Spot	0	Listen	0	Hide	-1	Move Silently	0	Knowledge (Arcana)	14	Knowledge (Dungeoneering)	14	Knowledge (Nature)	14	Knowledge (Architecture)	4	Knowledge (Geography)	4	Knowledge (history)	4	Knowledge (local)	4	Knowledge (nobility)	4	Knowledge (the planes)	6	Knowledge (religion)	6	Sense Motive	-1	Search	4
+Saph	10	10	10	0
+Ahpas	16	12	15	9	Fort	5	Reflex	4	will	5	Spot	-1	Listen	-1	Sense Motive	10	Hide	16	Move Silently	12	Knowledge (arcana)	14

@@ -316,6 +316,11 @@
             this.currentMetric.Enabled = false;
             this.currentMetric.Location = new System.Drawing.Point(189, 4);
             this.currentMetric.Margin = new System.Windows.Forms.Padding(4);
+            this.currentMetric.Minimum = new decimal(new int[] {
+            100,
+            0,
+            0,
+            -2147483648});
             this.currentMetric.Name = "currentMetric";
             this.currentMetric.Size = new System.Drawing.Size(54, 24);
             this.currentMetric.TabIndex = 1;

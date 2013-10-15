@@ -84,6 +84,11 @@
             // 
             this.metricValue.Anchor = System.Windows.Forms.AnchorStyles.Left;
             this.metricValue.Location = new System.Drawing.Point(229, 47);
+            this.metricValue.Minimum = new decimal(new int[] {
+            100,
+            0,
+            0,
+            -2147483648});
             this.metricValue.Name = "metricValue";
             this.metricValue.Size = new System.Drawing.Size(57, 22);
             this.metricValue.TabIndex = 2;

@@ -1,14 +1,20 @@
 Initiative List
-Saph	0	0	8	0
-Calista	0	0	8	0
-Ahpas	0	0	8	0
-Ja'Nee	0	0	8	0
-Thane	0	0	8	0
+Arcturus	0	0	9	0
+Bill	0	0	9	0
+Isaac	74	74	9	0
+Marna	0	0	9	0
+Ja'Nee	0	0	9	0
 
 Delay List
-Marna	0	0	8	0
+Calista	0	0	8	0
+Sandborn	0	0	8	0
 
 Dying List
+Gumbuck #1	-14	162	12	0
+Rogue #4	-11	22	4	0
+Rogue #3	-10	24	4	0
+Rogue #1	-10	22	4	1	9 dex	9
+Rogue #2	-6	23	4	0
 
 Indices
-1	0	-1	1
+4	1	-1	6

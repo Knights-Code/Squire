@@ -147,10 +147,10 @@
             this.calculateXPToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.clearDyingListToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.addCombatantsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.tableLayoutPanel7 = new System.Windows.Forms.TableLayoutPanel();
             this.closeButton = new System.Windows.Forms.Button();
             this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
-            this.addCombatantsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.tabPlayer.SuspendLayout();
             this.tabDM.SuspendLayout();
             this.tableLayoutPanel8.SuspendLayout();
@@ -209,7 +209,7 @@
             this.tabPlayer.Margin = new System.Windows.Forms.Padding(0, 0, 0, 4);
             this.tabPlayer.Name = "tabPlayer";
             this.tabPlayer.SelectedIndex = 0;
-            this.tabPlayer.Size = new System.Drawing.Size(997, 550);
+            this.tabPlayer.Size = new System.Drawing.Size(997, 591);
             this.tabPlayer.TabIndex = 0;
             // 
             // tabDM
@@ -219,7 +219,7 @@
             this.tabDM.Margin = new System.Windows.Forms.Padding(4);
             this.tabDM.Name = "tabDM";
             this.tabDM.Padding = new System.Windows.Forms.Padding(4);
-            this.tabDM.Size = new System.Drawing.Size(989, 521);
+            this.tabDM.Size = new System.Drawing.Size(989, 562);
             this.tabDM.TabIndex = 1;
             this.tabDM.Text = "DM";
             this.tabDM.UseVisualStyleBackColor = true;
@@ -237,7 +237,7 @@
             this.tableLayoutPanel8.Name = "tableLayoutPanel8";
             this.tableLayoutPanel8.RowCount = 1;
             this.tableLayoutPanel8.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tableLayoutPanel8.Size = new System.Drawing.Size(981, 513);
+            this.tableLayoutPanel8.Size = new System.Drawing.Size(981, 554);
             this.tableLayoutPanel8.TabIndex = 0;
             // 
             // tableLayoutPanel9
@@ -1673,7 +1673,7 @@
             this.tableLayoutPanel29.ColumnCount = 3;
             this.tableLayoutPanel29.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 74.67105F));
             this.tableLayoutPanel29.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 25.32895F));
-            this.tableLayoutPanel29.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 99F));
+            this.tableLayoutPanel29.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 100F));
             this.tableLayoutPanel29.Controls.Add(this.abilityDropdown, 0, 0);
             this.tableLayoutPanel29.Controls.Add(this.addAbilityButton, 1, 0);
             this.tableLayoutPanel29.Controls.Add(this.removeAbilityButton, 2, 0);
@@ -1692,7 +1692,7 @@
             this.abilityDropdown.FormattingEnabled = true;
             this.abilityDropdown.Location = new System.Drawing.Point(3, 14);
             this.abilityDropdown.Name = "abilityDropdown";
-            this.abilityDropdown.Size = new System.Drawing.Size(213, 24);
+            this.abilityDropdown.Size = new System.Drawing.Size(212, 24);
             this.abilityDropdown.TabIndex = 0;
             this.abilityDropdown.SelectedIndexChanged += new System.EventHandler(this.abilityDropdown_SelectedIndexChanged);
             // 
@@ -1700,7 +1700,7 @@
             // 
             this.addAbilityButton.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.addAbilityButton.Enabled = false;
-            this.addAbilityButton.Location = new System.Drawing.Point(223, 15);
+            this.addAbilityButton.Location = new System.Drawing.Point(222, 15);
             this.addAbilityButton.Name = "addAbilityButton";
             this.addAbilityButton.Size = new System.Drawing.Size(66, 23);
             this.addAbilityButton.TabIndex = 1;
@@ -1712,7 +1712,7 @@
             // 
             this.removeAbilityButton.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.removeAbilityButton.Enabled = false;
-            this.removeAbilityButton.Location = new System.Drawing.Point(306, 15);
+            this.removeAbilityButton.Location = new System.Drawing.Point(305, 15);
             this.removeAbilityButton.Name = "removeAbilityButton";
             this.removeAbilityButton.Size = new System.Drawing.Size(74, 23);
             this.removeAbilityButton.TabIndex = 2;
@@ -1825,6 +1825,13 @@
             this.clearDyingListToolStripMenuItem.Text = "Clear Dying List";
             this.clearDyingListToolStripMenuItem.Click += new System.EventHandler(this.clearDyingListToolStripMenuItem_Click);
             // 
+            // addCombatantsToolStripMenuItem
+            // 
+            this.addCombatantsToolStripMenuItem.Name = "addCombatantsToolStripMenuItem";
+            this.addCombatantsToolStripMenuItem.Size = new System.Drawing.Size(192, 22);
+            this.addCombatantsToolStripMenuItem.Text = "Add Combatants...";
+            this.addCombatantsToolStripMenuItem.Click += new System.EventHandler(this.addCombatantsToolStripMenuItem_Click);
+            // 
             // tableLayoutPanel7
             // 
             this.tableLayoutPanel7.ColumnCount = 1;
@@ -1838,14 +1845,14 @@
             this.tableLayoutPanel7.RowCount = 2;
             this.tableLayoutPanel7.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
             this.tableLayoutPanel7.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 31F));
-            this.tableLayoutPanel7.Size = new System.Drawing.Size(997, 585);
+            this.tableLayoutPanel7.Size = new System.Drawing.Size(997, 626);
             this.tableLayoutPanel7.TabIndex = 2;
             // 
             // closeButton
             // 
             this.closeButton.Anchor = System.Windows.Forms.AnchorStyles.Right;
             this.closeButton.DialogResult = System.Windows.Forms.DialogResult.Cancel;
-            this.closeButton.Location = new System.Drawing.Point(897, 555);
+            this.closeButton.Location = new System.Drawing.Point(897, 596);
             this.closeButton.Margin = new System.Windows.Forms.Padding(0);
             this.closeButton.Name = "closeButton";
             this.closeButton.Size = new System.Drawing.Size(100, 28);
@@ -1859,19 +1866,12 @@
             this.contextMenuStrip1.Name = "contextMenuStrip1";
             this.contextMenuStrip1.Size = new System.Drawing.Size(61, 4);
             // 
-            // addCombatantsToolStripMenuItem
-            // 
-            this.addCombatantsToolStripMenuItem.Name = "addCombatantsToolStripMenuItem";
-            this.addCombatantsToolStripMenuItem.Size = new System.Drawing.Size(192, 22);
-            this.addCombatantsToolStripMenuItem.Text = "Add Combatants...";
-            this.addCombatantsToolStripMenuItem.Click += new System.EventHandler(this.addCombatantsToolStripMenuItem_Click);
-            // 
             // General
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.CancelButton = this.closeButton;
-            this.ClientSize = new System.Drawing.Size(997, 610);
+            this.ClientSize = new System.Drawing.Size(997, 651);
             this.Controls.Add(this.tableLayoutPanel7);
             this.Controls.Add(this.generalMenu);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));

@@ -1,5 +1,10 @@
-Thane	23	10	23	9	Fort	10	Ref	2	Will	5	Spot	-1	Listen	-1	Sense Motive	-1	Hide	-7	Move Silently	-7	Knowledge (nature)	10
+Thane	23	10	23	11	Fort	10	Ref	2	Will	5	Spot	-1	Listen	-1	Sense Motive	-1	Hide	-7	Move Silently	-7	Knowledge (nature)	10	Search	0	Bluff	15
 Calista	21	16	21	10	Fort	6	Ref	11	Will	4	Spot	17	Listen	15	Hide	15	Move Silently	15	Knowledge (Dungeoneering)	13	Sense Motive	2	Search	13
-Ja'Nee	21	12	19	19	Fort	6	Ref	4	Will	6	Spot	0	Listen	0	Hide	-1	Move Silently	0	Knowledge (Arcana)	14	Knowledge (Dungeoneering)	14	Knowledge (Nature)	14	Knowledge (Architecture)	4	Knowledge (Geography)	4	Knowledge (history)	4	Knowledge (local)	4	Knowledge (nobility)	4	Knowledge (the planes)	6	Knowledge (religion)	6	Sense Motive	-1	Search	4
-Saph	10	10	10	0
-Ahpas	16	12	15	9	Fort	5	Reflex	4	will	5	Spot	-1	Listen	-1	Sense Motive	10	Hide	16	Move Silently	12	Knowledge (arcana)	14
+Ja'Nee	27	13	24	20	Fort	8	Ref	6	Will	9	Spot	0	Listen	0	Hide	-1	Move Silently	0	Knowledge (Arcana)	15	Knowledge (Dungeoneering)	15	Knowledge (Nature)	14	Knowledge (Architecture)	4	Knowledge (Geography)	3	Knowledge (history)	2	Knowledge (local)	4	Knowledge (nobility)	3	Knowledge (the planes)	13	Knowledge (religion)	6	Sense Motive	0	Search	4	Spellcraft	6
+Saph	21	17	21	8	Fort	5	Ref	4	Will	2	Spot	8	Listen	7	Search	9	Hide	20	Listen	7
+Ahpas	16	12	15	11	Fort	5	Reflex	4	will	5	Spot	-1	Listen	-1	Sense Motive	10	Hide	16	Move Silently	12	Knowledge (arcana)	14	Search	22	Spellcraft	19
+Marna	20	9	20	10	Fort	8	Ref	2	Will	10	Hide	-8	Move Silently	-8	Search	0	Sense Moive	3	Listen	3	Spot	3	Marna	11
+Arcturus	21	12	26	5	Spot	14	Listen	14	Sense Motive	5	Spellcraft	6	Knowledge (nature)	17
+Isaac	16	12	15	5	Spot	13	Listen	4	Sense Motive	2	Spellcraft	13	Knowledge (geography)	15
+Fabulous Bill	12	13	10	1	Bluff	17
+Crunch	34	10	10	0

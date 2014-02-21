@@ -1,21 +1,21 @@
 Initiative List
 Witch King	102	102	12	0
-Gannon	40	40	5	1	Shaken	6
-Rylan	36	36	5	2	Shaken (-2 atk rolls, ablty chks, skl chks svs)	4	Fatigued (-2 str dex)	4
-Pippin	6	6	1	1	Shaken (-2 atk rolls, ablty chks, skl chks svs)	4
-Frodo	10	10	1	1	Shaken (-2 atk rolls, ablty chks, skl chks svs)	4
-Redomir	66	66	5	1	Shaken (-2 atk rolls, ablty chks, skl chks svs)	4
-Ringwraith #2	14	17	5	0
-Ringwraith #1	10	22	5	0
-Ringwraith #4	4	30	5	0
-Sam	2	6	1	3	Shaken (-2 atk rolls, ablty chks, skl chks svs)	4	Fatigued (-2 str dex)	4	Morgulspawn	37
-Merry	2	7	1	2	Shaken (-2 atk rolls, ablty chks, skl chks svs)	4	Fatigued (-2 str dex)	4
+Gannon	33	40	5	1	Shaken	2
+Rylan	36	36	5	0
+Pippin	6	6	1	0
+Frodo	6	10	1	0
+Redomir	57	66	5	0
+Sam	2	6	1	1	Morgulspawn	33
+Merry	2	7	1	0
 
 Delay List
+Ringwraith #1	10	22	5	0
 
 Dying List
 Ringwraith #1	-19	17	5	0
 Ringwraith #3	22	22	5	0
+Ringwraith #4	4	30	5	0
+Ringwraith #2	-6	17	5	0
 
 Indices
-5	-1	-1	8
+5	0	-1	12

@@ -102,6 +102,7 @@
     <Compile Include="AskName.Designer.cs">
       <DependentUpon>AskName.cs</DependentUpon>
     </Compile>
+    <Compile Include="Battle.cs" />
     <Compile Include="Character.cs" />
     <Compile Include="Combatant.cs" />
     <Compile Include="HPBar.cs">

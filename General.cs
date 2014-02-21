@@ -73,7 +73,7 @@ namespace Squire
             dyingList.SelectedIndex = -1;
         }
 
-        /// If we don't want a list box to interpret the keyboard and select different items accordingly, overload the keypress event handler
+        /// If we don't want a list box to interpret the keyboard and select different items accordingly, override the keypress event handler
         /// and handle the event ourselves (by just telling the system it's been dealt with).
         void initiative_KeyPress(object sender, KeyPressEventArgs e)
         {
@@ -374,7 +374,27 @@ namespace Squire
             if (doClear)
                 purgeLists();
 
-            StreamReader file = new StreamReader(fileName);
+            Stream stream = File.Open(fileName, FileMode.Open);
+            BinaryFormatter formatter = new BinaryFormatter();
+            Battle input = (Battle)formatter.Deserialize(stream);
+            stream.Close();
+
+            foreach (Combatant c in input.combatantList)
+                combatantList.Items.Add(c);
+            foreach (Combatant c in input.delayList)
+                delayList.Items.Add(c);
+            foreach (Combatant c in input.dyingList)
+                dyingList.Items.Add(c);
+
+            if (doClear) // this usually means we're opening an entirely new file, so update indices and round
+            {
+                combatantList.SelectedIndex = input.cIndex;
+                delayList.SelectedIndex = input.dlIndex;
+                dyingList.SelectedIndex = input.dyIndex;
+                roundNumber.Value = input.round;
+            }
+
+            /*StreamReader file = new StreamReader(fileName);
             fileLoading = true; // lock down for load
 
             string currentLine;
@@ -443,7 +463,7 @@ namespace Squire
             }
 
             file.Close();
-            fileLoading = false;
+            fileLoading = false;*/
         }
 
         private void saveAsToolStripMenuItem_Click(object sender, EventArgs e)
@@ -1547,7 +1567,29 @@ namespace Squire
 
         private void saveBattleFile(string fileName)
         {
-            StreamWriter file = new StreamWriter(fileName);
+            Stream stream = File.Open(fileName, FileMode.Create);
+            BinaryFormatter formatter = new BinaryFormatter();
+            ArrayList cl, dl, dy;
+            cl = new ArrayList();
+            dl = new ArrayList();
+            dy = new ArrayList();
+
+            foreach (Combatant c in combatantList.Items)
+                cl.Add(c);
+            foreach (Combatant c in delayList.Items)
+                dl.Add(c);
+            foreach (Combatant c in dyingList.Items)
+                dy.Add(c);
+
+            Battle output = new Battle(cl, combatantList.SelectedIndex,
+                                       dl, delayList.SelectedIndex,
+                                       dy, dyingList.SelectedIndex,
+                                       roundNumber.Value);
+
+            formatter.Serialize(stream, output);
+            stream.Close();
+
+            /*StreamWriter file = new StreamWriter(fileName);
 
             file.WriteLine("Initiative List");
             for (int i = 0; i < combatantList.Items.Count; i++)
@@ -1576,7 +1618,7 @@ namespace Squire
             file.WriteLine("Indices");
             file.WriteLine(combatantList.SelectedIndex + "\t" + delayList.SelectedIndex + "\t" + dyingList.SelectedIndex + "\t" + roundNumber.Value);
 
-            file.Close();
+            file.Close();*/
         }
 
         private void addCombatantsToolStripMenuItem_Click(object sender, EventArgs e)

@@ -3,10 +3,12 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Collections;
+using System.Runtime.Serialization;
 
 namespace Squire
 {
-    public class Combatant
+    [Serializable]
+    public class Combatant : ISerializable
     {
         string name;
         string batchRoot;
@@ -65,6 +67,84 @@ namespace Squire
 
             effect = new ArrayList();
             roundsRemaining = new ArrayList();
+        }
+
+        public Combatant(SerializationInfo info, StreamingContext context)
+        {
+            foreach (SerializationEntry entry in info)
+            {
+                switch (entry.Name)
+                {
+                    case "Name":
+                        name = (string)entry.Value;
+                        break;
+                    case "BatchRoot":
+                        batchRoot = (string)entry.Value;
+                        break;
+                    case "MaxHP":
+                        maxHP = (int)entry.Value;
+                        break;
+                    case "CurrentHP":
+                        currentHP = (int)entry.Value;
+                        break;
+                    case "BatchTotal":
+                        batchTotal = (int)entry.Value;
+                        break;
+                    case "AttackBonus":
+                        attackBonus = (int[])entry.Value;
+                        break;
+                    case "Level":
+                        level = (decimal)entry.Value;
+                        break;
+                    case "Damage":
+                        damage = (string[])entry.Value;
+                        break;
+                    case "Effect":
+                        effect = (ArrayList)entry.Value;
+                        break;
+                    case "RoundsRemaining":
+                        roundsRemaining = (ArrayList)entry.Value;
+                        break;
+                    case "BPlayer":
+                        bPlayer = (Boolean)entry.Value;
+                        break;
+                    case "BStable":
+                        bStable = (Boolean)entry.Value;
+                        break;
+                }
+            }
+        }
+
+        public void GetObjectData(SerializationInfo info, StreamingContext context)
+        {
+            info.AddValue("Name", name);
+            //string batchRoot;
+            info.AddValue("BatchRoot", batchRoot);
+
+            if (!bPlayer)
+            {
+                //int maxHP;
+                info.AddValue("MaxHP", maxHP);
+                //int currentHP;
+                info.AddValue("CurrentHP", currentHP);
+            }
+
+            //int batchTotal;
+            info.AddValue("BatchTotal", batchTotal);
+            //int[] attackBonus;
+            info.AddValue("AttackBonus", attackBonus);
+            //decimal level;
+            info.AddValue("Level", level);
+            //string[] damage;
+            info.AddValue("Damage", damage);
+            //ArrayList effect;
+            info.AddValue("Effect", effect);
+            //ArrayList roundsRemaining;
+            info.AddValue("RoundsRemaining", roundsRemaining);
+            //Boolean bPlayer;
+            info.AddValue("BPlayer", bPlayer);
+            //Boolean bStable;
+            info.AddValue("BStable", bStable);
         }
 
         public decimal getLevel()
